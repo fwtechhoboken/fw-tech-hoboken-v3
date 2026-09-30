@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FW Tech Hoboken | Laptop cleaning and thermal repaste in Hoboken, NJ</title>
+<meta name="description" content="Affordable laptop cleaning and thermal repaste in Hoboken, NJ. Local, honest, no corporate markup. Email to book, cash at drop-off.">
+<link rel="canonical" href="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/">
+<meta name="theme-color" content="#0b0b0c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FW Tech Hoboken | Laptop cleaning and thermal repaste">
+<meta property="og:description" content="Affordable laptop cleaning and thermal repaste. Local, honest, no corporate markup. Hoboken, Jersey City, Union City, Midtown and Downtown Manhattan.">
+<meta property="og:url" content="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0c'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%23c8a96a'%3EFW%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "FW Tech Hoboken",
+  "alternateName": "FW Tech",
+  "description": "Laptop cleaning and thermal repaste service. Hardware cleaning only.",
+  "url": "https://fwtechhoboken.github.io/fw-tech-hoboken-v3/",
+  "email": "rey.sahani03@gmail.com",
+  "priceRange": "$15 to $72",
+  "paymentAccepted": "Cash",
+  "address": { "@type": "PostalAddress", "addressLocality": "Hoboken", "addressRegion": "NJ", "addressCountry": "US" },
+  "areaServed": ["Hoboken, NJ", "Jersey City, NJ", "Union City, NJ", "Midtown Manhattan, NY", "Downtown Manhattan, NY"],
+  "makesOffer": [
+    { "@type": "Offer", "name": "Exterior clean", "price": "15", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Internal clean", "price": "28", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Thermal repaste", "price": "40", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Full bundle", "price": "72", "priceCurrency": "USD" }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Apply saved mode before paint so there's no flash */
+  (function () {
+    var h = document.documentElement, t = 'train', c = null;
+    try { t = localStorage.getItem('fw-mode') || 'train'; c = localStorage.getItem('fw-calm'); } catch (e) {}
+    h.dataset.theme = (t === 'airplane' || t === 'industrial') ? t : 'train';
+    if (c === 'on') h.dataset.calm = 'on';
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void:    'rgb(var(--void) / <alpha-value>)',
+          slab:    'rgb(var(--slab) / <alpha-value>)',
+          smoke:   'rgb(var(--smoke) / <alpha-value>)',
+          line:    'rgb(var(--line) / <alpha-value>)',
+          ink:     'rgb(var(--ink) / <alpha-value>)',
+          dim:     'rgb(var(--dim) / <alpha-value>)',
+          coolant: 'rgb(var(--coolant) / <alpha-value>)',
+          heat:    'rgb(var(--heat) / <alpha-value>)',
+          brass:   'rgb(var(--brass) / <alpha-value>)'
+        },
+        fontFamily: {
+          sans: ['Archivo', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          mono: ['JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
+        },
+        maxWidth: { frame: '1440px' }
+      }
+    }
+  }
+</script>
+<style>
+  /* ================= MODES =================
+     Train:      boiler black, graphite, brass (default)
+     Airplane:   787 Dreamliner cabin white, Boeing navy, sky blue, sunset
+     Industrial: dieselpunk + steampunk: soot, copper, verdigris, furnace */
+  :root, html[data-theme="train"] {
+    --void: 11 11 12; --slab: 22 22 24; --smoke: 43 45 48; --line: 39 39 44;
+    --ink: 236 235 231; --dim: 128 130 139;
+    --coolant: 111 211 255; --heat: 245 158 11; --brass: 200 169 106;
+    --plate-a: #1a1a1d; --plate-b: #141416;
+    --band-1: #232427; --band-2: #18191b; --band-3: #0e0e10; --band-top: #3a3c40; --band-bottom: #050506;
+    --rivet: #6a6c71; --rivet-shade: #2a2b2e;
+    --grid: rgba(255,255,255,.03); --emboss: rgba(0,0,0,.8);
+    --plate-inset: rgba(0,0,0,.55); --bp-bg: #0d0f11;
+    color-scheme: dark;
+  }
+  html[data-theme="airplane"] {
+    --void: 237 241 247; --slab: 255 255 255; --smoke: 190 201 218; --line: 214 222 234;
+    --ink: 11 26 51; --dim: 88 102 128;
+    --coolant: 31 111 209; --heat: 214 90 30; --brass: 12 52 120;
+    --plate-a: #ffffff; --plate-b: #f3f6fb;
+    --band-1: #e3e9f2; --band-2: #d2dbe7; --band-3: #c3cedd; --band-top: #ffffff; --band-bottom: #9aa7ba;
+    --rivet: #8d9bb0; --rivet-shade: #eef2f8;
+    --grid: rgba(11,26,51,.05); --emboss: rgba(255,255,255,.7);
+    --plate-inset: rgba(11,26,51,.12); --bp-bg: #f4f7fc;
+    color-scheme: light;
+  }
+  html[data-theme="industrial"] {
+    --void: 22 17 13; --slab: 36 27 20; --smoke: 82 62 44; --line: 60 46 34;
+    --ink: 234 222 196; --dim: 156 138 110;
+    --coolant: 94 168 150; --heat: 222 104 38; --brass: 214 154 78;
+    --plate-a: #2a2019; --plate-b: #201812;
+    --band-1: #4a3727; --band-2: #2e2218; --band-3: #1a130e; --band-top: #6b5038; --band-bottom: #0b0806;
+    --rivet: #b0835a; --rivet-shade: #3a2a1c;
+    --grid: rgba(214,154,78,.05); --emboss: rgba(0,0,0,.85);
+    --plate-inset: rgba(0,0,0,.6); --bp-bg: #14100c;
+    color-scheme: dark;
+  }
+  html[data-theme="industrial"] body {
+    background-image: repeating-linear-gradient(135deg, rgba(214,154,78,.018) 0 2px, transparent 2px 9px);
+  }
+  html, body { transition: background-color .35s ease, color .35s ease; }
+
+  /* Mode switch */
+  .mode-group { display: flex; }
+  .mode-btn {
+    width: 36px; height: 36px; display: grid; place-items: center; margin-left: -2px;
+    border: 2px solid rgb(var(--smoke)); color: rgb(var(--dim)); background: transparent; cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+  }
+  .mode-btn:first-child { margin-left: 0; }
+  .mode-btn:hover { color: rgb(var(--ink)); }
+  .mode-btn[aria-pressed="true"] { background: rgb(var(--brass)); border-color: rgb(var(--brass)); color: rgb(var(--void)); position: relative; z-index: 1; }
+  .mode-btn svg { width: 18px; height: 18px; }
+  .mode-label { display: flex; align-items: center; gap: .6rem; padding: .7rem .9rem; width: auto; height: auto; font-weight: 700; font-stretch: 112%; font-size: .95rem; }
+
+  /* Calm mode: everything holds still */
+  html[data-calm="on"] *, html[data-calm="on"] *::before, html[data-calm="on"] *::after {
+    animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important;
+  }
+
+  :root {
+    --chamfer: 14px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 80px); background: rgb(var(--void)); }
+  body { background: rgb(var(--void)); color: rgb(var(--ink)); font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  *, *::before, *::after { box-sizing: inherit; }
+
+  .display { font-stretch: 125%; font-weight: 900; letter-spacing: -0.02em; line-height: 0.95; }
+  .wide    { font-stretch: 112%; }
+  .narrow  { font-stretch: 75%; }
+
+  .grid-field {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .chamfer {
+    clip-path: polygon(0 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer), 100% 100%, var(--chamfer) 100%, 0 calc(100% - var(--chamfer)));
+  }
+
+  /* ---------- Heavy metal: boiler bands, rivets, bolted plates ---------- */
+  .boiler-band {
+    position: relative; height: 18px;
+    background: linear-gradient(180deg, var(--band-1) 0%, var(--band-2) 45%, var(--band-3) 100%);
+    border-top: 1px solid var(--band-top); border-bottom: 2px solid var(--band-bottom);
+  }
+  .boiler-band::after {
+    content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 8px; transform: translateY(-50%);
+    background-image: radial-gradient(circle at 50% 50%, var(--rivet) 0 1.6px, var(--rivet-shade) 2.2px, transparent 2.8px);
+    background-size: 26px 8px; background-repeat: repeat-x; background-position: 13px 0;
+  }
+  .rivet-row {
+    height: 8px;
+    background-image: radial-gradient(circle at 50% 50%, var(--rivet) 0 1.6px, var(--rivet-shade) 2.2px, transparent 2.8px);
+    background-size: 20px 8px; background-repeat: repeat-x;
+  }
+  .plate {
+    position: relative;
+    background: linear-gradient(180deg, var(--plate-a) 0%, var(--plate-b) 100%);
+    border: 3px solid rgb(var(--smoke));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 -3px 0 var(--plate-inset), 0 18px 40px -24px rgba(0,0,0,.9);
+  }
+  .bolted::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6.2' fill='%23303236' stroke='%23686a6f' stroke-width='1.2'/%3E%3Ccircle cx='7' cy='7' r='4.6' fill='none' stroke='%23000' stroke-opacity='.35'/%3E%3Cpath d='M7 3.6v6.8M3.6 7h6.8' stroke='%230b0b0c' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat left 8px top 8px,
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6.2' fill='%23303236' stroke='%23686a6f' stroke-width='1.2'/%3E%3Ccircle cx='7' cy='7' r='4.6' fill='none' stroke='%23000' stroke-opacity='.35'/%3E%3Cpath d='M7 3.6v6.8M3.6 7h6.8' stroke='%230b0b0c' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 8px top 8px,
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6.2' fill='%23303236' stroke='%23686a6f' stroke-width='1.2'/%3E%3Ccircle cx='7' cy='7' r='4.6' fill='none' stroke='%23000' stroke-opacity='.35'/%3E%3Cpath d='M7 3.6v6.8M3.6 7h6.8' stroke='%230b0b0c' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat left 8px bottom 8px,
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6.2' fill='%23303236' stroke='%23686a6f' stroke-width='1.2'/%3E%3Ccircle cx='7' cy='7' r='4.6' fill='none' stroke='%23000' stroke-opacity='.35'/%3E%3Cpath d='M7 3.6v6.8M3.6 7h6.8' stroke='%230b0b0c' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 8px bottom 8px;
+  }
+  /* Stamped brass data plate */
+  .data-plate {
+    position: relative;
+    background: linear-gradient(155deg, #cdb07a 0%, #b8965a 38%, #a3844c 62%, #c3a56d 100%);
+    border: 3px solid #6f5a30;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.35), inset 0 -3px 0 rgba(0,0,0,.35), 0 24px 50px -24px rgba(0,0,0,.95);
+  }
+  .stamped     { color: #2a2112; text-shadow: 0 1px 0 rgba(255,255,255,.35), 0 -1px 0 rgba(0,0,0,.25); }
+  .stamped-dim { color: #5a4726; text-shadow: 0 1px 0 rgba(255,255,255,.3); }
+  .brass-text { color: rgb(var(--brass)); text-shadow: 0 1px 0 var(--emboss), 0 0 18px rgb(var(--brass) / .15); }
+
+  .glass {
+    position: relative;
+    background: linear-gradient(160deg, rgb(var(--slab) / .82), rgb(var(--void) / .66));
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+  .glass::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 80% at 0% 0%, rgb(var(--coolant) / .12), transparent 55%);
+    opacity: .7; transition: opacity .4s ease;
+  }
+  .glass::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    border-top: 1px solid rgba(255,255,255,.09); border-left: 1px solid rgba(255,255,255,.05);
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    padding: .95rem 1.6rem; font-weight: 800; font-stretch: 112%; font-size: .95rem;
+    letter-spacing: .01em; --chamfer: 10px; transition: background-color .25s ease, color .25s ease;
+  }
+  .btn-primary { background: rgb(var(--coolant)); color: rgb(var(--void)); }
+  .btn-primary:hover { background: rgb(var(--ink)); }
+  .btn-brass { background: rgb(var(--brass)); color: rgb(var(--void)); }
+  .btn-brass:hover { background: rgb(var(--ink)); }
+  .btn-ghost { background: rgb(var(--brass) / .55); padding: 2px; --chamfer: 10px; }
+  .btn-ghost > span { display: flex; align-items: center; justify-content: center; gap: .6rem; padding: calc(.95rem - 2px) calc(1.6rem - 2px); background: rgb(var(--void)); color: rgb(var(--ink)); --chamfer: 9px; transition: background-color .25s ease; }
+  .btn-ghost:hover > span { background: rgb(var(--slab)); }
+
+  .nav-link.is-current { color: rgb(var(--ink)); box-shadow: inset 0 -2px 0 rgb(var(--brass)); }
+  :focus-visible { outline: 2px solid rgb(var(--coolant)); outline-offset: 3px; }
+
+  .mask-line { display: block; overflow: hidden; padding-bottom: .06em; }
+  .mask-line > span { display: block; will-change: transform; }
+
+  /* ---------- Steam manifest ---------- */
+  .blueprint {
+    background-color: var(--bp-bg);
+    background-image:
+      linear-gradient(to right, rgb(var(--coolant) / .10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--coolant) / .10) 1px, transparent 1px),
+      linear-gradient(to right, rgb(var(--coolant) / .04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--coolant) / .04) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+  .pipe {
+    position: absolute; height: 14px;
+    border: 1px solid rgb(var(--coolant) / .55); background: rgb(var(--coolant) / .035);
+    animation: pipeGlow 3.2s ease-in-out infinite; animation-delay: var(--delay, 0s);
+  }
+  .pipe::before, .pipe::after {
+    content: ''; position: absolute; top: -6px; bottom: -6px; width: 6px;
+    border: 1px solid rgb(var(--coolant) / .75); background: var(--bp-bg);
+  }
+  .pipe::before { left: -4px; }
+  .pipe::after  { right: -4px; }
+  .pipe-core { position: absolute; inset: 0; overflow: hidden; }
+  .pipe-core::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed rgb(var(--coolant) / .25); }
+  .pipe-flow {
+    position: absolute; top: 0; bottom: 0; left: 0; width: 28%;
+    background: linear-gradient(90deg, transparent, rgb(var(--coolant) / .65), transparent);
+    animation: steamFlow var(--d, 2.8s) linear infinite; animation-delay: var(--delay, 0s);
+  }
+  .riser { position: absolute; width: 1px; background: rgb(var(--coolant) / .35); }
+  .valve {
+    position: absolute; width: 12px; height: 12px; transform: translate(-50%, -50%) rotate(45deg);
+    border: 1px solid rgb(var(--coolant)); background: var(--bp-bg); box-shadow: 0 0 10px rgb(var(--coolant) / .5);
+  }
+  @keyframes pipeGlow {
+    0%, 100% { box-shadow: 0 0 8px rgb(var(--coolant) / .12), inset 0 0 6px rgb(var(--coolant) / .08); }
+    50%      { box-shadow: 0 0 24px rgb(var(--coolant) / .38), inset 0 0 10px rgb(var(--coolant) / .22); }
+  }
+  @keyframes steamFlow { from { transform: translateX(-110%); } to { transform: translateX(380%); } }
+
+  /* ---------- Firebox ---------- */
+  .firebox {
+    background:
+      radial-gradient(110% 90% at 50% 125%, rgb(var(--heat) / .26), transparent 62%),
+      linear-gradient(180deg, #0e0d0c, #120e09);
+  }
+  .fire-readout { text-shadow: 0 0 18px rgb(var(--heat) / .55), 0 0 48px rgb(var(--heat) / .25); }
+  .seg { background: #1c1c1f; transition: background-color .12s linear, box-shadow .12s linear; }
+  .seg.is-lit { background: var(--c); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 60%, transparent); }
+
+  /* ---------- Status cards ---------- */
+  .status-card {
+    position: relative; border: 3px solid rgb(var(--smoke));
+    background: linear-gradient(180deg, var(--plate-a) 0%, var(--plate-b) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 -3px 0 var(--plate-inset);
+    transform-origin: center; will-change: transform;
+  }
+  .status-tag.is-live { color: rgb(var(--heat)); text-shadow: 0 0 10px rgb(var(--heat) / .8), 0 0 22px rgb(var(--heat) / .4); }
+
+  /* ---------- Process ---------- */
+  @media (min-width: 1024px) {
+    .step { opacity: .32; transition: opacity .35s ease; }
+    .step.is-active { opacity: 1; }
+  }
+  .step .step-bar { transform-origin: left; transform: scaleX(0); transition: transform .5s cubic-bezier(.7,0,.2,1); }
+  .step.is-active .step-bar, .step.is-done .step-bar { transform: scaleX(1); }
+  .kf { fill: rgb(var(--void)); stroke: rgb(var(--dim)); transition: fill .3s ease, stroke .3s ease; }
+  .kf.is-on { fill: rgb(var(--coolant)); stroke: rgb(var(--coolant)); }
+
+  /* ---------- Terms ---------- */
+  details.notice > summary { list-style: none; cursor: pointer; }
+  details.notice > summary::-webkit-details-marker { display: none; }
+  details.notice .chev { transition: transform .25s ease; }
+  details.notice[open] .chev { transform: rotate(45deg); }
+
+  /* ---------- Form ---------- */
+  .field {
+    width: 100%; background: rgb(var(--void) / .6); border: 0; border-bottom: 2px solid rgb(var(--smoke));
+    padding: .9rem 0; color: rgb(var(--ink)); font: inherit; transition: border-color .25s ease;
+  }
+  .field:focus { outline: none; border-bottom-color: rgb(var(--coolant)); }
+  .field::placeholder { color: rgb(var(--dim) / .75); }
+  select.field option { background: rgb(var(--slab)); color: rgb(var(--ink)); }
+  .svc-box { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border: 2px solid rgb(var(--dim) / .7); background: rgb(var(--void)); display: grid; place-content: center; flex-shrink: 0; }
+  .svc-box:checked { background: rgb(var(--brass)); border-color: rgb(var(--brass)); }
+  .svc-box:checked::after { content: ''; width: 8px; height: 8px; background: rgb(var(--void)); }
+
+  /* Thermal module ambient details */
+  .wisp   { opacity: .55; transform-box: fill-box; animation: wisp 2.6s ease-out infinite; animation-delay: var(--dl, 0s); }
+  .air    { stroke-dasharray: 22 64; animation: airJet .75s linear infinite; animation-delay: var(--dl, 0s); }
+  .intake { opacity: .7; transform-box: fill-box; animation: intake 1.4s ease-in infinite; animation-delay: var(--dl, 0s); }
+  .puff   { opacity: .5; transform-box: fill-box; transform-origin: right center; animation: puff 1.5s ease-out infinite; animation-delay: var(--dl, 0s); }
+  @keyframes wisp   { 0% { opacity: 0; transform: translateY(10px); } 35% { opacity: .85; } 100% { opacity: 0; transform: translateY(-30px); } }
+  @keyframes airJet { to { stroke-dashoffset: -86; } }
+  @keyframes intake { 0% { opacity: 0; transform: translateY(-8px); } 45% { opacity: .9; } 100% { opacity: 0; transform: translateY(8px); } }
+  @keyframes puff   { 0% { opacity: 0; transform: translateX(0) scale(.6); } 30% { opacity: .7; } 100% { opacity: 0; transform: translateX(-34px) scale(1.25); } }
+
+  /* Booked confirmation */
+  .stamp {
+    display: inline-block; padding: .15em .45em; border: 6px solid rgb(var(--heat)); color: rgb(var(--heat));
+    font-family: 'Archivo', sans-serif; font-stretch: 125%; font-weight: 900; letter-spacing: .06em; line-height: 1;
+    text-shadow: 0 0 22px rgb(var(--heat) / .45); box-shadow: 0 0 40px -6px rgb(var(--heat) / .5), inset 0 0 18px rgb(var(--heat) / .18);
+    transform: rotate(-6deg);
+  }
+  .booked-screw { width: 16px; height: 16px; }
+  /* Stamp scales to its own column so it can never spill into the details */
+  .stamp-wrap { container-type: inline-size; padding: 1rem 0; }
+  .stamp { font-size: min(12.5cqw, 5.5rem); }
+
+  /* Big Boy run */
+  #booked-panel[hidden] { display: none !important; }
+  #bigboy-band { position: relative; height: 150px; overflow: hidden; background: linear-gradient(180deg, rgb(var(--void)) 0%, var(--band-3) 100%); }
+  @media (min-width: 768px) { #bigboy-band { height: 190px; } }
+  #bigboy-band .rail { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(180deg, #8a8c91, #4a4c51); }
+  #bigboy-band .ties { position: absolute; left: 0; right: 0; bottom: 5px; height: 4px;
+    background-image: linear-gradient(90deg, #232427 0 16px, transparent 16px 30px); background-size: 30px 4px; opacity: .8; }
+  #bigboy { position: absolute; left: 0; bottom: 5px; width: 540px; height: auto; will-change: transform; }
+  @media (min-width: 768px) { #bigboy { width: 900px; } }
+  .bb-puff { position: absolute; border-radius: 50%; pointer-events: none; will-change: transform, opacity; }
+
+
+  /* =====================================================================
+     AIRPLANE MODE: on board flight FW 201
+     ===================================================================== */
+  #air { display: none; }
+  html[data-theme="airplane"] #air { display: block; }
+  html[data-theme="airplane"] #nav,
+  html[data-theme="airplane"] main#top,
+  html[data-theme="airplane"] body > footer { display: none !important; }
+  html[data-theme="airplane"] body {
+    background:
+      radial-gradient(120% 60% at 50% -10%, rgba(124,108,246,.10), transparent 60%),
+      linear-gradient(180deg, #f3f6fb 0%, #edf1f7 100%);
+  }
+  #air, #air button, #air input, #air select, #air textarea { font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif; }
+  .air-sign { font-family: 'Barlow Semi Condensed', 'Barlow', Arial, sans-serif; font-weight: 800; letter-spacing: -.01em; line-height: .98; }
+  .air-mono { font-family: 'JetBrains Mono', Menlo, monospace; }
+  .air-cap  { font-family: 'Barlow Semi Condensed', 'Barlow', Arial, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--dim)); }
+
+  /* top bar */
+  #air-top {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(255,255,255,.86); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgb(var(--line));
+  }
+  .air-top-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .air-brand { display: flex; align-items: center; gap: 10px; color: rgb(var(--ink)); text-decoration: none; }
+  .air-brand b { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 22px; color: rgb(var(--brass)); }
+  .air-brand span { font-weight: 600; font-size: 14px; color: rgb(var(--dim)); }
+  .air-links { display: none; gap: 26px; font-weight: 600; font-size: 15px; }
+  .air-links a { color: rgb(var(--dim)); text-decoration: none; }
+  .air-links a:hover { color: rgb(var(--ink)); }
+  .air-flightno { display: none; }
+  @media (min-width: 1100px) { .air-links { display: flex; } .air-flightno { display: block; } }
+  .air-tools { display: flex; align-items: center; gap: 8px; }
+  #air .mode-btn { border-radius: 8px; margin-left: 0; border-width: 1.5px; width: 34px; height: 34px; }
+  #air .mode-group { gap: 4px; }
+  .air-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none;
+    background: rgb(var(--brass)); color: #fff; border: 0; cursor: pointer; transition: background-color .2s ease, transform .2s ease;
+  }
+  .air-btn:hover { background: rgb(var(--coolant)); }
+  .air-btn.ghost { background: transparent; color: rgb(var(--brass)); box-shadow: inset 0 0 0 1.5px rgb(var(--brass) / .5); }
+  .air-btn.ghost:hover { background: rgb(var(--brass) / .06); }
+  .air-btn.sm { padding: 8px 14px; font-size: 14px; }
+
+  /* layout: sticky window + scrolling seatback screens */
+  .air-grid { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: block; }
+  @media (min-width: 1024px) { .air-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 40px; } }
+  #air-window-col { position: sticky; top: 60px; z-index: 20; padding: 12px 0; background: linear-gradient(180deg, #edf1f7 85%, rgba(237,241,247,0)); }
+  @media (min-width: 1024px) { #air-window-col { align-self: start; padding: 16px 0 18px; background: none; height: calc(100svh - 60px); } }
+  .air-window-wrap { height: 42svh; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+  @media (max-width: 1023px) { #air-window { width: auto; aspect-ratio: 2 / 3; justify-self: start; } .air-climate { align-self: center; } }
+  @media (max-width: 520px) {
+    .air-brand span { display: none; }
+    .air-top-in { padding: 0 12px; gap: 8px; }
+    #air .mode-btn { width: 30px; height: 30px; }
+    #air .mode-btn svg { width: 15px; height: 15px; }
+    .air-tools { gap: 5px; }
+    .air-btn.sm { padding: 7px 11px; }
+  }
+  @media (min-width: 1024px) { .air-window-wrap { height: 100%; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; } #air-window { width: 100%; height: 100%; } }
+  #air-window { width: 100%; height: 100%; display: block; }
+
+  .air-climate {
+    background: #fff; border: 1px solid rgb(var(--line)); border-radius: 14px; padding: 12px 14px;
+    box-shadow: 0 16px 40px -28px rgba(11,26,51,.45); min-width: 150px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  @media (min-width: 1024px) { .air-climate { padding: 12px 18px; display: grid; grid-template-columns: auto 1fr; gap: 4px 24px; align-items: end; } .air-temp { font-size: clamp(30px, 3.2vw, 44px); } }
+  .air-temp { transition: color .6s ease; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(28px, 4.2vw, 54px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .air-bar { height: 6px; background: rgb(var(--line)); border-radius: 3px; overflow: hidden; margin-top: 8px; grid-column: 1 / -1; }
+  .air-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, rgb(var(--heat)), rgb(var(--coolant))); }
+  .air-readouts { display: none; }
+  @media (min-width: 1024px) { .air-readouts { display: grid; grid-template-columns: repeat(3, auto); gap: 18px; justify-content: end; } }
+  .air-readouts div { text-align: right; }
+  .air-readouts strong { display: block; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: rgb(var(--ink)); font-variant-numeric: tabular-nums; }
+
+  /* seatback screens */
+  #air-content { padding: 20px 0 60px; }
+  @media (min-width: 1024px) { #air-content { padding: 40px 0 120px; } }
+  .air-sec { padding: 18px 0; scroll-margin-top: 80px; }
+  @media (min-width: 1024px) { .air-sec { padding: 28px 0; min-height: 70svh; display: flex; flex-direction: column; justify-content: center; } }
+  .air-screen { background: #d6dde8; padding: 8px; border-radius: 20px; box-shadow: 0 30px 60px -40px rgba(11,26,51,.55); }
+  .air-screen > .in { background: #fff; border-radius: 14px; overflow: hidden; }
+  .air-screen-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-bottom: 1px solid rgb(var(--line)); background: linear-gradient(90deg, rgb(var(--brass)), #1a4a9e); color: #fff; }
+  .air-screen-head .air-cap { color: rgba(255,255,255,.85); }
+  .air-screen-body { padding: 24px 20px; }
+  @media (min-width: 768px) { .air-screen-body { padding: 32px 36px; } }
+  .air-h { font-size: clamp(34px, 5vw, 64px); color: rgb(var(--ink)); margin: 0; }
+  .air-h2 { font-size: clamp(26px, 3.2vw, 40px); color: rgb(var(--ink)); margin: 0; }
+  .air-p { color: rgb(var(--dim)); font-size: 17px; line-height: 1.55; margin: 0; }
+
+  .air-flightinfo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgb(var(--line)); border: 1px solid rgb(var(--line)); border-radius: 10px; overflow: hidden; margin-top: 26px; }
+  @media (min-width: 640px) { .air-flightinfo { grid-template-columns: repeat(4, 1fr); } }
+  .air-flightinfo div { background: #f7f9fc; padding: 12px 14px; }
+  .air-flightinfo strong { display: block; margin-top: 4px; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 22px; color: rgb(var(--ink)); }
+
+  /* in-flight menu */
+  .air-menu-item { display: grid; grid-template-columns: 1fr auto; gap: 6px 18px; padding: 18px 0; border-bottom: 1px dashed rgb(var(--line)); }
+  .air-menu-item:last-child { border-bottom: 0; }
+  .air-menu-item h3 { margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 24px; color: rgb(var(--ink)); }
+  .air-price { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 28px; color: rgb(var(--brass)); text-align: right; }
+  .air-warn { grid-column: 1 / -1; font-size: 14px; color: rgb(var(--heat)); font-weight: 600; margin: 2px 0 0; }
+  .air-special { margin-top: 18px; border-radius: 12px; padding: 22px; background: linear-gradient(135deg, #0c3478, #1f6fd1); color: #fff; display: grid; gap: 12px; }
+  @media (min-width: 640px) { .air-special { grid-template-columns: 1fr auto; align-items: end; } }
+  .air-special h3 { margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 30px; }
+  .air-special .air-btn { background: #fff; color: #0c3478; }
+  .air-special .air-btn:hover { background: #dce8fb; }
+
+  /* captain announcement */
+  .air-pa { display: grid; gap: 16px; }
+  .air-pa blockquote { margin: 0; padding: 16px 18px; border-left: 3px solid rgb(var(--coolant)); background: #f7f9fc; border-radius: 0 10px 10px 0; }
+  .air-pa blockquote strong { display: block; color: rgb(var(--ink)); font-size: 18px; margin-bottom: 4px; }
+
+  /* flight map */
+  .air-map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid rgb(var(--line)); background: #e8f1fb; }
+  #air-map-svg { display: block; width: 100%; height: auto; }
+
+  /* flight progress */
+  .air-prog { position: relative; margin: 34px 0 6px; }
+  .air-prog-track { position: absolute; left: 0; right: 0; top: 17px; height: 3px; background: repeating-linear-gradient(90deg, rgb(var(--line)) 0 8px, transparent 8px 14px); }
+  .air-prog-fill { position: absolute; left: 0; top: 17px; height: 3px; width: 0; background: rgb(var(--coolant)); }
+  .air-prog-plane { position: absolute; top: 4px; left: 0; width: 30px; height: 30px; color: rgb(var(--brass)); transform: translateX(-15px) rotate(90deg); }
+  .air-steps { display: grid; gap: 18px; margin-top: 52px; }
+  @media (min-width: 768px) { .air-steps { grid-template-columns: repeat(4, 1fr); } }
+  .air-steps li { list-style: none; }
+  .air-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgb(var(--coolant)); font-weight: 700; }
+  .air-steps h3 { margin: 4px 0 6px; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 22px; color: rgb(var(--ink)); }
+  .air-steps p { margin: 0; color: rgb(var(--dim)); line-height: 1.5; }
+
+  /* captain + prohibited items */
+  .air-crew { display: grid; gap: 18px; }
+  @media (min-width: 768px) { .air-crew { grid-template-columns: 1fr 1fr; } }
+  .air-card { border: 1px solid rgb(var(--line)); border-radius: 12px; padding: 18px; background: #f9fbfe; }
+  .air-card h3 { margin: 0 0 6px; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 20px; color: rgb(var(--ink)); }
+  .air-card p { margin: 0; color: rgb(var(--dim)); line-height: 1.5; }
+  .air-wings { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .air-prohibited { border-color: rgb(var(--heat) / .45); background: rgb(var(--heat) / .05); }
+  .air-prohibited h3 { color: rgb(var(--heat)); }
+
+  /* safety card: one Terms notice per seat row */
+  .air-rows { display: grid; gap: 12px; }
+  .air-row { border: 1px solid rgb(var(--line)); border-radius: 12px; background: #fff; overflow: hidden; }
+  .air-row > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 14px 16px; }
+  .air-row > summary::-webkit-details-marker { display: none; }
+  .air-seat { width: 54px; display: grid; justify-items: center; gap: 2px; color: rgb(var(--brass)); }
+  .air-seat b { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgb(var(--dim)); }
+  .air-row h3 { margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 19px; color: rgb(var(--ink)); }
+  .air-row .chev { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 22px; color: rgb(var(--coolant)); transition: transform .25s ease; }
+  .air-row[open] .chev { transform: rotate(45deg); }
+  .air-row-body { padding: 0 18px 18px 86px; color: rgb(var(--dim)); line-height: 1.55; }
+  .air-row-body p { margin: 0 0 10px; }
+  @media (max-width: 560px) { .air-row-body { padding-left: 18px; } }
+  .air-quickref { margin-top: 18px; display: grid; gap: 8px 24px; color: rgb(var(--dim)); line-height: 1.5; }
+  @media (min-width: 640px) { .air-quickref { grid-template-columns: 1fr 1fr; } }
+  .air-quickref p { margin: 0; }
+
+  /* cockpit */
+  #air-cockpit .air-screen { background: #1a2233; }
+  .air-screen > .in.air-cockpit, .air-cockpit {
+    background: linear-gradient(180deg, #0f1726 0%, #0a101c 100%); color: #dfe8f5; border-radius: 14px; overflow: hidden;
+    --ink: 223 232 245; --dim: 138 156 186; --smoke: 52 66 92; --line: 40 52 74; --void: 9 14 24; --slab: 16 24 40;
+    --brass: 255 184 64; --coolant: 94 234 180; --heat: 255 150 70;
+    --plate-a: #121b2d; --plate-b: #0d1422; --plate-inset: rgba(0,0,0,.5); --emboss: rgba(0,0,0,.8);
+  }
+  .air-glare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 16px; border-bottom: 1px solid #1d2a40; background: #0c1320; }
+  .air-inst { background: #05080e; border: 2px solid #26334a; border-radius: 10px; aspect-ratio: 1 / 1; display: grid; place-items: center; overflow: hidden; position: relative; }
+  .air-inst svg { width: 100%; height: 100%; }
+  .air-inst-label { position: absolute; bottom: 6px; left: 0; right: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6f86a8; }
+  .air-att { animation: airBank 6s ease-in-out infinite; transform-origin: 50px 50px; transform-box: view-box; }
+  .air-att.gyro-live { animation: none; }
+  .air-gyro-btn {
+    position: absolute; inset: auto 6px 22px 6px; padding: 6px 4px; border-radius: 6px; border: 1px solid #3a4c6c;
+    background: rgba(9,14,24,.85); color: #5eeab4; font-family: 'JetBrains Mono', monospace; font-size: 9px; line-height: 1.25; cursor: pointer;
+  }
+  @keyframes airBank { 0%,100% { transform: rotate(-6deg) translateY(2px); } 50% { transform: rotate(5deg) translateY(-3px); } }
+  #air-form-slot { padding: 18px; }
+  @media (min-width: 768px) { #air-form-slot { padding: 28px; } }
+  #air-form-slot #book-form { background: transparent !important; border: 1px solid #22304a; box-shadow: none; }
+  #air-form-slot #book-form::before { display: none; }
+  #air-form-slot .field { background: #060b14; border-bottom-color: #2a3a58; color: #5eeab4; font-family: 'JetBrains Mono', monospace; padding-left: 10px; padding-right: 10px; }
+  #air-form-slot .field:focus { border-bottom-color: #ffb840; }
+  #air-form-slot select.field option { background: #0d1422; color: #dfe8f5; }
+  #air-form-slot #book-form label, #air-form-slot legend { font-family: 'JetBrains Mono', monospace; }
+  #air-form-slot .btn { border-radius: 8px; clip-path: none; }
+  #air-form-slot fieldset { border-color: #22304a !important; }
+  #air-form-slot .svc-box:checked { background: #ffb840; border-color: #ffb840; }
+
+  /* boarding pass print + takeoff */
+  #air-pass[hidden], #book-form[hidden] { display: none !important; }
+  #air-pass { padding: 18px; }
+  @media (min-width: 768px) { #air-pass { padding: 28px; } }
+  .air-slot { height: 14px; border-radius: 7px; background: #03060b; box-shadow: inset 0 3px 6px rgba(0,0,0,.9), 0 1px 0 #2a3a58; margin: 0 10%; }
+  .air-bp-clip { margin: -7px 12% 0; overflow: hidden; }
+  .air-bp { background: #fff; color: #0b1a33; display: grid; grid-template-columns: 1fr; border-radius: 0 0 12px 12px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.8); }
+  @media (min-width: 640px) { .air-bp { grid-template-columns: 1fr 150px; } }
+  .air-bp-main { padding: 18px 20px; }
+  .air-bp-stub { padding: 18px 16px; border-top: 2px dashed #c3cedd; background: #f3f6fb; }
+  @media (min-width: 640px) { .air-bp-stub { border-top: 0; border-left: 2px dashed #c3cedd; } }
+  .air-bp-top { display: flex; justify-content: space-between; align-items: center; background: #0c3478; color: #fff; margin: -18px -20px 14px; padding: 10px 20px; }
+  .air-bp dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 16px; margin: 0; }
+  .air-bp dt { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5a6880; }
+  .air-bp dd { margin: 2px 0 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 19px; }
+  .air-route { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .air-route b { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 34px; line-height: 1; }
+  .air-barcode { height: 54px; margin-top: 12px; display: flex; gap: 2px; align-items: stretch; }
+  .air-barcode i { display: block; background: #0b1a33; }
+  #air-takeoff { display: block; width: 100%; height: auto; margin-top: 18px; border-radius: 12px; background: linear-gradient(180deg, #1b2a55 0%, #e0875a 100%); }
+
+  /* footer */
+  #air-foot { max-width: 1440px; margin: 0 auto; padding: 40px 20px 60px; display: grid; gap: 12px; color: rgb(var(--dim)); border-top: 1px solid rgb(var(--line)); }
+  @media (min-width: 1024px) { #air-foot { padding: 50px 40px 70px; grid-template-columns: 1fr auto; align-items: end; } }
+  #air-foot a { color: rgb(var(--coolant)); }
+
+  /* drifting cruise clouds */
+  .aw-drift { animation: awDrift 28s linear infinite; }
+  .aw-fan { animation: awFan .22s linear infinite; }
+  @keyframes awFan { from { transform: translateY(0); } to { transform: translateY(7px); } }
+  @keyframes awDrift { from { transform: translateX(0); } to { transform: translateX(-400px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- =====================================================================
+     AIRPLANE MODE: same info, on board flight FW 201
+     Content is copied at runtime from the Train mode markup, so text and
+     prices only ever need editing in one place.
+     ===================================================================== -->
+<div id="air">
+  <header id="air-top">
+    <div class="air-top-in">
+      <a href="#air-welcome" class="air-brand" aria-label="FW Tech Hoboken, top">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="rgb(12 52 120)" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+        <b>FW</b><span>Tech Hoboken</span>
+      </a>
+      <div class="air-flightno air-cap">Flight FW 201 &nbsp;·&nbsp; Hoboken &nbsp;·&nbsp; On time</div>
+      <nav class="air-links" aria-label="Airplane mode sections">
+        <a href="#air-menu">Menu</a><a href="#air-map">Route map</a><a href="#air-crew">Captain</a><a href="#air-safety">Safety card</a>
+      </nav>
+      <div class="air-tools">
+        <div class="mode-group" role="group" aria-label="Site mode">
+          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
+        </div>
+        <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
+        <a href="#air-cockpit" class="air-btn sm">Book</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="air-main" class="air-grid">
+    <!-- Cabin window: the whole flight plays out here as you scroll -->
+    <aside id="air-window-col" aria-hidden="true">
+      <div class="air-window-wrap">
+        <svg id="air-window" viewBox="10 10 380 590" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <clipPath id="awFanClip"><ellipse cx="207" cy="573" rx="9" ry="31"/></clipPath>
+            <clipPath id="awClip"><rect x="24" y="24" width="352" height="540" rx="150" ry="150"/></clipPath>
+            <linearGradient id="awDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a86dc"/><stop offset=".55" stop-color="#9dcbf4"/><stop offset="1" stop-color="#e2effc"/></linearGradient>
+            <linearGradient id="awDusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1640"/><stop offset=".35" stop-color="#7a2438"/><stop offset=".6" stop-color="#c8392b"/><stop offset=".78" stop-color="#ee6a33"/><stop offset="1" stop-color="#f7a25a"/></linearGradient>
+            <radialGradient id="awSun"><stop offset="0" stop-color="#fffbe8" stop-opacity=".95"/><stop offset="1" stop-color="#fffbe8" stop-opacity="0"/></radialGradient>
+            <radialGradient id="awSunWarm"><stop offset="0" stop-color="#ffb066" stop-opacity=".9"/><stop offset="1" stop-color="#ff7a3c" stop-opacity="0"/></radialGradient>
+            <linearGradient id="awGolden" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a74c9" stop-opacity=".0"/><stop offset=".55" stop-color="#f3b36e" stop-opacity=".55"/><stop offset=".72" stop-color="#ff9d57" stop-opacity=".85"/><stop offset="1" stop-color="#ffd9a3" stop-opacity=".9"/></linearGradient>
+            <linearGradient id="awNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset=".6" stop-color="#0b1233"/><stop offset=".78" stop-color="#2a1d3f"/><stop offset="1" stop-color="#3a2340"/></linearGradient>
+            <linearGradient id="awWing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f8fb"/><stop offset="1" stop-color="#bcc6d3"/></linearGradient>
+            <linearGradient id="awNacelle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f4f8"/><stop offset="1" stop-color="#a9b4c3"/></linearGradient>
+          </defs>
+          <g clip-path="url(#awClip)">
+           <g id="aw-world">
+            <rect x="-300" y="-300" width="1000" height="1200" fill="url(#awDay)"/>
+            <rect id="aw-golden" x="-300" y="-300" width="1000" height="1200" fill="url(#awGolden)" opacity="0"/>
+            <rect id="aw-dusk" x="-300" y="-300" width="1000" height="1200" fill="url(#awDusk)" opacity="0"/>
+            <rect id="aw-night" x="-300" y="-300" width="1000" height="1200" fill="url(#awNight)" opacity="0"/>
+            <g id="aw-stars" opacity="0"></g>
+            <g id="aw-sun">
+              <circle cx="292" cy="150" r="90" fill="url(#awSun)"/>
+              <circle id="aw-sun-glow" cx="292" cy="150" r="130" fill="url(#awSunWarm)" opacity="0"/>
+              <circle cx="292" cy="150" r="17" fill="#fffbe8"/>
+              <circle id="aw-sun-warm" cx="292" cy="150" r="19" fill="#ff9a4d" opacity="0"/>
+            </g>
+
+            <g id="aw-ground">
+              <rect x="-400" y="372" width="2800" height="40" fill="#8b9b7c"/>
+              <rect x="-400" y="408" width="2800" height="600" fill="#6c7178"/>
+              <rect x="-400" y="468" width="2800" height="4" fill="#f2c14e"/>
+              <g id="aw-dashes" fill="#e9edf2"></g>
+              <rect x="-60" y="298" width="330" height="88" fill="#c9d3df"/>
+              <rect x="-60" y="316" width="330" height="30" fill="#6d8db4"/>
+              <rect x="-60" y="292" width="330" height="8" fill="#9aa8b8"/>
+              <rect x="210" y="346" width="120" height="16" fill="#b3bfcd"/>
+              <rect x="352" y="222" width="18" height="160" fill="#b9c4d2"/>
+              <rect x="340" y="206" width="42" height="22" fill="#5f7ea4"/>
+              <rect x="336" y="200" width="50" height="7" fill="#8795a8"/>
+            </g>
+
+            <g id="aw-clouds-low"></g>
+            <g id="aw-cloud-sea">
+              <path d="M-300 800 Q-240 772 -200 790 Q-160 760 -120 784 Q-80 764 -40 786 Q10 772 50 790 Q84 758 124 784 Q160 760 196 786 Q236 756 272 784 Q312 762 344 788 Q380 766 420 792 Q470 770 520 790 Q580 766 700 792 L700 1600 Q650 1630 600 1610 Q540 1640 480 1612 Q420 1636 360 1610 Q300 1640 240 1612 Q180 1636 120 1610 Q60 1640 0 1612 Q-60 1636 -120 1610 Q-200 1640 -300 1612Z" fill="#ffffff"/>
+              <path d="M-300 836 Q-220 812 -160 830 Q-80 808 -20 830 Q30 812 70 830 Q120 806 160 830 Q210 810 250 832 Q300 812 340 834 Q380 816 420 834 Q500 812 580 832 Q640 816 700 834 L700 1500 Q650 1530 600 1510 Q540 1540 480 1512 Q420 1536 360 1510 Q300 1540 240 1512 Q180 1536 120 1510 Q60 1540 0 1512 Q-60 1536 -120 1510 Q-200 1540 -300 1512Z" fill="#e6eef8"/>
+              <rect id="aw-sea-tint" x="-300" y="760" width="1000" height="840" fill="#ff8a4c" opacity="0"/>
+            </g>
+            <g id="aw-drift-wrap" opacity="0"><g class="aw-drift" id="aw-drift"></g></g>
+            <g id="aw-cloud-top" opacity="0"></g>
+            <g id="aw-clouds-desc"></g>
+
+            <g id="aw-city" transform="translate(0 340)">
+              <rect x="-600" y="520" width="1800" height="200" fill="#1b2748"/>
+              <g id="aw-buildings"></g>
+            </g>
+            <g id="aw-runway" transform="translate(0 220)">
+              <rect x="-600" y="498" width="2600" height="220" fill="#34383f"/>
+              <rect x="-600" y="498" width="2600" height="5" fill="#555a63"/>
+              <g id="aw-rdashes" fill="#e9edf2"></g>
+            </g>
+            <g id="aw-lights" opacity="0"></g>
+           </g>
+
+            <g id="aw-wing" transform="translate(0 -74)">
+              <path d="M-20 512 L296 454 Q346 446 368 404 L380 407 Q366 460 312 474 L-20 572Z" fill="url(#awWing)" stroke="#a7b2c1" stroke-width="1.5"/>
+              <path d="M40 528 L286 480" stroke="#b3bdca" stroke-width="1.5"/>
+              <path d="M150 505 L160 540 M210 494 L218 527" stroke="#b3bdca" stroke-width="1.5"/>
+              <!-- pylon -->
+              <path d="M128 546 L200 540 L204 512 L150 524Z" fill="url(#awWing)" stroke="#a7b2c1" stroke-width="1.5"/>
+              <!-- exhaust plug + core cowl (narrow, behind the fan) -->
+              <path d="M60 563 L30 573 L60 583Z" fill="#6f7b8c"/>
+              <path d="M108 553 L60 559 L60 587 L108 593Z" fill="#9aa6b6" stroke="#7f8b9c" stroke-width="1.2"/>
+              <path d="M60 559 L55 563 L60 567 L55 571 L60 575 L55 579 L60 583 L55 587Z" fill="#9aa6b6"/>
+              <!-- fan cowl: widest at the front, tapering back, chevron trailing edge -->
+              <path d="M206 536 Q218 573 206 610 C170 609 134 604 108 600 L101 594 L108 588 L101 582 L108 576 L101 570 L108 564 L101 558 L108 552 L108 546 C134 542 170 537 206 536Z" fill="url(#awNacelle)" stroke="#a7b2c1" stroke-width="1.5"/>
+              <path d="M186 540 Q196 573 186 606" fill="none" stroke="#c3ccd8" stroke-width="1.5"/>
+              <!-- fan face: blades spin past the inlet -->
+              <ellipse cx="207" cy="573" rx="10" ry="33" fill="#1b2029"/>
+              <g clip-path="url(#awFanClip)"><g class="aw-fan" fill="#5e6a7c">
+                <rect x="196" y="530" width="22" height="3"/><rect x="196" y="537" width="22" height="3"/><rect x="196" y="544" width="22" height="3"/><rect x="196" y="551" width="22" height="3"/>
+                <rect x="196" y="558" width="22" height="3"/><rect x="196" y="565" width="22" height="3"/><rect x="196" y="572" width="22" height="3"/><rect x="196" y="579" width="22" height="3"/>
+                <rect x="196" y="586" width="22" height="3"/><rect x="196" y="593" width="22" height="3"/><rect x="196" y="600" width="22" height="3"/><rect x="196" y="607" width="22" height="3"/>
+                <rect x="196" y="614" width="22" height="3"/><rect x="196" y="621" width="22" height="3"/>
+              </g></g>
+              <ellipse cx="210" cy="573" rx="4" ry="8" fill="#c3ccd8"/>
+            </g>
+          </g>
+                    <rect x="24" y="24" width="352" height="540" rx="150" ry="150" fill="none" stroke="#d3dae4" stroke-width="18"/>
+          <rect x="33" y="33" width="334" height="522" rx="141" ry="141" fill="none" stroke="rgba(11,26,51,.10)" stroke-width="5"/>
+          <rect x="176" y="582" width="48" height="12" rx="6" fill="#dfe5ee" stroke="#c8d1dd"/>
+          <circle cx="188" cy="588" r="2.2" fill="#8d9bb0"/><circle cx="200" cy="588" r="2.2" fill="#8d9bb0"/><circle cx="212" cy="588" r="2.2" fill="#1f6fd1"/>
+        </svg>
+
+        <div class="air-climate">
+          <div>
+            <div class="air-cap">Laptop core temp</div>
+            <div class="air-temp" id="air-temp">90.0°C</div>
+          </div>
+          <div class="air-readouts">
+            <div><span class="air-cap">Phase</span><strong id="air-phase">Boarding</strong></div>
+            <div><span class="air-cap">Altitude</span><strong id="air-alt">0 ft</strong></div>
+            <div><span class="air-cap">Target</span><strong>64°C</strong></div>
+          </div>
+          <div class="air-bar"><i id="air-bar"></i></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Seatback screens -->
+    <div id="air-content">
+      <section id="air-welcome" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">Welcome aboard</span><span class="air-cap">FW 201</span></div>
+          <div class="air-screen-body">
+            <h1 class="air-sign air-h">Your laptop shouldn't sound like a jet engine.</h1>
+            <p class="air-p" id="air-hero-sub" style="margin-top:18px"></p>
+            <div class="air-flightinfo">
+              <div><span class="air-cap">Flight</span><strong>FW 201</strong></div>
+              <div><span class="air-cap">Departs</span><strong>90°C</strong></div>
+              <div><span class="air-cap">Arrives</span><strong>64°C</strong></div>
+              <div><span class="air-cap">Status</span><strong>Boarding</strong></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
+              <a href="#air-cockpit" class="air-btn">Book a service</a>
+              <a href="#air-menu" class="air-btn ghost">See the menu</a>
+            </div>
+            <p class="air-p" id="air-hero-area" style="margin-top:18px;font-size:14px"></p>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-menu" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">In-flight menu</span><span class="air-cap">Cash only</span></div>
+          <div class="air-screen-body">
+            <h2 class="air-sign air-h2">What I fix</h2>
+            <p class="air-p" style="margin-top:8px">Mix and match, but only what's on the menu. Hardware cleaning only.</p>
+            <div id="air-menu-list" style="margin-top:14px"></div>
+            <div id="air-special"></div>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-announce" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">A message from your captain</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg></div>
+          <div class="air-screen-body">
+            <h2 class="air-sign air-h2">It's probably not broken</h2>
+            <div class="air-pa" id="air-pa" style="margin-top:18px"></div>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-map" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">Route map</span><span class="air-cap">Pickup and drop-off</span></div>
+          <div class="air-screen-body">
+            <h2 class="air-sign air-h2">Where I go</h2>
+            <p class="air-p" style="margin-top:8px">I get there by car or public transit, so give me a little time for the trip.</p>
+            <div class="air-map-wrap" style="margin-top:18px">
+              <svg id="air-map-svg" viewBox="0 0 600 380" role="img" aria-label="Map of the five service areas: Hoboken, Jersey City, Union City, Midtown Manhattan, and Downtown Manhattan">
+                <rect width="600" height="380" fill="#eef3f9"/>
+                <path d="M318 0 L392 0 Q372 120 380 200 Q390 290 360 380 L292 380 Q318 290 306 200 Q298 110 318 0Z" fill="#bcd6f1"/>
+                <path d="M540 0 L600 0 L600 380 L520 380 Q548 260 530 150 Q526 70 540 0Z" fill="#bcd6f1"/>
+                <text x="345" y="352" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12" fill="#6f8fb5" letter-spacing="2">HUDSON RIVER</text>
+                <g id="air-map-routes" stroke="#1f6fd1" stroke-width="2" stroke-dasharray="6 6" fill="none" opacity=".6"></g>
+                <g id="air-map-pins"></g>
+                <g id="air-map-plane" transform="translate(262 184)"><path transform="translate(-12 -12) rotate(0 12 12)" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" fill="#0c3478"/></g>
+              </svg>
+            </div>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-progress" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">Flight progress</span><span class="air-cap">1 to 4 days</span></div>
+          <div class="air-screen-body">
+            <h2 class="air-sign air-h2">How it works</h2>
+            <div class="air-prog" aria-hidden="true">
+              <div class="air-prog-track"></div><div class="air-prog-fill" id="air-prog-fill"></div>
+              <svg class="air-prog-plane" id="air-prog-plane" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+            </div>
+            <ol class="air-steps" id="air-steps" style="padding:0;margin-bottom:0"></ol>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-crew" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">Meet your captain</span><span class="air-cap">Flight deck</span></div>
+          <div class="air-screen-body">
+            <div class="air-wings">
+              <svg width="64" height="28" viewBox="0 0 64 28" aria-hidden="true"><path d="M32 6 L26 14 L2 10 L6 16 L26 18 L32 24 L38 18 L58 16 L62 10 L38 14Z" fill="#c8a96a"/><circle cx="32" cy="14" r="5" fill="#0c3478" stroke="#c8a96a" stroke-width="2"/></svg>
+              <div><h2 class="air-sign air-h2" style="font-size:28px">Captain Reyansh Sahani</h2><div class="air-cap" style="margin-top:2px">Founder, FW Tech Hoboken</div></div>
+            </div>
+            <p class="air-p" id="air-crew-intro"></p>
+            <div class="air-crew" id="air-crew-list" style="margin-top:18px"></div>
+            <div class="air-card air-prohibited" id="air-prohibited" style="margin-top:18px"></div>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-safety" class="air-sec">
+        <div class="air-screen"><div class="in">
+          <div class="air-screen-head"><span class="air-cap">Safety card: Terms of Service</span><span class="air-cap">Please read before booking</span></div>
+          <div class="air-screen-body">
+            <h2 class="air-sign air-h2">One notice per row</h2>
+            <p class="air-p" id="air-terms-intro" style="margin-top:8px"></p>
+            <div class="air-rows" id="air-rows" style="margin-top:18px"></div>
+            <div class="air-card" style="margin-top:18px">
+              <h3>Quick reference</h3>
+              <div class="air-quickref" id="air-quickref"></div>
+            </div>
+          </div>
+        </div></div>
+      </section>
+
+      <section id="air-cockpit" class="air-sec">
+        <div class="air-screen"><div class="in air-cockpit">
+          <div class="air-screen-head" style="background:linear-gradient(90deg,#0b1220,#16233b)"><span class="air-cap">Flight deck: book a service</span><span class="air-cap">Cash at drop-off</span></div>
+          <div class="air-glare" aria-hidden="true">
+            <div class="air-inst">
+              <svg viewBox="0 0 100 100"><defs><clipPath id="attClip"><circle cx="50" cy="50" r="40"/></clipPath></defs>
+                <g clip-path="url(#attClip)"><g class="air-att"><rect x="-20" y="-40" width="140" height="90" fill="#2f6fd1"/><rect x="-20" y="50" width="140" height="90" fill="#8a5a2b"/><line x1="-20" y1="50" x2="120" y2="50" stroke="#fff" stroke-width="1.5"/>
+                  <g stroke="#fff" stroke-width="1"><line x1="40" y1="40" x2="60" y2="40"/><line x1="44" y1="30" x2="56" y2="30"/><line x1="40" y1="60" x2="60" y2="60"/></g></g></g>
+                <path d="M26 50 H42 L46 56 M74 50 H58 L54 56" stroke="#ffd23f" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="2.5" fill="#ffd23f"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#26334a" stroke-width="3"/></svg>
+              <span class="air-inst-label">GYROSCOPE</span>
+              <button type="button" class="air-gyro-btn" id="air-gyro-btn" hidden>Tap to use your phone's gyroscope</button>
+            </div>
+            <div class="air-inst">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#05080e" stroke="#26334a" stroke-width="3"/><g id="air-alt-ticks" stroke="#8aa0c2" stroke-width="1.5"></g>
+                <line id="air-alt-needle" x1="50" y1="50" x2="50" y2="18" stroke="#fff" stroke-width="3" transform="rotate(0 50 50)"/><circle cx="50" cy="50" r="4" fill="#fff"/></svg>
+              <span class="air-inst-label" id="air-alt-label">ALT 0</span>
+            </div>
+            <div class="air-inst">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#05080e" stroke="#26334a" stroke-width="3"/>
+                <path d="M22 70 A34 34 0 0 1 78 70" fill="none" stroke="#1f3350" stroke-width="7"/>
+                <path d="M22 70 A34 34 0 0 1 36 25" fill="none" stroke="#5eeab4" stroke-width="7"/>
+                <path d="M64 25 A34 34 0 0 1 78 70" fill="none" stroke="#ff9646" stroke-width="7"/>
+                <line id="air-temp-needle" x1="50" y1="56" x2="50" y2="24" stroke="#ff9646" stroke-width="3" transform="rotate(60 50 56)"/><circle cx="50" cy="56" r="4" fill="#fff"/></svg>
+              <span class="air-inst-label" id="air-temp-label" style="color:#ff9646">CPU 90°C</span>
+            </div>
+          </div>
+          <div id="air-form-slot"></div>
+          <div id="air-pass" hidden>
+            <div class="air-slot" aria-hidden="true"></div>
+            <div class="air-bp-clip" id="air-bp-clip">
+              <div class="air-bp" role="status" aria-live="polite">
+                <div class="air-bp-main">
+                  <div class="air-bp-top"><span class="air-cap" style="color:#fff">Boarding pass</span><span class="air-cap" style="color:#fff">FW 201</span></div>
+                  <div class="air-route"><b>90°C</b>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#1f6fd1" aria-hidden="true" style="transform:rotate(90deg)"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+                    <b>64°C</b></div>
+                  <dl id="air-bp-fields"></dl>
+                </div>
+                <div class="air-bp-stub">
+                  <div class="air-cap">Seat</div><div class="air-sign" style="font-size:36px">1A</div>
+                  <div class="air-cap" style="margin-top:8px">Gate</div><div class="air-sign" style="font-size:18px">Cash at drop-off</div>
+                  <div class="air-barcode" id="air-barcode" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <p style="margin:18px 0 0;color:#8a9cba;line-height:1.5">Request received. I'll email you back to confirm I can take it. Don't drop anything off until you hear from me.</p>
+            <svg id="air-takeoff" viewBox="0 0 600 160" aria-hidden="true">
+              <rect x="0" y="140" width="600" height="20" fill="#2a2f3a"/>
+              <g fill="#f2c14e"><rect x="20" y="148" width="30" height="3"/><rect x="90" y="148" width="30" height="3"/><rect x="160" y="148" width="30" height="3"/><rect x="230" y="148" width="30" height="3"/><rect x="300" y="148" width="30" height="3"/></g>
+              <path id="air-contrail" d="M40 132 Q260 128 380 80 T600 10" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="3" stroke-linecap="round"/>
+              <g id="air-jet" transform="translate(40 132)">
+                <g transform="translate(-100 -30) scale(.5)">
+                  <path d="M10 32 Q10 26 22 25 L150 23 Q178 23 196 30 Q178 37 150 37 L22 37 Q10 37 10 32Z" fill="#f4f6fa"/>
+                  <path d="M20 26 L6 4 L24 4 L40 25Z" fill="#0c3478"/>
+                  <path d="M16 31 L0 27 L4 33Z" fill="#0c3478"/>
+                  <path d="M84 33 L112 33 L72 50 L60 50Z" fill="#d7dde6"/>
+                  <rect x="84" y="37" width="26" height="10" rx="5" fill="#c3ccd8"/>
+                  <path d="M150 23 Q178 23 196 30 L150 30Z" fill="#1f6fd1"/>
+                </g>
+              </g>
+            </svg>
+            <button type="button" id="air-again" class="air-btn ghost" style="margin-top:16px;color:#ffb840;box-shadow:inset 0 0 0 1.5px rgba(255,184,64,.5)">Book another laptop</button>
+          </div>
+        </div></div>
+      </section>
+    </div>
+  </div>
+
+  <footer id="air-foot">
+    <div>
+      <div class="air-sign" style="font-size:30px;color:rgb(var(--ink))">Thank you for flying FW Tech Hoboken</div>
+      <p style="margin:8px 0 0">Laptop cleaning in Hoboken, NJ. Independent and not affiliated with any other business using a similar name.</p>
+    </div>
+    <div style="text-align:right">
+      <a href="mailto:rey.sahani03@gmail.com" class="email-link" data-subject="FW Tech question">rey.sahani03@gmail.com</a>
+      <div style="margin-top:6px">&copy; <span class="air-year"></span> FW Tech Hoboken</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="fixed inset-x-0 z-50" style="top: env(safe-area-inset-top, 0px);">
+  <div class="glass border-b-2 border-smoke">
+    <nav class="mx-auto max-w-frame px-5 md:px-10 h-16 flex items-center justify-between" aria-label="Primary">
+      <a href="#top" class="flex items-baseline gap-2">
+        <span class="display text-2xl brass-text">FW</span><span class="wide font-bold text-sm text-dim">Tech Hoboken</span>
+      </a>
+      <ul class="hidden lg:flex items-center gap-6 xl:gap-9 text-sm text-dim">
+        <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#grid-track">Services</a></li>
+        <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#area">Area</a></li>
+        <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#how">How it works</a></li>
+        <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#about">About</a></li>
+        <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#terms">Terms</a></li>
+      </ul>
+<div class="hidden lg:flex items-center gap-3">
+        <div class="mode-group" role="group" aria-label="Site mode">
+          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
+        </div>
+        <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
+        <a href="#book" class="btn btn-brass chamfer !py-2.5 !px-5 text-sm">Book a service</a>
+      </div>
+      <button id="menu-btn" class="lg:hidden w-11 h-11 grid place-items-center" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M0 1h22M6 7h16M0 13h22" stroke="#ecebe7" stroke-width="2"/></svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-white/5">
+      <ul class="px-5 py-6 flex flex-col gap-5 text-lg wide font-semibold">
+        <li><a href="#grid-track">Services</a></li>
+        <li><a href="#area">Area</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#terms">Terms</a></li>
+        <li class="pt-2">
+          <div class="font-mono text-xs text-dim mb-3">Mode</div>
+          <div class="mode-group flex-wrap" role="group" aria-label="Site mode">
+            <button type="button" class="mode-btn mode-label" data-mode="train" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg><span>Train</span></button>
+            <button type="button" class="mode-btn mode-label" data-mode="airplane" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><span>Airplane</span></button>
+            <button type="button" class="mode-btn mode-label" data-mode="industrial" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Industrial</span></button>
+          </div>
+          <button type="button" class="mode-btn mode-label calm-btn mt-3" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg><span>Calm mode</span></button>
+        </li>
+        <li><a href="#book" class="btn btn-brass chamfer w-full">Book a service</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO (above the fold) ================= -->
+<section id="hero" class="relative min-h-[100svh] grid-field overflow-hidden">
+  <div aria-hidden="true" class="pointer-events-none absolute -right-40 top-1/3 w-[680px] h-[680px] opacity-60"
+       style="background: radial-gradient(closest-side, rgb(var(--heat) / .12), transparent);"></div>
+
+  <div class="relative mx-auto max-w-frame px-5 md:px-10 pt-28 md:pt-36 pb-14 grid grid-cols-12 gap-x-8 gap-y-12 min-h-[100svh]">
+
+    <div class="col-span-12 lg:col-span-7 flex flex-col justify-between gap-12">
+      <h1 class="display text-[clamp(2.4rem,4.4vw,3.8rem)] pt-4 lg:pt-10">
+        <span class="mask-line"><span class="hero-line">Your laptop</span></span>
+        <span class="mask-line"><span class="hero-line lg:pl-[1em]">shouldn't sound</span></span>
+        <span class="mask-line"><span class="hero-line text-dim">like a jet engine.</span></span>
+      </h1>
+      <div>
+        <div class="rivet-row mb-8" aria-hidden="true"></div>
+        <div class="grid gap-8 md:grid-cols-2 md:items-end">
+          <div class="hero-sub">
+            <p class="text-lg md:text-xl text-ink/85 max-w-[36ch] leading-snug">
+              Affordable laptop cleaning and thermal repaste. Local, honest, no corporate markup. Email to book, cash at drop-off.
+            </p>
+            <p class="mt-4 text-sm text-dim max-w-[40ch]">Hoboken, Jersey City, Union City, Midtown and Downtown Manhattan</p>
+          </div>
+          <div class="hero-sub flex flex-wrap gap-4 md:justify-end">
+            <a href="#book" class="btn btn-brass chamfer">Book a service</a>
+            <a href="#grid-track" class="btn-ghost chamfer font-bold wide text-[.95rem]"><span class="chamfer">See pricing</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anchor box: 5 columns, 50/50 steam / firebox split -->
+    <div class="col-span-12 md:col-span-9 lg:col-span-5 lg:col-start-8 self-center">
+      <div id="anchor-box" class="h-[560px] lg:h-[min(660px,76svh)]">
+        <div class="chamfer h-full flex flex-col border-2 border-smoke bg-slab" style="--chamfer:18px;">
+
+          <div id="steam-manifest" class="blueprint relative h-1/2 overflow-hidden border-b-2 border-smoke">
+            <div class="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 pt-5 font-mono text-xs text-dim">
+              <span>Steam manifest</span>
+              <span>Throttle <span id="throttle-readout" class="text-coolant tabular-nums">62</span>%</span>
+            </div>
+            <div class="riser" style="left:22%; top:30%; height:18%;"></div>
+            <div class="riser" style="left:64%; top:48%; height:18%;"></div>
+            <div class="pipe" style="top:30%; left:8%; right:20%; --delay:0s;">
+              <div class="pipe-core"><span class="pipe-flow" style="--d:2.4s;"></span></div>
+            </div>
+            <div class="pipe" style="top:48%; left:16%; right:7%; --delay:1.1s;">
+              <div class="pipe-core"><span class="pipe-flow" style="--d:3.3s; --delay:.4s;"></span></div>
+            </div>
+            <div class="pipe" style="top:66%; left:8%; right:32%; --delay:2.1s;">
+              <div class="pipe-core"><span class="pipe-flow" style="--d:2.9s; --delay:.9s;"></span></div>
+            </div>
+            <span class="valve" style="left:22%; top:calc(30% + 7px);"></span>
+            <span class="valve" style="left:64%; top:calc(48% + 7px);"></span>
+            <span class="valve" style="left:52%; top:calc(66% + 7px);"></span>
+            <div class="absolute left-6 right-6 bottom-5">
+              <div class="flex justify-between font-mono text-[10px] text-dim mb-1.5"><span>0</span><span>100</span></div>
+              <div class="h-2.5 border border-coolant/40 bg-void/60">
+                <div id="throttle-bar" class="h-full bg-coolant" style="width:62%; box-shadow:0 0 14px rgb(var(--coolant) / .6);"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="firebox" class="firebox relative h-1/2 overflow-hidden flex flex-col justify-between px-6 pt-5 pb-5">
+            <div class="flex items-center justify-between font-mono text-xs text-dim">
+              <span>Firebox</span><span>CPU package</span>
+            </div>
+            <div class="font-mono font-extrabold text-heat leading-none tabular-nums fire-readout text-[clamp(4rem,8.5vw,7rem)]">
+              <span id="firebox-temp">61</span><span class="text-[.38em] align-top ml-1">°C</span>
+            </div>
+            <div>
+              <div id="heat-bar" class="flex items-end gap-1 h-8" aria-hidden="true">
+                <span class="seg h-[40%]  grow-[1]"   style="--c:#5c3409"></span>
+                <span class="seg h-[48%]  grow-[1.6]" style="--c:#7c4a0a"></span>
+                <span class="seg h-[55%]  grow-[.8]"  style="--c:#9a5a0b"></span>
+                <span class="seg h-[64%]  grow-[1.3]" style="--c:#b86b0c"></span>
+                <span class="seg h-[72%]  grow-[.7]"  style="--c:#d27c0c"></span>
+                <span class="seg h-[82%]  grow-[1.9]" style="--c:#e88d0c"></span>
+                <span class="seg h-[92%]  grow-[1]"   style="--c:#f59e0b"></span>
+                <span class="seg h-[100%] grow-[2.4]" style="--c:#fbbf24"></span>
+              </div>
+              <p class="mt-3 font-mono text-[11px] text-dim">Simulated display. Not your laptop, not real data.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HEATSINK BAND: data plate + scroll-driven thermal module ================= -->
+<section id="heatsink-band" class="relative bg-void overflow-hidden">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-14 md:py-20 grid grid-cols-12 gap-x-8 gap-y-10 items-center">
+
+    <!-- Stamped data plate -->
+    <div class="col-span-12 lg:col-span-4">
+      <div class="data-plate bolted p-7 md:p-8">
+        <div class="flex items-baseline justify-between gap-4 border-b-2 border-black/60 pb-4">
+          <span class="display text-4xl stamped">FW TECH</span>
+          <span class="display text-lg stamped">HOBOKEN</span>
+        </div>
+        <dl class="mt-5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-2.5 font-mono text-xs">
+          <dt class="stamped-dim">Unit</dt><dd class="stamped">FW-TECH-HOBOKEN-001</dd>
+          <dt class="stamped-dim">Service</dt><dd class="stamped">Laptop cleaning, thermal repaste</dd>
+          <dt class="stamped-dim">Payment</dt><dd class="stamped">Cash only</dd>
+          <dt class="stamped-dim">Turnaround</dt><dd class="stamped">1 to 4 days</dd>
+          <dt class="stamped-dim">Scope</dt><dd class="stamped">Hardware only</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Thermal module: cold plate, copper heat pipe, fin stack, blower -->
+    <div class="col-span-12 lg:col-span-8">
+      <div class="plate p-4 md:p-6">
+        <div class="flex items-center justify-between font-mono text-xs text-dim mb-3 px-1">
+          <span>Thermal module</span>
+          <span>Heat out <span id="hs-readout" class="text-heat tabular-nums">0</span>%</span>
+        </div>
+        <svg id="heatsink" viewBox="0 0 1000 260" class="w-full h-auto block" aria-hidden="true">
+          <defs>
+            <linearGradient id="alu" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#5a5d62"/><stop offset=".5" stop-color="#3a3c41"/><stop offset="1" stop-color="#222326"/>
+            </linearGradient>
+            <linearGradient id="copper" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#d08a5a"/><stop offset=".5" stop-color="#a0603a"/><stop offset="1" stop-color="#6b3c22"/>
+            </linearGradient>
+            <linearGradient id="pipeHeat" gradientUnits="userSpaceOnUse" x1="120" x2="760" y1="0" y2="0">
+              <stop id="ph-a" offset="0" stop-color="#f59e0b" stop-opacity=".95"/>
+              <stop id="ph-b" offset="0" stop-color="#f59e0b" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="hsGlow" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+          </defs>
+
+          <!-- base chassis rail -->
+          <rect x="10" y="226" width="980" height="16" fill="#18191b" stroke="#2b2d30" stroke-width="2"/>
+          <g id="rail-screws"></g>
+
+          <!-- CPU die + cold plate -->
+          <rect x="60" y="176" width="140" height="44" fill="#1d1e21" stroke="#3a3c40" stroke-width="2"/>
+          <rect x="90" y="186" width="80" height="24" fill="#111" stroke="#4a4c51" stroke-width="1.5"/>
+          <text x="130" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#80828b">CPU</text>
+          <rect x="50" y="150" width="160" height="26" fill="url(#copper)" stroke="#6b3c22" stroke-width="1.5"/>
+          <g fill="#2b2d30" stroke="#6a6c71" stroke-width="1.5">
+            <circle cx="62" cy="163" r="6"/><circle cx="198" cy="163" r="6"/>
+          </g>
+
+          <!-- fin stack -->
+          <g id="fins"></g>
+          <rect x="400" y="40" width="360" height="8" fill="#2b2d30"/>
+          <rect x="400" y="200" width="360" height="8" fill="#2b2d30"/>
+
+          <!-- heat pipes -->
+          <path d="M120 150 V110 H760" fill="none" stroke="url(#copper)" stroke-width="18" stroke-linejoin="miter"/>
+          <path d="M160 150 V140 H760" fill="none" stroke="url(#copper)" stroke-width="18" stroke-linejoin="miter"/>
+          <path d="M120 150 V110 H760" fill="none" stroke="url(#pipeHeat)" stroke-width="18" stroke-linejoin="miter" filter="url(#hsGlow)"/>
+          <path d="M160 150 V140 H760" fill="none" stroke="url(#pipeHeat)" stroke-width="18" stroke-linejoin="miter" filter="url(#hsGlow)"/>
+
+          <defs>
+            <linearGradient id="airGrad" gradientUnits="userSpaceOnUse" x1="790" x2="360" y1="0" y2="0">
+              <stop offset="0" stop-color="#6fd3ff"/><stop offset=".45" stop-color="#9fe2ff"/><stop offset="1" stop-color="#f59e0b"/>
+            </linearGradient>
+          </defs>
+
+          <!-- air jet: blower pushes cool air through the fins, it leaves hot -->
+          <g fill="none" stroke="url(#airGrad)" stroke-width="2.2" stroke-linecap="butt">
+            <path class="air" d="M790 66 H360"  style="--dl:0s"/>
+            <path class="air" d="M790 88 H352"  style="--dl:-.3s"/>
+            <path class="air" d="M790 168 H356" style="--dl:-.15s"/>
+            <path class="air" d="M790 190 H364" style="--dl:-.5s"/>
+          </g>
+          <!-- exhaust puffs leaving the fin stack -->
+          <g fill="#f59e0b">
+            <ellipse class="puff" cx="384" cy="77"  rx="10" ry="5" style="--dl:0s"/>
+            <ellipse class="puff" cx="384" cy="179" rx="10" ry="5" style="--dl:-.7s"/>
+          </g>
+          <text x="330" y="36" font-family="JetBrains Mono, monospace" font-size="11" fill="#b8761a">Hot air out</text>
+
+          <!-- heat rising off the copper -->
+          <g fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+            <path class="wisp" d="M145 100 q6 -7 0 -14 q-6 -7 0 -14 q6 -7 0 -14" style="--dl:0s"/>
+            <path class="wisp" d="M215 98 q6 -7 0 -14 q-6 -7 0 -14 q6 -7 0 -14"  style="--dl:-.9s"/>
+            <path class="wisp" d="M285 100 q6 -7 0 -14 q-6 -7 0 -14 q6 -7 0 -14" style="--dl:-1.7s"/>
+            <path class="wisp" d="M345 98 q6 -7 0 -14 q-6 -7 0 -14"              style="--dl:-.4s"/>
+            <path class="wisp" d="M80 146 q5 -6 0 -12 q-5 -6 0 -12"               style="--dl:-1.2s"/>
+          </g>
+
+          <!-- cool air intake into the blower -->
+          <g fill="none" stroke="#6fd3ff" stroke-width="2">
+            <path class="intake" d="M872 6 L885 16 L898 6"  style="--dl:0s"/>
+            <path class="intake" d="M872 6 L885 16 L898 6"  style="--dl:-.45s"/>
+            <path class="intake" d="M872 6 L885 16 L898 6"  style="--dl:-.9s"/>
+          </g>
+          <text x="912" y="18" font-family="JetBrains Mono, monospace" font-size="11" fill="#4f9fc2">Cool air in</text>
+
+          <!-- blower housing -->
+          <rect x="790" y="30" width="190" height="190" fill="#141416" stroke="#3a3c40" stroke-width="3"/>
+          <g fill="#2b2d30" stroke="#6a6c71" stroke-width="1.5">
+            <circle cx="804" cy="44" r="6"/><circle cx="966" cy="44" r="6"/><circle cx="804" cy="206" r="6"/><circle cx="966" cy="206" r="6"/>
+          </g>
+          <circle cx="885" cy="125" r="78" fill="#0d0d0f" stroke="#2b2d30" stroke-width="2"/>
+          <g id="blower" transform="translate(885 125)"></g>
+          <circle cx="885" cy="125" r="18" fill="#2b2d30" stroke="#5a5c61" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="boiler-band"></div>
+</section>
+
+<!-- ================= SERVICES (main grid track) ================= -->
+<section id="grid-track" class="relative">
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32">
+    <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
+      <h2 class="col-span-12 lg:col-span-7 display text-[clamp(2.2rem,5.2vw,4.8rem)]">What I fix</h2>
+      <p class="col-span-12 lg:col-span-4 lg:col-start-9 self-end text-dim text-lg leading-relaxed max-w-[42ch]">
+        Mix and match, but only what's listed. Hardware cleaning only, no software, no custom repairs.
+      </p>
+    </div>
+
+    <!-- Prices: keep in sync with SERVICES in the script -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+      <article class="status-card bolted md:col-span-4 p-8 md:p-10 flex flex-col">
+        <span class="status-tag absolute top-4 right-6 font-mono text-[11px] text-dim">[ IDLE_STABLE ]</span>
+        <h3 class="wide font-extrabold text-2xl mt-8">Exterior clean</h3>
+        <p class="mt-4 text-dim leading-relaxed flex-1">Full wipe-down of screen, keyboard, ports, and chassis. Looks brand new.</p>
+        <div class="rivet-row my-8" aria-hidden="true"></div>
+        <div class="flex items-end justify-between gap-4">
+          <div class="display text-5xl">$15</div>
+          <button type="button" data-pick="exterior" class="svc-pick btn-ghost chamfer font-bold wide text-sm"><span class="chamfer !py-3 !px-5">Add</span></button>
+        </div>
+      </article>
+
+      <article class="status-card bolted md:col-span-4 p-8 md:p-10 flex flex-col">
+        <span class="status-tag absolute top-4 right-6 font-mono text-[11px] text-dim">[ IDLE_STABLE ]</span>
+        <h3 class="wide font-extrabold text-2xl mt-8">Internal clean</h3>
+        <p class="mt-4 text-dim leading-relaxed flex-1">Fans, heatsink, and internal components blown out. Stops overheating and noise.</p>
+        <div class="rivet-row my-8" aria-hidden="true"></div>
+        <div class="flex items-end justify-between gap-4">
+          <div class="display text-5xl">$28</div>
+          <button type="button" data-pick="internal" class="svc-pick btn-ghost chamfer font-bold wide text-sm"><span class="chamfer !py-3 !px-5">Add</span></button>
+        </div>
+      </article>
+
+      <article class="status-card bolted md:col-span-4 p-8 md:p-10 flex flex-col">
+        <span class="status-tag absolute top-4 right-6 font-mono text-[11px] text-dim">[ IDLE_STABLE ]</span>
+        <h3 class="wide font-extrabold text-2xl mt-8">Thermal repaste</h3>
+        <div class="mt-4 flex-1">
+          <p class="text-dim leading-relaxed">Old dried paste replaced with fresh compound, so heat moves off the CPU the way it should.</p>
+          <p class="mt-4 font-mono text-xs text-heat leading-relaxed">Repaste only does not include cleaning your fans or the inside. Add Internal clean for that.</p>
+        </div>
+        <div class="rivet-row my-8" aria-hidden="true"></div>
+        <div class="flex items-end justify-between gap-4">
+          <div class="display text-5xl">$40</div>
+          <button type="button" data-pick="repaste" class="svc-pick btn-ghost chamfer font-bold wide text-sm"><span class="chamfer !py-3 !px-5">Add</span></button>
+        </div>
+      </article>
+
+      <article class="status-card bolted md:col-span-12 p-8 md:p-12 grid md:grid-cols-12 gap-8 items-end">
+        <span class="status-tag absolute top-4 right-6 font-mono text-[11px] text-dim">[ IDLE_STABLE ]</span>
+        <div aria-hidden="true" class="absolute inset-x-0 top-0 h-[4px] bg-brass"></div>
+        <div class="md:col-span-6">
+          <div class="inline-block border-2 border-brass px-3 py-1 font-mono text-xs brass-text mb-6">Best value</div>
+          <h3 class="display text-4xl md:text-6xl">Full bundle</h3>
+          <p class="mt-5 text-dim leading-relaxed max-w-[46ch]">Everything: exterior clean, internal fan clean, and fresh thermal paste. The complete treatment.</p>
+        </div>
+        <div class="md:col-span-3 flex items-end gap-4">
+          <div class="display text-6xl md:text-7xl brass-text">$72</div>
+          <div class="text-dim line-through text-xl mb-2">$83</div>
+        </div>
+        <div class="md:col-span-3 flex md:justify-end">
+          <button type="button" data-pick="bundle" class="svc-pick btn btn-brass chamfer w-full md:w-auto">Choose the bundle</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section id="why" class="relative">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-4">
+      <h2 class="display text-[clamp(2.2rem,4.6vw,4.2rem)]">It's probably not broken</h2>
+      <p class="mt-6 text-dim text-lg leading-relaxed max-w-[36ch]">Most "slow" laptops just need a clean. Here's what's actually happening.</p>
+    </div>
+    <div class="col-span-12 lg:col-span-8 grid md:grid-cols-2 gap-5">
+      <div class="plate bolted p-8 md:p-9">
+        <h3 class="wide font-extrabold text-xl">Dust clogs everything</h3>
+        <p class="mt-3 text-dim leading-relaxed">Fans and vents fill up over time and trap heat inside. Your laptop can't breathe, so it throttles to protect itself.</p>
+      </div>
+      <div class="plate bolted p-8 md:p-9 md:translate-y-10">
+        <h3 class="wide font-extrabold text-xl">Thermal paste dries out</h3>
+        <p class="mt-3 text-dim leading-relaxed">Usually after 3 to 5 years. Once it fails, heat can't move off the CPU properly, and everything slows down.</p>
+      </div>
+      <div class="plate bolted p-8 md:p-9">
+        <h3 class="wide font-extrabold text-xl">Throttling kills performance</h3>
+        <p class="mt-3 text-dim leading-relaxed">When a CPU overheats, it cuts its own speed to avoid damage, sometimes down to a small fraction of what it can do.</p>
+      </div>
+      <div class="plate bolted p-8 md:p-9 md:translate-y-10 border-brass/60">
+        <h3 class="wide font-extrabold text-xl brass-text">You don't need a new laptop</h3>
+        <p class="mt-3 text-dim leading-relaxed">Most laptops people replace just need a good clean and repaste. A $72 service beats a $1,000 replacement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS: on the bench ================= -->
+<section id="process" class="relative bg-void">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 lg:py-0 lg:h-[calc(100svh-18px)] grid grid-cols-12 gap-x-6 gap-y-12 lg:items-center">
+
+    <div class="col-span-12 lg:col-span-4">
+      <h2 class="display text-[clamp(2.2rem,4.4vw,4rem)] mb-10">On the bench</h2>
+      <ol id="steps" class="space-y-6">
+        <li class="step">
+          <div class="flex items-baseline gap-4"><span class="narrow text-dim text-sm w-6">01</span><h3 class="wide font-bold text-lg">Before photos</h3></div>
+          <p class="pl-10 mt-1 text-dim text-sm leading-relaxed max-w-[38ch]">Condition photographed before anything is opened.</p>
+          <div class="step-bar ml-10 mt-3 h-[2px] bg-coolant"></div>
+        </li>
+        <li class="step">
+          <div class="flex items-baseline gap-4"><span class="narrow text-dim text-sm w-6">02</span><h3 class="wide font-bold text-lg">Teardown</h3></div>
+          <p class="pl-10 mt-1 text-dim text-sm leading-relaxed max-w-[38ch]">Guide checked first, bottom panel off, every screw tracked.</p>
+          <div class="step-bar ml-10 mt-3 h-[2px] bg-coolant"></div>
+        </li>
+        <li class="step">
+          <div class="flex items-baseline gap-4"><span class="narrow text-dim text-sm w-6">03</span><h3 class="wide font-bold text-lg">Internal clean</h3></div>
+          <p class="pl-10 mt-1 text-dim text-sm leading-relaxed max-w-[38ch]">Fans, heatsink, and vents cleared of dust.</p>
+          <div class="step-bar ml-10 mt-3 h-[2px] bg-coolant"></div>
+        </li>
+        <li class="step">
+          <div class="flex items-baseline gap-4"><span class="narrow text-dim text-sm w-6">04</span><h3 class="wide font-bold text-lg">Thermal repaste</h3></div>
+          <p class="pl-10 mt-1 text-dim text-sm leading-relaxed max-w-[38ch]">Dried paste removed, fresh compound applied.</p>
+          <div class="step-bar ml-10 mt-3 h-[2px] bg-coolant"></div>
+        </li>
+        <li class="step">
+          <div class="flex items-baseline gap-4"><span class="narrow text-dim text-sm w-6">05</span><h3 class="wide font-bold text-lg">Reassembly and after photos</h3></div>
+          <p class="pl-10 mt-1 text-dim text-sm leading-relaxed max-w-[38ch]">Back together, then photographed again.</p>
+          <div class="step-bar ml-10 mt-3 h-[2px] bg-coolant"></div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="col-span-12 lg:col-span-8">
+      <div id="graph-panel" class="glass chamfer p-5 md:p-8 border-2 border-smoke">
+        <div class="flex items-end justify-between gap-6 mb-4">
+          <div>
+            <div class="text-sm text-dim">CPU temperature under load</div>
+            <div class="display text-5xl md:text-7xl mt-2 tabular-nums"><span id="temp-readout">94.0</span>°C</div>
+          </div>
+          <div class="text-right text-sm text-dim tabular-nums">Frame <span id="frame-readout" class="text-ink">0</span> of 240</div>
+        </div>
+        <div class="overflow-x-auto">
+          <svg viewBox="0 0 1000 400" class="w-full min-w-[560px] h-auto" role="img" aria-label="Illustrative curve showing CPU temperature falling across the five bench steps">
+            <defs>
+              <clipPath id="reveal"><rect id="reveal-rect" x="0" y="0" width="40" height="400"/></clipPath>
+              <linearGradient id="curveGrad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#f59e0b"/><stop offset=".55" stop-color="#6fd3ff"/><stop offset="1" stop-color="#6fd3ff"/>
+              </linearGradient>
+              <linearGradient id="areaGrad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#6fd3ff" stop-opacity=".16"/><stop offset="1" stop-color="#6fd3ff" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="glow" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g stroke="#1d1d22" stroke-width="1">
+              <line x1="0" y1="60" x2="1000" y2="60"/><line x1="0" y1="130" x2="1000" y2="130"/><line x1="0" y1="200" x2="1000" y2="200"/>
+              <line x1="0" y1="270" x2="1000" y2="270"/><line x1="0" y1="340" x2="1000" y2="340"/>
+            </g>
+            <g fill="#5b5d65" font-size="13" font-family="Archivo, sans-serif">
+              <text x="990" y="55" text-anchor="end">94°</text><text x="990" y="335" text-anchor="end">61°</text>
+            </g>
+            <path d="M40,60 C130,60 180,77 270,77 C360,77 410,162 500,162 C590,162 640,315 730,315 C820,315 870,340 960,340"
+                  fill="none" stroke="#26262c" stroke-width="2" stroke-dasharray="4 6"/>
+            <g clip-path="url(#reveal)">
+              <path d="M40,60 C130,60 180,77 270,77 C360,77 410,162 500,162 C590,162 640,315 730,315 C820,315 870,340 960,340 L960,400 L40,400Z" fill="url(#areaGrad)"/>
+              <path d="M40,60 C130,60 180,77 270,77 C360,77 410,162 500,162 C590,162 640,315 730,315 C820,315 870,340 960,340"
+                    fill="none" stroke="url(#curveGrad)" stroke-width="3" filter="url(#glow)"/>
+              <g stroke="#6fd3ff" stroke-opacity=".45" stroke-width="1" fill="#0b0b0c">
+                <line x1="40" y1="60" x2="130" y2="60"/><circle cx="130" cy="60" r="3.5"/>
+                <line x1="180" y1="77" x2="360" y2="77"/><circle cx="180" cy="77" r="3.5"/><circle cx="360" cy="77" r="3.5"/>
+                <line x1="410" y1="162" x2="590" y2="162"/><circle cx="410" cy="162" r="3.5"/><circle cx="590" cy="162" r="3.5"/>
+                <line x1="640" y1="315" x2="820" y2="315"/><circle cx="640" cy="315" r="3.5"/><circle cx="820" cy="315" r="3.5"/>
+                <line x1="870" y1="340" x2="960" y2="340"/><circle cx="870" cy="340" r="3.5"/>
+              </g>
+            </g>
+            <g stroke-width="1.5">
+              <rect class="kf" x="33" y="53" width="14" height="14" transform="rotate(45 40 60)"/>
+              <rect class="kf" x="263" y="70" width="14" height="14" transform="rotate(45 270 77)"/>
+              <rect class="kf" x="493" y="155" width="14" height="14" transform="rotate(45 500 162)"/>
+              <rect class="kf" x="723" y="308" width="14" height="14" transform="rotate(45 730 315)"/>
+              <rect class="kf" x="953" y="333" width="14" height="14" transform="rotate(45 960 340)"/>
+            </g>
+            <g id="playhead">
+              <line x1="40" y1="16" x2="40" y2="384" stroke="#ecebe7" stroke-width="1"/>
+              <path d="M32 8 H48 V16 L40 24 L32 16Z" fill="#ecebe7"/>
+            </g>
+            <g stroke="#3a3a42" stroke-width="1">
+              <line x1="40" y1="392" x2="960" y2="392"/>
+              <line x1="40" y1="386" x2="40" y2="398"/><line x1="270" y1="386" x2="270" y2="398"/><line x1="500" y1="386" x2="500" y2="398"/>
+              <line x1="730" y1="386" x2="730" y2="398"/><line x1="960" y1="386" x2="960" y2="398"/>
+            </g>
+          </svg>
+        </div>
+        <p class="mt-4 text-xs text-dim">Illustrative curve, not a measurement of any specific laptop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICE AREA ================= -->
+<section id="area" class="relative">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-4">
+      <h2 class="display text-[clamp(2.2rem,4.6vw,4.2rem)]">Where I go</h2>
+      <p class="mt-6 text-dim text-lg leading-relaxed max-w-[36ch]">Pickup and drop-off in five areas. I get there by car or public transit, so give me a little time for the trip.</p>
+    </div>
+    <div class="col-span-12 lg:col-span-8 grid grid-cols-2 md:grid-cols-6 gap-4">
+      <div class="plate bolted col-span-2 md:col-span-4 p-7 md:p-9 border-brass/60">
+        <div class="display text-4xl md:text-6xl brass-text">Hoboken</div>
+        <p class="mt-3 text-dim">Home base.</p>
+      </div>
+      <div class="plate bolted col-span-2 md:col-span-2 p-7 flex items-end"><div class="display text-2xl md:text-3xl">Jersey City</div></div>
+      <div class="plate bolted col-span-1 md:col-span-2 p-7 flex items-end"><div class="display text-2xl md:text-3xl">Union City</div></div>
+      <div class="plate bolted col-span-1 md:col-span-2 p-7 flex items-end"><div class="display text-2xl md:text-3xl">Midtown Manhattan</div></div>
+      <div class="plate bolted col-span-2 md:col-span-2 p-7 flex items-end"><div class="display text-2xl md:text-3xl">Downtown Manhattan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how" class="relative">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32">
+    <div class="grid grid-cols-12 gap-6 mb-14">
+      <h2 class="col-span-12 lg:col-span-6 display text-[clamp(2.2rem,5.2vw,4.8rem)]">How it works</h2>
+      <p class="col-span-12 lg:col-span-4 lg:col-start-9 self-end text-dim text-lg">Simple, honest, no surprises.</p>
+    </div>
+    <ol class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+      <li class="plate bolted p-8">
+        <div class="display text-6xl brass-text">1</div>
+        <h3 class="wide font-extrabold text-xl mt-6">Email me</h3>
+        <p class="mt-3 text-dim leading-relaxed">Describe your issue and pick a service. Send the form below and it comes straight to me.</p>
+      </li>
+      <li class="plate bolted p-8 xl:translate-y-8">
+        <div class="display text-6xl brass-text">2</div>
+        <h3 class="wide font-extrabold text-xl mt-6">I confirm</h3>
+        <p class="mt-3 text-dim leading-relaxed">I check I can do it, and we agree on the service before anything else.</p>
+      </li>
+      <li class="plate bolted p-8">
+        <div class="display text-6xl brass-text">3</div>
+        <h3 class="wide font-extrabold text-xl mt-6">Pay and drop off</h3>
+        <p class="mt-3 text-dim leading-relaxed">Cash paid when you hand me the laptop. No surprises on price.</p>
+      </li>
+      <li class="plate bolted p-8 xl:translate-y-8">
+        <div class="display text-6xl brass-text">4</div>
+        <h3 class="wide font-extrabold text-xl mt-6">Pick up</h3>
+        <p class="mt-3 text-dim leading-relaxed">Grab your laptop when it's done. Turnaround is 1 to 4 days, same day if conditions allow.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="relative grid-field">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-5">
+      <h2 class="display text-[clamp(2.2rem,5vw,4.6rem)]">Who's doing this</h2>
+      <p class="mt-6 text-lg text-ink/85 leading-relaxed max-w-[38ch]">Reyansh Sahani, a 15-year-old high school sophomore in Hoboken. Local pickup and drop-off, no shipping.</p>
+      <p class="mt-6 text-dim leading-relaxed max-w-[40ch]">Before booking, please read the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service and Privacy Policy</a>.</p>
+      <div class="plate mt-10 p-6 border-heat/50">
+        <h3 class="font-mono text-sm text-heat">Not accepted</h3>
+        <p class="mt-2 text-ink/85 leading-relaxed">Microsoft Surface, Razer, Alienware, Chromebooks, or any laptop that needs special tools just to open.</p>
+      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6 lg:col-start-7 space-y-5">
+      <div class="plate p-7">
+        <h3 class="wide font-extrabold text-lg">Self-taught</h3>
+        <p class="mt-2 text-dim leading-relaxed">Through iFixit, YouTube, and manufacturer guides. Every repair is researched and the teardown docs are checked before I open your machine.</p>
+      </div>
+      <div class="plate p-7">
+        <h3 class="wide font-extrabold text-lg">Hands-on experience</h3>
+        <p class="mt-2 text-dim leading-relaxed">With HP laptops going back to 2006. Mostly modern Windows laptops, older MacBooks welcome, and older machines too. I genuinely enjoy working on them.</p>
+      </div>
+      <div class="plate p-7">
+        <h3 class="wide font-extrabold text-lg">Straightforward pricing</h3>
+        <p class="mt-2 text-dim leading-relaxed">No upsells, no corporate markup. Way less than a big-box store charges just to look at your laptop.</p>
+      </div>
+      <div class="plate p-7">
+        <h3 class="wide font-extrabold text-lg">Hardware only</h3>
+        <p class="mt-2 text-dim leading-relaxed">No software installs, no OS setup. What's listed is what I do. Got a dead or old laptop? Donate it. I'll practice on it so I don't practice on yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TERMS + PRIVACY ================= -->
+<section id="terms" class="relative bg-void">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-4">
+      <h2 class="display text-[clamp(2.2rem,4.6vw,4.2rem)]">Terms of Service</h2>
+      <p class="mt-6 text-dim leading-relaxed max-w-[40ch]">By replying "I agree," dropping off your laptop, or handing over payment, you confirm you've read and accepted these terms. If you don't agree, that's completely valid. FW Tech won't provide service. No hard feelings.</p>
+    </div>
+
+    <div class="col-span-12 lg:col-span-8 space-y-4">
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">1. Hardware cleaning only. No software. No loopholes.</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed space-y-4 max-w-[70ch]">
+          <p>FW Tech does hardware cleaning only. No software is touched, deleted, modified, or bypassed during or after service. That includes operating systems, apps, security software, and device management tools on work or school devices.</p>
+          <p>FW Tech does not service school or work-issued devices during an active enrollment or employment period. Your institution has an IT department for exactly this. Bypass requests of any kind are not accepted, and offering more money doesn't change the answer.</p>
+        </div>
+      </details>
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">2. No hardware upgrades</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Cleaning and thermal services only. Upgrades are not offered, even if you supply the part.</p></div>
+      </details>
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">3. Pre-existing damage and data privacy</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed space-y-4 max-w-[70ch]">
+          <p>Every device is photographed before and after service. Damage present before drop-off is not FW Tech's responsibility. The photo record protects both sides.</p>
+          <p>FW Tech never accesses, views, or copies any files or personal information on your device. The work is physical. Your data is yours.</p>
+        </div>
+      </details>
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">4. Service eligibility</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Every job is researched before work begins. If a device is outside what FW Tech can confidently service, the job is declined before it starts, at no charge. A declined job doesn't mean your laptop is fine. It means FW Tech isn't the right person for it.</p></div>
+      </details>
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">5. Mid-service complications</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>If a service can't be completed safely after work starts, FW Tech stops, reassembles the device as close to its original state as possible, and gives a full refund. Payment is earned by finishing the agreed work properly.</p></div>
+      </details>
+      <details class="notice plate">
+        <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">6. Cancellation policy</span><span class="chev display text-2xl brass-text">+</span></summary>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Cancel before 65% of the job is done and you get a full refund, no questions asked. After 65%, the job gets finished, payment is final, and the laptop comes back completed. If you're on a deadline, say so upfront and you'll get an honest estimate.</p></div>
+      </details>
+
+      <div class="plate bolted p-7 md:p-9 mt-8 border-brass/50">
+        <h3 class="display text-2xl brass-text">The short version</h3>
+        <div class="mt-5 grid md:grid-cols-2 gap-x-8 gap-y-4 text-dim leading-relaxed">
+          <p><span class="text-ink font-semibold">Payment:</span> cash only, paid upfront at drop-off.</p>
+          <p><span class="text-ink font-semibold">Turnaround:</span> 1 to 4 days. FW Tech is not The Flash.</p>
+          <p><span class="text-ink font-semibold">Pricing:</span> same for everyone. Friendship discount is under maintenance.</p>
+          <p><span class="text-ink font-semibold">Repaste only:</span> fresh thermal paste, no fan or internal cleaning. That's Internal clean.</p>
+          <p><span class="text-ink font-semibold">Bribes:</span> $10 won't make me rush. $50 won't make me sabotage.</p>
+        </div>
+      </div>
+
+      <div id="privacy" class="plate p-7 md:p-9">
+        <h3 class="display text-2xl">Privacy Policy</h3>
+        <div class="mt-5 text-dim leading-relaxed space-y-4 max-w-[70ch]">
+          <p>When you contact FW Tech, your name, email, pickup address or meeting spot, and a description of your device's issue may be collected for service purposes. It's kept in a private Google Sheet used only for internal records and tax documentation.</p>
+          <p>It is never sold, shared, or given to any third party. No marketing lists, no data brokers. Agreeing to the Terms of Service includes this Privacy Policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING ================= -->
+<section id="book" class="relative grid-field overflow-hidden">
+  <div class="boiler-band"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -left-40 bottom-0 w-[560px] h-[560px] opacity-50"
+       style="background: radial-gradient(closest-side, rgb(var(--brass) / .14), transparent);"></div>
+  <div class="relative mx-auto max-w-frame px-5 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-5">
+      <h2 class="display text-[clamp(2.4rem,5.8vw,5.4rem)]">Book a service</h2>
+      <p class="mt-8 text-dim text-lg leading-relaxed max-w-[38ch]">Email first with your laptop model and issue. I'll confirm I can handle it before you bring anything over.</p>
+      <dl class="mt-10 space-y-5 max-w-[40ch]">
+        <div><dt class="font-mono text-xs text-dim">Area</dt><dd class="mt-1">Hoboken, Jersey City, Union City, Midtown and Downtown Manhattan</dd></div>
+        <div><dt class="font-mono text-xs text-dim">Getting there</dt><dd class="mt-1">I come to you by car or public transit, so pickup times depend on the trip.</dd></div>
+        <div><dt class="font-mono text-xs text-dim">Payment</dt><dd class="mt-1">Cash only, paid at drop-off. Online payments coming soon.</dd></div>
+        <div><dt class="font-mono text-xs text-dim">Turnaround</dt><dd class="mt-1">1 to 4 days. Same day is possible, not guaranteed.</dd></div>
+        <div><dt class="font-mono text-xs text-dim">Email</dt><dd class="mt-1"><a href="mailto:rey.sahani03@gmail.com" class="email-link text-coolant" data-subject="FW Tech question">rey.sahani03@gmail.com</a></dd></div>
+      </dl>
+    </div>
+
+    <form id="book-form" class="plate bolted col-span-12 lg:col-span-6 lg:col-start-7 p-7 md:p-10 grid grid-cols-2 gap-x-6 gap-y-6" novalidate>
+      <fieldset class="col-span-2">
+        <legend class="text-sm text-dim mb-1">Services</legend>
+        <p class="font-mono text-xs text-heat mb-3">You can pick more than one. Pick all three and you get the $72 bundle price.</p>
+        <div class="grid sm:grid-cols-3 gap-3">
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="svc" value="exterior"><span>Exterior <span class="text-dim">$15</span></span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="svc" value="internal"><span>Internal <span class="text-dim">$28</span></span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="svc" value="repaste"><span>Repaste <span class="text-dim">$40</span></span></label>
+        </div>
+        <p class="mt-3 font-mono text-sm text-dim">Total <span id="svc-total" class="brass-text">$0</span> <span id="svc-note" class="text-dim"></span></p>
+        <p id="repaste-warn" class="hidden mt-2 font-mono text-xs text-heat">Heads up: Thermal repaste alone does not clean your fans or the inside. Add Internal clean if you want that too.</p>
+      </fieldset>
+      <label class="col-span-2 md:col-span-1 text-sm text-dim">Name
+        <input class="field mt-1" name="name" type="text" autocomplete="name" required placeholder="Your name">
+      </label>
+      <label class="col-span-2 md:col-span-1 text-sm text-dim">Email
+        <input class="field mt-1" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+      </label>
+      <label class="col-span-2 text-sm text-dim">Laptop model
+        <input class="field mt-1" name="model" type="text" required placeholder="e.g. HP Pavilion 15, 2019">
+      </label>
+      <fieldset class="col-span-2 border-2 border-smoke p-5 md:p-6 grid grid-cols-2 gap-x-6 gap-y-5">
+        <legend class="px-2 wide font-extrabold text-ink text-base">Where you live, or where you want me to pick it up</legend>
+        <label class="col-span-2 md:col-span-1 text-sm text-dim">Area
+          <select class="field mt-1 bg-transparent" name="area" required>
+            <option value="" selected disabled>Choose an area</option>
+            <option>Hoboken</option>
+            <option>Jersey City</option>
+            <option>Union City</option>
+            <option>Midtown Manhattan</option>
+            <option>Downtown Manhattan</option>
+          </select>
+        </label>
+        <label class="col-span-2 md:col-span-1 text-sm text-dim">Address or meeting spot
+          <input class="field mt-1" name="address" type="text" autocomplete="street-address" required placeholder="Street address, or a spot like a library">
+        </label>
+        <p class="col-span-2 font-mono text-xs text-dim">Outside these areas? Email anyway and ask, but it probably won't work out.</p>
+      </fieldset>
+      <label class="col-span-2 text-sm text-dim">What's going on
+        <textarea class="field mt-1 resize-y min-h-[100px]" name="message" placeholder="Runs hot, fan is loud, slow..."></textarea>
+      </label>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <label class="col-span-2 flex items-start gap-3 text-sm text-ink/85 cursor-pointer">
+        <input class="svc-box mt-0.5" type="checkbox" name="agree" id="agree">
+        <span>I've read and agree to the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service</a> and <a href="#privacy" class="text-coolant underline underline-offset-4">Privacy Policy</a>.</span>
+      </label>
+      <div class="col-span-2 flex flex-wrap items-center justify-between gap-4 pt-2">
+        <p id="form-status" class="text-sm text-dim min-h-[1.25rem] max-w-[36ch]" role="status" aria-live="polite"></p>
+        <button id="send-btn" type="submit" class="btn btn-brass chamfer">Send my request</button>
+      </div>
+    </form>
+
+    <!-- Booked confirmation -->
+    <div id="booked-panel" hidden class="col-span-12" role="status" aria-live="polite">
+      <div id="booked-plate" class="plate relative overflow-hidden p-8 md:p-12 grid lg:grid-cols-12 gap-10 items-center border-heat/60">
+        <span class="booked-s absolute top-3 left-3"><svg class="booked-screw" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.2" fill="#303236" stroke="#686a6f" stroke-width="1.2"/><path d="M7 3.6v6.8M3.6 7h6.8" stroke="#0b0b0c" stroke-width="1.6"/></svg></span>
+        <span class="booked-s absolute top-3 right-3"><svg class="booked-screw" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.2" fill="#303236" stroke="#686a6f" stroke-width="1.2"/><path d="M7 3.6v6.8M3.6 7h6.8" stroke="#0b0b0c" stroke-width="1.6"/></svg></span>
+        <span class="booked-s absolute bottom-3 left-3"><svg class="booked-screw" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.2" fill="#303236" stroke="#686a6f" stroke-width="1.2"/><path d="M7 3.6v6.8M3.6 7h6.8" stroke="#0b0b0c" stroke-width="1.6"/></svg></span>
+        <span class="booked-s absolute bottom-3 right-3"><svg class="booked-screw" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.2" fill="#303236" stroke="#686a6f" stroke-width="1.2"/><path d="M7 3.6v6.8M3.6 7h6.8" stroke="#0b0b0c" stroke-width="1.6"/></svg></span>
+
+        <svg id="booked-steam" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="#6fd3ff" fill-opacity=".18">
+            <circle class="puff-b" cx="160" cy="150" r="40"/><circle class="puff-b" cx="260" cy="120" r="30"/>
+            <circle class="puff-b" cx="120" cy="200" r="34"/><circle class="puff-b" cx="330" cy="190" r="26"/>
+            <circle class="puff-b" cx="220" cy="230" r="28"/>
+          </g>
+        </svg>
+
+        <div class="stamp-wrap lg:col-span-5 relative flex justify-center lg:justify-start">
+          <div id="booked-stamp" class="stamp">BOOKED</div>
+        </div>
+        <div class="lg:col-span-7 relative">
+          <h3 class="display text-2xl md:text-4xl">Request received.</h3>
+          <dl id="booked-summary" class="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 font-mono text-sm"></dl>
+          <p class="booked-line mt-6 text-dim leading-relaxed max-w-[52ch]">I'll email you back to confirm I can take it. Don't drop anything off until you hear from me.</p>
+          <button id="booked-again" type="button" class="booked-line btn-ghost chamfer font-bold wide text-sm mt-8"><span class="chamfer">Book another laptop</span></button>
+        </div>
+      </div>
+      <div class="mt-3 border-2 border-smoke border-b-0">
+  <div id="bigboy-band" aria-hidden="true">
+          <div class="ties"></div>
+          <div class="rail"></div>
+          <div id="bb-smoke"></div>
+          <svg id="bigboy" viewBox="0 0 1400 180">
+          <defs>
+            <linearGradient id="bbBlack" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#34363a"/><stop offset=".22" stop-color="#1c1d20"/><stop offset=".7" stop-color="#121315"/><stop offset="1" stop-color="#0a0a0b"/>
+            </linearGradient>
+            <linearGradient id="bbGraphite" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#a9acb1"/><stop offset=".3" stop-color="#7d8085"/><stop offset=".75" stop-color="#55585c"/><stop offset="1" stop-color="#34363a"/>
+            </linearGradient>
+            <linearGradient id="bbPipe" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#c3c6ca"/><stop offset=".5" stop-color="#8b8e93"/><stop offset="1" stop-color="#5a5d61"/>
+            </linearGradient>
+            <linearGradient id="bbBeam" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fff4d6" stop-opacity=".38"/><stop offset="1" stop-color="#fff4d6" stop-opacity="0"/></linearGradient>
+            <radialGradient id="bbLamp"><stop offset="0" stop-color="#fff4d6"/><stop offset="1" stop-color="#fff4d6" stop-opacity="0"/></radialGradient>
+          </defs>
+
+          <!-- headlight beam -->
+          <polygon points="1272,70 1400,48 1400,92" fill="url(#bbBeam)"/>
+
+          <!-- ===== tender (long, 14 wheels) ===== -->
+          <rect x="330" y="38" width="80" height="10" fill="#1c1d20"/>
+          <path d="M14 60 Q14 46 28 46 H402 Q416 46 416 60 V146 H14 Z" fill="url(#bbBlack)" stroke="#2b2d30" stroke-width="2"/>
+          <g stroke="#26272b" stroke-width="2"><line x1="124" y1="48" x2="124" y2="146"/><line x1="232" y1="48" x2="232" y2="146"/><line x1="330" y1="48" x2="330" y2="146"/></g>
+          <g id="bb-tender-rivets" fill="#4a4c51"></g>
+          <g stroke="#55575c" stroke-width="2"><line x1="22" y1="70" x2="22" y2="146"/><line x1="34" y1="70" x2="34" y2="146"/>
+            <line x1="22" y1="84" x2="34" y2="84"/><line x1="22" y1="100" x2="34" y2="100"/><line x1="22" y1="116" x2="34" y2="116"/><line x1="22" y1="132" x2="34" y2="132"/></g>
+          <rect x="18" y="146" width="394" height="6" fill="#141517"/>
+
+          <!-- ===== cab ===== -->
+          <rect x="424" y="16" width="128" height="10" fill="#1f2023"/>
+          <rect x="432" y="24" width="110" height="122" fill="url(#bbBlack)" stroke="#2b2d30" stroke-width="2"/>
+          <rect x="446" y="40" width="36" height="32" fill="#f59e0b" fill-opacity=".24" stroke="#45474c" stroke-width="2"/>
+          <rect x="492" y="40" width="36" height="32" fill="#f59e0b" fill-opacity=".18" stroke="#45474c" stroke-width="2"/>
+          <line x1="440" y1="92" x2="534" y2="92" stroke="#2b2d30" stroke-width="2"/>
+
+          <!-- ===== firebox + boiler ===== -->
+          <path d="M540 44 H640 V126 H552 L540 114 Z" fill="url(#bbBlack)" stroke="#2b2d30" stroke-width="2"/>
+          <rect x="636" y="50" width="450" height="72" fill="url(#bbBlack)" stroke="#2b2d30" stroke-width="2"/>
+          <g fill="#2a2b2f"><rect x="700" y="50" width="4" height="72"/><rect x="800" y="50" width="4" height="72"/><rect x="900" y="50" width="4" height="72"/><rect x="1000" y="50" width="4" height="72"/></g>
+          <!-- long sandbox hump + dome -->
+          <path d="M760 50 V44 Q760 38 770 38 H990 Q1000 38 1000 44 V50Z" fill="#1c1d20" stroke="#2b2d30" stroke-width="2"/>
+          <path d="M1020 50 V42 Q1040 30 1060 42 V50Z" fill="#1c1d20" stroke="#2b2d30" stroke-width="2"/>
+
+          <!-- graphite smokebox, long front section like the real one -->
+          <rect x="1084" y="46" width="170" height="80" fill="url(#bbGraphite)" stroke="#8e9196" stroke-width="2"/>
+          <rect x="1250" y="42" width="10" height="88" fill="#b3b6ba"/>
+          <line x1="1130" y1="46" x2="1130" y2="126" stroke="#6a6d72" stroke-width="2"/>
+          <!-- stack, bell, number boards (blank) -->
+          <rect x="1176" y="30" width="36" height="18" fill="#1f2023" stroke="#3a3c40" stroke-width="2"/>
+          <rect x="1172" y="26" width="44" height="6" fill="#2b2d30"/>
+          <path d="M1222 44 Q1222 34 1230 34 Q1238 34 1238 44 Z" fill="#c8a96a"/>
+          <rect x="1240" y="30" width="22" height="12" fill="#0b0b0c" stroke="#6a6c71" stroke-width="1.5"/>
+          <!-- headlight -->
+          <rect x="1256" y="58" width="16" height="24" fill="#2b2d30" stroke="#55575c" stroke-width="1.5"/>
+          <circle cx="1272" cy="70" r="12" fill="url(#bbLamp)"/>
+          <circle cx="1268" cy="70" r="5" fill="#fff4d6"/>
+
+          <!-- handrail + pipework -->
+          <line x1="636" y1="64" x2="1250" y2="64" stroke="#6a6c71" stroke-width="1.5"/>
+          <line x1="660" y1="112" x2="1084" y2="112" stroke="#3d3f43" stroke-width="4"/>
+          <path d="M1150 108 H996 C972 108 962 110 946 118" fill="none" stroke="url(#bbPipe)" stroke-width="9"/>
+          <path d="M1176 102 C1206 102 1222 108 1246 118" fill="none" stroke="url(#bbPipe)" stroke-width="10"/>
+
+          <!-- running board + frame -->
+          <rect x="540" y="120" width="716" height="6" fill="#1f2023"/>
+          <rect x="640" y="126" width="620" height="8" fill="#0f1012"/>
+          <!-- sand pipes -->
+          <g stroke="#3a3c40" stroke-width="2"><line x1="700" y1="126" x2="694" y2="160"/><line x1="770" y1="126" x2="764" y2="160"/><line x1="1040" y1="126" x2="1034" y2="160"/><line x1="1110" y1="126" x2="1104" y2="160"/></g>
+
+          <g id="bb-wheels"></g>
+
+          <!-- cylinders (graphite), drawn over the wheels -->
+          <rect x="897" y="106" width="62" height="12" fill="#55585c" stroke="#6f7277" stroke-width="1.5"/>
+          <rect x="895" y="116" width="66" height="40" fill="url(#bbGraphite)" stroke="#8e9196" stroke-width="2"/>
+          <line x1="908" y1="116" x2="908" y2="156" stroke="#5a5d61" stroke-width="2"/><line x1="948" y1="116" x2="948" y2="156" stroke="#5a5d61" stroke-width="2"/>
+          <rect x="1238" y="106" width="62" height="12" fill="#55585c" stroke="#6f7277" stroke-width="1.5"/>
+          <rect x="1236" y="116" width="66" height="40" fill="url(#bbGraphite)" stroke="#8e9196" stroke-width="2"/>
+          <line x1="1249" y1="116" x2="1249" y2="156" stroke="#5a5d61" stroke-width="2"/><line x1="1289" y1="116" x2="1289" y2="156" stroke="#5a5d61" stroke-width="2"/>
+          <!-- guide bars -->
+          <g fill="#4a4c51"><rect x="862" y="133" width="34" height="3"/><rect x="862" y="144" width="34" height="3"/><rect x="1208" y="133" width="30" height="3"/><rect x="1208" y="144" width="30" height="3"/></g>
+
+          <!-- front deck, air compressor, slotted steel pilot, coupler -->
+          <rect x="1256" y="126" width="110" height="10" fill="#1c1d20" stroke="#2b2d30" stroke-width="1.5"/>
+          <rect x="1306" y="88" width="26" height="38" fill="url(#bbGraphite)" stroke="#8e9196" stroke-width="1.5"/>
+          <rect x="1302" y="84" width="34" height="6" fill="#55585c"/>
+          <polygon points="1346,136 1388,136 1396,168 1346,168" fill="#18191b" stroke="#34363a" stroke-width="2"/>
+          <g fill="#0b0b0c"><rect x="1354" y="146" width="6" height="14"/><rect x="1364" y="146" width="6" height="14"/><rect x="1374" y="146" width="6" height="14"/><rect x="1384" y="146" width="5" height="14"/></g>
+          <rect x="1388" y="142" width="10" height="9" fill="#55585c"/>
+
+          <g id="bb-rods"></g>
+        </svg>
+        </div>
+      </div>
+      <div class="boiler-band"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="relative">
+  <div class="boiler-band"></div>
+  <div class="mx-auto max-w-frame px-5 md:px-10 py-12 grid grid-cols-12 gap-6 items-end">
+    <div class="col-span-12 md:col-span-7">
+      <div class="display text-[clamp(3.4rem,11vw,10rem)] brass-text select-none leading-none" style="letter-spacing:.04em;" aria-hidden="true">FW TECH</div>
+      <div class="display text-[clamp(1.4rem,3.6vw,3.2rem)] text-dim select-none leading-none mt-2" style="letter-spacing:.32em;" aria-hidden="true">HOBOKEN</div>
+    </div>
+    <div class="col-span-12 md:col-span-5 md:text-right text-sm text-dim space-y-2">
+      <nav aria-label="Footer" class="flex flex-wrap md:justify-end gap-x-6 gap-y-2 pb-3">
+        <a href="#grid-track" class="hover:text-ink transition-colors">Services</a>
+        <a href="#area" class="hover:text-ink transition-colors">Area</a>
+        <a href="#how" class="hover:text-ink transition-colors">How it works</a>
+        <a href="#about" class="hover:text-ink transition-colors">About</a>
+        <a href="#terms" class="hover:text-ink transition-colors">Terms</a>
+        <a href="#privacy" class="hover:text-ink transition-colors">Privacy</a>
+        <a href="#book" class="hover:text-ink transition-colors">Book</a>
+      </nav>
+      <p><a href="mailto:rey.sahani03@gmail.com" class="email-link text-ink hover:text-coolant transition-colors" data-subject="FW Tech question">rey.sahani03@gmail.com</a></p>
+      <p>Laptop cleaning in Hoboken, NJ. FW Tech Hoboken is independent and not affiliated with any other business using a similar name.</p>
+      <p>&copy; <span id="year"></span> FW Tech Hoboken</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* =====================================================================
+   AIRPLANE MODE runtime
+   ===================================================================== */
+(() => {
+  const root = document.documentElement;
+  const $  = (q, r = document) => r.querySelector(q);
+  const $$ = (q, r = document) => [...r.querySelectorAll(q)];
+  const NS = 'http://www.w3.org/2000/svg';
+  const txt = (el) => (el ? el.textContent.trim() : '');
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const PLANE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>';
+  const SEAT = '<svg width="30" height="30" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true"><path d="M8 3h6l2 14h8a2 2 0 0 1 2 2v2H11a2 2 0 0 1-2-1.7Z"/><rect x="10" y="23" width="3" height="5"/><rect x="21" y="23" width="3" height="5"/></svg>';
+
+  let seed0 = 11; const rnd0 = () => (seed0 = (seed0 * 9301 + 49297) % 233280) / 233280;
+  /* ---------- build content once, copied from the Train mode markup ---------- */
+  let built = false;
+  const build = () => {
+    if (built) return; built = true;
+    $$('.air-year').forEach(e => e.textContent = new Date().getFullYear());
+
+    // hero
+    const heroP = $$('#hero .hero-sub p');
+    $('#air-hero-sub').textContent = txt(heroP[0]);
+    $('#air-hero-area').textContent = 'Serving ' + txt(heroP[1]) + '.';
+
+    // menu
+    const list = $('#air-menu-list');
+    $$('#grid-track .status-card').forEach(card => {
+      const pickBtn = $('[data-pick]', card); if (!pickBtn) return;
+      const k = pickBtn.dataset.pick;
+      const name = txt($('h3', card));
+      const price = $$('.display', card).map(txt).find(t => t.startsWith('$')) || '';
+      const desc = txt($('p:not(.text-heat)', card));
+      if (k === 'bundle') {
+        const was = txt($('.line-through', card));
+        $('#air-special').innerHTML =
+          `<div class="air-special"><div><div class="air-cap" style="color:rgba(255,255,255,.8)">Captain's special: best value</div>
+            <h3>${esc(name)}</h3><p style="margin:6px 0 0;opacity:.9;line-height:1.5">${esc(desc)}</p></div>
+           <div style="text-align:right"><div class="air-sign" style="font-size:44px">${esc(price)} <s style="font-size:20px;opacity:.7">${esc(was)}</s></div>
+           <button type="button" class="air-btn" data-air-pick="bundle" style="margin-top:10px">Choose the bundle</button></div></div>`;
+        return;
+      }
+      const warn = txt($('p.text-heat', card));
+      const item = el('div', 'air-menu-item',
+        `<div><h3>${esc(name)}</h3><p class="air-p" style="font-size:16px;margin-top:4px">${esc(desc)}</p></div>
+         <div><div class="air-price">${esc(price)}</div><button type="button" class="air-btn sm ghost" data-air-pick="${k}" style="margin-top:6px">Add</button></div>
+         ${warn ? `<p class="air-warn">${esc(warn)}</p>` : ''}`);
+      list.appendChild(item);
+    });
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-air-pick]');
+      if (b && window.FW) window.FW.pick(b.dataset.airPick);
+    });
+
+    // captain's announcement (why)
+    const pa = $('#air-pa');
+    $$('#why .plate').forEach(pl => pa.appendChild(el('blockquote', '', `<strong>${esc(txt($('h3', pl)))}</strong><span class="air-p" style="font-size:16px">${esc(txt($('p', pl)))}</span>`)));
+
+    // steps
+    const steps = $('#air-steps');
+    $$('#how li').forEach((li, i) => steps.appendChild(el('li', '', `<div class="n">Waypoint ${i + 1}</div><h3>${esc(txt($('h3', li)))}</h3><p>${esc(txt($('p', li)))}</p>`)));
+
+    // captain + prohibited items
+    const aboutP = $$('#about h2 ~ p');
+    $('#air-crew-intro').textContent = txt(aboutP[0]);
+    const crew = $('#air-crew-list');
+    $$('#about .plate').forEach(pl => {
+      const h = $('h3', pl);
+      if (h && h.classList.contains('text-heat')) {
+        $('#air-prohibited').innerHTML = `<h3>Prohibited items</h3><p>${esc(txt($('p', pl)))}</p>`;
+      } else if (h) {
+        crew.appendChild(el('div', 'air-card', `<h3>${esc(txt(h))}</h3><p>${esc(txt($('p', pl)))}</p>`));
+      }
+    });
+
+    // safety card: one Terms notice per seat row
+    $('#air-terms-intro').textContent = txt($('#terms h2 + p'));
+    const rows = $('#air-rows');
+    $$('#terms details.notice').forEach((d, i) => {
+      const title = txt($('summary .wide', d)).replace(/^\d+\.\s*/, '');
+      const body = $('summary + div', d);
+      const row = el('details', 'air-row',
+        `<summary><span class="air-seat">${SEAT}<b>Row ${i + 1}</b></span><h3>${esc(title)}</h3><span class="chev" aria-hidden="true">+</span></summary>
+         <div class="air-row-body"></div>`);
+      $('.air-row-body', row).innerHTML = body ? body.innerHTML : '';
+      rows.appendChild(row);
+    });
+    const priv = $('#privacy');
+    if (priv) {
+      const row = el('details', 'air-row',
+        `<summary><span class="air-seat">${SEAT}<b>Row ${rows.children.length + 1}</b></span><h3>Privacy Policy</h3><span class="chev" aria-hidden="true">+</span></summary><div class="air-row-body"></div>`);
+      $('.air-row-body', row).innerHTML = ($('h3 + div', priv) || priv).innerHTML;
+      rows.appendChild(row);
+    }
+    const quick = $$('#terms .plate.bolted .grid p');
+    $('#air-quickref').innerHTML = quick.map(p => `<p>${p.innerHTML}</p>`).join('');
+
+    // map pins + routes
+    const PTS = { 'Hoboken': [262, 184], 'Jersey City': [214, 292], 'Union City': [196, 86], 'Midtown Manhattan': [448, 118], 'Downtown Manhattan': [420, 318] };
+    const names = $$('#area .plate .display').map(txt).filter(n => PTS[n]);
+    const routes = $('#air-map-routes'), pins = $('#air-map-pins');
+    names.forEach(n => {
+      const [x, y] = PTS[n];
+      if (n !== 'Hoboken') mk('line', { x1: PTS.Hoboken[0], y1: PTS.Hoboken[1], x2: x, y2: y }, routes);
+      const home = n === 'Hoboken';
+      mk('circle', { cx: x, cy: y, r: home ? 11 : 7, fill: home ? '#0c3478' : '#fff', stroke: '#0c3478', 'stroke-width': 3 }, pins);
+      const parts = n.split(' Manhattan');
+      const t = mk('text', { x: x + 14, y: y + (parts.length > 1 ? 0 : 5), 'font-family': 'Barlow Semi Condensed, sans-serif', 'font-weight': 800, 'font-size': home ? 20 : 16, fill: '#0b1a33' }, pins);
+      t.textContent = parts[0];
+      if (parts.length > 1) { const t2 = mk('text', { x: x + 14, y: y + 15, 'font-family': 'Barlow Semi Condensed, sans-serif', 'font-weight': 700, 'font-size': 12, fill: '#5a6880', 'letter-spacing': 1 }, pins); t2.textContent = 'MANHATTAN'; }
+    });
+
+    // window extras: runway dashes, clouds, city
+    const dashes = $('#aw-dashes');
+    for (let x = -400; x < 2400; x += 46) mk('rect', { x, y: 520, width: 24, height: 5 }, dashes);
+    const rd = $('#aw-rdashes');
+    for (let x = -600; x < 2000; x += 60) { mk('rect', { x, y: 560, width: 32, height: 5 }, rd); mk('circle', { cx: x + 16, cy: 506, r: 2.4, fill: '#ffcf7a' }, rd); }
+    const stars = $('#aw-stars');
+    for (let i = 0; i < 70; i++) mk('circle', { cx: rnd0() * 400, cy: rnd0() * 380, r: rnd0() * 1.3 + .4, fill: '#fff', opacity: .4 + rnd0() * .6 }, stars);
+    const cloud = (g, cx, cy, s, fill = '#fff', op = 1, stretch = 2.1) => {
+      const c = mk('g', { transform: `translate(${cx} ${cy}) scale(${s * stretch} ${s})`, opacity: op }, g);
+      [[0, 0, 60, 26], [-40, 8, 40, 20], [42, 6, 44, 22], [-12, -18, 36, 24], [20, -14, 30, 20]].forEach(([x, y, rx, ry]) => mk('ellipse', { cx: x, cy: y, rx, ry, fill }, c));
+    };
+    const low = $('#aw-clouds-low'), desc = $('#aw-clouds-desc'), drift = $('#aw-drift');
+    [[60, -110, 1.1], [330, -200, 1.4], [170, -330, 1.0], [40, -470, 1.6], [300, -600, 1.2], [140, -740, 1.8], [360, -880, 1.3], [90, -1010, 1.5], [250, -1150, 1.9]].forEach(([x, y, s]) => cloud(low, x, y, s));
+    [[300, 680, 1.3, '#fde7d4'], [70, 800, 1.6, '#f6d3c0'], [260, 930, 1.2, '#fde7d4'], [110, 1060, 1.7, '#f3cdbb'], [320, 1190, 1.4, '#f6d3c0']].forEach(([x, y, s, f]) => cloud(desc, x, y, s, f));
+    [[60, 350, .45], [240, 332, .35], [360, 366, .5], [460, 350, .45], [640, 332, .35], [760, 366, .5]].forEach(([x, y, s]) => cloud(drift, x, y, s, '#fff', .9, 2.6));
+    cloud($('#aw-cloud-top'), 250, 70, .9, '#fff', .95, 2.8);
+    const bld = $('#aw-buildings');
+    let bx = -320, seed = 7;
+    const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    while (bx < 1000) {
+      const w = 14 + Math.floor(rnd() * 22), h = 40 + Math.floor(rnd() * 150) + (bx > 240 && bx < 280 ? 90 : bx > 620 && bx < 660 ? 70 : 0);
+      mk('rect', { x: bx, y: 520 - h, width: w, height: h, fill: rnd() > .5 ? '#1e2b52' : '#243363' }, bld);
+      for (let wy = 520 - h + 8; wy < 512; wy += 10) for (let wx = bx + 3; wx < bx + w - 3; wx += 6) if (rnd() > .55) mk('rect', { x: wx, y: wy, width: 2.5, height: 3.5, fill: '#ffcf7a' }, bld);
+      bx += w + 2;
+    }
+    const lights = $('#aw-lights');
+    for (let x = 70; x < 340; x += 18) mk('circle', { cx: x, cy: 588, r: 2.4, fill: x % 36 ? '#fff4d6' : '#ffb347' }, lights);
+
+    // altimeter ticks
+    const ticks = $('#air-alt-ticks');
+    for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2; mk('line', { x1: 50 + Math.sin(a) * 34, y1: 50 - Math.cos(a) * 34, x2: 50 + Math.sin(a) * 40, y2: 50 - Math.cos(a) * 40 }, ticks); }
+  };
+
+  /* ---------- climate + instruments follow the flight ---------- */
+  const PHASES = [[0, 'Boarding'], [.06, 'Taxi'], [.16, 'Takeoff'], [.26, 'Climb'], [.40, 'Cruise'], [.63, 'Descent'], [.76, 'Approach'], [.90, 'Landing'], [.95, 'Rollout'], [.985, 'Arrived']];
+  const altAt = (p) => p < .16 ? 0 : p < .40 ? 41000 * (p - .16) / .24 : p < .63 ? 41000 : p < .76 ? 41000 - 36000 * (p - .63) / .13 : Math.max(0, 5000 * (1 - (p - .76) / .17));
+  const setClimate = (p) => {
+    const t = 90 - 26 * p;
+    const tempEl = $('#air-temp');
+    tempEl.textContent = t.toFixed(1) + '°C';
+    const hot = Math.max(0, Math.min(1, (t - 64) / 26));
+    tempEl.style.color = hot > .5 ? 'rgb(214,90,30)' : 'rgb(31,111,209)';
+    $('#air-bar').style.width = (p * 100).toFixed(1) + '%';
+    let ph = PHASES[0][1]; PHASES.forEach(([at, n]) => { if (p >= at) ph = n; });
+    $('#air-phase').textContent = ph;
+    const alt = Math.round(altAt(p) / 100) * 100;
+    $('#air-alt').textContent = alt.toLocaleString() + ' ft';
+    $('#air-alt-needle').setAttribute('transform', `rotate(${(alt / 1000) * 36 % 360} 50 50)`);
+    $('#air-alt-label').textContent = 'ALT ' + alt.toLocaleString();
+  };
+
+  /* ---------- scroll flight + small loops ---------- */
+  const buildMotion = () => {
+    build();
+    setClimate(0);
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { trigger: '#air-content', start: 'top top', end: 'bottom bottom', scrub: 0.6, onUpdate: self => setClimate(self.progress) }
+    });
+    const W = { svgOrigin: '200 300' };
+    // taxi: ground rolls past
+    tl.to('#aw-ground', { x: -260, duration: .10, ease: 'power1.in' }, .06)
+    // takeoff roll: straight down the runway, speeding up
+      .to('#aw-ground', { x: -1600, duration: .16, ease: 'power2.in' }, .16)
+    // rotation: the nose curves up smoothly, then the ground falls away along a curve
+      .to('#aw-world', { rotation: 9, ...W, duration: .08, ease: 'sine.inOut' }, .21)
+      .to('#aw-ground', { y: 620, duration: .12, ease: 'power2.in' }, .22)
+      .to('#aw-wing', { y: -80, duration: .05, ease: 'sine.out' }, .22)
+    // climb: wide clouds come down from above and slide below you, then you break out on top
+      .fromTo('#aw-clouds-low', { y: 0 }, { y: 1900, duration: .16 }, .22)
+      .fromTo('#aw-cloud-sea', { y: -1700 }, { y: -350, duration: .10, ease: 'power1.out' }, .30)
+    // level-off: curve back down to flat; a high cloud makes the change easy to see
+      .to('#aw-cloud-top', { opacity: 1, duration: .03 }, .31)
+      .to('#aw-world', { rotation: 0, ...W, duration: .10, ease: 'sine.inOut' }, .31)
+      .to('#aw-wing', { y: -74, duration: .06 }, .34)
+      .to('#aw-drift-wrap', { opacity: 1, duration: .04 }, .38)
+    // cruise: everything outside keeps moving; sun arcs right to left, brightest in the middle
+      .fromTo('#aw-cloud-top', { x: 0 }, { x: -300, duration: .28 }, .38)
+      .fromTo('#aw-cloud-sea', { x: 0 }, { x: -260, duration: .30 }, .36)
+      .fromTo('#aw-sun', { x: 40, y: 60 }, { x: -110, y: -50, duration: .12, ease: 'sine.out' }, .40)
+      .to('#aw-sun', { x: -250, y: 120, duration: .12, ease: 'sine.in' }, .52)
+      .to('#aw-sun', { scale: 1.12, svgOrigin: '292 150', duration: .12, ease: 'sine.out' }, .40)
+      .to('#aw-sun', { scale: 1.0, svgOrigin: '292 150', duration: .12, ease: 'sine.in' }, .52)
+      .to('#aw-golden', { opacity: 1, duration: .12, ease: 'sine.in' }, .52)
+      .to('#aw-sun-warm', { opacity: 1, duration: .10 }, .54)
+      .to('#aw-sun-glow', { opacity: 1, duration: .10 }, .54)
+      .to('#aw-sea-tint', { opacity: .25, duration: .12 }, .52)
+    // top of descent: nose tips down FIRST, while still above the clouds
+      .to('#aw-world', { rotation: -4, ...W, duration: .03, ease: 'sine.inOut' }, .63)
+      .to('#aw-cloud-top', { opacity: 0, duration: .03 }, .64)
+      .to('#aw-drift-wrap', { opacity: 0, duration: .03 }, .66)
+    // descent: now the clouds rise past us
+      .to('#aw-cloud-sea', { y: -1800, duration: .08, ease: 'power1.in' }, .66)
+      .fromTo('#aw-clouds-desc', { y: 0 }, { y: -1500, duration: .08 }, .67)
+    // sunset: sun sinks below the horizon, red takes over
+      .to('#aw-sun', { y: 440, duration: .09, ease: 'power1.in' }, .71)
+      .to('#aw-dusk', { opacity: 1, duration: .08 }, .71)
+      .to('#aw-golden', { opacity: 0, duration: .08 }, .75)
+    // long final approach: nose comes up and holds while the city slides past, slowing down
+      .fromTo('#aw-city', { y: 340 }, { y: 0, duration: .12, ease: 'power2.out' }, .75)
+      .fromTo('#aw-city', { x: 300 }, { x: -380, duration: .235, ease: 'power2.out' }, .75)
+      .to('#aw-world', { rotation: 3, ...W, duration: .05, ease: 'sine.inOut' }, .76)
+      .to('#aw-world', { rotation: 3.6, ...W, duration: .09, ease: 'sine.inOut' }, .81)
+      .to('#aw-world', { rotation: 6, ...W, duration: .025, ease: 'sine.out' }, .90)
+      .to('#aw-world', { rotation: 0, ...W, duration: .02, ease: 'power1.in' }, .93)
+    // touchdown + rollout
+      .fromTo('#aw-runway', { y: 220 }, { y: 0, duration: .04, ease: 'power2.out' }, .90)
+      .fromTo('#aw-rdashes', { x: 0 }, { x: -1300, duration: .085, ease: 'power2.out' }, .90)
+      .to('#aw-night', { opacity: .92, duration: .12, ease: 'power1.in' }, .86)
+      .to('#aw-stars', { opacity: 1, duration: .06 }, .90)
+      .to('#aw-lights', { opacity: 1, duration: .04 }, .90)
+      .set({}, {}, 1);
+
+    // CPU gauge: simple cool-down, orange to green, on repeat
+    const cpu = { t: 90 };
+    const drawCpu = () => {
+      const k = (cpu.t - 64) / 26;
+      const col = gsap.utils.interpolate('#5eeab4', '#ff9646', k);
+      $('#air-temp-needle').setAttribute('transform', `rotate(${(-60 + 120 * k).toFixed(1)} 50 56)`);
+      $('#air-temp-needle').setAttribute('stroke', col);
+      const lab = $('#air-temp-label'); lab.textContent = 'CPU ' + Math.round(cpu.t) + '°C'; lab.style.color = col;
+    };
+    gsap.timeline({ repeat: -1, repeatDelay: 1.6 })
+      .set(cpu, { t: 90, onComplete: drawCpu })
+      .to(cpu, { t: 64, duration: 5, ease: 'power1.inOut', onUpdate: drawCpu });
+
+    // progress bar plane follows the "How it works" screen
+    gsap.fromTo('#air-prog-plane', { left: '0%' }, { left: '100%', ease: 'none', scrollTrigger: { trigger: '#air-progress', start: 'top 75%', end: 'bottom 45%', scrub: .5 } });
+    gsap.fromTo('#air-prog-fill', { width: '0%' }, { width: '100%', ease: 'none', scrollTrigger: { trigger: '#air-progress', start: 'top 75%', end: 'bottom 45%', scrub: .5 } });
+
+    // route map: the little plane visits each area and flies home
+    const plane = $('#air-map-plane');
+    const lines = $$('#air-map-routes line');
+    if (lines.length) {
+      const hop = gsap.timeline({ repeat: -1, repeatDelay: .4 });
+      const home = { x: 262, y: 184 };
+      lines.forEach(l => {
+        const x = +l.getAttribute('x2'), y = +l.getAttribute('y2');
+        const ang = Math.atan2(y - home.y, x - home.x) * 180 / Math.PI + 90;
+        hop.set(plane, { attr: { transform: `translate(${home.x} ${home.y}) rotate(${ang})` } })
+           .to({ t: 0 }, { t: 1, duration: 1.4, ease: 'power1.inOut', onUpdate() { const t = this.targets()[0].t; plane.setAttribute('transform', `translate(${home.x + (x - home.x) * t} ${home.y + (y - home.y) * t}) rotate(${ang})`); } })
+           .to({ t: 0 }, { t: 1, duration: 1.4, ease: 'power1.inOut', onUpdate() { const t = this.targets()[0].t; plane.setAttribute('transform', `translate(${x + (home.x - x) * t} ${y + (home.y - y) * t}) rotate(${ang + 180})`); } }, '+=.3');
+      });
+    }
+  };
+
+  const staticState = () => {
+    build();
+    gsap.set('#aw-ground', { x: -1600, y: 620 }); gsap.set('#aw-clouds-low', { y: 1900 }); gsap.set('#aw-cloud-sea', { y: -350 }); gsap.set('#aw-drift-wrap', { opacity: 1 }); gsap.set('#aw-cloud-top', { opacity: 1, x: -120 }); gsap.set('#aw-sun', { x: -110, y: -50 });
+    gsap.set('#air-prog-plane', { left: '100%' }); gsap.set('#air-prog-fill', { width: '100%' });
+    setClimate(1);
+    $('#air-temp').textContent = '64.0°C';
+    $('#air-temp-needle').setAttribute('transform', 'rotate(-60 50 56)'); $('#air-temp-needle').setAttribute('stroke', '#5eeab4');
+    const lab = $('#air-temp-label'); lab.textContent = 'CPU 64°C'; lab.style.color = '#5eeab4';
+  };
+
+  /* ---------- the booking form lives in the cockpit while flying ---------- */
+  const form = $('#book-form');
+  const formHome = document.createComment('book-form home');
+  if (form) form.before(formHome);
+  const sendBtn = () => $('#send-btn');
+  const sync = () => {
+    const air = root.dataset.theme === 'airplane';
+    if (air) {
+      build();
+      const slot = $('#air-form-slot');
+      if (form && form.parentNode !== slot) slot.appendChild(form);
+      const b = sendBtn(); if (b) { b.dataset.label = 'Request clearance'; if (!b.disabled) b.textContent = 'Request clearance'; }
+    } else {
+      if (form && formHome.parentNode && form.previousSibling !== formHome) formHome.after(form);
+      const b = sendBtn(); if (b) { delete b.dataset.label; if (!b.disabled) b.textContent = 'Send my request'; }
+      $('#air-pass').hidden = true;
+      if (form) form.hidden = false;
+    }
+  };
+
+  /* ---------- booked: print the boarding pass, then take off ---------- */
+  const onBooked = (info) => {
+    const pass = $('#air-pass');
+    $('#air-bp-fields').innerHTML = [
+      ['Passenger', info.reply ? (form && form.elements.name.value) || '' : ''],
+      ['Service', info.service], ['Fare', info.total + ', cash'], ['Laptop', info.laptop], ['From', info.area], ['Reply to', info.reply]
+    ].filter(r => r[1]).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
+    const bc = $('#air-barcode'); bc.innerHTML = '';
+    for (let i = 0; i < 38; i++) { const b = document.createElement('i'); b.style.width = (1 + Math.floor(Math.random() * 3)) + 'px'; bc.appendChild(b); }
+    if (form) form.hidden = true;
+    pass.hidden = false;
+    const cockpit = $('#air-cockpit');
+    window.scrollTo({ top: cockpit.getBoundingClientRect().top + window.scrollY - 70, behavior: 'auto' });
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on';
+    const contrail = $('#air-contrail'); const len = contrail.getTotalLength();
+    if (still || !window.gsap) {
+      gsap && gsap.set('#air-jet', { x: 480, y: -110 });
+      contrail.style.strokeDasharray = 'none';
+      return;
+    }
+    contrail.style.strokeDasharray = len; contrail.style.strokeDashoffset = len;
+    const jet = { t: 0 };
+    gsap.timeline()
+      .fromTo('#air-bp-clip', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.6, ease: 'steps(16)' })
+      .to(jet, { t: 1, duration: 2.6, ease: 'power2.in', onUpdate() {
+          const pt = contrail.getPointAtLength(jet.t * len), pt2 = contrail.getPointAtLength(Math.min(len, jet.t * len + 2));
+          const ang = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+          $('#air-jet').setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${ang})`);
+          contrail.style.strokeDashoffset = len * (1 - jet.t);
+        } }, '+=.2');
+  };
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#air-again')) return;
+    $('#air-pass').hidden = true;
+    if (form) form.hidden = false;
+    $('#air-jet').setAttribute('transform', 'translate(40 132)');
+    if (window.FW) window.FW.scrollToId('air-cockpit');
+  });
+
+  /* ---------- gyroscope: 1:1 with a phone's real gyro, animated on laptops ---------- */
+  const att = $('.air-att');
+  const isPhone = window.matchMedia('(pointer: coarse)').matches && /Mobi|Android|iPhone|iPod/i.test(navigator.userAgent);
+  let base = null, frameReq = 0, last = null;
+  const onOrient = (e) => {
+    if (e.gamma == null || e.beta == null) return;
+    last = e;
+    if (frameReq) return;
+    frameReq = requestAnimationFrame(() => {
+      frameReq = 0;
+      const angle = (screen.orientation && screen.orientation.angle) || window.orientation || 0;
+      let roll = last.gamma, pitchRaw = last.beta;
+      if (angle === 90) { roll = last.beta; pitchRaw = -last.gamma; }
+      else if (angle === -90 || angle === 270) { roll = -last.beta; pitchRaw = last.gamma; }
+      if (base === null) base = pitchRaw;
+      const pitch = Math.max(-26, Math.min(26, (pitchRaw - base) * 0.6));
+      att.classList.add('gyro-live');
+      att.style.transform = `translateY(${pitch.toFixed(1)}px) rotate(${(-roll).toFixed(1)}deg)`;
+    });
+  };
+  const startGyro = () => window.addEventListener('deviceorientation', onOrient);
+  if (att && isPhone && 'DeviceOrientationEvent' in window) {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iPhone: Safari asks permission first, and only after a tap
+      const btn = $('#air-gyro-btn'); btn.hidden = false;
+      btn.addEventListener('click', async () => {
+        try { if (await DeviceOrientationEvent.requestPermission() === 'granted') { startGyro(); btn.hidden = true; } }
+        catch (err) { btn.textContent = 'Gyroscope not available'; }
+      });
+    } else {
+      startGyro();
+    }
+  }
+
+  window.FWAir = { build, buildMotion, staticState, sync, onBooked };
+  sync();
+})();
+</script>
+<script>
+(() => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const root = document.documentElement;
+  const calmOn = () => root.dataset.calm === 'on';
+  const motionOff = () => reduceMotion.matches || calmOn();
+  const cssRGB = (name) => 'rgb(' + getComputedStyle(root).getPropertyValue(name).trim().split(/\s+/).join(',') + ')';
+
+  /* ---------- Modes: Train, Airplane, Industrial + Calm ---------- */
+  const THEME_META = { train: '#0b0b0c', airplane: '#edf1f7', industrial: '#16110d' };
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const syncModeUI = () => {
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === root.dataset.theme)));
+    document.querySelectorAll('.calm-btn').forEach(b => b.setAttribute('aria-pressed', String(calmOn())));
+    if (themeMeta) themeMeta.setAttribute('content', THEME_META[root.dataset.theme] || THEME_META.train);
+  };
+  const setMode = (m) => {
+    root.dataset.theme = m;
+    try { localStorage.setItem('fw-mode', m); } catch (e) {}
+    syncModeUI();
+    window.dispatchEvent(new Event('fw:theme'));
+  };
+  const setCalm = (on) => {
+    if (on) root.dataset.calm = 'on'; else delete root.dataset.calm;
+    try { localStorage.setItem('fw-calm', on ? 'on' : 'off'); } catch (e) {}
+    syncModeUI();
+    window.dispatchEvent(new Event('fw:calm'));
+  };
+  document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  document.querySelectorAll('.calm-btn').forEach(b => b.addEventListener('click', () => setCalm(!calmOn())));
+  syncModeUI();
+  const SVG = 'http://www.w3.org/2000/svg';
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden') === false;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  /* ---------- In-page links: offset for the fixed nav, smooth, focus handoff ---------- */
+  const navEl = document.getElementById('nav');
+  const scrollToId = (id, smooth = true) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const bar = root.dataset.theme === 'airplane' ? document.getElementById('air-top') : navEl;
+    const y = id === 'top' ? 0 : target.getBoundingClientRect().top + window.scrollY - (bar ? bar.offsetHeight : 0) - 6;
+    window.scrollTo({ top: Math.max(0, y), behavior: smooth && !motionOff() ? 'smooth' : 'auto' });
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    const d = target.closest('details') || (target.tagName === 'DETAILS' ? target : null);
+    if (d) d.open = true;
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!id || !document.getElementById(id)) return;
+    e.preventDefault();
+    menu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false');
+    history.pushState(null, '', id === 'top' ? location.pathname : '#' + id);
+    scrollToId(id);
+  });
+  window.addEventListener('popstate', () => scrollToId(location.hash.slice(1) || 'top'));
+  // Landing on a shared link like /#terms: wait for pinned sections to lay out, then jump
+  window.addEventListener('load', () => {
+    if (location.hash) setTimeout(() => scrollToId(location.hash.slice(1), false), 120);
+  });
+
+  /* ---------- Email links: Gmail compose first, mail app if blocked ---------- */
+  document.querySelectorAll('.email-link').forEach(a => a.addEventListener('click', (e) => {
+    const to = a.getAttribute('href').replace('mailto:', '');
+    const su = a.dataset.subject || '';
+    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(su)}`;
+    const tab = window.open(url, '_blank');
+    if (tab) { tab.opener = null; e.preventDefault(); }
+  }));
+
+  /* ---------- Services + pricing ---------- */
+  const SERVICES = {
+    exterior: { name: 'Exterior clean',  price: 15 },
+    internal: { name: 'Internal clean',  price: 28 },
+    repaste:  { name: 'Thermal repaste', price: 40 }
+  };
+  const BUNDLE_PRICE = 72;
+  const boxes = [...document.querySelectorAll('input[name="svc"]')];
+  const totalEl = document.getElementById('svc-total');
+  const noteEl = document.getElementById('svc-note');
+
+  const getOrder = () => {
+    const picked = boxes.filter(b => b.checked).map(b => b.value);
+    const isBundle = picked.length === 3;
+    const sum = picked.reduce((s, k) => s + SERVICES[k].price, 0);
+    return {
+      picked, isBundle,
+      total: isBundle ? BUNDLE_PRICE : sum,
+      label: isBundle ? 'Full bundle' : picked.map(k => SERVICES[k].name).join(' + ')
+    };
+  };
+  const renderTotal = () => {
+    const o = getOrder();
+    totalEl.textContent = '$' + o.total;
+    noteEl.textContent = o.isBundle ? '(bundle price, saves $11)' : '';
+    document.getElementById('repaste-warn').classList.toggle('hidden', !(o.picked.includes('repaste') && !o.picked.includes('internal')));
+  };
+  boxes.forEach(b => b.addEventListener('change', renderTotal));
+
+  const pick = (k) => {
+    if (k === 'bundle') boxes.forEach(b => b.checked = true);
+    else boxes.find(b => b.value === k).checked = true;
+    renderTotal();
+    scrollToId(root.dataset.theme === 'airplane' ? 'air-cockpit' : 'book');
+  };
+  document.querySelectorAll('.svc-pick').forEach(btn => btn.addEventListener('click', () => pick(btn.dataset.pick)));
+  window.FW = Object.assign(window.FW || {}, { pick, scrollToId });
+  renderTotal();
+
+  /* ---------- Booking form: hands off to Gmail compose ---------- */
+  const BOOKING_EMAIL = 'rey.sahani03@gmail.com';
+  // Paste your Google Apps Script web app URL here (ends in /exec). Empty = Gmail handoff.
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxodOouRAfMUxpXfZBRf8qYUzNouJnHJcgOtx1ozSfxh5aldpK49enO_JIJmSFp0xf7/exec';
+  const NOT_ACCEPTED = /surface|razer|alienware|chromebook/i;
+  const form = document.getElementById('book-form');
+  const status = document.getElementById('form-status');
+  const fail = (msg, el) => { status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
+
+  /* ---------- Booked confirmation: stamp slam ---------- */
+  const bookedPanel = document.getElementById('booked-panel');
+  const showBooked = (info) => {
+    if (root.dataset.theme === 'airplane' && window.FWAir) { window.FWAir.onBooked(info); return; }
+    const sum = document.getElementById('booked-summary');
+    const rows = [['Service', info.service], ['Total', info.total + ', cash at drop-off'], ['Laptop', info.laptop], ['Area', info.area], ['Reply to', info.reply]];
+    sum.innerHTML = '';
+    rows.forEach(([k, v]) => {
+      const dt = document.createElement('dt'); dt.className = 'text-dim'; dt.textContent = k;
+      const dd = document.createElement('dd'); dd.className = 'text-ink'; dd.textContent = v;
+      dt.classList.add('booked-line'); dd.classList.add('booked-line');
+      sum.append(dt, dd);
+    });
+    bookedPanel.hidden = false;
+    if (window.FWBigBoy) window.FWBigBoy.start(motionOff() ? 0 : 1.3);
+    const r = bookedPanel.getBoundingClientRect();
+    const room = window.innerHeight - navEl.offsetHeight;
+    const y = r.top + window.scrollY - navEl.offsetHeight - Math.max(16, (room - r.height) / 2);
+    window.scrollTo({ top: y, behavior: motionOff() ? 'auto' : 'smooth' });
+    if (!window.gsap || motionOff()) return;
+
+    const plate = document.getElementById('booked-plate');
+    gsap.timeline()
+      .fromTo(plate, { clipPath: 'inset(50% 0% 50% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .55, ease: 'power4.inOut', clearProps: 'clipPath' })
+      .fromTo('#booked-stamp', { scale: 2.6, rotation: -18, autoAlpha: 0 }, { scale: 1, rotation: -6, autoAlpha: 1, duration: .32, ease: 'power4.in' }, '+=.1')
+      .to(plate, { keyframes: { x: [-10, 9, -6, 5, -2, 0] }, duration: .38, ease: 'none' })
+      .fromTo('#booked-panel .booked-s', { y: -24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .28, ease: 'bounce.out', stagger: .07 }, '<')
+      .fromTo('#booked-steam .puff-b', { scale: .2, autoAlpha: 0, transformOrigin: '50% 50%' }, { scale: 2.4, autoAlpha: 1, duration: .5, ease: 'power2.out', stagger: .04 }, '<')
+      .to('#booked-steam .puff-b', { autoAlpha: 0, y: -40, duration: 1.1, ease: 'power1.out' }, '>-.1')
+      .fromTo('#booked-panel .booked-line', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .4, ease: 'power3.out', stagger: .05 }, '<');
+  };
+  document.getElementById('booked-again').addEventListener('click', () => {
+    bookedPanel.hidden = true;
+    if (window.FWBigBoy) window.FWBigBoy.stop();
+    status.textContent = '';
+    scrollToId('book');
+  });
+  // Preview without sending: open the page with #test-booked at the end of the address
+  window.addEventListener('load', () => {
+    if (location.hash === '#test-booked') setTimeout(() => showBooked({ service: 'Full bundle', total: '$72', laptop: 'HP Pavilion 15', area: 'Hoboken', reply: 'you@example.com' }), 400);
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const o = getOrder();
+    if (!o.picked.length) return fail('Pick at least one service.', boxes[0]);
+    const missing = [...form.querySelectorAll('[required]')].find(f => !f.value.trim() || !f.checkValidity());
+    if (missing) {
+      const msgs = { email: 'Enter a valid email address.', area: 'Choose your area.', address: 'Add an address or meeting spot.' };
+      return fail(msgs[missing.name] || 'Fill in name, email, and laptop model.', missing);
+    }
+    if (NOT_ACCEPTED.test(form.elements.model.value)) return fail("That model isn't accepted. See the not accepted list in About.", form.elements.model);
+    if (!form.elements.agree.checked) return fail('Agree to the Terms of Service to continue.', form.elements.agree);
+
+    const d = { name: form.elements.name.value.trim(), email: form.elements.email.value.trim(), model: form.elements.model.value.trim(), message: form.elements.message.value.trim(), area: form.elements.area.value, address: form.elements.address.value.trim() };
+    const subject = `FW Tech booking: ${o.label} ($${o.total}) for ${d.model}`;
+    const body = [
+      'Hi FW Tech,', '', "I'd like to book a service.", '',
+      `Name: ${d.name}`, `Email: ${d.email}`, `Laptop model: ${d.model}`,
+      `Service: ${o.label}`, `Total: $${o.total} (cash at drop-off)`, '',
+      `Area: ${d.area}`, `Pickup address or meeting spot: ${d.address}`, '',
+      "What's going on:", d.message || '(nothing added)', '',
+      'I have read and agree to the Terms of Service and Privacy Policy.', '',
+      'Thanks,', d.name
+    ].join('\n');
+
+    const q = (obj) => Object.entries(obj).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+    const gmailUrl  = `https://mail.google.com/mail/?${q({ view: 'cm', fs: '1', to: BOOKING_EMAIL, su: subject, body })}`;
+    const mailtoUrl = `mailto:${BOOKING_EMAIL}?${q({ subject, body })}`;
+    const fallbackHtml = `<a class="underline" href="${gmailUrl}" target="_blank" rel="noopener">Send it through Gmail</a> or <a class="underline" href="${mailtoUrl}">your mail app</a> instead.`;
+
+    // No endpoint yet: hand off to Gmail like before
+    if (!FORM_ENDPOINT) {
+      const tab = window.open(gmailUrl, '_blank');
+      if (tab) tab.opener = null;
+      status.style.color = '#6fd3ff';
+      status.innerHTML = tab ? 'Gmail opened with your request filled in. Hit send there.' : `Pop-up blocked. ${fallbackHtml}`;
+      return;
+    }
+
+    const btn = document.getElementById('send-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    status.style.color = ''; status.textContent = '';
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // keeps it a simple request, no CORS preflight
+        body: JSON.stringify({
+          ...d, service: o.label, total: o.total, subject, body,
+          website: form.elements.website.value
+        })
+      });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || 'send failed');
+      showBooked({ service: o.label, total: '$' + o.total, laptop: d.model, area: d.area, reply: d.email });
+      form.reset(); renderTotal();
+      status.style.color = '#6fd3ff';
+      status.textContent = "Request sent. I'll reply to your email soon.";
+    } catch (err) {
+      status.style.color = '#f59e0b';
+      status.innerHTML = `Couldn't send it. ${fallbackHtml}`;
+    } finally {
+      btn.disabled = false; btn.textContent = btn.dataset.label || 'Send my request';
+    }
+  });
+
+  /* ---------- Firebox temperature flux (800ms) ---------- */
+  const fireTemp = document.getElementById('firebox-temp');
+  const segs = [...document.querySelectorAll('#heat-bar .seg')];
+  const T_MIN = 58, T_MAX = 64;
+  const fluxTemp = () => {
+    if (document.hidden || calmOn()) return;
+    const t = Math.floor(Math.random() * (T_MAX - T_MIN + 1)) + T_MIN;
+    fireTemp.textContent = t;
+    const lit = Math.round(2 + ((t - T_MIN) / (T_MAX - T_MIN)) * 6);
+    segs.forEach((s, i) => s.classList.toggle('is-lit', i < lit));
+  };
+  fluxTemp();
+  setInterval(fluxTemp, 800);
+
+  /* ---------- Thermal module geometry ---------- */
+  const finsG = document.getElementById('fins');
+  const FIN_COUNT = 36, FIN_X0 = 404, FIN_STEP = 10;
+  const fins = [];
+  for (let i = 0; i < FIN_COUNT; i++) {
+    const r = document.createElementNS(SVG, 'rect');
+    r.setAttribute('x', FIN_X0 + i * FIN_STEP); r.setAttribute('y', 48);
+    r.setAttribute('width', 5); r.setAttribute('height', 152);
+    r.setAttribute('fill', 'url(#alu)');
+    finsG.appendChild(r);
+    const glow = document.createElementNS(SVG, 'rect');
+    glow.setAttribute('x', FIN_X0 + i * FIN_STEP); glow.setAttribute('y', 48);
+    glow.setAttribute('width', 5); glow.setAttribute('height', 152);
+    glow.setAttribute('fill', '#f59e0b'); glow.setAttribute('opacity', 0);
+    finsG.appendChild(glow);
+    fins.push(glow);
+  }
+  const blower = document.getElementById('blower');
+  for (let i = 0; i < 28; i++) {
+    const a = (i / 28) * 360;
+    const b = document.createElementNS(SVG, 'path');
+    b.setAttribute('d', 'M 20 -3 L 70 -10 L 72 -2 L 22 4 Z');
+    b.setAttribute('fill', '#3a3c40'); b.setAttribute('stroke', '#55575c'); b.setAttribute('stroke-width', '1');
+    b.setAttribute('transform', `rotate(${a})`);
+    blower.appendChild(b);
+  }
+  const railScrews = document.getElementById('rail-screws');
+  for (let x = 30; x < 990; x += 60) {
+    const c = document.createElementNS(SVG, 'circle');
+    c.setAttribute('cx', x); c.setAttribute('cy', 234); c.setAttribute('r', 3.2);
+    c.setAttribute('fill', '#3a3c40'); c.setAttribute('stroke', '#6a6c71'); c.setAttribute('stroke-width', '1');
+    railScrews.appendChild(c);
+  }
+  const phA = document.getElementById('ph-a'), phB = document.getElementById('ph-b');
+  const hsReadout = document.getElementById('hs-readout');
+  // p = 0..1: heat travels up the pipes, soaks the fins, then the blower clears it
+  const renderHeat = (p) => {
+    const travel = Math.min(1, p / 0.55);
+    phA.setAttribute('offset', (travel * 0.92).toFixed(3));
+    phB.setAttribute('offset', Math.min(1, travel * 0.92 + 0.12).toFixed(3));
+    const soak = Math.max(0, (p - 0.35) / 0.35);
+    const clear = Math.max(0, (p - 0.7) / 0.3);
+    fins.forEach((f, i) => {
+      const reach = Math.min(1, Math.max(0, soak * 1.4 - i / FIN_COUNT));
+      const cool = Math.min(1, Math.max(0, clear * 1.4 - (FIN_COUNT - i) / FIN_COUNT));
+      f.setAttribute('opacity', (reach * (1 - cool) * 0.85).toFixed(3));
+    });
+    phA.setAttribute('stop-opacity', (0.95 * (1 - clear)).toFixed(3));
+    hsReadout.textContent = Math.round(clear * 100);
+  };
+  const renderBlower = (deg) => blower.setAttribute('transform', `translate(885 125) rotate(${deg})`);
+
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Active nav link ---------- */
+  const navLinks = [...document.querySelectorAll('.nav-link')];
+  ['grid-track', 'area', 'how', 'about', 'terms'].forEach(id => {
+    ScrollTrigger.create({
+      trigger: '#' + id, start: 'top 45%', end: 'bottom 45%',
+      onToggle: self => navLinks.forEach(l => {
+        if (l.getAttribute('href') !== '#' + id) return;
+        l.classList.toggle('is-current', self.isActive);
+        self.isActive ? l.setAttribute('aria-current', 'location') : l.removeAttribute('aria-current');
+      })
+    });
+  });
+
+  /* ---------- Core pressure cycle (1.2s) ---------- */
+  const throttleBar  = document.getElementById('throttle-bar');
+  const throttleRead = document.getElementById('throttle-readout');
+  const pulseThrottle = () => {
+    if (document.hidden || calmOn()) return;
+    const v = gsap.utils.random(28, 96, 1);
+    gsap.to(throttleBar, {
+      width: v + '%',
+      duration: motionOff() ? 0 : gsap.utils.random(0.12, 0.26),
+      ease: 'steps(' + gsap.utils.random(3, 7, 1) + ')',
+      overwrite: true
+    });
+    throttleRead.textContent = v;
+  };
+  pulseThrottle();
+  setInterval(pulseThrottle, 1200);
+
+  /* ---------- Status card lockdown ---------- */
+  const IDLE = '[ IDLE_STABLE ]', LIVE = '[ DRIVE CORE ACTIVE ]';
+  document.querySelectorAll('.status-card').forEach(card => {
+    const tag = card.querySelector('.status-tag');
+    const lock = () => {
+      gsap.to(card, { scale: motionOff() ? 1 : 1.015, borderColor: cssRGB('--heat'), duration: 0.08, ease: 'power4.out', overwrite: true });
+      tag.textContent = LIVE; tag.classList.add('is-live');
+    };
+    const release = () => {
+      gsap.to(card, { scale: 1, borderColor: cssRGB('--smoke'), duration: 0.14, ease: 'power2.out', overwrite: true, clearProps: 'borderColor' });
+      tag.textContent = IDLE; tag.classList.remove('is-live');
+    };
+    card.addEventListener('mouseenter', lock);
+    card.addEventListener('mouseleave', () => { if (!card.contains(document.activeElement)) release(); });
+    card.addEventListener('focusin', lock);
+    card.addEventListener('focusout', (e) => { if (!card.contains(e.relatedTarget) && !card.matches(':hover')) release(); });
+  });
+
+  /* ---------- Process curve ---------- */
+  const XS    = [40, 270, 500, 730, 960];
+  const TEMPS = [94, 92, 82, 64, 61];
+  const tempEl  = document.getElementById('temp-readout');
+  const frameEl = document.getElementById('frame-readout');
+  const steps   = [...document.querySelectorAll('.step')];
+  const kfs     = [...document.querySelectorAll('.kf')];
+  const state   = { t: TEMPS[0] };
+
+  const renderTemp = () => {
+    tempEl.textContent = state.t.toFixed(1);
+    const hot = gsap.utils.clamp(0, 1, (state.t - 61) / 33);
+    tempEl.parentElement.style.color = gsap.utils.interpolate(cssRGB('--coolant'), cssRGB('--heat'), hot);
+  };
+  const setStep = (p) => {
+    const idx = Math.min(4, Math.floor(p * 4 + 0.02));
+    steps.forEach((s, i) => { s.classList.toggle('is-active', i === idx); s.classList.toggle('is-done', i < idx); });
+    kfs.forEach((k, i) => k.classList.toggle('is-on', i <= idx));
+    frameEl.textContent = Math.round(p * 240);
+  };
+  const buildCurve = (scrollTrigger) => {
+    const tl = gsap.timeline({ scrollTrigger: { ...scrollTrigger, onUpdate: self => setStep(self.progress) } });
+    for (let i = 0; i < 4; i++) {
+      tl.to('#reveal-rect', { attr: { width: XS[i + 1] }, ease: 'none', duration: 1 }, i)
+        .to('#playhead',    { x: XS[i + 1] - XS[0],       ease: 'none', duration: 1 }, i)
+        .to(state,          { t: TEMPS[i + 1], ease: 'power2.inOut', duration: 1, onUpdate: renderTemp }, i);
+    }
+    return tl;
+  };
+
+  const staticState = () => {
+    gsap.set('#reveal-rect', { attr: { width: 1000 } });
+    gsap.set('#playhead', { x: XS[4] - XS[0] });
+    state.t = TEMPS[4]; renderTemp(); setStep(1);
+    renderHeat(1);
+  };
+
+  let mm = null;
+  const buildMotion = (first) => {
+    if (mm) mm.revert();
+    mm = gsap.matchMedia();
+    const air = root.dataset.theme === 'airplane' && window.FWAir;
+    if (air) {
+      if (calmOn()) mm.add('all', () => { window.FWAir.staticState(); });
+      else mm.add({ ok: '(prefers-reduced-motion: no-preference)', reduce: '(prefers-reduced-motion: reduce)' },
+        (ctx) => ctx.conditions.reduce ? window.FWAir.staticState() : window.FWAir.buildMotion());
+      ScrollTrigger.refresh();
+      return;
+    }
+    if (calmOn()) { mm.add('all', () => { staticState(); }); ScrollTrigger.refresh(); return; }
+
+    mm.add({
+      desktop: '(min-width: 1024px) and (prefers-reduced-motion: no-preference)',
+      mobile:  '(max-width: 1023px) and (prefers-reduced-motion: no-preference)',
+      reduce:  '(prefers-reduced-motion: reduce)'
+    }, (ctx) => {
+      const { desktop, mobile, reduce } = ctx.conditions;
+      if (reduce) { staticState(); return; }
+
+      if (first) {
+        /* Heavy page-load: slow start, weighted landing */
+        const intro = gsap.timeline({ defaults: { ease: 'power4.inOut' } });
+        intro.from('.hero-line', { yPercent: 115, duration: 1.5, stagger: 0.12 })
+             .fromTo('#anchor-box',
+               { clipPath: 'inset(50% 0% 50% 0%)' },
+               { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, clearProps: 'clipPath' }, '-=1.0')
+             .from('.hero-sub', { autoAlpha: 0, y: 18, duration: 1, ease: 'power3.out', stagger: 0.1 }, '-=0.6');
+      }
+
+      ScrollTrigger.create({
+        trigger: '#heatsink-band', start: 'top 85%', end: 'bottom 25%', scrub: true,
+        onUpdate: self => renderHeat(self.progress)
+      });
+      let fanDeg = 0;
+      const spin = () => { fanDeg -= 8 * gsap.ticker.deltaRatio(); renderBlower(fanDeg); };
+      gsap.ticker.add(spin);
+
+      renderTemp(); setStep(0);
+      if (desktop) buildCurve({ trigger: '#process', start: 'top top', end: '+=2600', pin: true, scrub: 0.6, anticipatePin: 1 });
+      if (mobile)  buildCurve({ trigger: '#graph-panel', start: 'top 80%', end: 'bottom 30%', scrub: 0.6 });
+
+      return () => { gsap.ticker.remove(spin); };
+    });
+    ScrollTrigger.refresh();
+  };
+  buildMotion(true);
+
+  window.addEventListener('fw:calm', () => {
+    buildMotion(false);
+    if (window.FWBigBoy && !bookedPanel.hidden) window.FWBigBoy.start(0);
+  });
+  window.addEventListener('fw:theme', () => {
+    if (window.FWAir) window.FWAir.sync();
+    if (window.FWBigBoy) window.FWBigBoy.stop();
+    buildMotion(false);
+    renderTemp();
+  });
+})();
+</script>
+<script>
+/* ---------- Big Boy run: articulated 4-8-8-4, Walschaerts gear, chuffs ---------- */
+(() => {
+  const band = document.getElementById('bigboy-band');
+  const svg  = document.getElementById('bigboy');
+  const smoke = document.getElementById('bb-smoke');
+  if (!band || !svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const VB_W = 1400, VB_H = 180, RAIL = 170;
+
+  const mk = (tag, attrs, parent) => {
+    const el = document.createElementNS(NS, tag);
+    for (const k in attrs) el.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(el);
+    return el;
+  };
+  const set2 = (el, o) => { for (const k in o) el.setAttribute(k, typeof o[k] === 'number' ? o[k].toFixed(2) : o[k]); };
+
+  const tr = document.getElementById('bb-tender-rivets');
+  for (let x = 44; x < 410; x += 14) { mk('circle', { cx: x, cy: 58, r: 1.7 }, tr); mk('circle', { cx: x, cy: 138, r: 1.7 }, tr); }
+
+  // ---- wheels ----
+  const wheelsG = document.getElementById('bb-wheels');
+  const wheels = [];
+  const addWheel = (cx, r, driver) => {
+    const g = mk('g', {}, wheelsG);
+    mk('circle', { r, fill: '#0e0e10', stroke: '#dcdad3', 'stroke-width': driver ? 3.4 : 2.4 }, g);
+    mk('circle', { r: r - 4, fill: 'none', stroke: '#3a3c40', 'stroke-width': 1.5 }, g);
+    const sp = mk('g', { stroke: '#44464b', 'stroke-width': driver ? 3 : 2 }, g);
+    const n = driver ? 16 : 9;
+    for (let i = 0; i < n; i++) {
+      const a = i / n * Math.PI * 2;
+      mk('line', { x1: Math.cos(a) * r * .24, y1: Math.sin(a) * r * .24, x2: Math.cos(a) * r * .84, y2: Math.sin(a) * r * .84 }, sp);
+    }
+    if (driver) mk('path', { d: `M ${-r*.9} ${-r*.38} A ${r*.97} ${r*.97} 0 0 0 ${-r*.9} ${r*.38} L ${-r*.48} ${r*.22} A ${r*.53} ${r*.53} 0 0 1 ${-r*.48} ${-r*.22} Z`, fill: '#1d1e21', stroke: '#34363a', 'stroke-width': 1 }, g);
+    mk('circle', { r: r * .22, fill: '#2b2d30', stroke: '#6a6c71', 'stroke-width': 1.5 }, g);
+    wheels.push({ g, cx, cy: RAIL - r, r });
+  };
+  // tender: 3-axle rear truck + 4-axle front truck = 14 wheels
+  [58, 92, 126].forEach(x => addWheel(x, 15, false));
+  [250, 284, 318, 352].forEach(x => addWheel(x, 15, false));
+  [566, 606].forEach(x => addWheel(x, 17, false));                 // trailing truck
+  const DR = 30, RC = 12;
+  const REAR = [650, 718, 786, 854], FRONT = [990, 1058, 1126, 1194];
+  REAR.forEach(x => addWheel(x, DR, true));
+  FRONT.forEach(x => addWheel(x, DR, true));
+  [1302, 1338].forEach(x => addWheel(x, 15, false));               // leading truck
+
+  // truck side frames drawn over the small wheels
+  const frames = [[40, 144], [232, 370], [548, 624], [1286, 1354]];
+  frames.forEach(([x1, x2]) => mk('rect', { x: x1, y: 150, width: x2 - x1, height: 8, fill: '#1a1b1e', stroke: '#2e3034', 'stroke-width': 1 }, wheelsG));
+
+  // ---- rods + Walschaerts valve gear, per engine set ----
+  const rodsG = document.getElementById('bb-rods');
+  const makeSet = (xs, phase, cylX) => {
+    const cy = RAIL - DR;
+    const st = { xs, phase, cylX, cy, mainX: xs[2], L: 95, linkX: xs[2] + 46 };
+    st.coupling = mk('rect', { x: xs[0], y: cy - 3.5, width: xs[3] - xs[0], height: 7, fill: '#b3b6ba', stroke: '#5f6166', 'stroke-width': 1 }, rodsG);
+    st.pins = xs.map(x => mk('circle', { cx: x, cy, r: 4, fill: '#2b2d30', stroke: '#9a9da2', 'stroke-width': 1.2 }, rodsG));
+    st.piston = mk('line', { y1: cy, y2: cy, x2: cylX, stroke: '#c3c6ca', 'stroke-width': 3.5 }, rodsG);
+    st.main = mk('line', { stroke: '#d0d2d6', 'stroke-width': 6 }, rodsG);
+    st.cross = mk('rect', { width: 14, height: 11, fill: '#8d8f94', stroke: '#5a5c61', 'stroke-width': 1 }, rodsG);
+    st.ecc = mk('line', { stroke: '#9a9da2', 'stroke-width': 3 }, rodsG);
+    st.link = mk('rect', { x: st.linkX - 3, width: 6, height: 20, fill: '#6a6c71', stroke: '#8d8f94', 'stroke-width': 1 }, rodsG);
+    st.radius = mk('line', { stroke: '#b3b6ba', 'stroke-width': 3 }, rodsG);
+    st.combo = mk('line', { stroke: '#9a9da2', 'stroke-width': 3 }, rodsG);
+    st.mainPin = mk('circle', { r: 5.5, fill: '#2b2d30', stroke: '#c8a96a', 'stroke-width': 2 }, rodsG);
+    return st;
+  };
+  const sets = [makeSet(REAR, 0, 895), makeSet(FRONT, Math.PI / 2, 1236)];
+
+  const pose = (deg) => {
+    wheels.forEach(w => w.g.setAttribute('transform', `translate(${w.cx} ${w.cy}) rotate(${(deg * DR / w.r).toFixed(2)})`));
+    const base = deg * Math.PI / 180;
+    sets.forEach(st => {
+      const a = base + st.phase;
+      const dx = Math.cos(a) * RC, dy = Math.sin(a) * RC;
+      const t = `translate(${dx.toFixed(2)} ${dy.toFixed(2)})`;
+      st.coupling.setAttribute('transform', t);
+      st.pins.forEach(pn => pn.setAttribute('transform', t));
+      const px = st.mainX + dx, py = st.cy + dy;
+      const xh = px + Math.sqrt(st.L * st.L - dy * dy);
+      set2(st.main, { x1: px, y1: py, x2: xh, y2: st.cy });
+      set2(st.mainPin, { cx: px, cy: py });
+      set2(st.cross, { x: xh - 7, y: st.cy - 5.5 });
+      set2(st.piston, { x1: xh });
+      // eccentric crank leads the main pin by 90 degrees
+      const ex = px + Math.cos(a - Math.PI / 2) * 8, ey = py + Math.sin(a - Math.PI / 2) * 8;
+      const swing = (ex - st.mainX) * 0.9;
+      set2(st.ecc, { x1: ex, y1: ey, x2: st.linkX, y2: 124 + swing * 0.15 });
+      set2(st.link, { y: 104 + swing * 0.12 });
+      set2(st.radius, { x1: st.linkX, x2: st.cylX + 2, y1: 108 + swing * 0.3, y2: 110 });
+      set2(st.combo, { x1: xh, y1: st.cy + 4, x2: xh + 3, y2: 110 });
+    });
+  };
+
+  const scale = () => svg.getBoundingClientRect().width / VB_W;
+  const trainW = () => svg.getBoundingClientRect().width;
+
+  // ---- smoke + steam ----
+  const puff = (x, y, size, color, dx, dy, dur) => {
+    if (!window.gsap) return;
+    const el = document.createElement('div');
+    el.className = 'bb-puff';
+    el.style.cssText = `left:${x - size / 2}px;top:${y - size / 2}px;width:${size}px;height:${size}px;background:${color};`;
+    smoke.appendChild(el);
+    gsap.fromTo(el, { scale: .35, opacity: .8 }, { scale: 2.7, opacity: 0, x: dx, y: dy, duration: dur, ease: 'power2.out', onComplete: () => el.remove() });
+  };
+
+  const SPEED = 95, PAUSE = 2.2;
+  let x = -2000, deg = 0, lastChuff = 0, waiting = 0, running = false;
+
+  const frame = (dt) => {
+    if (waiting > 0) { waiting -= dt; return; }
+    const sc = scale();
+    const move = SPEED * dt;
+    x += move;
+    deg += (move / (DR * sc)) * (180 / Math.PI);
+    svg.style.transform = `translateX(${x.toFixed(1)}px)`;
+    pose(deg);
+
+    if (deg - lastChuff >= 90) {                     // 4 chuffs per driver turn
+      lastChuff = deg;
+      const top = band.clientHeight - 5 - VB_H * sc;
+      const sx = x + 1194 * sc, sy = top + 26 * sc;
+      puff(sx, sy, 30 * sc + 10, 'rgba(160,164,170,.55)', -70 - Math.random() * 40, -85 - Math.random() * 30, 2.3);
+      puff(sx + 6, sy + 4, 20 * sc + 8, 'rgba(236,235,231,.45)', -45, -65, 1.7);
+      const cyl = top + 150 * sc;
+      puff(x + 1304 * sc, cyl, 16 * sc + 6, 'rgba(236,235,231,.4)', -55, 8, 1.1);
+      if (Math.random() > .45) puff(x + 962 * sc, cyl, 14 * sc + 6, 'rgba(236,235,231,.32)', -45, 8, 1);
+    }
+    if (x > band.clientWidth + 60) { x = -trainW() - 60; waiting = PAUSE; }
+  };
+
+  let last = performance.now(), raf = 0;
+  const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; frame(dt); raf = requestAnimationFrame(loop); };
+  const start = () => { if (running) return; running = true; last = performance.now(); raf = requestAnimationFrame(loop); };
+  const stop  = () => { running = false; cancelAnimationFrame(raf); };
+
+  pose(0);
+  svg.style.transform = 'translateX(-3000px)';
+
+  window.FWBigBoy = {
+    start(delay = 0) {
+      stop();
+      if (band.offsetParent === null) return; // never run while the confirmation is hidden
+      if (reduce || document.documentElement.dataset.calm === 'on') {
+        requestAnimationFrame(() => { svg.style.transform = `translateX(${(band.clientWidth - trainW()) / 2}px)`; pose(20); });
+        return;
+      }
+      x = -trainW() - 60; deg = 0; lastChuff = 0; waiting = delay;
+      svg.style.transform = `translateX(${x}px)`;
+      start();
+    },
+    stop() { stop(); smoke.innerHTML = ''; }
+  };
+})();
+</script>
+</body>
+</html>
