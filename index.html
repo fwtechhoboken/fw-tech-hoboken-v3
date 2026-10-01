@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FW Tech Hoboken | Hardware Laptop cleaning in Hoboken, NJ</title>
+<title>FW Tech Hoboken | Laptop cleaning and thermal repaste in Hoboken, NJ</title>
 <meta name="description" content="Affordable laptop cleaning and thermal repaste in Hoboken, NJ. Local, honest, no corporate markup. Email to book, cash at drop-off.">
 <link rel="canonical" href="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/">
 <meta name="theme-color" content="#0b0b0c">
@@ -347,6 +347,29 @@
   .cx[data-state="idle"] .cx-disarm, .cx[data-state="done"] .cx-disarm, .cx[data-state="expired"] .cx-disarm { visibility: hidden; }
   .cx[data-state="done"] .cx-arm, .cx[data-state="done"] .cx-fire, .cx[data-state="expired"] .cx-arm, .cx[data-state="expired"] .cx-fire { pointer-events: none; opacity: .45; filter: grayscale(.7); }
   .cx-step { display: block; font-family: 'JetBrains Mono', monospace; font-size: .78rem; margin-top: 6px; }
+
+
+  /* LED status strips */
+  .cx-led { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 10px 14px; background: #050505; border: 2px solid #1a1a1a; box-shadow: inset 0 0 18px rgba(0,0,0,.9); }
+  .cx-led-text { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    background-image: radial-gradient(circle, currentColor 0 .9px, transparent 1.1px); -webkit-background-clip: text; background-clip: text;
+    color: #3fe07a; text-shadow: 0 0 8px currentColor; }
+  .led { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; display: inline-block; background: #1f2a22; box-shadow: inset 0 -2px 3px rgba(0,0,0,.6); }
+  .led.sm { width: 10px; height: 10px; margin: 0 auto 4px; }
+  .cx-led[data-led="idle"] .led { background: radial-gradient(circle at 35% 35%, #c8ffd9, #2fbf62 60%, #0f4a24); box-shadow: 0 0 10px #2fbf62; }
+  .cx-led[data-led="idle"] .cx-led-text { color: #3fe07a; }
+  .cx-led[data-led="armed"] .led { background: radial-gradient(circle at 35% 35%, #ffd0c8, #ff3b2a 60%, #6a0d06); box-shadow: 0 0 14px #ff3b2a; animation: ledBlink .7s steps(1) infinite; }
+  .cx-led[data-led="armed"] .cx-led-text { color: #ff4a3a; animation: ledBlink .7s steps(1) infinite; }
+  .cx-led[data-led="busy"] .led, .cx-led[data-led="done"] .led { background: radial-gradient(circle at 35% 35%, #fff0c8, #ffb020 60%, #6a4006); box-shadow: 0 0 12px #ffb020; }
+  .cx-led[data-led="busy"] .cx-led-text, .cx-led[data-led="done"] .cx-led-text { color: #ffb020; }
+  .cx-led[data-led="busy"] .led { animation: ledBlink .25s steps(1) infinite; }
+  .cx-led[data-led="off"] .cx-led-text { color: #444; text-shadow: none; }
+  .cx-led[data-led="step"] .led { background: radial-gradient(circle at 35% 35%, #fff0c8, #ffb020 60%, #6a4006); box-shadow: 0 0 12px #ffb020; }
+  .cx-led[data-led="step"] .cx-led-text { color: #ffb020; }
+  @keyframes ledBlink { 50% { opacity: .25; } }
+  .cxi-sw.on .led.sm { background: radial-gradient(circle at 35% 35%, #c8ffd9, #2fbf62 60%, #0f4a24); box-shadow: 0 0 10px #2fbf62; }
+  #air-pass .cx-led { border-color: #1d2a40; border-radius: 6px; }
+  .cx-ind .cx-led { border: 3px solid #0d0906; }
 
   /* Train: emergency brake handle + warning button */
   .cxt-body { display: flex; align-items: center; gap: 28px; margin-top: 14px; flex-wrap: wrap; }
@@ -1143,9 +1166,10 @@
                 <div><div class="cx-title">Abort requisition</div><div class="cx-sub">Abort window: <b class="cx-time">2:00</b></div></div>
                 <div class="cx-state">Locked</div>
               </div>
+              <div class="cx-led" data-led="idle" role="status" aria-live="polite"><i class="led"></i><span class="cx-led-text">SAFE</span></div>
               <div class="cxi-panel">
-                <button type="button" class="cxi-sw" data-i="0" aria-label="Safety switch A"><i></i><span>A</span></button>
-                <button type="button" class="cxi-sw" data-i="1" aria-label="Safety switch B"><i></i><span>B</span></button>
+                <button type="button" class="cxi-sw" data-i="0" aria-label="Safety switch A"><b class="led sm"></b><i></i><span>A</span></button>
+                <button type="button" class="cxi-sw" data-i="1" aria-label="Safety switch B"><b class="led sm"></b><i></i><span>B</span></button>
                 <button type="button" class="cxi-arm cx-arm" aria-label="Arm button. Turns green when both switches are thrown" disabled><span>ARM</span></button>
                 <button type="button" class="cxi-master cx-fire" aria-label="Master lever. Pull to abort the requisition" disabled><span class="cxi-slot"><i></i></span><span class="cxi-cap">MASTER</span></button>
               </div>
@@ -1494,6 +1518,7 @@
                 <div><div class="cx-title">Cancel request</div><div class="cx-sub">Window closes in <b class="cx-time">2:00</b></div></div>
                 <div class="cx-state">Normal</div>
               </div>
+              <div class="cx-led" data-led="idle" role="status" aria-live="polite"><i class="led"></i><span class="cx-led-text">SAFE</span></div>
               <div class="cxa-panel">
                 <span class="cxa-label">ENG FIRE · CANCEL</span>
                 <button type="button" class="cxa-handle cx-arm cx-fire" aria-label="Fire handle. Pull to arm, then press again to rotate right and cancel">
@@ -2323,6 +2348,7 @@
           <div><div class="cx-title">Changed your mind?</div><div class="cx-sub">You can cancel for <b class="cx-time">2:00</b></div></div>
           <div class="cx-state font-mono">Safe</div>
         </div>
+        <div class="cx-led" data-led="idle" role="status" aria-live="polite"><i class="led"></i><span class="cx-led-text">SAFE</span></div>
         <div class="cxt-body">
           <button type="button" class="cxt-handle cx-arm" aria-label="Pull the red handle to arm the cancel">
             <svg viewBox="0 0 90 130" aria-hidden="true">
@@ -3329,6 +3355,19 @@
     air:   { idle: 'Normal', armed: 'Armed', sending: 'Discharging', done: 'Cancelled', expired: 'Closed' },
     ind:   { idle: 'Locked', armed: 'Armed', sending: 'Aborting', done: 'Aborted', expired: 'Closed' }
   };
+  const CX_LED = {
+    train: { idle: ['idle', 'Safe · pull handle to arm'], armed: ['armed', 'Brake armed · press to confirm'], sending: ['busy', 'Sending cancel...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
+    air:   { idle: ['idle', 'Normal · pull handle to arm'], armed: ['armed', 'Fire handle armed · rotate right to confirm'], sending: ['busy', 'Discharging...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
+    ind:   { idle: ['idle', 'Locked · throw A and B'], armed: ['armed', 'Armed · pull master to confirm'], sending: ['busy', 'Aborting...'], done: ['done', 'Aborted'], expired: ['off', 'Window closed'] }
+  };
+  const cxLed = (c, mode, text) => { const l = c.querySelector('.cx-led'); if (!l) return; l.dataset.led = mode; l.querySelector('.cx-led-text').textContent = text; };
+  const cxIndProgress = (c) => {
+    const on = [...c.querySelectorAll('.cxi-sw')].map(w => w.classList.contains('on'));
+    if (on[0] && on[1]) cxLed(c, 'step', 'Switches set · press arm');
+    else if (on[0]) cxLed(c, 'step', 'A on · throw B');
+    else if (on[1]) cxLed(c, 'step', 'B on · throw A');
+    else cxLed(c, ...CX_LED.ind.idle);
+  };
   const cxKind = (c) => c.classList.contains('cx-air') ? 'air' : c.classList.contains('cx-ind') ? 'ind' : 'train';
   const cxSet = (st, msg) => {
     CX.state = st;
@@ -3336,6 +3375,7 @@
       c.dataset.state = st;
       const k = cxKind(c);
       c.querySelector('.cx-state').textContent = CX_LABELS[k][st] || st;
+      if (CX_LED[k][st]) cxLed(c, ...CX_LED[k][st]);
       if (msg != null) c.querySelector('.cx-msg').innerHTML = msg;
       if (k === 'train') c.querySelector('.cxt-btn').disabled = st !== 'armed';
       if (k === 'ind') {
@@ -3403,7 +3443,7 @@
       else if (CX.state === 'armed') fireCancel();
     } else {
       const sw = e.target.closest('.cxi-sw');
-      if (sw && CX.state === 'idle') { sw.classList.toggle('on'); const arm = c.querySelector('.cxi-arm'); const both = [...c.querySelectorAll('.cxi-sw')].every(w => w.classList.contains('on')); arm.classList.toggle('ready', both); arm.disabled = !both; return; }
+      if (sw && CX.state === 'idle') { sw.classList.toggle('on'); const arm = c.querySelector('.cxi-arm'); const both = [...c.querySelectorAll('.cxi-sw')].every(w => w.classList.contains('on')); arm.classList.toggle('ready', both); arm.disabled = !both; cxIndProgress(c); return; }
       const arm = e.target.closest('.cxi-arm');
       if (arm && arm.classList.contains('ready') && CX.state === 'idle') { arm.classList.add('pressed'); arm.classList.remove('ready'); cxSet('armed', 'Armed. Pull the MASTER lever to abort.'); return; }
       if (e.target.closest('.cxi-master')) fireCancel();
