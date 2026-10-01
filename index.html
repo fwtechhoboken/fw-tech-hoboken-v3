@@ -35,7 +35,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=Special+Elite&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 <script>
   /* Apply saved mode before paint so there's no flash */
   (function () {
@@ -314,6 +314,23 @@
   .field:focus { outline: none; border-bottom-color: rgb(var(--coolant)); }
   .field::placeholder { color: rgb(var(--dim) / .75); }
   select.field option { background: rgb(var(--slab)); color: rgb(var(--ink)); }
+  /* Book / Ask switch */
+  #book-form[data-kind="question"] .book-only, #book-form[data-kind="book"] .q-only { display: none !important; }
+  .kind-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .kind-switch { display: inline-flex; align-items: center; gap: 12px; padding: 8px 12px; cursor: pointer; background: rgb(var(--void) / .5); border: 2px solid rgb(var(--smoke)); color: rgb(var(--dim)); font: inherit; }
+  .kind-opt { font-weight: 800; font-stretch: 112%; font-size: .9rem; transition: color .2s ease; }
+  .kind-switch[aria-checked="false"] .kind-opt[data-k="book"], .kind-switch[aria-checked="true"] .kind-opt[data-k="question"] { color: rgb(var(--ink)); }
+  .kind-lever { position: relative; width: 54px; height: 26px; background: rgb(var(--void)); border: 2px solid rgb(var(--smoke)); box-shadow: inset 0 3px 6px rgba(0,0,0,.5); }
+  .kind-lever i { position: absolute; top: 2px; left: 2px; width: 22px; height: 18px; background: rgb(var(--brass)); transition: left .25s cubic-bezier(.7,0,.3,1.4); }
+  .kind-switch[aria-checked="true"] .kind-lever i { left: 26px; background: rgb(var(--coolant)); }
+  .kind-hint { margin: 0; }
+  #air-form-slot .kind-switch { border-radius: 8px; border-color: #2a3a58; background: #060b14; }
+  #air-form-slot .kind-lever, #air-form-slot .kind-lever i { border-radius: 4px; }
+  #ind-form-slot .kind-switch { border: 3px solid #0d0906; background: #1d150f; padding: 10px 14px; }
+  #ind-form-slot .kind-opt { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; font-size: 15px; }
+  #ind-form-slot .kind-lever { width: 70px; height: 30px; border: 3px solid #0d0906; background: #0d0906; }
+  #ind-form-slot .kind-lever i { width: 30px; height: 20px; top: 2px; background: linear-gradient(180deg, #ffb870, #c46a22); border: 2px solid #000; }
+  #ind-form-slot .kind-switch[aria-checked="true"] .kind-lever i { left: 34px; background: linear-gradient(180deg, #9fe0d0, #3f8a78); }
   .svc-box { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border: 2px solid rgb(var(--dim) / .7); background: rgb(var(--void)); display: grid; place-content: center; flex-shrink: 0; }
   .svc-box:checked { background: rgb(var(--brass)); border-color: rgb(var(--brass)); }
   .svc-box:checked::after { content: ''; width: 8px; height: 8px; background: rgb(var(--void)); }
@@ -573,12 +590,442 @@
   @keyframes awFan { from { transform: translateY(0); } to { transform: translateY(7px); } }
   @keyframes awDrift { from { transform: translateX(0); } to { transform: translateX(-400px); } }
 
+
+  /* =====================================================================
+     INDUSTRIAL MODE: Operator Station 07 (dieselpunk / steampunk)
+     ===================================================================== */
+  #ind { display: none; }
+  html[data-theme="industrial"] #ind { display: block; }
+  html[data-theme="industrial"] #nav,
+  html[data-theme="industrial"] main#top,
+  html[data-theme="industrial"] body > footer { display: none !important; }
+  html[data-theme="industrial"] body {
+    background-color: #120d0a;
+    background-image:
+      radial-gradient(90% 60% at 50% 0%, rgba(214,104,38,.10), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.25) 0 2px, transparent 2px 160px),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.25) 0 2px, transparent 2px 220px),
+      linear-gradient(180deg, #1b140f, #120d0a);
+  }
+  #ind { color: #eadcc4; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; }
+  .ind-poster { font-family: 'Big Shoulders Display', 'Archivo', Impact, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: .01em; line-height: .9; color: #efe2c6; text-shadow: 0 3px 0 #000, 0 0 30px rgba(214,104,38,.18); margin: 0; }
+  .ind-stencil { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: #b89a6c; }
+  .ind-type { font-family: 'Special Elite', 'Courier New', monospace; }
+  .ind-mono { font-family: 'JetBrains Mono', monospace; }
+  .ind-wrap { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 1024px) { .ind-wrap { padding: 0 40px; } }
+  .ind-sec { padding-top: 64px; padding-bottom: 64px; scroll-margin-top: 76px; position: relative; }
+  @media (min-width: 1024px) { .ind-sec { padding-top: 96px; padding-bottom: 96px; } }
+  .ind-h { font-size: clamp(40px, 6.4vw, 96px); }
+  .ind-h2 { font-size: clamp(34px, 4.6vw, 64px); }
+  .ind-p { color: #bfae90; font-size: 17px; line-height: 1.55; margin: 0; }
+
+  .ind-hazard { height: 14px; background: repeating-linear-gradient(-45deg, #d6964c 0 16px, #120d0a 16px 32px); border-top: 2px solid #000; border-bottom: 2px solid #000; }
+  .ind-pipe { height: 18px; background: linear-gradient(180deg, #8a5a33 0%, #d69a5a 30%, #7a4a26 70%, #3a2414 100%); box-shadow: 0 6px 12px rgba(0,0,0,.5); position: relative; }
+  .ind-pipe::before, .ind-pipe::after { content: ''; position: absolute; top: -5px; bottom: -5px; width: 22px; background: linear-gradient(180deg, #6b4526, #c0874b, #5a3a20); border: 1px solid #2a1a0e; }
+  .ind-pipe::before { left: 12%; } .ind-pipe::after { right: 18%; }
+
+  /* riveted steel panel */
+  .ind-panel {
+    position: relative; background: linear-gradient(180deg, #3a2c21 0%, #2b2019 55%, #221912 100%);
+    border: 3px solid #0d0906; box-shadow: inset 0 2px 0 rgba(255,220,170,.12), inset 0 -4px 0 rgba(0,0,0,.5), 0 30px 60px -30px rgba(0,0,0,.9);
+  }
+  .ind-panel::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    --r: radial-gradient(circle, #c4935e 0 2.4px, #3a2716 3px, transparent 3.6px);
+    background: var(--r) left 10px top 10px / 8px 8px no-repeat, var(--r) right 10px top 10px / 8px 8px no-repeat,
+                var(--r) left 10px bottom 10px / 8px 8px no-repeat, var(--r) right 10px bottom 10px / 8px 8px no-repeat;
+  }
+  .ind-plate { display: inline-block; padding: 6px 14px; background: linear-gradient(155deg, #d9ae6c, #a97a3e 60%, #c9975a); color: #231709; border: 2px solid #5a3e1c; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 2px 0 #000; }
+
+  /* top bar */
+  #ind-top { position: sticky; top: 0; z-index: 60; background: linear-gradient(180deg, #2e231a, #1d150f); border-bottom: 3px solid #0d0906; box-shadow: 0 8px 20px rgba(0,0,0,.5); }
+  .ind-top-in { max-width: 1440px; margin: 0 auto; height: 64px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .ind-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .ind-brand b { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 30px; color: #d69a4e; letter-spacing: .02em; }
+  .ind-brand span { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; letter-spacing: .18em; font-size: 12px; color: #b89a6c; text-transform: uppercase; }
+  .ind-links { display: none; gap: 22px; }
+  .ind-links a { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 14px; color: #b89a6c; text-decoration: none; }
+  .ind-links a:hover { color: #efe2c6; }
+  @media (min-width: 1150px) { .ind-links { display: flex; } }
+  .ind-tools { display: flex; align-items: center; gap: 6px; }
+  #ind .mode-btn { border-radius: 0; margin-left: 0; width: 34px; height: 34px; border: 2px solid #0d0906; background: linear-gradient(180deg, #4a3a2c, #2a2019); color: #b89a6c; box-shadow: inset 0 1px 0 rgba(255,220,170,.15); }
+  #ind .mode-btn[aria-pressed="true"] { background: linear-gradient(180deg, #e0a45c, #a86a2e); color: #1a120b; }
+  #ind .mode-group { gap: 3px; }
+  @media (max-width: 520px) { .ind-top-in { padding: 0 10px; gap: 6px; } .ind-brand b { font-size: 24px; } .ind-brand svg { display: none; } #ind-top .ind-btn.sm { padding: 6px 8px; font-size: 12px; letter-spacing: .06em; } .ind-brand span { display: none; } #ind .mode-btn { width: 30px; height: 30px; } #ind .mode-btn svg { width: 15px; height: 15px; } }
+
+  .ind-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; cursor: pointer; text-decoration: none;
+    font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: .12em; text-transform: uppercase;
+    background: linear-gradient(180deg, #e7a95f, #b06d2c); color: #1a120b; border: 3px solid #0d0906;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 4px 0 #0d0906; transition: transform .08s ease, box-shadow .08s ease;
+  }
+  .ind-btn:active { transform: translateY(3px); box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 1px 0 #0d0906; }
+  .ind-btn.ghost { background: linear-gradient(180deg, #3a2c21, #241a13); color: #e0c79c; }
+  .ind-btn.sm { padding: 8px 12px; font-size: 14px; }
+
+  /* hero machine */
+  .ind-hero { display: grid; gap: 40px; align-items: center; padding-top: 48px; }
+  @media (min-width: 1024px) { .ind-hero { grid-template-columns: 7fr 5fr; padding-top: 72px; } }
+  .ind-machine { padding: 26px; }
+  .ind-gauge { width: 100%; max-width: 360px; display: block; margin: 0 auto; filter: drop-shadow(0 14px 20px rgba(0,0,0,.6)); }
+  .ind-nixie { display: flex; justify-content: center; gap: 6px; margin-top: 18px; }
+  .ind-nixie span { width: 44px; height: 64px; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 40%, #2a120a, #0c0605); border: 2px solid #0d0906; border-radius: 22px 22px 6px 6px; font-family: 'JetBrains Mono', monospace; font-size: 38px; font-weight: 700; color: #ff8a3a; text-shadow: 0 0 8px #ff6a1a, 0 0 18px rgba(255,106,26,.7); }
+  .ind-lamps { display: flex; justify-content: center; gap: 14px; margin-top: 16px; }
+  .ind-lamp { width: 18px; height: 18px; border-radius: 50%; background: #3a1a0e; border: 2px solid #0d0906; box-shadow: inset 0 2px 3px rgba(0,0,0,.6); }
+  .ind-lamp.on { background: radial-gradient(circle at 40% 35%, #ffd79a, #ff8a3a 55%, #b0400e); box-shadow: 0 0 12px #ff7a2a, inset 0 -2px 3px rgba(0,0,0,.3); }
+  .ind-lamp.g.on { background: radial-gradient(circle at 40% 35%, #d8ffe9, #5ea896 55%, #1f5a4c); box-shadow: 0 0 12px #5ea896; }
+  .ind-shelf { display: flex; justify-content: space-between; align-items: flex-end; margin: -6px 6px 0; }
+  .ind-cat .breath { animation: indBreath 3.6s ease-in-out infinite; transform-origin: 50% 100%; transform-box: fill-box; }
+  @keyframes indBreath { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.06); } }
+  .ind-steam { animation: indSteam 2.8s ease-out infinite; transform-box: fill-box; opacity: 0; }
+  @keyframes indSteam { 0% { opacity: 0; transform: translateY(6px) scale(.6); } 30% { opacity: .75; } 100% { opacity: 0; transform: translateY(-26px) scale(1.4); } }
+  .ind-vent { position: absolute; right: -8px; top: 30%; width: 90px; height: 120px; pointer-events: none; }
+
+  /* telegrams from High Command */
+  .ind-board { display: grid; gap: 28px; margin-top: 36px; }
+  @media (min-width: 768px) { .ind-board { grid-template-columns: repeat(2, 1fr); } }
+  .ind-telegram {
+    position: relative; background: linear-gradient(180deg, #f1e6cc, #e4d4b1); color: #2b2116; padding: 30px 24px 64px;
+    box-shadow: 0 18px 30px -12px rgba(0,0,0,.7);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 94% 100%, 86% calc(100% - 6px), 76% 100%, 66% calc(100% - 7px), 55% 100%, 44% calc(100% - 5px), 33% 100%, 22% calc(100% - 7px), 11% 100%, 0 calc(100% - 6px));
+  }
+  .ind-telegram:nth-child(odd) { transform: rotate(-1.2deg); } .ind-telegram:nth-child(even) { transform: rotate(1deg); }
+  .ind-telegram .pin { position: absolute; top: 10px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a7a, #a3190e); box-shadow: 0 2px 3px rgba(0,0,0,.5); }
+  .ind-telegram .hdr { display: flex; justify-content: space-between; font-family: 'Special Elite', monospace; font-size: 12px; color: #6b5a40; border-bottom: 1px dashed #a8946f; padding-bottom: 8px; margin-bottom: 12px; }
+  .ind-telegram h3 { margin: 0 0 8px; font-family: 'Special Elite', monospace; font-size: 20px; text-transform: uppercase; }
+  .ind-telegram p { margin: 0; font-family: 'Special Elite', monospace; font-size: 15px; line-height: 1.6; }
+  .ind-stamp { display: inline-block; padding: 4px 10px; border: 3px solid #b3261e; color: #b3261e; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; transform: rotate(-8deg); opacity: .85; }
+  .ind-telegram .ind-stamp { position: absolute; right: 16px; bottom: 16px; }
+
+  /* equipment manifest: hanging tags */
+  .ind-rail { height: 12px; margin-top: 40px; background: linear-gradient(180deg, #c0874b, #6b4526); border: 2px solid #0d0906; }
+  .ind-tags { display: grid; gap: 22px; }
+  @media (min-width: 640px) { .ind-tags { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .ind-tags { grid-template-columns: repeat(4, 1fr); } }
+  .ind-tag-wrap { display: flex; flex-direction: column; align-items: center; }
+  .ind-hook { width: 3px; height: 34px; background: linear-gradient(180deg, #d7b27c, #6b4526); }
+  .ind-tag {
+    width: 100%; position: relative; padding: 28px 20px 22px; text-align: center; transform-origin: 50% -34px;
+    background: linear-gradient(160deg, #caa06a 0%, #9c7240 45%, #b98b52 100%); color: #20160a; border: 3px solid #4a3216;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 20px 30px -14px rgba(0,0,0,.8);
+    animation: indSwing 5s ease-in-out infinite; animation-delay: var(--d, 0s);
+  }
+  .ind-tag::before { content: ''; position: absolute; top: 9px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #1a120b; box-shadow: inset 0 2px 2px rgba(0,0,0,.8), 0 1px 0 rgba(255,255,255,.3); }
+  @keyframes indSwing { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+  .ind-tag h3 { margin: 6px 0 6px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; text-transform: uppercase; font-size: 26px; letter-spacing: .03em; }
+  .ind-tag .price { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 54px; line-height: 1; text-shadow: 0 1px 0 rgba(255,255,255,.4); }
+  .ind-tag p { margin: 8px 0 0; font-size: 15px; line-height: 1.45; color: #3a2a14; }
+  .ind-tag .warn { color: #8a1c10; font-weight: 700; font-size: 13px; }
+  .ind-tag.special { background: linear-gradient(160deg, #e0b47a, #b3783a 45%, #d49b5c); border-color: #6b2a0e; }
+  .ind-tag .ind-btn { margin-top: 14px; }
+
+  /* map table */
+  .ind-maptable { padding: 18px; margin: 30px auto 0; max-width: 1000px; }
+  #ind-map { display: block; width: 100%; height: auto; background: #1d2a22; border: 3px solid #0d0906; }
+
+  /* procedure panel */
+  .ind-proc { display: grid; gap: 18px; margin-top: 30px; }
+  @media (min-width: 900px) { .ind-proc { grid-template-columns: repeat(4, 1fr); } }
+  .ind-step { padding: 26px 22px 24px; }
+  .ind-switch { width: 40px; height: 62px; margin-bottom: 14px; position: relative; background: #140e0a; border: 3px solid #0d0906; box-shadow: inset 0 3px 6px rgba(0,0,0,.8); }
+  .ind-switch i { position: absolute; left: 6px; right: 6px; height: 22px; top: 32px; background: linear-gradient(180deg, #7a6a58, #3a2f24); border: 2px solid #0d0906; transition: top .25s cubic-bezier(.7,0,.3,1.4), background .25s; }
+  .ind-step.on .ind-switch i { top: 4px; background: linear-gradient(180deg, #ffb870, #c46a22); }
+  .ind-step h3 { margin: 0 0 6px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 26px; text-transform: uppercase; }
+  .ind-step .n { position: absolute; top: 18px; right: 20px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 44px; color: rgba(214,154,78,.25); }
+  .ind-step p { margin: 0; color: #bfae90; line-height: 1.5; }
+
+  /* dossier */
+  .ind-dossier { display: grid; gap: 24px; margin-top: 30px; }
+  @media (min-width: 900px) { .ind-dossier { grid-template-columns: 5fr 7fr; } }
+  .ind-file { background: linear-gradient(180deg, #d9c49b, #c8b084); color: #2b2116; padding: 28px; position: relative; box-shadow: 0 20px 40px -20px rgba(0,0,0,.9); }
+  .ind-file::before { content: 'PERSONNEL FILE'; position: absolute; top: -26px; left: 0; padding: 4px 16px; background: #c8b084; font-family: 'Special Elite', monospace; font-size: 13px; color: #4a3a22; }
+  .ind-file h3 { margin: 0; font-family: 'Special Elite', monospace; font-size: 26px; text-transform: uppercase; }
+  .ind-file dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 16px 0 0; font-family: 'Special Elite', monospace; font-size: 15px; }
+  .ind-file dt { color: #6b5a40; }
+  .ind-creds { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .ind-creds { grid-template-columns: 1fr 1fr; } }
+  .ind-cred { padding: 20px; }
+  .ind-cred h4 { margin: 0 0 6px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 22px; text-transform: uppercase; color: #e0c79c; }
+  .ind-cred p { margin: 0; color: #bfae90; line-height: 1.5; font-size: 15px; }
+  .ind-contraband { grid-column: 1 / -1; padding: 20px 22px; border: 3px solid #0d0906; background: repeating-linear-gradient(-45deg, rgba(214,104,38,.12) 0 12px, transparent 12px 24px), #241912; }
+  .ind-contraband h4 { margin: 0 0 6px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: .08em; text-transform: uppercase; color: #de6826; }
+
+  /* regulations manual */
+  .ind-regs { display: grid; gap: 12px; margin-top: 30px; }
+  .ind-reg { background: #efe4c9; color: #2b2116; border-left: 10px solid #8a5a33; box-shadow: 0 10px 20px -10px rgba(0,0,0,.8); }
+  .ind-reg > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 16px 18px; }
+  .ind-reg > summary::-webkit-details-marker { display: none; }
+  .ind-reg .sec { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 20px; color: #8a5a33; letter-spacing: .06em; }
+  .ind-reg h3 { margin: 0; font-family: 'Special Elite', monospace; font-size: 17px; }
+  .ind-reg .chev { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 26px; color: #8a5a33; transition: transform .2s ease; }
+  .ind-reg[open] .chev { transform: rotate(45deg); }
+  .ind-reg-body { padding: 0 20px 20px 20px; font-family: 'Special Elite', monospace; font-size: 15px; line-height: 1.7; }
+  .ind-reg-body p { margin: 0 0 10px; }
+  .ind-reg-body .text-ink, .ind-reg-body span { color: inherit !important; }
+  .ind-brief { margin-top: 18px; padding: 22px; }
+  .ind-brief-grid { display: grid; gap: 8px 24px; margin-top: 10px; color: #bfae90; line-height: 1.5; }
+  @media (min-width: 700px) { .ind-brief-grid { grid-template-columns: 1fr 1fr; } }
+  .ind-brief-grid p { margin: 0; } .ind-brief-grid .text-ink { color: #efe2c6 !important; }
+
+  /* requisition console */
+  .ind-console { display: grid; gap: 22px; margin-top: 30px; }
+  @media (min-width: 1024px) { .ind-console { grid-template-columns: 4fr 8fr; align-items: start; } }
+  .ind-dials { padding: 24px; text-align: center; }
+  #ind-form-slot #book-form { background: transparent !important; border: 0; box-shadow: none; padding: 0 !important; }
+  #ind-form-slot #book-form::before { display: none; }
+  #ind-form-slot { padding: 26px; }
+  #ind-form-slot .field { background: #140e0a; border: 2px solid #0d0906; border-bottom: 2px solid #5a3e24; color: #f1dcb4; font-family: 'Special Elite', monospace; padding: 12px; box-shadow: inset 0 3px 6px rgba(0,0,0,.7); }
+  #ind-form-slot .field:focus { border-bottom-color: #e7a95f; }
+  #ind-form-slot select.field option { background: #241912; color: #efe2c6; }
+  #ind-form-slot label, #ind-form-slot legend { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; color: #b89a6c !important; }
+  #ind-form-slot fieldset { border: 3px solid #0d0906 !important; background: rgba(0,0,0,.18); }
+  #ind-form-slot fieldset label { border-color: #0d0906 !important; background: #1d150f; padding: 14px !important; }
+  #ind-form-slot #svc-total { color: #ffb870 !important; font-size: 20px; }
+  #ind-form-slot input[name="svc"].svc-box {
+    width: 28px; height: 50px; border: 3px solid #0d0906; background: #0d0906; position: relative; box-shadow: inset 0 3px 6px rgba(0,0,0,.9);
+  }
+  #ind-form-slot input[name="svc"].svc-box::after {
+    content: ''; position: absolute; left: 1px; right: 1px; height: 20px; top: 24px; width: auto;
+    background: linear-gradient(180deg, #8a7a66, #3f3328); border: 2px solid #000; transition: top .22s cubic-bezier(.7,0,.3,1.5), background .22s;
+  }
+  #ind-form-slot input[name="svc"].svc-box:checked { background: #0d0906; border-color: #0d0906; }
+  #ind-form-slot input[name="svc"].svc-box:checked::after { top: 1px; background: linear-gradient(180deg, #ffb870, #c46a22); }
+  #ind-form-slot #agree.svc-box:checked { background: #e7a95f; border-color: #e7a95f; }
+  #ind-form-slot .text-heat { color: #ff8a4c !important; }
+  #ind-form-slot #send-btn {
+    clip-path: none; border-radius: 0; padding: 16px 26px 16px 70px; position: relative;
+    font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: .12em; text-transform: uppercase;
+    background: linear-gradient(180deg, #d83a24, #8a1a0e); color: #fff1e0; border: 3px solid #0d0906; box-shadow: inset 0 2px 0 rgba(255,255,255,.25), 0 5px 0 #0d0906;
+  }
+  #ind-form-slot #send-btn::before { content: ''; position: absolute; left: 22px; top: 50%; width: 26px; height: 8px; margin-top: -4px; background: #1a0c06; box-shadow: 0 0 0 3px #3a1a0e; transform-origin: 0 50%; transition: transform .3s cubic-bezier(.6,0,.3,1.6); }
+  #ind-form-slot #send-btn.pulled::before { transform: rotate(80deg); }
+  #ind-form-slot #send-btn.pulled { transform: translateY(4px); box-shadow: inset 0 2px 0 rgba(255,255,255,.25), 0 1px 0 #0d0906; }
+
+  /* dispatch: pneumatic tube + typed receipt */
+  #ind-dispatch[hidden], html[data-theme="industrial"] #book-form[hidden] { display: none !important; }
+  #ind-dispatch { padding: 26px; display: grid; gap: 22px; }
+  @media (min-width: 800px) { #ind-dispatch { grid-template-columns: 150px 1fr; } }
+  #ind-tube { width: 100%; height: 320px; display: block; }
+  .ind-receipt { background: linear-gradient(180deg, #f1e6cc, #e4d4b1); color: #2b2116; padding: 26px; position: relative; min-height: 260px; }
+  .ind-receipt pre { margin: 0; white-space: pre-wrap; font-family: 'Special Elite', monospace; font-size: 15px; line-height: 1.7; }
+  .ind-receipt .ind-stamp { position: absolute; right: 22px; top: 22px; font-size: 26px; opacity: 0; }
+  .ind-caret { display: inline-block; width: 8px; height: 16px; background: #2b2116; vertical-align: -2px; animation: indBlink .8s steps(1) infinite; }
+  @keyframes indBlink { 50% { opacity: 0; } }
+
+  /* mini core-temp gauge that follows the scroll */
+  #ind-core-mini { position: fixed; right: 16px; bottom: 16px; z-index: 55; width: 96px; height: 96px; display: none; filter: drop-shadow(0 10px 16px rgba(0,0,0,.7)); }
+  html[data-theme="industrial"] #ind-core-mini { display: block; }
+  @media (max-width: 640px) { #ind-core-mini { width: 72px; height: 72px; right: 10px; bottom: 10px; } }
+
+  #ind-foot { padding-top: 34px; padding-bottom: 110px; }
+  #ind-foot a { color: #e7a95f; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
 <body class="overflow-x-hidden">
+
+<!-- =====================================================================
+     INDUSTRIAL MODE: Operator Station 07. Same info, copied at runtime
+     from the Train mode markup, so everything is edited in one place.
+     ===================================================================== -->
+<div id="ind">
+  <header id="ind-top">
+    <div class="ind-top-in">
+      <a href="#ind-hero" class="ind-brand" aria-label="FW Tech Hoboken, top">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#d69a4e" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#d69a4e"/></svg>
+        <b>FW</b><span>Tech Hoboken · Station 07</span>
+      </a>
+      <nav class="ind-links" aria-label="Industrial mode sections">
+        <a href="#ind-orders">Orders</a><a href="#ind-manifest">Manifest</a><a href="#ind-map-sec">Map table</a><a href="#ind-dossier">Operator</a><a href="#ind-regs">Regulations</a>
+      </nav>
+      <div class="ind-tools">
+        <div class="mode-group" role="group" aria-label="Site mode">
+          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
+          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
+        </div>
+        <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
+        <a href="#ind-console" class="ind-btn sm">Requisition</a>
+      </div>
+    </div>
+  </header>
+  <div class="ind-hazard" aria-hidden="true"></div>
+
+  <main id="ind-main">
+    <!-- HERO: the machine -->
+    <section id="ind-hero" class="ind-wrap">
+      <div class="ind-hero">
+        <div>
+          <div class="ind-stencil">Operator Station 07 · Hoboken Works</div>
+          <h1 class="ind-poster ind-h" style="margin-top:14px">Your laptop shouldn't sound like a jet engine.</h1>
+          <p class="ind-p" id="ind-hero-sub" style="margin-top:22px;max-width:46ch"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px">
+            <a href="#ind-console" class="ind-btn">Open requisition</a>
+            <a href="#ind-manifest" class="ind-btn ghost">Equipment manifest</a>
+          </div>
+          <p class="ind-p" id="ind-hero-area" style="margin-top:20px;font-size:14px"></p>
+        </div>
+        <div class="ind-panel ind-machine" style="position:relative">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+            <span class="ind-plate">Core temp</span><span class="ind-stencil">Boiler 07</span>
+          </div>
+          <svg class="ind-gauge" id="ind-gauge" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="ind-nixie" aria-label="Core temperature readout"><span id="ind-nx1">9</span><span id="ind-nx2">0</span><span style="font-size:24px">°C</span></div>
+          <div class="ind-lamps" aria-hidden="true"><i class="ind-lamp on" id="ind-lamp-hot"></i><i class="ind-lamp"></i><i class="ind-lamp g" id="ind-lamp-ok"></i></div>
+          <p class="ind-mono" style="text-align:center;font-size:11px;color:#8a7a60;margin:14px 0 0">Simulated gauge. Not your laptop, not real data.</p>
+          <svg class="ind-vent" viewBox="0 0 90 120" aria-hidden="true">
+            <g fill="#e8dcc4"><circle class="ind-steam" cx="30" cy="100" r="14" style="animation-delay:0s"/><circle class="ind-steam" cx="44" cy="96" r="18" style="animation-delay:.9s"/><circle class="ind-steam" cx="36" cy="104" r="12" style="animation-delay:1.8s"/></g>
+          </svg>
+          <div class="ind-shelf" aria-hidden="true" style="margin-top:18px">
+            <!-- espresso machine -->
+            <svg width="92" height="84" viewBox="0 0 92 84">
+              <g fill="#e8dcc4" opacity=".8"><circle class="ind-steam" cx="66" cy="20" r="5" style="animation-delay:.3s"/><circle class="ind-steam" cx="70" cy="16" r="6" style="animation-delay:1.4s"/></g>
+              <rect x="6" y="20" width="50" height="60" fill="#8a5a33" stroke="#0d0906" stroke-width="3"/>
+              <rect x="10" y="24" width="42" height="10" fill="#c0874b"/>
+              <circle cx="31" cy="48" r="9" fill="#efe2c6" stroke="#0d0906" stroke-width="2"/><line x1="31" y1="48" x2="36" y2="43" stroke="#b3261e" stroke-width="2"/>
+              <rect x="20" y="62" width="30" height="6" fill="#2b2019"/><rect x="50" y="62" width="18" height="4" fill="#2b2019"/>
+              <path d="M58 70 h16 v10 h-16z" fill="#efe2c6" stroke="#0d0906" stroke-width="2"/><path d="M74 72 q6 0 6 4 t-6 3" fill="none" stroke="#0d0906" stroke-width="2"/>
+            </svg>
+            <!-- the station cat, asleep on the warm panel -->
+            <svg class="ind-cat" width="120" height="60" viewBox="0 0 120 60">
+              <g class="breath"><path d="M14 56 Q10 30 44 24 Q80 18 96 40 Q104 56 90 58 Z" fill="#2a1d14" stroke="#0d0906" stroke-width="2"/></g>
+              <circle cx="92" cy="40" r="15" fill="#2a1d14" stroke="#0d0906" stroke-width="2"/>
+              <path d="M82 28 L84 16 L92 26Z M98 26 L106 17 L105 30Z" fill="#2a1d14" stroke="#0d0906" stroke-width="2"/>
+              <path d="M86 42 q3 2 6 0 M96 42 q3 2 6 0" stroke="#d69a4e" stroke-width="1.6" fill="none"/>
+              <path d="M16 54 Q2 50 8 40 Q14 32 24 38" fill="none" stroke="#2a1d14" stroke-width="6" stroke-linecap="round"/>
+              <text x="54" y="16" font-family="Special Elite, monospace" font-size="11" fill="#b89a6c">z z</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ind-pipe" style="margin-top:72px" aria-hidden="true"></div>
+
+    <!-- ORDERS FROM HIGH COMMAND (why) -->
+    <section id="ind-orders" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Incoming · Orders from High Command</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">It's probably not broken</h2>
+      <div class="ind-board" id="ind-board"></div>
+    </section>
+
+    <div class="ind-hazard" aria-hidden="true"></div>
+
+    <!-- EQUIPMENT MANIFEST (services) -->
+    <section id="ind-manifest" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Equipment manifest · Cash only</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">What I fix</h2>
+      <p class="ind-p" style="margin-top:12px;max-width:60ch">Mix and match, but only what's on the rack. Hardware cleaning only, no software, no custom repairs.</p>
+      <div class="ind-rail" aria-hidden="true"></div>
+      <div class="ind-tags" id="ind-tags"></div>
+    </section>
+
+    <div class="ind-pipe" aria-hidden="true"></div>
+
+    <!-- MAP TABLE (areas) -->
+    <section id="ind-map-sec" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Map table · Operating range</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">Where I go</h2>
+      <p class="ind-p" style="margin-top:12px">I get there by car or public transit, so give me a little time for the trip.</p>
+      <div class="ind-panel ind-maptable"><svg id="ind-map" viewBox="0 0 600 400" role="img" aria-label="Map of the five service areas: Hoboken, Jersey City, Union City, Midtown Manhattan, and Downtown Manhattan"></svg></div>
+    </section>
+
+    <div class="ind-hazard" aria-hidden="true"></div>
+
+    <!-- PROCEDURE (how it works) -->
+    <section id="ind-proc-sec" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Start-up procedure · 1 to 4 days</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">How it works</h2>
+      <div class="ind-proc" id="ind-proc"></div>
+    </section>
+
+    <div class="ind-pipe" aria-hidden="true"></div>
+
+    <!-- OPERATOR DOSSIER (about) -->
+    <section id="ind-dossier" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Operator on duty</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">Who's running the machine</h2>
+      <div class="ind-dossier" style="margin-top:52px">
+        <div class="ind-file">
+          <h3>Reyansh Sahani</h3>
+          <dl>
+            <dt>Post</dt><dd>Operator, Station 07</dd>
+            <dt>Works</dt><dd>FW Tech Hoboken</dd>
+            <dt>Clearance</dt><dd>Hardware only</dd>
+          </dl>
+          <p class="ind-type" id="ind-file-intro" style="margin:16px 0 0;font-size:15px;line-height:1.6"></p>
+          <span class="ind-stamp" style="margin-top:16px">Approved</span>
+        </div>
+        <div class="ind-creds" id="ind-creds"></div>
+      </div>
+    </section>
+
+    <div class="ind-hazard" aria-hidden="true"></div>
+
+    <!-- REGULATIONS (terms) -->
+    <section id="ind-regs" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Station manual · Terms of Service</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">Regulations</h2>
+      <p class="ind-p" id="ind-regs-intro" style="margin-top:12px;max-width:70ch"></p>
+      <div class="ind-regs" id="ind-regs-list"></div>
+      <div class="ind-panel ind-brief"><span class="ind-plate">Short version</span><div class="ind-brief-grid" id="ind-brief"></div></div>
+    </section>
+
+    <div class="ind-pipe" aria-hidden="true"></div>
+
+    <!-- REQUISITION CONSOLE (booking) -->
+    <section id="ind-console" class="ind-sec ind-wrap">
+      <div class="ind-stencil">Requisition console · Cash at drop-off</div>
+      <h2 class="ind-poster ind-h2" style="margin-top:10px">Book a service</h2>
+      <p class="ind-p" style="margin-top:12px;max-width:60ch">Throw the levers for the services you want, fill in the slip, and pull the red lever. One pull, and it goes straight to me.</p>
+      <div class="ind-console">
+        <div class="ind-panel ind-dials">
+          <span class="ind-plate">Requisition pressure</span>
+          <svg id="ind-req-gauge" viewBox="0 0 200 200" style="width:100%;max-width:260px;display:block;margin:16px auto 0" aria-hidden="true"></svg>
+          <div class="ind-poster" id="ind-req-total" style="font-size:44px;margin-top:4px">$0</div>
+          <p class="ind-mono" style="font-size:11px;color:#8a7a60;margin:6px 0 0">All three levers = bundle price</p>
+        </div>
+        <div class="ind-panel">
+          <div id="ind-form-slot"></div>
+          <div id="ind-dispatch" hidden>
+            <svg id="ind-tube" viewBox="0 0 150 320" aria-hidden="true">
+              <rect x="50" y="0" width="50" height="320" fill="rgba(160,200,190,.12)" stroke="#5ea896" stroke-width="3"/>
+              <rect x="44" y="40" width="62" height="10" fill="#c0874b" stroke="#0d0906" stroke-width="2"/>
+              <rect x="44" y="160" width="62" height="10" fill="#c0874b" stroke="#0d0906" stroke-width="2"/>
+              <rect x="44" y="280" width="62" height="10" fill="#c0874b" stroke="#0d0906" stroke-width="2"/>
+              <g id="ind-capsule" transform="translate(0 250)">
+                <rect x="56" y="0" width="38" height="56" fill="#d69a5a" stroke="#0d0906" stroke-width="3"/>
+                <rect x="56" y="8" width="38" height="6" fill="#7a4a26"/><rect x="56" y="42" width="38" height="6" fill="#7a4a26"/>
+              </g>
+              <g id="ind-puffs" fill="#efe2c6" opacity="0"><circle cx="40" cy="300" r="16"/><circle cx="112" cy="296" r="18"/><circle cx="75" cy="314" r="20"/></g>
+            </svg>
+            <div class="ind-receipt"><pre id="ind-receipt-text"></pre><span class="ind-stamp" id="ind-dispatch-stamp">Dispatched</span>
+              <button type="button" id="ind-again" class="ind-btn ghost" style="margin-top:18px">New requisition</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="ind-hazard" aria-hidden="true"></div>
+  <footer id="ind-foot" class="ind-wrap">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:end">
+      <div>
+        <div class="ind-poster" style="font-size:54px;color:#d69a4e">FW Tech Hoboken</div>
+        <p class="ind-p" style="margin-top:8px">Laptop cleaning in Hoboken, NJ. Independent and not affiliated with any other business using a similar name.</p>
+      </div>
+      <div style="text-align:right">
+        <a href="mailto:rey.sahani03@gmail.com" class="email-link" data-subject="FW Tech question">rey.sahani03@gmail.com</a>
+        <div class="ind-p" style="margin-top:6px;font-size:14px">&copy; <span class="ind-year"></span> FW Tech Hoboken</div>
+      </div>
+    </div>
+  </footer>
+  <svg id="ind-core-mini" viewBox="0 0 200 200" aria-hidden="true"></svg>
+</div>
 
 <!-- =====================================================================
      AIRPLANE MODE: same info, on board flight FW 201
@@ -881,9 +1328,9 @@
             <svg id="air-takeoff" viewBox="0 0 600 160" aria-hidden="true">
               <rect x="0" y="140" width="600" height="20" fill="#2a2f3a"/>
               <g fill="#f2c14e"><rect x="20" y="148" width="30" height="3"/><rect x="90" y="148" width="30" height="3"/><rect x="160" y="148" width="30" height="3"/><rect x="230" y="148" width="30" height="3"/><rect x="300" y="148" width="30" height="3"/></g>
-              <path id="air-contrail" d="M40 132 Q260 128 380 80 T600 10" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="3" stroke-linecap="round"/>
-              <g id="air-jet" transform="translate(40 132)">
-                <g transform="translate(-100 -30) scale(.5)">
+              <path id="air-contrail" d="M120 136 Q300 134 400 88 T620 -10" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="3" stroke-linecap="round"/>
+              <g id="air-jet" transform="translate(120 136)">
+                <g transform="translate(-96 -21) scale(.5)">
                   <path d="M10 32 Q10 26 22 25 L150 23 Q178 23 196 30 Q178 37 150 37 L22 37 Q10 37 10 32Z" fill="#f4f6fa"/>
                   <path d="M20 26 L6 4 L24 4 L40 25Z" fill="#0c3478"/>
                   <path d="M16 31 L0 27 L4 33Z" fill="#0c3478"/>
@@ -1542,8 +1989,16 @@
       </dl>
     </div>
 
-    <form id="book-form" class="plate bolted col-span-12 lg:col-span-6 lg:col-start-7 p-7 md:p-10 grid grid-cols-2 gap-x-6 gap-y-6" novalidate>
-      <fieldset class="col-span-2">
+    <form id="book-form" data-kind="book" class="plate bolted col-span-12 lg:col-span-6 lg:col-start-7 p-7 md:p-10 grid grid-cols-2 gap-x-6 gap-y-6" novalidate>
+      <div class="col-span-2 kind-row">
+        <button type="button" class="kind-switch" id="kind-switch" role="switch" aria-checked="false" aria-label="Switch between booking a service and asking a question">
+          <span class="kind-opt" data-k="book">Book a service</span>
+          <span class="kind-lever" aria-hidden="true"><i></i></span>
+          <span class="kind-opt" data-k="question">Ask a question</span>
+        </button>
+        <p class="kind-hint font-mono text-xs text-dim" id="kind-hint">Ready to go: pick services and send your details.</p>
+      </div>
+      <fieldset class="col-span-2 book-only">
         <legend class="text-sm text-dim mb-1">Services</legend>
         <p class="font-mono text-xs text-heat mb-3">You can pick more than one. Pick all three and you get the $72 bundle price.</p>
         <div class="grid sm:grid-cols-3 gap-3">
@@ -1563,7 +2018,36 @@
       <label class="col-span-2 text-sm text-dim">Laptop model
         <input class="field mt-1" name="model" type="text" required placeholder="e.g. HP Pavilion 15, 2019">
       </label>
-      <fieldset class="col-span-2 border-2 border-smoke p-5 md:p-6 grid grid-cols-2 gap-x-6 gap-y-5">
+      <fieldset class="col-span-2 q-only">
+        <legend class="text-sm text-dim mb-3">What's happening? Pick anything that fits</legend>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Runs hot"><span>Runs hot</span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Loud fan"><span>Loud fan</span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Slow"><span>Slow</span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Shuts off by itself"><span>Shuts off</span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Dirty or sticky keys"><span>Dirty keys</span></label>
+          <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="sym" value="Not sure"><span>Not sure</span></label>
+        </div>
+      </fieldset>
+      <label class="col-span-2 md:col-span-1 text-sm text-dim q-only">How old is it?
+        <select class="field mt-1 bg-transparent" name="age">
+          <option value="">Not sure</option>
+          <option>Under 1 year</option>
+          <option>1 to 3 years</option>
+          <option>3 to 5 years</option>
+          <option>Over 5 years</option>
+        </select>
+      </label>
+      <label class="col-span-2 md:col-span-1 text-sm text-dim q-only">Which service are you curious about?
+        <select class="field mt-1 bg-transparent" name="curious">
+          <option value="">Not sure yet</option>
+          <option>Exterior clean</option>
+          <option>Internal clean</option>
+          <option>Thermal repaste</option>
+          <option>Full bundle</option>
+        </select>
+      </label>
+      <fieldset class="col-span-2 border-2 border-smoke p-5 md:p-6 grid grid-cols-2 gap-x-6 gap-y-5 book-only">
         <legend class="px-2 wide font-extrabold text-ink text-base">Where you live, or where you want me to pick it up</legend>
         <label class="col-span-2 md:col-span-1 text-sm text-dim">Area
           <select class="field mt-1 bg-transparent" name="area" required>
@@ -1580,13 +2064,13 @@
         </label>
         <p class="col-span-2 font-mono text-xs text-dim">Outside these areas? Email anyway and ask, but it probably won't work out.</p>
       </fieldset>
-      <label class="col-span-2 text-sm text-dim">What's going on
+      <label class="col-span-2 text-sm text-dim"><span id="msg-label">What's going on</span>
         <textarea class="field mt-1 resize-y min-h-[100px]" name="message" placeholder="Runs hot, fan is loud, slow..."></textarea>
       </label>
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
         <label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </div>
-      <label class="col-span-2 flex items-start gap-3 text-sm text-ink/85 cursor-pointer">
+      <label class="col-span-2 flex items-start gap-3 text-sm text-ink/85 cursor-pointer book-only">
         <input class="svc-box mt-0.5" type="checkbox" name="agree" id="agree">
         <span>I've read and agree to the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service</a> and <a href="#privacy" class="text-coolant underline underline-offset-4">Privacy Policy</a>.</span>
       </label>
@@ -2026,6 +2510,7 @@
   const form = $('#book-form');
   const formHome = document.createComment('book-form home');
   if (form) form.before(formHome);
+  window.FWFormHome = formHome;
   const sendBtn = () => $('#send-btn');
   const sync = () => {
     const air = root.dataset.theme === 'airplane';
@@ -2047,18 +2532,22 @@
     const pass = $('#air-pass');
     $('#air-bp-fields').innerHTML = [
       ['Passenger', info.reply ? (form && form.elements.name.value) || '' : ''],
-      ['Service', info.service], ['Fare', info.total + ', cash'], ['Laptop', info.laptop], ['From', info.area], ['Reply to', info.reply]
+      ...(info.kind === 'question'
+        ? [['Request', 'Question for the crew'], ['Topic', info.topic], ['Laptop', info.laptop], ['Reply to', info.reply]]
+        : [['Service', info.service], ['Fare', info.total + ', cash'], ['Laptop', info.laptop], ['From', info.area], ['Reply to', info.reply]])
     ].filter(r => r[1]).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
     const bc = $('#air-barcode'); bc.innerHTML = '';
     for (let i = 0; i < 38; i++) { const b = document.createElement('i'); b.style.width = (1 + Math.floor(Math.random() * 3)) + 'px'; bc.appendChild(b); }
     if (form) form.hidden = true;
     pass.hidden = false;
-    const cockpit = $('#air-cockpit');
-    window.scrollTo({ top: cockpit.getBoundingClientRect().top + window.scrollY - 70, behavior: 'auto' });
+    $('#air-jet').setAttribute('transform', 'translate(120 136)');
+    const passTop = pass.getBoundingClientRect().top + window.scrollY;
+    const runwayBottom = $('#air-takeoff').getBoundingClientRect().bottom + window.scrollY;
+    const y = Math.min(passTop - 76, runwayBottom - window.innerHeight + 24);
+    window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on';
     const contrail = $('#air-contrail'); const len = contrail.getTotalLength();
     if (still || !window.gsap) {
-      gsap && gsap.set('#air-jet', { x: 480, y: -110 });
       contrail.style.strokeDasharray = 'none';
       return;
     }
@@ -2077,7 +2566,7 @@
     if (!e.target.closest('#air-again')) return;
     $('#air-pass').hidden = true;
     if (form) form.hidden = false;
-    $('#air-jet').setAttribute('transform', 'translate(40 132)');
+    $('#air-jet').setAttribute('transform', 'translate(120 136)');
     if (window.FW) window.FW.scrollToId('air-cockpit');
   });
 
@@ -2116,6 +2605,256 @@
   }
 
   window.FWAir = { build, buildMotion, staticState, sync, onBooked };
+  sync();
+})();
+</script>
+<script>
+/* =====================================================================
+   INDUSTRIAL MODE runtime: Operator Station 07
+   ===================================================================== */
+(() => {
+  const root = document.documentElement;
+  const $  = (q, r = document) => r.querySelector(q);
+  const $$ = (q, r = document) => [...r.querySelectorAll(q)];
+  const NS = 'http://www.w3.org/2000/svg';
+  const txt = (el) => (el ? el.textContent.trim() : '');
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  /* ---------- analog gauge builder ---------- */
+  const gauge = (svg, { min, max, zones = [], label = '', major = 6, face = '#efe2c6' }) => {
+    const C = 100, R = 82, A0 = -135, A1 = 135;
+    const ang = (v) => A0 + (A1 - A0) * (Math.max(min, Math.min(max, v)) - min) / (max - min);
+    const pt = (a, r) => [C + r * Math.sin(a * Math.PI / 180), C - r * Math.cos(a * Math.PI / 180)];
+    const arc = (a0, a1, r) => { const [x0, y0] = pt(a0, r), [x1, y1] = pt(a1, r); return `M${x0} ${y0} A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1} ${y1}`; };
+    mk('circle', { cx: C, cy: C, r: 98, fill: '#6b4526', stroke: '#0d0906', 'stroke-width': 3 }, svg);
+    mk('circle', { cx: C, cy: C, r: 92, fill: '#c0874b' }, svg);
+    mk('circle', { cx: C, cy: C, r: 86, fill: face, stroke: '#3a2716', 'stroke-width': 2 }, svg);
+    zones.forEach(([a, b, col]) => mk('path', { d: arc(ang(a), ang(b), 70), stroke: col, 'stroke-width': 10, fill: 'none' }, svg));
+    for (let i = 0; i <= major * 5; i++) {
+      const a = A0 + (A1 - A0) * i / (major * 5), big = i % 5 === 0;
+      const [x0, y0] = pt(a, big ? 60 : 66), [x1, y1] = pt(a, 76);
+      mk('line', { x1: x0, y1: y0, x2: x1, y2: y1, stroke: '#2b2116', 'stroke-width': big ? 2.5 : 1.2 }, svg);
+      if (big) { const [tx, ty] = pt(a, 49); const t = mk('text', { x: tx, y: ty + 4, 'text-anchor': 'middle', 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 800, 'font-size': 13, fill: '#2b2116' }, svg); t.textContent = Math.round(min + (max - min) * i / (major * 5)); }
+    }
+    const lt = mk('text', { x: C, y: 158, 'text-anchor': 'middle', 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 900, 'font-size': 12, 'letter-spacing': 2, fill: '#6b4526' }, svg); lt.textContent = label;
+    const needle = mk('g', {}, svg);
+    mk('path', { d: `M${C - 3} ${C + 14} L${C} ${C - 74} L${C + 3} ${C + 14}Z`, fill: '#b3261e' }, needle);
+    mk('circle', { cx: C, cy: C, r: 9, fill: '#2b2116', stroke: '#c0874b', 'stroke-width': 3 }, svg);
+    mk('path', { d: 'M40 40 Q100 10 160 40', stroke: 'rgba(255,255,255,.35)', 'stroke-width': 6, fill: 'none' }, svg);
+    let wob = 0;
+    const set = (v) => needle.setAttribute('transform', `rotate(${(ang(v) + wob).toFixed(2)} ${C} ${C})`);
+    set.wobble = (w) => { wob = w; };
+    return set;
+  };
+
+  let built = false, heroSet, miniSet, reqSet;
+  let seed = 3; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+
+  const build = () => {
+    if (built) return; built = true;
+    $$('.ind-year').forEach(e => e.textContent = new Date().getFullYear());
+    const heroP = $$('#hero .hero-sub p');
+    $('#ind-hero-sub').textContent = txt(heroP[0]);
+    $('#ind-hero-area').textContent = 'Operating range: ' + txt(heroP[1]) + '.';
+
+    heroSet = gauge($('#ind-gauge'), { min: 40, max: 100, zones: [[55, 70, '#5ea896'], [85, 100, '#b3261e']], label: 'CORE °C' });
+    miniSet = gauge($('#ind-core-mini'), { min: 40, max: 100, zones: [[55, 70, '#5ea896'], [85, 100, '#b3261e']], label: '°C' });
+    reqSet  = gauge($('#ind-req-gauge'), { min: 0, max: 90, zones: [[70, 90, '#d69a4e']], label: 'USD', major: 6 });
+    heroSet(90); miniSet(90); reqSet(0);
+
+    // telegrams
+    const board = $('#ind-board');
+    const STAMPS = ['Priority', 'Urgent', 'Note', 'Good news'];
+    $$('#why .plate').forEach((pl, i) => board.appendChild(el('article', 'ind-telegram',
+      `<span class="pin"></span><div class="hdr"><span>HIGH COMMAND → STATION 07</span><span>No. 0${i + 1}</span></div>
+       <h3>${esc(txt($('h3', pl)))}</h3><p>${esc(txt($('p', pl)))}</p><span class="ind-stamp">${STAMPS[i] || 'Note'}</span>`)));
+
+    // manifest tags
+    const tags = $('#ind-tags');
+    $$('#grid-track .status-card').forEach((card, i) => {
+      const pk = $('[data-pick]', card); if (!pk) return;
+      const k = pk.dataset.pick, name = txt($('h3', card));
+      const price = $$('.display', card).map(txt).find(t => t.startsWith('$')) || '';
+      const desc = txt($('p:not(.text-heat)', card)), warn = txt($('p.text-heat', card));
+      const was = k === 'bundle' ? txt($('.line-through', card)) : '';
+      tags.appendChild(el('div', 'ind-tag-wrap',
+        `<span class="ind-hook"></span><div class="ind-tag${k === 'bundle' ? ' special' : ''}" style="--d:${(-i * 1.3).toFixed(1)}s">
+          ${k === 'bundle' ? '<span class="ind-stamp" style="position:absolute;top:10px;right:10px;font-size:12px">Best value</span>' : ''}
+          <h3>${esc(name)}</h3><div class="price">${esc(price)}${was ? ` <s style="font-size:22px;opacity:.6">${esc(was)}</s>` : ''}</div>
+          <p>${esc(desc)}</p>${warn ? `<p class="warn">${esc(warn)}</p>` : ''}
+          <button type="button" class="ind-btn sm" data-ind-pick="${k}">${k === 'bundle' ? 'Engage all' : 'Engage'}</button></div>`));
+    });
+    document.addEventListener('click', (e) => { const b = e.target.closest('[data-ind-pick]'); if (b && window.FW) window.FW.pick(b.dataset.indPick); });
+
+    // map table
+    const map = $('#ind-map');
+    mk('rect', { width: 600, height: 400, fill: '#1d2a22' }, map);
+    mk('path', { d: 'M318 0 L392 0 Q372 120 380 210 Q390 300 360 400 L292 400 Q318 300 306 210 Q298 110 318 0Z', fill: '#24413a' }, map);
+    mk('path', { d: 'M540 0 L600 0 L600 400 L520 400 Q548 270 530 160 Q526 70 540 0Z', fill: '#24413a' }, map);
+    const grid = mk('g', { stroke: 'rgba(214,154,78,.18)', 'stroke-width': 1 }, map);
+    for (let x = 100; x < 600; x += 100) mk('line', { x1: x, y1: 0, x2: x, y2: 400 }, grid);
+    for (let y = 80; y < 400; y += 80) mk('line', { x1: 0, y1: y, x2: 600, y2: y }, grid);
+    'ABCDEF'.split('').forEach((c, i) => { const t = mk('text', { x: i * 100 + 8, y: 16, 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 900, 'font-size': 14, fill: 'rgba(214,154,78,.6)' }, map); t.textContent = c; });
+    for (let r = 0; r < 5; r++) { const t = mk('text', { x: 590, y: r * 80 + 20, 'text-anchor': 'end', 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 900, 'font-size': 14, fill: 'rgba(214,154,78,.6)' }, map); t.textContent = r + 1; }
+    const cr = mk('g', { transform: 'translate(64 336)', stroke: '#d69a4e', 'stroke-width': 1.5, fill: 'none' }, map);
+    mk('circle', { r: 26 }, cr); mk('path', { d: 'M0 -34 L6 0 L0 34 L-6 0Z', fill: 'rgba(214,154,78,.35)' }, cr); mk('path', { d: 'M-34 0 L0 -5 L34 0 L0 5Z' }, cr);
+    const n = mk('text', { x: 0, y: -40, 'text-anchor': 'middle', 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 900, 'font-size': 14, fill: '#d69a4e', stroke: 'none' }, cr); n.textContent = 'N';
+    const PTS = { 'Hoboken': [262, 194], 'Jersey City': [214, 300], 'Union City': [196, 90], 'Midtown Manhattan': [448, 124], 'Downtown Manhattan': [420, 330] };
+    const names = $$('#area .plate .display').map(txt).filter(x => PTS[x]);
+    const lines = mk('g', { stroke: '#e7a95f', 'stroke-width': 2.5, fill: 'none', 'stroke-dasharray': '8 6' }, map);
+    const pins = mk('g', {}, map);
+    const ref = (x, y) => 'ABCDEF'[Math.floor(x / 100)] + (Math.floor(y / 80) + 1);
+    names.forEach(nm => {
+      const [x, y] = PTS[nm], home = nm === 'Hoboken';
+      if (!home) mk('line', { class: 'ind-route', x1: PTS.Hoboken[0], y1: PTS.Hoboken[1], x2: x, y2: y }, lines);
+      mk('circle', { cx: x, cy: y + 3, r: home ? 12 : 8, fill: 'rgba(0,0,0,.5)' }, pins);
+      mk('circle', { cx: x, cy: y, r: home ? 12 : 8, fill: home ? '#b3261e' : '#d69a4e', stroke: '#0d0906', 'stroke-width': 2.5 }, pins);
+      const t = mk('text', { x: x + 16, y: y - 2, 'font-family': 'Big Shoulders Display, sans-serif', 'font-weight': 900, 'font-size': home ? 20 : 16, fill: '#efe2c6', 'letter-spacing': 1 }, pins);
+      t.textContent = nm.toUpperCase().replace(' MANHATTAN', '');
+      const t2 = mk('text', { x: x + 16, y: y + 14, 'font-family': 'JetBrains Mono, monospace', 'font-size': 11, fill: '#b89a6c' }, pins);
+      t2.textContent = (nm.includes('Manhattan') ? 'MANHATTAN · ' : '') + 'GRID ' + ref(x, y) + (home ? ' · BASE' : '');
+    });
+
+    // procedure
+    const proc = $('#ind-proc');
+    $$('#how li').forEach((li, i) => proc.appendChild(el('div', 'ind-panel ind-step',
+      `<span class="n">0${i + 1}</span><div class="ind-switch" aria-hidden="true"><i></i></div><h3>${esc(txt($('h3', li)))}</h3><p>${esc(txt($('p', li)))}</p>`)));
+
+    // dossier
+    $('#ind-file-intro').textContent = txt($$('#about h2 ~ p')[0]);
+    const creds = $('#ind-creds');
+    $$('#about .plate').forEach(pl => {
+      const h = $('h3', pl); if (!h) return;
+      if (h.classList.contains('text-heat')) creds.appendChild(el('div', 'ind-contraband', `<h4>Contraband: not accepted</h4><p class="ind-p" style="font-size:15px">${esc(txt($('p', pl)))}</p>`));
+      else creds.appendChild(el('div', 'ind-panel ind-cred', `<h4>${esc(txt(h))}</h4><p>${esc(txt($('p', pl)))}</p>`));
+    });
+
+    // regulations
+    $('#ind-regs-intro').textContent = txt($('#terms h2 + p'));
+    const regs = $('#ind-regs-list');
+    const addReg = (i, title, html) => { const d = el('details', 'ind-reg', `<summary><span class="sec">REG. §${i}</span><h3>${esc(title)}</h3><span class="chev" aria-hidden="true">+</span></summary><div class="ind-reg-body"></div>`); $('.ind-reg-body', d).innerHTML = html; regs.appendChild(d); };
+    $$('#terms details.notice').forEach((d, i) => addReg(i + 1, txt($('summary .wide', d)).replace(/^\d+\.\s*/, ''), ($('summary + div', d) || {}).innerHTML || ''));
+    const priv = $('#privacy'); if (priv) addReg(regs.children.length + 1, 'Privacy Policy', ($('h3 + div', priv) || priv).innerHTML);
+    $('#ind-brief').innerHTML = $$('#terms .plate.bolted .grid p').map(p => `<p>${p.innerHTML}</p>`).join('');
+
+    // requisition gauge follows the running total
+    const tot = $('#svc-total');
+    const upd = () => { const v = parseInt((tot.textContent || '0').replace(/\D/g, ''), 10) || 0; reqSet(v); $('#ind-req-total').textContent = '$' + v; };
+    new MutationObserver(upd).observe(tot, { childList: true, characterData: true, subtree: true });
+    upd();
+
+    // pulling the red lever
+    const form = $('#book-form');
+    if (form) form.addEventListener('submit', () => {
+      if (root.dataset.theme !== 'industrial') return;
+      const b = $('#send-btn'); b.classList.add('pulled'); setTimeout(() => b.classList.remove('pulled'), 650);
+    }, true);
+  };
+
+  /* ---------- core temperature follows the whole page ---------- */
+  const setCore = (p) => {
+    const t = 90 - 26 * p, v = Math.round(t);
+    heroSet(t); miniSet(t);
+    $('#ind-nx1').textContent = String(v)[0]; $('#ind-nx2').textContent = String(v)[1];
+    $('#ind-lamp-hot').classList.toggle('on', t > 75);
+    $('#ind-lamp-ok').classList.toggle('on', t <= 70);
+  };
+
+  const buildMotion = () => {
+    build();
+    setCore(0);
+    ScrollTrigger.create({ trigger: '#ind-main', start: 'top top', end: 'bottom bottom', onUpdate: s => setCore(s.progress) });
+    // needles tremble under pressure
+    const wob = () => { const t = performance.now() / 1000; heroSet.wobble(Math.sin(t * 9) * 1.1 + Math.sin(t * 23) * .5); miniSet.wobble(Math.sin(t * 11) * 1); };
+    gsap.ticker.add(wob);
+    // telegrams get pinned up
+    gsap.utils.toArray('#ind-board .ind-telegram').forEach((t, i) => gsap.from(t, { y: -40, autoAlpha: 0, rotation: i % 2 ? 6 : -6, duration: .6, ease: 'back.out(1.6)', scrollTrigger: { trigger: t, start: 'top 85%' } }));
+    // routes get measured out on the map
+    gsap.utils.toArray('#ind-map .ind-route').forEach((l, i) => {
+      const len = Math.hypot(l.x2.baseVal.value - l.x1.baseVal.value, l.y2.baseVal.value - l.y1.baseVal.value);
+      gsap.fromTo(l, { strokeDasharray: `${len} ${len}`, strokeDashoffset: len }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '#ind-map', start: 'top 80%', end: 'center 45%', scrub: .5 }, onComplete: () => l.setAttribute('stroke-dasharray', '8 6') });
+    });
+    // start-up procedure: switches flip on in order
+    gsap.utils.toArray('#ind-proc .ind-step').forEach((st, i) => ScrollTrigger.create({ trigger: '#ind-proc', start: `top ${75 - i * 10}%`, onEnter: () => st.classList.add('on'), onLeaveBack: () => st.classList.remove('on') }));
+    return () => { gsap.ticker.remove(wob); };
+  };
+
+  const staticState = () => {
+    build();
+    setCore(1); heroSet.wobble(0); miniSet.wobble(0); setCore(1);
+    $$('#ind-proc .ind-step').forEach(s => s.classList.add('on'));
+  };
+
+  /* ---------- the booking form lives in the console in this mode ---------- */
+  const form = $('#book-form');
+  const sync = () => {
+    const ind = root.dataset.theme === 'industrial';
+    const slot = $('#ind-form-slot');
+    if (ind) {
+      build();
+      if (form && form.parentNode !== slot) slot.appendChild(form);
+      const b = $('#send-btn'); if (b) { b.dataset.label = 'Final shot, lad. Now or never.'; if (!b.disabled) b.textContent = 'Final shot, lad. Now or never.'; }
+    } else if (form && form.parentNode === slot) {
+      const home = window.FWFormHome; if (home && home.parentNode) home.after(form);
+      const b = $('#send-btn'); if (b) { delete b.dataset.label; if (!b.disabled) b.textContent = 'Send my request'; }
+      $('#ind-dispatch').hidden = true; form.hidden = false;
+    }
+  };
+
+  /* ---------- booked: pneumatic tube + typed receipt + stamp ---------- */
+  let typing = 0;
+  const onBooked = (info) => {
+    const disp = $('#ind-dispatch'), pre = $('#ind-receipt-text'), stamp = $('#ind-dispatch-stamp');
+    const who = (form && form.elements.name.value.trim()) || 'Customer';
+    const no = String(1000 + Math.floor(Math.random() * 9000));
+    const text = info.kind === 'question' ? [
+      `INQUIRY No. ${no}`, '',
+      `FROM ....... ${who}`, `TO ......... Operator, Station 07`, '',
+      `TOPIC ...... ${info.topic}`, `LAPTOP ..... ${info.laptop}`, `REPLY TO ... ${info.reply}`, '',
+      `STATUS: Received. Answer to follow`, `by return telegram.`
+    ].join('\n') : [
+      `REQUISITION No. ${no}`, '',
+      `FROM ....... ${who}`, `TO ......... Operator, Station 07`, '',
+      `SERVICE .... ${info.service}`, `TOTAL ...... ${info.total}, cash at drop-off`,
+      `LAPTOP ..... ${info.laptop}`, `AREA ....... ${info.area}`, `REPLY TO ... ${info.reply}`, '',
+      `STATUS: Received. Await confirmation`, `before dropping anything off.`
+    ].join('\n');
+    if (form) form.hidden = true;
+    disp.hidden = false;
+    const y = disp.getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+    clearInterval(typing);
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on' || !window.gsap;
+    if (still) { pre.textContent = text; stamp.style.opacity = .85; return; }
+    pre.innerHTML = ''; gsap.set(stamp, { opacity: 0 });
+    gsap.timeline()
+      .set('#ind-capsule', { attr: { transform: 'translate(0 250)' } })
+      .to('#ind-puffs', { opacity: .9, duration: .12 })
+      .to('#ind-capsule', { attr: { transform: 'translate(0 -80)' }, duration: .7, ease: 'power3.in' }, '<')
+      .to('#ind-puffs', { opacity: 0, duration: .9 }, '>-.3')
+      .add(() => {
+        let i = 0;
+        typing = setInterval(() => {
+          i += 2;
+          pre.innerHTML = esc(text.slice(0, i)) + '<span class="ind-caret"></span>';
+          if (i >= text.length) {
+            clearInterval(typing); pre.textContent = text;
+            gsap.fromTo(stamp, { opacity: 0, scale: 2.4, rotation: -20 }, { opacity: .85, scale: 1, rotation: -8, duration: .3, ease: 'power4.in' });
+          }
+        }, 16);
+      });
+  };
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#ind-again')) return;
+    clearInterval(typing);
+    $('#ind-dispatch').hidden = true;
+    if (form) form.hidden = false;
+    if (window.FW) window.FW.scrollToId('ind-console');
+  });
+
+  window.FWInd = { build, buildMotion, staticState, sync, onBooked };
   sync();
 })();
 </script>
@@ -2170,7 +2909,7 @@
   const scrollToId = (id, smooth = true) => {
     const target = document.getElementById(id);
     if (!target) return;
-    const bar = root.dataset.theme === 'airplane' ? document.getElementById('air-top') : navEl;
+    const bar = root.dataset.theme === 'airplane' ? document.getElementById('air-top') : root.dataset.theme === 'industrial' ? document.getElementById('ind-top') : navEl;
     const y = id === 'top' ? 0 : target.getBoundingClientRect().top + window.scrollY - (bar ? bar.offsetHeight : 0) - 6;
     window.scrollTo({ top: Math.max(0, y), behavior: smooth && !motionOff() ? 'smooth' : 'auto' });
     if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
@@ -2233,14 +2972,46 @@
   boxes.forEach(b => b.addEventListener('change', renderTotal));
 
   const pick = (k) => {
+    if (window.FW && window.FW.setKind) window.FW.setKind('book');
     if (k === 'bundle') boxes.forEach(b => b.checked = true);
     else boxes.find(b => b.value === k).checked = true;
     renderTotal();
-    scrollToId(root.dataset.theme === 'airplane' ? 'air-cockpit' : 'book');
+    scrollToId(root.dataset.theme === 'airplane' ? 'air-cockpit' : root.dataset.theme === 'industrial' ? 'ind-console' : 'book');
   };
   document.querySelectorAll('.svc-pick').forEach(btn => btn.addEventListener('click', () => pick(btn.dataset.pick)));
   window.FW = Object.assign(window.FW || {}, { pick, scrollToId });
   renderTotal();
+
+  /* ---------- Book / Ask switch ---------- */
+  const formEl = document.getElementById('book-form');
+  const kindSwitch = document.getElementById('kind-switch');
+  const isQuestion = () => formEl.dataset.kind === 'question';
+  const LABELS = {
+    train:      ['Send my request', 'Send my question'],
+    airplane:   ['Request clearance', 'Call the flight attendant'],
+    industrial: ['Final shot, lad. Now or never.', 'Send it up the tube']
+  };
+  const refreshLabel = () => {
+    const b = document.getElementById('send-btn'); if (!b) return;
+    const l = (LABELS[root.dataset.theme] || LABELS.train)[isQuestion() ? 1 : 0];
+    b.dataset.label = l; if (!b.disabled) b.textContent = l;
+  };
+  const setKind = (k) => {
+    formEl.dataset.kind = k;
+    const q = k === 'question';
+    kindSwitch.setAttribute('aria-checked', String(q));
+    ['area', 'address'].forEach(n => formEl.elements[n].required = !q);
+    formEl.elements.model.required = !q;
+    document.getElementById('msg-label').textContent = q ? 'Your question' : "What's going on";
+    formEl.elements.message.placeholder = q ? 'Ask anything: will this fix my fan noise? Can you work on my model?' : 'Runs hot, fan is loud, slow...';
+    formEl.elements.model.placeholder = q ? 'e.g. HP Pavilion 15, 2019 (optional)' : 'e.g. HP Pavilion 15, 2019';
+    document.getElementById('kind-hint').textContent = q ? "Not sure yet? Ask first. No commitment, no payment." : 'Ready to go: pick services and send your details.';
+    document.getElementById('form-status').textContent = '';
+    refreshLabel();
+  };
+  kindSwitch.addEventListener('click', () => setKind(isQuestion() ? 'book' : 'question'));
+  window.addEventListener('fw:theme', () => setTimeout(refreshLabel, 0));
+  window.FW = Object.assign(window.FW || {}, { setKind });
 
   /* ---------- Booking form: hands off to Gmail compose ---------- */
   const BOOKING_EMAIL = 'rey.sahani03@gmail.com';
@@ -2255,8 +3026,13 @@
   const bookedPanel = document.getElementById('booked-panel');
   const showBooked = (info) => {
     if (root.dataset.theme === 'airplane' && window.FWAir) { window.FWAir.onBooked(info); return; }
+    if (root.dataset.theme === 'industrial' && window.FWInd) { window.FWInd.onBooked(info); return; }
     const sum = document.getElementById('booked-summary');
-    const rows = [['Service', info.service], ['Total', info.total + ', cash at drop-off'], ['Laptop', info.laptop], ['Area', info.area], ['Reply to', info.reply]];
+    const isQ = info.kind === 'question';
+    document.getElementById('booked-stamp').textContent = isQ ? 'SENT' : 'BOOKED';
+    const h3 = document.querySelector('#booked-panel h3'); if (h3) h3.textContent = isQ ? 'Question received.' : 'Request received.';
+    const rows = isQ ? [['Topic', info.topic], ['Laptop', info.laptop], ['Reply to', info.reply]]
+                     : [['Service', info.service], ['Total', info.total + ', cash at drop-off'], ['Laptop', info.laptop], ['Area', info.area], ['Reply to', info.reply]];
     sum.innerHTML = '';
     rows.forEach(([k, v]) => {
       const dt = document.createElement('dt'); dt.className = 'text-dim'; dt.textContent = k;
@@ -2293,8 +3069,62 @@
     if (location.hash === '#test-booked') setTimeout(() => showBooked({ service: 'Full bundle', total: '$72', laptop: 'HP Pavilion 15', area: 'Hoboken', reply: 'you@example.com' }), 400);
   });
 
+  // shared sender: Apps Script first, Gmail fallback
+  const deliver = async (payload, subject, body, okMsg, info) => {
+    const q = (obj) => Object.entries(obj).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+    const gmailUrl  = `https://mail.google.com/mail/?${q({ view: 'cm', fs: '1', to: BOOKING_EMAIL, su: subject, body })}`;
+    const mailtoUrl = `mailto:${BOOKING_EMAIL}?${q({ subject, body })}`;
+    const fallbackHtml = `<a class="underline" href="${gmailUrl}" target="_blank" rel="noopener">Send it through Gmail</a> or <a class="underline" href="${mailtoUrl}">your mail app</a> instead.`;
+    if (!FORM_ENDPOINT) {
+      const tab = window.open(gmailUrl, '_blank'); if (tab) tab.opener = null;
+      status.style.color = '#6fd3ff';
+      status.innerHTML = tab ? 'Gmail opened with your message filled in. Hit send there.' : `Pop-up blocked. ${fallbackHtml}`;
+      return;
+    }
+    const btn = document.getElementById('send-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    status.style.color = ''; status.textContent = '';
+    try {
+      const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, subject, body, website: form.elements.website.value }) });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || 'send failed');
+      showBooked(info);
+      form.reset(); renderTotal();
+      status.style.color = '#6fd3ff'; status.textContent = okMsg;
+    } catch (err) {
+      status.style.color = '#f59e0b'; status.innerHTML = `Couldn't send it. ${fallbackHtml}`;
+    } finally {
+      btn.disabled = false; btn.textContent = btn.dataset.label || 'Send my request';
+    }
+  };
+
+  // question mode: different email, nothing to pay, nothing to agree to yet
+  const sendQuestion = () => {
+    const f = form.elements;
+    const name = f.name.value.trim(), email = f.email.value.trim();
+    if (!name) return fail('Add your name.', f.name);
+    if (!email || !f.email.checkValidity()) return fail('Enter a valid email address.', f.email);
+    const model = f.model.value.trim(), msg = f.message.value.trim();
+    const syms = [...form.querySelectorAll('input[name="sym"]:checked')].map(b => b.value);
+    if (!msg && !syms.length) return fail('Pick what is happening or type your question.', f.message);
+    const age = f.age.value || 'Not sure', curious = f.curious.value || 'Not sure yet';
+    const subject = `FW Tech question: ${model || 'my laptop'}`;
+    const body = [
+      'Hi FW Tech,', '', 'I have a question before booking anything.', '',
+      `Name: ${name}`, `Email: ${email}`, `Laptop model: ${model || 'Not given'}`, `How old: ${age}`, '',
+      "What's happening:", syms.length ? syms.map(x => '  - ' + x).join('\n') : '  (nothing picked)', '',
+      `Service I'm curious about: ${curious}`, '',
+      'My question:', msg || '(no extra details)', '',
+      'Thanks,', name
+    ].join('\n');
+    const payload = { name, email, model: model || 'Not given', message: msg, service: 'Question', total: 0, area: 'n/a', address: 'n/a' };
+    return deliver(payload, subject, body, "Question sent. I'll reply to your email soon.",
+      { kind: 'question', service: 'Question', topic: syms.join(', ') || curious, total: '$0', laptop: model || 'Not given', area: 'n/a', reply: email });
+  };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (isQuestion()) return sendQuestion();
     const o = getOrder();
     if (!o.picked.length) return fail('Pick at least one service.', boxes[0]);
     const missing = [...form.querySelectorAll('[required]')].find(f => !f.value.trim() || !f.checkValidity());
@@ -2515,11 +3345,11 @@
   const buildMotion = (first) => {
     if (mm) mm.revert();
     mm = gsap.matchMedia();
-    const air = root.dataset.theme === 'airplane' && window.FWAir;
-    if (air) {
-      if (calmOn()) mm.add('all', () => { window.FWAir.staticState(); });
+    const skin = root.dataset.theme === 'airplane' ? window.FWAir : root.dataset.theme === 'industrial' ? window.FWInd : null;
+    if (skin) {
+      if (calmOn()) mm.add('all', () => { skin.staticState(); });
       else mm.add({ ok: '(prefers-reduced-motion: no-preference)', reduce: '(prefers-reduced-motion: reduce)' },
-        (ctx) => ctx.conditions.reduce ? window.FWAir.staticState() : window.FWAir.buildMotion());
+        (ctx) => ctx.conditions.reduce ? skin.staticState() : skin.buildMotion());
       ScrollTrigger.refresh();
       return;
     }
@@ -2567,6 +3397,7 @@
   });
   window.addEventListener('fw:theme', () => {
     if (window.FWAir) window.FWAir.sync();
+    if (window.FWInd) window.FWInd.sync();
     if (window.FWBigBoy) window.FWBigBoy.stop();
     buildMotion(false);
     renderTemp();
