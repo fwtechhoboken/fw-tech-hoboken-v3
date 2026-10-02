@@ -996,12 +996,53 @@
   #ind-foot { padding-top: 34px; padding-bottom: 110px; }
   #ind-foot a { color: #e7a95f; }
 
+
+  /* First-visit "3 modes" tip */
+  .mode-tip[hidden] { display: none !important; }
+  .mode-tip { position: fixed; left: 16px; bottom: 16px; z-index: 95; width: min(380px, calc(100vw - 32px)); padding: 22px 22px 18px;
+    background: rgb(var(--slab)); color: rgb(var(--ink)); border: 3px solid rgb(var(--brass)); box-shadow: 0 30px 60px -20px rgba(0,0,0,.75), 0 0 0 6px rgb(var(--brass) / .12);
+    transform: translateY(30px); opacity: 0; transition: transform .45s cubic-bezier(.2,1.4,.4,1), opacity .3s ease; }
+  .mode-tip.show { transform: translateY(0); opacity: 1; }
+  .mode-tip-x { position: absolute; top: 8px; right: 10px; width: 32px; height: 32px; background: none; border: 0; color: rgb(var(--dim)); font-size: 24px; cursor: pointer; }
+  .mode-tip-kicker { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgb(var(--brass)); }
+  .mode-tip-title { margin: 6px 0 0; font-weight: 900; font-stretch: 112%; font-size: 1.45rem; line-height: 1.1; }
+  .mode-tip-p { margin: 8px 0 0; color: rgb(var(--dim)); line-height: 1.5; font-size: .95rem; }
+  .mode-tip-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .tip-mode { display: grid; justify-items: center; gap: 6px; padding: 12px 6px; cursor: pointer; background: rgb(var(--void)); color: rgb(var(--ink));
+    border: 2px solid rgb(var(--smoke)); font: inherit; font-weight: 800; font-size: .85rem; transition: border-color .2s ease, transform .15s ease, background .2s ease; }
+  .tip-mode svg { width: 26px; height: 26px; }
+  .tip-mode:hover { border-color: rgb(var(--brass)); transform: translateY(-2px); }
+  .tip-mode[aria-pressed="true"] { border-color: rgb(var(--brass)); background: rgb(var(--brass) / .12); }
+  .mode-tip-foot { margin: 14px 0 0; font-size: .8rem; color: rgb(var(--dim)); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .mode-tip-ok { background: rgb(var(--brass)); color: rgb(var(--void)); border: 0; padding: 8px 14px; font: inherit; font-weight: 800; cursor: pointer; }
+  html[data-theme="airplane"] .mode-tip { border-radius: 14px; border-width: 2px; }
+  html[data-theme="airplane"] .tip-mode, html[data-theme="airplane"] .mode-tip-ok { border-radius: 8px; }
+  html[data-theme="industrial"] .mode-tip { background: linear-gradient(180deg, #3a2c21, #241a13); border-color: #0d0906; box-shadow: 0 30px 60px -20px rgba(0,0,0,.85), 0 0 0 4px #d69a4e; }
+  /* the mode switch pulses until the visitor has seen the tip */
+  @keyframes modeHint { 0%,100% { box-shadow: 0 0 0 0 rgb(var(--brass) / .0); } 50% { box-shadow: 0 0 0 6px rgb(var(--brass) / .45); } }
+  html.tip-pending .mode-group:not(.mode-tip-row) { animation: modeHint 1.6s ease-in-out infinite; }
+  @media (max-width: 640px) { .mode-tip { left: 10px; right: 10px; bottom: 10px; width: auto; } }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
 <body class="overflow-x-hidden">
+
+<!-- First-visit tip: tells people the site has three modes -->
+<aside id="mode-tip" class="mode-tip" role="dialog" aria-labelledby="mode-tip-title" hidden>
+  <button type="button" class="mode-tip-x" aria-label="Close">×</button>
+  <div class="mode-tip-kicker">Psst</div>
+  <h2 id="mode-tip-title" class="mode-tip-title">This site has 3 modes.</h2>
+  <p class="mode-tip-p">Same info, totally different worlds. Ride the train, take a flight, or run the factory.</p>
+  <div class="mode-tip-row">
+    <button type="button" class="tip-mode" data-mode="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg><span>Train</span></button>
+    <button type="button" class="tip-mode" data-mode="airplane"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><span>Airplane</span></button>
+    <button type="button" class="tip-mode" data-mode="industrial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Industrial</span></button>
+  </div>
+  <p class="mode-tip-foot">Switch anytime from the top bar or the menu. <button type="button" class="mode-tip-ok">Got it</button></p>
+</aside>
 
 <!-- =====================================================================
      INDUSTRIAL MODE: Operator Station 07. Same info, copied at runtime
@@ -3232,6 +3273,27 @@
   document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
   document.querySelectorAll('.calm-btn').forEach(b => b.addEventListener('click', () => setCalm(!calmOn())));
   syncModeUI();
+
+  /* ---------- First-visit tip: "this site has 3 modes" ---------- */
+  const tip = document.getElementById('mode-tip');
+  let tipSeen = false;
+  try { tipSeen = localStorage.getItem('fw-tip') === 'seen'; } catch (e) {}
+  const closeTip = () => {
+    try { localStorage.setItem('fw-tip', 'seen'); } catch (e) {}
+    root.classList.remove('tip-pending');
+    if (!tip || tip.hidden) return;
+    tip.classList.remove('show');
+    setTimeout(() => { tip.hidden = true; }, 350);
+  };
+  if (tip && !tipSeen && location.hash !== '#test-booked') {
+    root.classList.add('tip-pending');
+    setTimeout(() => { tip.hidden = false; requestAnimationFrame(() => tip.classList.add('show')); }, 2600);
+    tip.querySelectorAll('.mode-tip-x, .mode-tip-ok').forEach(b => b.addEventListener('click', closeTip));
+    tip.querySelectorAll('.tip-mode').forEach(b => b.addEventListener('click', () => setTimeout(closeTip, 900)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !tip.hidden) closeTip(); });
+  }
+  // switching modes any other way also counts as "seen"
+  document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.addEventListener('click', closeTip));
   const SVG = 'http://www.w3.org/2000/svg';
 
   /* ---------- Mobile menu ---------- */
