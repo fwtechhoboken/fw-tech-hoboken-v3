@@ -1026,9 +1026,309 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; scroll-behavior: auto !important; }
   }
+
+  /* ======================= Per-mode switchers ======================= */
+  html.tip-pending .mode-switch { animation: modeHint 1.6s ease-in-out infinite; }
+
+  /* Train: a rail line, you are at the lit station */
+  .tr-route { position: relative; display: flex; align-items: flex-start; }
+  .tr-route::before { content: ''; position: absolute; left: 30px; right: 30px; top: 10px; height: 6px;
+    border-top: 1px solid rgb(var(--smoke)); border-bottom: 1px solid rgb(var(--smoke));
+    background: repeating-linear-gradient(90deg, rgb(var(--smoke)) 0 2px, transparent 2px 7px); }
+  .tr-route button { position: relative; display: grid; justify-items: center; gap: 5px; min-width: 60px; padding: 5px 6px 2px;
+    background: none; border: 0; cursor: pointer; color: rgb(var(--dim)); font: 600 10.5px/1 'JetBrains Mono', monospace; letter-spacing: .02em; transition: color .2s ease; }
+  .tr-route button i { width: 12px; height: 12px; background: rgb(var(--void)); border: 2px solid rgb(var(--dim)); transform: rotate(45deg); transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .tr-route button:hover { color: rgb(var(--ink)); }
+  .tr-route button:hover i { border-color: rgb(var(--ink)); }
+  .tr-route button[aria-pressed="true"] { color: rgb(var(--brass)); }
+  .tr-route button[aria-pressed="true"] i { background: rgb(var(--brass)); border-color: rgb(var(--brass)); box-shadow: 0 0 0 4px rgb(var(--brass) / .18), 0 0 14px rgb(var(--brass) / .7); }
+  .tr-route button:focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 2px; }
+  .tr-route-lg { width: 100%; max-width: 360px; justify-content: space-between; }
+  .tr-route-lg::before { left: 40px; right: 40px; top: 15px; }
+  .tr-route-lg button { min-width: 80px; gap: 9px; font-size: 13px; padding-top: 8px; }
+  .tr-route-lg button i { width: 15px; height: 15px; }
+
+  /* Airplane: connecting services board */
+  .air-conn { position: relative; }
+  .air-conn-btn { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-radius: 8px; cursor: pointer;
+    background: #fff; color: rgb(var(--brass)); border: 1.5px solid rgb(var(--smoke)); font: 700 14px 'Barlow', Arial, sans-serif; transition: border-color .2s ease, background-color .2s ease; }
+  .air-conn-btn svg { width: 17px; height: 17px; }
+  .air-conn-btn:hover, .air-conn-btn[aria-expanded="true"] { border-color: rgb(var(--brass)); background: rgb(var(--brass) / .05); }
+  .air-conn-btn:focus-visible, .air-conn-row:focus-visible { outline: 2px solid rgb(var(--coolant)); outline-offset: 2px; }
+  .air-conn-panel { position: absolute; right: 0; top: calc(100% + 12px); width: 320px; z-index: 80; background: #fff; border-radius: 12px; overflow: hidden;
+    border: 1px solid rgb(var(--line)); box-shadow: 0 24px 50px -18px rgba(11,26,51,.45); }
+  .air-conn-panel[hidden] { display: none; }
+  .air-conn-head { display: flex; justify-content: space-between; padding: 10px 14px; background: rgb(var(--brass)); color: rgba(255,255,255,.88);
+    font: 700 11px 'Barlow Semi Condensed', Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+  .air-conn-row { width: 100%; display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 12px; padding: 13px 14px; text-align: left; cursor: pointer;
+    background: none; border: 0; border-top: 1px solid rgb(var(--line)); color: rgb(var(--ink)); font-family: 'Barlow', Arial, sans-serif; }
+  .air-conn-head + .air-conn-row { border-top: 0; }
+  .air-conn-row > svg { width: 20px; height: 20px; color: rgb(var(--dim)); }
+  .air-conn-row .d b { display: block; font: 800 17px 'Barlow Semi Condensed', Arial, sans-serif; }
+  .air-conn-row .d small { display: block; margin-top: 2px; font-size: 13px; color: rgb(var(--dim)); }
+  .air-conn-row em { font: 700 11px 'JetBrains Mono', monospace; font-style: normal; letter-spacing: .06em; padding: 5px 8px; border-radius: 6px; background: rgb(var(--void)); color: rgb(var(--brass)); }
+  .air-conn-row .now { display: none; }
+  .air-conn-row[aria-pressed="true"] { background: rgb(var(--coolant) / .06); cursor: default; }
+  .air-conn-row[aria-pressed="true"] > svg { color: rgb(var(--coolant)); }
+  .air-conn-row[aria-pressed="true"] .now { display: inline; }
+  .air-conn-row[aria-pressed="true"] .go { display: none; }
+  .air-conn-row[aria-pressed="true"] em { background: rgb(var(--coolant)); color: #fff; }
+  .air-conn-row:not([aria-pressed="true"]):hover { background: rgb(var(--void)); }
+  @media (max-width: 520px) {
+    .air-conn-btn { padding: 0 9px; height: 30px; }
+    .air-conn-btn .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .air-conn-panel { position: fixed; left: 12px; right: 12px; top: calc(60px + env(safe-area-inset-top, 0px)); width: auto; }
+  }
+
+  /* Industrial: a three-position selector lever */
+  .ind-sel { position: relative; display: grid; grid-template-columns: repeat(3, 54px); height: 34px; padding: 0;
+    background: linear-gradient(180deg, #0d0906, #241a13); border: 2px solid #0d0906; box-shadow: inset 0 2px 6px rgba(0,0,0,.8), 0 1px 0 rgba(255,220,170,.12); }
+  .ind-sel button { position: relative; z-index: 2; background: none; border: 0; cursor: pointer; color: #8a7458;
+    font: 900 12px/1 'Big Shoulders Display', sans-serif; letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease; }
+  .ind-sel button + button { box-shadow: inset 1px 0 0 rgba(0,0,0,.6), inset 2px 0 0 rgba(255,220,170,.06); }
+  .ind-sel button:hover { color: #efe2c6; }
+  .ind-sel button[aria-pressed="true"] { color: #1a120b; }
+  .ind-sel button:focus-visible { outline: 2px solid #e0a45c; outline-offset: 2px; }
+  .ind-sel-lever { position: absolute; z-index: 1; left: 0; top: 0; bottom: 0; width: calc(100% / 3);
+    background: linear-gradient(180deg, #f0b56c, #b06d2c); border: 1px solid #0d0906;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(0,0,0,.25), 0 3px 0 #0d0906;
+    transition: transform .42s cubic-bezier(.34,1.56,.64,1); }
+  .ind-sel-lever::after { content: ''; position: absolute; left: 50%; top: -6px; width: 6px; height: 8px; margin-left: -3px; background: #d69a4e; border: 1px solid #0d0906; }
+  .ind-sel:has([data-mode="airplane"][aria-pressed="true"]) .ind-sel-lever { transform: translateX(100%); }
+  .ind-sel:has([data-mode="industrial"][aria-pressed="true"]) .ind-sel-lever { transform: translateX(200%); }
+  @media (max-width: 520px) { .ind-sel { grid-template-columns: repeat(3, 44px); height: 30px; } .ind-sel button { font-size: 11px; letter-spacing: .04em; } }
+
+
+  /* ===================== Train: steam locomotive ===================== */
+  html[data-theme="train"] { --rv: radial-gradient(circle at 38% 32%, #b0b3b9 0 1.1px, #66696f 2.4px, #2a2b2e 4.2px, rgba(0,0,0,.7) 5px, transparent 5.8px); }
+  /* heavy lap-seam rivets on every bolted plate */
+  html[data-theme="train"] main#top .bolted::before {
+    --rvb: radial-gradient(circle at 38% 32%, #b0b3b9 0 1.6px, #66696f 3.4px, #2a2b2e 6px, rgba(0,0,0,.7) 7px, transparent 8px);
+    background: var(--rvb) left 7px top 7px / 16px 16px no-repeat, var(--rvb) right 7px top 7px / 16px 16px no-repeat,
+                var(--rvb) left 7px bottom 7px / 16px 16px no-repeat, var(--rvb) right 7px bottom 7px / 16px 16px no-repeat;
+  }
+  html[data-theme="train"] main#top .plate, html[data-theme="train"] main#top .status-card {
+    border: 4px solid #2b2d31; outline: 1px solid #000; outline-offset: -1px;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.06), inset 0 -4px 0 rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.6), 0 22px 44px -22px rgba(0,0,0,.95);
+  }
+  html[data-theme="train"] main#top .rivet-row { height: 14px; background: var(--rv) left 0 center / 48px 14px repeat-x; }
+
+  /* boiler bands become live steam lines: flanged pipe, dome rivets, venting valves */
+  html[data-theme="train"] main#top .boiler-band, html[data-theme="train"] body > footer .boiler-band {
+    height: 28px; overflow: visible; z-index: 3;
+    background: linear-gradient(180deg, #5b5e63 0%, #2c2e32 22%, #16171a 60%, #060607 100%);
+    border-top: 1px solid #6e7176; border-bottom: 2px solid #000; box-shadow: 0 6px 14px rgba(0,0,0,.6);
+  }
+  html[data-theme="train"] main#top .boiler-band::before, html[data-theme="train"] body > footer .boiler-band::before {
+    content: ''; position: absolute; left: 0; right: 0; top: -5px; bottom: -5px; pointer-events: none;
+    background: repeating-linear-gradient(90deg, transparent 0 238px, #000 238px 240px, #4b4e53 240px 243px, #2a2c30 243px 254px, #000 254px 256px);
+  }
+  html[data-theme="train"] main#top .boiler-band::after, html[data-theme="train"] body > footer .boiler-band::after {
+    display: none;
+  }
+  .tr-vent { position: absolute; bottom: 100%; width: 16px; height: 12px; margin-left: -8px; pointer-events: none;
+    background: linear-gradient(90deg, #0d0e10, #4a4d52 45%, #111214); border: 1px solid #000; border-bottom: 0; }
+  .tr-vent::before { content: ''; position: absolute; left: -6px; right: -6px; top: -5px; height: 5px; background: #c8a96a; border: 1px solid #000; }
+  .tr-vent i, .tr-plume i { position: absolute; left: 50%; bottom: 100%; width: 44px; height: 44px; margin-left: -22px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(232,235,240,.62), rgba(220,224,230,.28) 45%, rgba(220,224,230,.06) 75%, transparent); opacity: 0; will-change: transform, opacity; }
+  @keyframes trPuff { 0% { transform: translate(0, 8px) scale(.3); opacity: 0; } 12% { opacity: .9; } 100% { transform: translate(var(--dx, 26px), -150px) scale(2.6); opacity: 0; } }
+  .tr-vent.live i { animation: trPuff 3.4s cubic-bezier(.2,.6,.35,1) infinite; }
+  .tr-vent.live i:nth-child(2) { animation-delay: 1.15s; --dx: -18px; }
+  .tr-vent.live i:nth-child(3) { animation-delay: 2.3s; --dx: 40px; }
+
+  /* hero smokestack */
+  html[data-theme="train"] #hero div:has(> .tr-stack) { margin-top: 84px; }
+  @media (min-width: 1024px) { html[data-theme="train"] #hero div:has(> .tr-stack) { margin-top: 96px; } }
+  @media (max-width: 1023px) { .tr-plume i { --dx: 90px !important; } .tr-plume i:nth-child(odd) { --dx: 130px !important; } .tr-plume i:nth-child(3n) { --dx: 60px !important; } }
+  .tr-stack { display: none; position: absolute; bottom: 100%; right: 16%; width: 90px; z-index: 4; pointer-events: none; }
+  html[data-theme="train"] .tr-stack { display: block; }
+  .tr-stack svg { display: block; position: relative; z-index: 2; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
+  .tr-plume { position: absolute; left: 50%; top: 6px; width: 0; height: 0; z-index: 1; }
+  .tr-plume i { width: 70px; height: 70px; margin-left: -35px; bottom: 0; filter: blur(3px); }
+  @keyframes trPlume { 0% { transform: translate(0, 46px) scale(.4); opacity: 0; } 10% { transform: translate(-6px, 18px) scale(.8); opacity: .95; } 55% { opacity: .55; } 100% { transform: translate(var(--dx, -220px), -95px) scale(3.4); opacity: 0; } }
+  .tr-plume i { animation: trPlume 4.2s cubic-bezier(.3,.45,.5,1) infinite; background: radial-gradient(closest-side, rgba(236,238,242,.7), rgba(220,224,230,.3) 50%, transparent); }
+  .tr-plume i:nth-child(2) { animation-delay: .6s; --dx: -380px; }
+  .tr-plume i:nth-child(3) { animation-delay: 1.2s; --dx: -340px; }
+  .tr-plume i:nth-child(4) { animation-delay: 1.8s; --dx: -300px; }
+  .tr-plume i:nth-child(5) { animation-delay: 2.4s; --dx: -200px; }
+  .tr-plume i:nth-child(6) { animation-delay: 3s;   --dx: -260px; }
+  .tr-plume i:nth-child(7) { animation-delay: 3.6s; --dx: -280px; }
+  @media (max-width: 1023px) { .tr-stack { right: 10%; transform: scale(.85); transform-origin: bottom center; } }
+
+  /* coal tender */
+  .coal-tender { display: none; margin: 44px 0 0; max-width: 520px; }
+  html[data-theme="train"] main#top .coal-tender { display: block; }
+  .coal-tender svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .coal-tender figcaption { margin-top: 10px; font: 500 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .td-lump { transform-box: fill-box; transform-origin: center; }
+
+
+  /* ===================== Train: stop-by-stop booking ===================== */
+  .step-line, .tk-nav, .step-card { display: none !important; }
+  #book-form[data-stepping="train"] .step-line[data-for="train"], #book-form[data-stepping="airplane"] .step-line[data-for="airplane"], #book-form[data-stepping="industrial"] .step-line[data-for="industrial"] { display: flex !important; }
+  #book-form[data-stepping] .tk-nav { display: flex !important; }
+  #book-form[data-stepping][data-cur="4"] .step-card[data-for="train"] { display: none !important; }
+  #book-form[data-stepping="train"][data-cur="4"] .step-card[data-for="train"] { display: grid !important; }
+  #book-form[data-stepping="airplane"][data-cur="4"] .step-card[data-for="airplane"], #book-form[data-stepping="industrial"][data-cur="4"] .step-card[data-for="industrial"] { display: block !important; }
+  #book-form[data-stepping][data-cur="1"] [data-step]:not([data-step="1"]),
+  #book-form[data-stepping][data-cur="2"] [data-step]:not([data-step="2"]),
+  #book-form[data-stepping][data-cur="3"] [data-step]:not([data-step="3"]),
+  #book-form[data-stepping][data-cur="4"] [data-step]:not([data-step="4"]) { display: none !important; }
+  #book-form[data-stepping]:not([data-cur="4"]) #send-btn { display: none; }
+
+  .tk-line { position: relative; justify-content: space-between; padding: 30px 0 4px; }
+  .tk-line::before { content: ''; position: absolute; left: 30px; right: 30px; top: 48px; height: 8px;
+    border-top: 2px solid #55585c; border-bottom: 2px solid #55585c; background: repeating-linear-gradient(90deg, #2b2d30 0 3px, transparent 3px 10px); }
+  .tk-loco { position: absolute; left: 0; top: 0; width: 44px; height: 26px; pointer-events: none; z-index: 2; }
+  .tk-loco svg { width: 44px; height: 26px; display: block; transform: scaleX(-1); }
+  .tk-stop { position: relative; z-index: 1; display: grid; justify-items: center; gap: 8px; min-width: 60px; padding: 10px 2px 0; background: none; border: 0; cursor: pointer;
+    color: rgb(var(--dim)); font: 600 12px/1 'JetBrains Mono', monospace; }
+  .tk-stop i { width: 16px; height: 16px; background: rgb(var(--slab)); border: 2px solid #6a6c71; transform: rotate(45deg); transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .tk-stop.done i { background: #6a6c71; }
+  .tk-stop.done { color: rgb(var(--ink)); }
+  .tk-stop.here { color: rgb(var(--brass)); }
+  .tk-stop.here i { background: rgb(var(--brass)); border-color: rgb(var(--brass)); box-shadow: 0 0 0 4px rgb(var(--brass) / .2), 0 0 14px rgb(var(--brass) / .6); }
+  .tk-stop:disabled { cursor: not-allowed; opacity: .55; }
+  .tk-stop:focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 3px; }
+
+  .tk-nav { justify-content: space-between; align-items: center; gap: 12px; padding-top: 4px; }
+  .tk-back { background: none; border: 2px solid rgb(var(--smoke)); color: rgb(var(--ink)); padding: .8rem 1.3rem; font-weight: 800; font-stretch: 112%; cursor: pointer; }
+  .tk-back:hover { border-color: rgb(var(--brass)); }
+  #book-form[data-cur="1"] .tk-back { visibility: hidden; }
+  #book-form[data-cur="4"] .tk-next { display: none; }
+
+  /* the ticket */
+  .tk-ticket { grid-template-columns: 74px 1fr; background: #efe6cf; color: #2a2112; border: 2px solid #b8a57a; box-shadow: 0 14px 30px -16px rgba(0,0,0,.9); }
+  .tk-stub { position: relative; display: grid; align-content: center; justify-items: center; gap: 6px; border-right: 2px dashed #b8a57a; padding: 14px 6px; }
+  .tk-stub b { font: 900 22px/1 'Archivo', Arial, sans-serif; font-stretch: 125%; color: #8a6a30; }
+  .tk-stub span { font: 700 10px/1 'JetBrains Mono', monospace; writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .08em; }
+  .tk-hole { position: absolute; top: 10px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: rgb(var(--slab)); box-shadow: inset 0 1px 2px rgba(0,0,0,.6); }
+  .tk-main { padding: 14px 18px 14px; min-width: 0; }
+  .tk-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font: 700 11px 'JetBrains Mono', monospace; color: #6b5530; padding-bottom: 10px; border-bottom: 1px solid #c9b88e; }
+  .tk-trip { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; gap: 8px; margin-top: 12px; }
+  .tk-arrow { height: 2px; background: #2a2112; position: relative; }
+  .tk-arrow::after { content: ''; position: absolute; right: -2px; top: -5px; border: 6px solid transparent; border-left: 8px solid #2a2112; border-right: 0; }
+  .tk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; margin-top: 12px; }
+  .tk-cell { display: block; min-width: 0; text-align: left; background: none; border: 0; padding: 4px 6px; margin: -4px -6px; color: inherit; font: inherit; }
+  button.tk-cell { cursor: pointer; }
+  button.tk-cell:hover { background: rgba(138,106,48,.12); }
+  button.tk-cell:focus-visible { outline: 2px solid #8a6a30; }
+  .tk-cell small { display: block; font: 600 10.5px 'JetBrains Mono', monospace; color: #7a6540; }
+  .tk-cell b { display: block; margin-top: 2px; font: 800 15px/1.25 'Archivo', Arial, sans-serif; overflow-wrap: anywhere; }
+  .tk-trip .tk-cell b { font-size: 17px; }
+  .tk-fare b { font-size: 22px; color: #8a2a1a; }
+  .tk-foot { margin: 12px 0 0; font: 500 11px/1.4 'JetBrains Mono', monospace; color: #7a6540; }
+  @media (max-width: 520px) { .tk-ticket { grid-template-columns: 52px 1fr; } .tk-stop { min-width: 0; font-size: 10.5px; } .tk-trip { grid-template-columns: 1fr; } .tk-arrow { display: none; } }
+
+
+  /* ---------- Airplane: flight path legs + check-in screen ---------- */
+  .fp-line { position: relative; justify-content: space-between; padding: 30px 0 4px; }
+  .fp-line::before { content: ''; position: absolute; left: 30px; right: 30px; top: 51px; border-top: 2px dashed #2f4466; }
+  .fp-plane { position: absolute; left: 0; top: 4px; width: 30px; height: 30px; z-index: 2; pointer-events: none; filter: drop-shadow(0 0 6px rgba(255,184,64,.6)); }
+  .fp-plane svg { width: 30px; height: 30px; display: block; }
+  .fp-line .tk-stop { color: #6f86a8; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .fp-line .tk-stop i { width: 16px; height: 14px; border: 0; transform: none; background: #26334a; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .fp-line .tk-stop.done i { background: #5eeab4; }
+  .fp-line .tk-stop.done { color: #5eeab4; }
+  .fp-line .tk-stop.here { color: #ffb840; }
+  .fp-line .tk-stop.here i { background: #ffb840; box-shadow: none; filter: drop-shadow(0 0 6px #ffb840); }
+  .fp-card { background: #000; border: 1px solid #1f2d45; box-shadow: inset 0 0 30px rgba(31,111,209,.12); padding: 14px 16px; font-family: 'JetBrains Mono', monospace; }
+  .fp-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; color: #8fd0ff; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; border-bottom: 1px solid #1f2d45; padding-bottom: 10px; }
+  .fp-head b { color: #ffb840; font-weight: 700; letter-spacing: .08em; }
+  .fp-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; margin-top: 10px; }
+  .fp-row { display: block; min-width: 0; text-align: left; background: none; border: 0; border-left: 2px solid transparent; padding: 6px 8px; color: inherit; font: inherit; }
+  button.fp-row { cursor: pointer; }
+  button.fp-row:hover, button.fp-row:focus-visible { border-left-color: #5eeab4; background: #06140f; outline: none; }
+  .fp-row small { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #6f86a8; }
+  .fp-row b { display: block; margin-top: 3px; font-size: 15px; color: #5eeab4; text-transform: uppercase; overflow-wrap: anywhere; text-shadow: 0 0 8px rgba(94,234,180,.35); }
+  #air .fp-row, #air .fp-card { font-family: 'JetBrains Mono', Menlo, monospace; }
+  .fp-fare b { color: #ffb840; font-size: 22px; text-shadow: 0 0 10px rgba(255,184,64,.4); }
+  .fp-foot { margin: 10px 0 0; font-size: 11px; color: #6f86a8; }
+  #air-form-slot .tk-back { border-radius: 8px; background: #05080e; border: 2px solid #26334a; color: #8fd0ff; font: 700 12px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
+  #air-form-slot .tk-back:hover { border-color: #8fd0ff; }
+  #air-form-slot .tk-next { background: #0c2a22; color: #5eeab4; border: 2px solid #5eeab4; font: 700 13px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 0 14px rgba(94,234,180,.25); }
+  #air-form-slot .tk-next:hover { background: #5eeab4; color: #04120d; }
+  @media (max-width: 520px) { .fp-rows { grid-template-columns: 1fr; } .fp-line .tk-stop { font-size: 8.5px; letter-spacing: 0; min-width: 0; } .fp-line { gap: 4px; }
+    .tk-nav { flex-wrap: wrap; } .tk-nav #send-btn { flex: 1 1 200px; } }
+
+  /* ---------- Industrial: conveyor stations + carbon copy work order ---------- */
+  .cv-line { position: relative; justify-content: space-between; padding: 38px 0 4px; }
+  .cv-belt { position: absolute; left: 14px; right: 14px; top: 54px; height: 14px; z-index: 0; border: 3px solid #0d0906;
+    background: repeating-linear-gradient(90deg, #2b2019 0 10px, #15100b 10px 13px); box-shadow: 0 4px 0 #0d0906; }
+  html:not([data-calm="on"]) #book-form[data-stepping="industrial"] .cv-belt { animation: cvBelt 1.2s linear infinite; }
+  @keyframes cvBelt { to { background-position: 13px 0; } }
+  .cv-crate { position: absolute; left: 0; top: 18px; width: 40px; height: 34px; z-index: 2; pointer-events: none; }
+  .cv-crate svg { width: 40px; height: 34px; display: block; }
+  .cv-line .tk-stop { z-index: 1; padding-top: 0; gap: 10px; color: #8a7458; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+  .cv-line .tk-stop i { width: 30px; height: 30px; margin-top: 8px; transform: none; display: grid; place-items: center; font-style: normal; font: 900 15px 'Big Shoulders Display', sans-serif; color: #1a120b;
+    background: linear-gradient(180deg, #6b5038, #3a2a1c); border: 3px solid #0d0906; box-shadow: inset 0 2px 0 rgba(255,220,170,.2); }
+  .cv-line .tk-stop.done { color: #e8d6b0; }
+  .cv-line .tk-stop.done i { background: linear-gradient(180deg, #9fe0d0, #3f8a78); }
+  .cv-line .tk-stop.here { color: #ffb870; }
+  .cv-line .tk-stop.here i { background: linear-gradient(180deg, #ffb870, #c46a22); box-shadow: 0 0 14px rgba(255,138,58,.6); }
+  .wo-slip { position: relative; overflow: hidden; background: #efe2a8; color: #2a2416; padding: 16px 18px 14px; border: 2px solid #0d0906; box-shadow: 4px 4px 0 #0d0906;
+    font-family: 'Special Elite', 'Courier New', monospace; background-image: repeating-linear-gradient(180deg, transparent 0 27px, rgba(90,62,36,.18) 27px 28px); }
+  .wo-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 13px; border-bottom: 2px dashed #5a3e24; padding-bottom: 8px; }
+  .wo-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; margin-top: 10px; }
+  .wo-row { display: block; min-width: 0; text-align: left; background: none; border: 0; padding: 5px 6px; margin: 0 -6px; color: inherit; font: inherit; }
+  button.wo-row { cursor: pointer; }
+  button.wo-row:hover, button.wo-row:focus-visible { background: rgba(196,106,34,.16); outline: 1px dashed #5a3e24; }
+  .wo-row small { display: block; font-size: 11px; color: #6b4526; }
+  .wo-row b { display: block; margin-top: 2px; font-weight: 400; font-size: 16px; overflow-wrap: anywhere; border-bottom: 1px dotted #5a3e24; }
+  .wo-fare b { font-size: 22px; color: #9a2a16; }
+  .wo-stamp { position: absolute; right: 14px; bottom: 40px; padding: 4px 12px; border: 3px solid #b3261e; color: #b3261e; font: 900 20px 'Big Shoulders Display', sans-serif; letter-spacing: .12em; text-transform: uppercase; transform: rotate(-9deg); opacity: .78; pointer-events: none; }
+  .wo-foot { margin: 12px 0 0; font-size: 12px; color: #5a3e24; max-width: 44ch; }
+  #ind-form-slot .tk-back { background: linear-gradient(180deg, #4a3a2c, #2a2019); color: #e8d6b0; border: 3px solid #0d0906; font: 900 15px 'Big Shoulders Display', sans-serif; letter-spacing: .12em; text-transform: uppercase; box-shadow: 0 3px 0 #0d0906; }
+  #ind-form-slot .tk-next { clip-path: none; background: linear-gradient(180deg, #e7a95f, #b06d2c); color: #1a120b; border: 3px solid #0d0906; font: 900 16px 'Big Shoulders Display', sans-serif; letter-spacing: .12em; text-transform: uppercase; box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 4px 0 #0d0906; }
+  @media (max-width: 520px) { .wo-rows { grid-template-columns: 1fr; } .wo-stamp { bottom: auto; top: 44px; } .cv-line .tk-stop { font-size: 11px; letter-spacing: .04em; } }
+
+  /* ===================== Train: signal box cancel ===================== */
+  .sb-body { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 22px 30px; margin-top: 16px; }
+  .sb-clock { display: grid; justify-items: center; gap: 6px; font: 600 11px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .sb-clock svg { width: 92px; height: 92px; }
+  .sb-frame { display: flex; gap: 6px; padding: 10px 12px 0; background: linear-gradient(180deg, #24262a, #0d0e10); border: 3px solid #000; box-shadow: inset 0 2px 0 rgba(255,255,255,.06); }
+  .sb-lever { display: grid; justify-items: center; gap: 6px; width: 92px; padding: 0 0 10px; background: none; border: 0; cursor: pointer; color: rgb(var(--ink)); font: 600 11px/1.2 'JetBrains Mono', monospace; text-align: center; }
+  .sb-lever svg { width: 52px; height: 130px; display: block; overflow: visible; }
+  .sb-arm { transform-box: view-box; transform-origin: 30px 120px; transform: rotate(-16deg); transition: transform .45s cubic-bezier(.55,-.2,.3,1.4); }
+  .sb-lever.pulled .sb-arm { transform: rotate(16deg); }
+  .sb-lever:disabled { cursor: not-allowed; }
+  .sb-lever:disabled:not(.pulled) { opacity: .45; }
+  .sb-lever:not(:disabled):hover .sb-arm { transform: rotate(-10deg); }
+  .sb-lever:not(:disabled) span { color: rgb(var(--brass)); }
+  .sb-lever:focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 2px; }
+  .cx-train[data-state="armed"] .sb-lever[data-lever="3"]:not(:disabled) { animation: cxPulse 1s ease-in-out infinite; }
+  .sb-side { display: grid; gap: 14px; justify-items: start; }
+  .sb-signal { display: grid; gap: 6px; padding: 8px; background: #0b0b0c; border: 2px solid #2b2d30; }
+  .sb-signal i { width: 18px; height: 18px; border-radius: 50%; background: #2a1110; }
+  .sb-signal i.g { background: radial-gradient(circle at 35% 35%, #c8ffd9, #2fbf62 60%, #0f4a24); box-shadow: 0 0 10px #2fbf62; }
+  .cx-train:not([data-pulled="0"]):not([data-state="expired"]) .sb-signal i.r, .cx-train[data-state="done"] .sb-signal i.r { background: radial-gradient(circle at 35% 35%, #ffd0c8, #e0261b 60%, #4a0d08); box-shadow: 0 0 12px #e0261b; }
+  .cx-train:not([data-pulled="0"]) .sb-signal i.g, .cx-train[data-state="done"] .sb-signal i.g { background: #10241a; box-shadow: none; }
+  .sb-reset { padding-left: 0 !important; }
+  .cx-train[data-pulled="1"] .cx-disarm { visibility: visible !important; }
+
+  /* ======================= Mode change curtain ======================= */
+  #mode-shift { position: fixed; inset: 0; z-index: 200; pointer-events: none; visibility: hidden; overflow: hidden; }
+  #mode-shift.on { visibility: visible; pointer-events: auto; }
+  #mode-shift > div { position: absolute; will-change: transform; visibility: hidden; }
+  #mode-shift[data-to="train"] .ms-door, #mode-shift[data-to="airplane"] .ms-shade, #mode-shift[data-to="industrial"] .ms-shutter { visibility: inherit; }
+  .ms-door { top: 0; bottom: 0; width: 50.5%; background:
+      radial-gradient(circle, #6a6c71 0 2px, transparent 2.6px) 0 0 / 100% 34px repeat-y,
+      linear-gradient(180deg, #1c1c1f, #0b0b0c); }
+  .ms-door.l { left: 0; border-right: 3px solid #c8a96a; background-position: calc(100% - 18px) 12px, 0 0; }
+  .ms-door.r { right: 0; border-left: 3px solid #c8a96a; background-position: 18px 12px, 0 0; }
+  .ms-shade { inset: 0;
+    background: repeating-linear-gradient(180deg, #f4f7fb 0 26px, #e3e9f2 26px 28px); }
+  .ms-shade i { position: absolute; left: 50%; bottom: 22px; width: 96px; height: 14px; margin-left: -48px; border-radius: 8px; background: #c3cedd; box-shadow: inset 0 2px 0 #fff; }
+  .ms-shutter { inset: 0;
+    background: repeating-linear-gradient(180deg, #4a3a2c 0 20px, #33281e 20px 22px, #1d150f 22px 24px); }
+  .ms-shutter i { position: absolute; left: 0; right: 0; bottom: 0; height: 30px; border-top: 3px solid #0d0906;
+    background: repeating-linear-gradient(135deg, #d69a4e 0 18px, #16110d 18px 36px); }
 </style>
 </head>
 <body class="overflow-x-hidden">
+<!-- Mode change: each world arrives its own way -->
+<div id="mode-shift" aria-hidden="true"><div class="ms-door l"></div><div class="ms-door r"></div><div class="ms-shade"><i></i></div><div class="ms-shutter"><i></i></div></div>
+
 
 <!-- First-visit tip: tells people the site has three modes -->
 <aside id="mode-tip" class="mode-tip" role="dialog" aria-labelledby="mode-tip-title" hidden>
@@ -1059,11 +1359,7 @@
         <a href="#ind-orders">Orders</a><a href="#ind-manifest">Manifest</a><a href="#ind-map-sec">Map table</a><a href="#ind-dossier">Operator</a><a href="#ind-regs">Regulations</a>
       </nav>
       <div class="ind-tools">
-        <div class="mode-group" role="group" aria-label="Site mode">
-          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
-        </div>
+        <div class="ind-sel mode-switch" role="group" aria-label="Site mode"><span class="ind-sel-lever" aria-hidden="true"></span><button type="button" data-mode="train" aria-pressed="false" title="Train mode">Rail</button><button type="button" data-mode="airplane" aria-pressed="false" title="Airplane mode">Air</button><button type="button" data-mode="industrial" aria-pressed="false" title="Industrial mode">Works</button></div>
         <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
         <a href="#ind-console" class="ind-btn sm">Requisition</a>
       </div>
@@ -1077,7 +1373,7 @@
       <div class="ind-hero">
         <div>
           <div class="ind-stencil">Operator Station 07 · Hoboken Works</div>
-          <h1 class="ind-poster ind-h" style="margin-top:14px">Your laptop shouldn't sound like a jet engine.</h1>
+          <h1 class="ind-poster ind-h" style="margin-top:14px">Your laptop shouldn't run in the red.</h1>
           <p class="ind-p" id="ind-hero-sub" style="margin-top:22px;max-width:46ch"></p>
           <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px">
             <a href="#ind-console" class="ind-btn">Open requisition</a>
@@ -1087,7 +1383,7 @@
         </div>
         <div class="ind-panel ind-machine" style="position:relative">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <span class="ind-plate">Core temp</span><span class="ind-stencil">Boiler 07</span>
+            <span class="ind-plate">Core temp</span><span class="ind-stencil">Furnace 07</span>
           </div>
           <svg class="ind-gauge" id="ind-gauge" viewBox="0 0 200 200" aria-hidden="true"></svg>
           <div class="ind-nixie" aria-label="Core temperature readout"><span id="ind-nx1">9</span><span id="ind-nx2">0</span><span style="font-size:24px">°C</span></div>
@@ -1282,11 +1578,7 @@
         <a href="#air-menu">Menu</a><a href="#air-map">Route map</a><a href="#air-crew">Captain</a><a href="#air-safety">Safety card</a>
       </nav>
       <div class="air-tools">
-        <div class="mode-group" role="group" aria-label="Site mode">
-          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
-        </div>
+        <div class="air-conn mode-switch"><button type="button" class="air-conn-btn" aria-expanded="false" aria-controls="air-conn-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span class="lbl">Connections</span></button><div class="air-conn-panel" id="air-conn-panel" role="group" aria-label="Site mode" hidden><div class="air-conn-head"><span>Connecting services</span><span>From Hoboken</span></div><button type="button" class="air-conn-row" data-mode="airplane" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><span class="d"><b>Airplane</b><small>Flight FW 201, this cabin</small></span><em><span class="now">On board</span><span class="go">Board</span></em></button><button type="button" class="air-conn-row" data-mode="train" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg><span class="d"><b>Train</b><small>Rail service 4014, platform 4</small></span><em><span class="now">On board</span><span class="go">Transfer</span></em></button><button type="button" class="air-conn-row" data-mode="industrial" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span class="d"><b>Industrial</b><small>Hoboken Works, station 07</small></span><em><span class="now">On board</span><span class="go">Transfer</span></em></button></div></div>
         <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
         <a href="#air-cockpit" class="air-btn sm">Book</a>
       </div>
@@ -1639,11 +1931,7 @@
         <li><a class="nav-link py-1 hover:text-ink transition-colors" href="#terms">Terms</a></li>
       </ul>
 <div class="hidden lg:flex items-center gap-3">
-        <div class="mode-group" role="group" aria-label="Site mode">
-          <button type="button" class="mode-btn" data-mode="train" aria-pressed="false" title="Train mode" aria-label="Train mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="airplane" aria-pressed="false" title="Airplane mode" aria-label="Airplane mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></button>
-          <button type="button" class="mode-btn" data-mode="industrial" aria-pressed="false" title="Industrial mode" aria-label="Industrial mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></button>
-        </div>
+        <div class="tr-route mode-switch" role="group" aria-label="Site mode"><button type="button" data-mode="train" aria-pressed="false"><i aria-hidden="true"></i><span>Train</span></button><button type="button" data-mode="airplane" aria-pressed="false"><i aria-hidden="true"></i><span>Airplane</span></button><button type="button" data-mode="industrial" aria-pressed="false"><i aria-hidden="true"></i><span>Industrial</span></button></div>
         <button type="button" class="mode-btn calm-btn" aria-pressed="false" title="Calm mode: stop animations" aria-label="Calm mode"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
         <a href="#book" class="btn btn-brass chamfer !py-2.5 !px-5 text-sm">Book a service</a>
       </div>
@@ -1660,11 +1948,7 @@
         <li><a href="#terms">Terms</a></li>
         <li class="pt-2">
           <div class="font-mono text-xs text-dim mb-3">Mode</div>
-          <div class="mode-group flex-wrap" role="group" aria-label="Site mode">
-            <button type="button" class="mode-btn mode-label" data-mode="train" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="3" width="14" height="13"/><rect x="8" y="6" width="8" height="4"/><path d="M9 13h.01M15 13h.01M8 21l2-5M16 21l-2-5M9 19h6"/></svg><span>Train</span></button>
-            <button type="button" class="mode-btn mode-label" data-mode="airplane" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><span>Airplane</span></button>
-            <button type="button" class="mode-btn mode-label" data-mode="industrial" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-width="3" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="6" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Industrial</span></button>
-          </div>
+          <div class="tr-route mode-switch tr-route-lg" role="group" aria-label="Site mode"><button type="button" data-mode="train" aria-pressed="false"><i aria-hidden="true"></i><span>Train</span></button><button type="button" data-mode="airplane" aria-pressed="false"><i aria-hidden="true"></i><span>Airplane</span></button><button type="button" data-mode="industrial" aria-pressed="false"><i aria-hidden="true"></i><span>Industrial</span></button></div>
           <button type="button" class="mode-btn mode-label calm-btn mt-3" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg><span>Calm mode</span></button>
         </li>
         <li><a href="#book" class="btn btn-brass chamfer w-full">Book a service</a></li>
@@ -1685,8 +1969,8 @@
     <div class="col-span-12 lg:col-span-7 flex flex-col justify-between gap-12">
       <h1 class="display text-[clamp(2.4rem,4.4vw,3.8rem)] pt-4 lg:pt-10">
         <span class="mask-line"><span class="hero-line">Your laptop</span></span>
-        <span class="mask-line"><span class="hero-line lg:pl-[1em]">shouldn't sound</span></span>
-        <span class="mask-line"><span class="hero-line text-dim">like a jet engine.</span></span>
+        <span class="mask-line"><span class="hero-line lg:pl-[1em]">shouldn't run hotter</span></span>
+        <span class="mask-line"><span class="hero-line text-dim">than a firebox.</span></span>
       </h1>
       <div>
         <div class="rivet-row mb-8" aria-hidden="true"></div>
@@ -1706,7 +1990,18 @@
     </div>
 
     <!-- Anchor box: 5 columns, 50/50 steam / firebox split -->
-    <div class="col-span-12 md:col-span-9 lg:col-span-5 lg:col-start-8 self-center">
+    <div class="col-span-12 md:col-span-9 lg:col-span-5 lg:col-start-8 self-center" style="position:relative">
+      <div class="tr-stack" aria-hidden="true">
+        <div class="tr-plume"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <svg viewBox="0 0 90 84" width="90" height="84">
+          <defs><linearGradient id="trStackG" x1="0" x2="1"><stop offset="0" stop-color="#0d0e10"/><stop offset=".3" stop-color="#4a4d52"/><stop offset=".55" stop-color="#26282c"/><stop offset="1" stop-color="#08090a"/></linearGradient></defs>
+          <rect x="10" y="4" width="70" height="12" fill="url(#trStackG)" stroke="#000" stroke-width="2"/>
+          <rect x="20" y="16" width="50" height="46" fill="url(#trStackG)" stroke="#000" stroke-width="2"/>
+          <rect x="20" y="30" width="50" height="6" fill="#111214" stroke="#000"/>
+          <path d="M4 82 L14 62 H76 L86 82 Z" fill="url(#trStackG)" stroke="#000" stroke-width="2"/>
+          <g fill="#7b7e84" stroke="#000" stroke-width=".8"><circle cx="18" cy="72" r="2.6"/><circle cx="32" cy="72" r="2.6"/><circle cx="45" cy="72" r="2.6"/><circle cx="58" cy="72" r="2.6"/><circle cx="72" cy="72" r="2.6"/><circle cx="16" cy="10" r="2"/><circle cx="30" cy="10" r="2"/><circle cx="45" cy="10" r="2"/><circle cx="60" cy="10" r="2"/><circle cx="74" cy="10" r="2"/></g>
+        </svg>
+      </div>
       <div id="anchor-box" class="h-[560px] lg:h-[min(660px,76svh)]">
         <div class="chamfer h-full flex flex-col border-2 border-smoke bg-slab" style="--chamfer:18px;">
 
@@ -2251,6 +2546,28 @@
         <div><dt class="font-mono text-xs text-dim">Turnaround</dt><dd class="mt-1">1 to 4 days. Same day is possible, not guaranteed.</dd></div>
         <div><dt class="font-mono text-xs text-dim">Email</dt><dd class="mt-1"><a href="mailto:rey.sahani03@gmail.com" class="email-link text-coolant" data-subject="FW Tech question">rey.sahani03@gmail.com</a></dd></div>
       </dl>
+      <figure class="coal-tender" aria-hidden="true">
+        <svg id="tender" viewBox="0 0 520 176">
+          <defs>
+            <linearGradient id="tdBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2c30"/><stop offset=".12" stop-color="#17181b"/><stop offset=".85" stop-color="#0d0e10"/><stop offset="1" stop-color="#050506"/></linearGradient>
+            <radialGradient id="tdRivet" cx=".38" cy=".32" r=".7"><stop offset="0" stop-color="#a9acb2"/><stop offset=".45" stop-color="#55585d"/><stop offset="1" stop-color="#151618"/></radialGradient>
+            <clipPath id="tdBunker"><rect x="40" y="-40" width="440" height="100"/></clipPath>
+          </defs>
+          <g id="td-coal" clip-path="url(#tdBunker)"></g>
+          <path d="M28 50 H492 L480 64 H40 Z" fill="#1d1e21" stroke="#000" stroke-width="2"/>
+          <rect x="40" y="62" width="440" height="74" fill="url(#tdBody)" stroke="#000" stroke-width="2"/>
+          <g id="td-rivets" fill="url(#tdRivet)"></g>
+          <text x="300" y="112" text-anchor="middle" font-family="Archivo, Arial Black, Arial" font-weight="900" font-size="30" letter-spacing="6" fill="#e8e6df" opacity=".92">FW TECH</text>
+          <rect x="62" y="80" width="98" height="40" fill="#b8965a" stroke="#5c4824" stroke-width="2"/>
+          <text x="111" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="10" fill="#3b2d14">Coal on board</text>
+          <text id="td-load" x="111" y="114" text-anchor="middle" font-family="Archivo, Arial Black, Arial" font-weight="900" font-size="18" fill="#2a2112">$0</text>
+          <rect x="22" y="128" width="20" height="10" fill="#2b2d30" stroke="#000"/><rect x="10" y="130" width="14" height="6" fill="#55585c"/>
+          <g id="td-wheels"></g>
+          <path d="M0 165 H520" stroke="#6a6c71" stroke-width="3"/>
+          <g fill="#2a2b2e"><rect x="12" y="167" width="16" height="6"/><rect x="62" y="167" width="16" height="6"/><rect x="112" y="167" width="16" height="6"/><rect x="162" y="167" width="16" height="6"/><rect x="212" y="167" width="16" height="6"/><rect x="262" y="167" width="16" height="6"/><rect x="312" y="167" width="16" height="6"/><rect x="362" y="167" width="16" height="6"/><rect x="412" y="167" width="16" height="6"/><rect x="462" y="167" width="16" height="6"/></g>
+        </svg>
+        <figcaption>Tick services and watch the tender load up.</figcaption>
+      </figure>
     </div>
 
     <form id="book-form" data-kind="book" class="plate bolted col-span-12 lg:col-span-6 lg:col-start-7 p-7 md:p-10 grid grid-cols-2 gap-x-6 gap-y-6" novalidate>
@@ -2302,8 +2619,30 @@
         </button>
         <p class="kind-hint font-mono text-xs text-dim" id="kind-hint">Ready to go: pick services and send your details.</p>
       </div>
-      <fieldset class="col-span-2 book-only">
-        <legend class="text-sm text-dim mb-1">Services</legend>
+      <nav class="tk-line step-line col-span-2 book-only" data-for="train" aria-label="Booking stops">
+        <span class="tk-loco step-marker" aria-hidden="true"><svg viewBox="0 0 44 26"><rect x="2" y="8" width="26" height="12" fill="#1c1d20" stroke="#c8a96a" stroke-width="1.5"/><rect x="26" y="3" width="14" height="17" fill="#1c1d20" stroke="#c8a96a" stroke-width="1.5"/><rect x="29" y="6" width="8" height="5" fill="#f59e0b"/><rect x="8" y="2" width="5" height="7" fill="#1c1d20" stroke="#c8a96a" stroke-width="1.5"/><circle cx="9" cy="22" r="3.4" fill="#0b0b0c" stroke="#dcdad3" stroke-width="1.4"/><circle cx="20" cy="22" r="3.4" fill="#0b0b0c" stroke="#dcdad3" stroke-width="1.4"/><circle cx="33" cy="22" r="3.4" fill="#0b0b0c" stroke="#dcdad3" stroke-width="1.4"/></svg></span>
+        <button type="button" class="tk-stop" data-go="1"><i></i><span>Routes</span></button>
+        <button type="button" class="tk-stop" data-go="2"><i></i><span>Passenger</span></button>
+        <button type="button" class="tk-stop" data-go="3"><i></i><span>Stations</span></button>
+        <button type="button" class="tk-stop" data-go="4"><i></i><span>Ticket</span></button>
+      </nav>
+      <nav class="fp-line step-line col-span-2 book-only" data-for="airplane" aria-label="Booking legs">
+        <span class="fp-plane step-marker" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#ffb840" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg></span>
+        <button type="button" class="tk-stop" data-go="1"><i></i><span>Itinerary</span></button>
+        <button type="button" class="tk-stop" data-go="2"><i></i><span>Passenger</span></button>
+        <button type="button" class="tk-stop" data-go="3"><i></i><span>Destination</span></button>
+        <button type="button" class="tk-stop" data-go="4"><i></i><span>Check-in</span></button>
+      </nav>
+      <nav class="cv-line step-line col-span-2 book-only" data-for="industrial" aria-label="Booking stations">
+        <span class="cv-crate step-marker" aria-hidden="true"><svg viewBox="0 0 40 34"><rect x="2" y="2" width="36" height="30" fill="#a8743f" stroke="#0d0906" stroke-width="2.5"/><path d="M2 2 L38 32 M38 2 L2 32" stroke="#6b4526" stroke-width="3"/><rect x="2" y="2" width="36" height="30" fill="none" stroke="#0d0906" stroke-width="2.5"/><rect x="9" y="11" width="22" height="12" fill="#e8d6b0" stroke="#0d0906" stroke-width="1.2"/><text x="20" y="20.5" text-anchor="middle" font-family="Big Shoulders Display, Arial Black, sans-serif" font-weight="900" font-size="10" fill="#0d0906">FW</text></svg></span>
+        <span class="cv-belt" aria-hidden="true"></span>
+        <button type="button" class="tk-stop" data-go="1"><i>1</i><span>Work orders</span></button>
+        <button type="button" class="tk-stop" data-go="2"><i>2</i><span>Operator</span></button>
+        <button type="button" class="tk-stop" data-go="3"><i>3</i><span>Pickup</span></button>
+        <button type="button" class="tk-stop" data-go="4"><i>4</i><span>Sign-off</span></button>
+      </nav>
+      <fieldset class="col-span-2 book-only" data-step="1">
+        <legend class="text-sm text-dim mb-1"><span data-lbl="svc">Services</span></legend>
         <p class="font-mono text-xs text-heat mb-3">You can pick more than one. Pick all three and you get the $72 bundle price.</p>
         <div class="grid sm:grid-cols-3 gap-3">
           <label class="flex items-center gap-3 border-2 border-smoke px-4 py-3 cursor-pointer"><input class="svc-box" type="checkbox" name="svc" value="exterior"><span>Exterior <span class="text-dim">$15</span></span></label>
@@ -2313,13 +2652,13 @@
         <p class="mt-3 font-mono text-sm text-dim">Total <span id="svc-total" class="brass-text">$0</span> <span id="svc-note" class="text-dim"></span></p>
         <p id="repaste-warn" class="hidden mt-2 font-mono text-xs text-heat">Heads up: Thermal repaste alone does not clean your fans or the inside. Add Internal clean if you want that too.</p>
       </fieldset>
-      <label class="col-span-2 md:col-span-1 text-sm text-dim">Name
+      <label class="col-span-2 md:col-span-1 text-sm text-dim" data-step="2"><span data-lbl="name">Name</span>
         <input class="field mt-1" name="name" type="text" autocomplete="name" required placeholder="Your name">
       </label>
-      <label class="col-span-2 md:col-span-1 text-sm text-dim">Email
+      <label class="col-span-2 md:col-span-1 text-sm text-dim" data-step="2"><span data-lbl="email">Email</span>
         <input class="field mt-1" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
       </label>
-      <label class="col-span-2 text-sm text-dim">Laptop model
+      <label class="col-span-2 text-sm text-dim" data-step="2"><span data-lbl="model">Laptop model</span>
         <input class="field mt-1" name="model" type="text" required placeholder="e.g. HP Pavilion 15, 2019">
       </label>
       <fieldset class="col-span-2 q-only">
@@ -2351,11 +2690,11 @@
           <option>Full bundle</option>
         </select>
       </label>
-      <fieldset class="col-span-2 border-2 border-smoke p-5 md:p-6 grid grid-cols-2 gap-x-6 gap-y-5 book-only">
-        <legend class="px-2 wide font-extrabold text-ink text-base">Where you live, or where you want me to pick it up</legend>
-        <label class="col-span-2 md:col-span-1 text-sm text-dim">Area
+      <fieldset class="col-span-2 border-2 border-smoke p-5 md:p-6 grid grid-cols-2 gap-x-6 gap-y-5 book-only" data-step="3">
+        <legend class="px-2 wide font-extrabold text-ink text-base" data-lbl="where">Where you live, or where you want me to pick it up</legend>
+        <label class="col-span-2 md:col-span-1 text-sm text-dim"><span data-lbl="area">Area</span>
           <select class="field mt-1 bg-transparent" name="area" required>
-            <option value="" selected disabled>Choose an area</option>
+            <option value="" selected disabled data-lbl="areaPh">Choose an area</option>
             <option>Hoboken</option>
             <option>Jersey City</option>
             <option>Union City</option>
@@ -2363,21 +2702,68 @@
             <option>Downtown Manhattan</option>
           </select>
         </label>
-        <label class="col-span-2 md:col-span-1 text-sm text-dim">Address or meeting spot
+        <label class="col-span-2 md:col-span-1 text-sm text-dim"><span data-lbl="address">Address or meeting spot</span>
           <input class="field mt-1" name="address" type="text" autocomplete="street-address" required placeholder="Street address, or a spot like a library">
         </label>
         <p class="col-span-2 font-mono text-xs text-dim">Outside these areas? Email anyway and ask, but it probably won't work out.</p>
       </fieldset>
-      <label class="col-span-2 text-sm text-dim"><span id="msg-label">What's going on</span>
+      <label class="col-span-2 text-sm text-dim" data-step="3"><span id="msg-label">What's going on</span>
         <textarea class="field mt-1 resize-y min-h-[100px]" name="message" placeholder="Runs hot, fan is loud, slow..."></textarea>
       </label>
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
         <label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </div>
-      <label class="col-span-2 flex items-start gap-3 text-sm text-ink/85 cursor-pointer book-only">
+      <div class="tk-ticket step-card col-span-2 book-only" data-for="train" data-step="4" aria-label="Your ticket, check it before you send">
+        <div class="tk-stub" aria-hidden="true"><i class="tk-hole"></i><b>FW</b><span data-f="no">No. 0000</span></div>
+        <div class="tk-main">
+          <div class="tk-top"><span>FW Tech Hoboken, laptop line</span><span data-f="date"></span></div>
+          <div class="tk-trip">
+            <button type="button" class="tk-cell" data-go="3"><small>Departure</small><b data-f="area">Not set</b></button>
+            <span class="tk-arrow" aria-hidden="true"></span>
+            <button type="button" class="tk-cell" data-go="3"><small>Arrival station</small><b data-f="address">Not set</b></button>
+          </div>
+          <div class="tk-grid">
+            <button type="button" class="tk-cell" data-go="1"><small>Routes</small><b data-f="route">None</b></button>
+            <button type="button" class="tk-cell" data-go="2"><small>Passenger</small><b data-f="pass">Not set</b></button>
+            <button type="button" class="tk-cell" data-go="2"><small>Laptop</small><b data-f="laptop">Not set</b></button>
+            <div class="tk-cell tk-fare"><small>Fare, cash on arrival</small><b data-f="fare">$0</b></div>
+          </div>
+          <p class="tk-foot">Tap any part of the ticket to change it. Admit one laptop. Not valid until I email you back.</p>
+        </div>
+      </div>
+      <div class="fp-card step-card col-span-2 book-only" data-for="airplane" data-step="4" aria-label="Your check-in summary, check it before you send">
+        <div class="fp-head"><span>Check-in</span><span>FW 201 &nbsp; <b data-f="date"></b></span></div>
+        <div class="fp-rows">
+          <button type="button" class="fp-row" data-go="3"><small>Destination</small><b data-f="area">Not set</b></button>
+          <button type="button" class="fp-row" data-go="3"><small>Gate</small><b data-f="address">Not set</b></button>
+          <button type="button" class="fp-row" data-go="2"><small>Passenger</small><b data-f="pass">Not set</b></button>
+          <button type="button" class="fp-row" data-go="2"><small>Aircraft</small><b data-f="laptop">Not set</b></button>
+          <button type="button" class="fp-row fp-wide" data-go="1"><small>Itinerary</small><b data-f="route">None</b></button>
+          <div class="fp-row fp-fare"><small>Fare, cash at the gate</small><b data-f="fare">$0</b></div>
+        </div>
+        <p class="fp-foot">Tap a line to change it. Seat confirmed only after I email you back.</p>
+      </div>
+      <div class="wo-slip step-card col-span-2 book-only" data-for="industrial" data-step="4" aria-label="Your work order copy, check it before you send">
+        <div class="wo-head"><span>Work order R-07</span><span>Operator copy &nbsp; <b data-f="no"></b></span></div>
+        <div class="wo-rows">
+          <button type="button" class="wo-row" data-go="1"><small>Work orders</small><b data-f="route">None</b></button>
+          <button type="button" class="wo-row" data-go="2"><small>Operator</small><b data-f="pass">Not set</b></button>
+          <button type="button" class="wo-row" data-go="2"><small>Machine</small><b data-f="laptop">Not set</b></button>
+          <button type="button" class="wo-row" data-go="3"><small>District</small><b data-f="area">Not set</b></button>
+          <button type="button" class="wo-row" data-go="3"><small>Loading dock</small><b data-f="address">Not set</b></button>
+          <div class="wo-row wo-fare"><small>Charge, cash on pickup</small><b data-f="fare">$0</b></div>
+        </div>
+        <div class="wo-stamp" aria-hidden="true">Pending</div>
+        <p class="wo-foot">Filed <span data-f="date"></span>. Tap any line to change it. Not in effect until I write back.</p>
+      </div>
+      <label class="col-span-2 flex items-start gap-3 text-sm text-ink/85 cursor-pointer book-only" data-step="4">
         <input class="svc-box mt-0.5" type="checkbox" name="agree" id="agree">
         <span>I've read and agree to the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service</a> and <a href="#privacy" class="text-coolant underline underline-offset-4">Privacy Policy</a>.</span>
       </label>
+      <div class="tk-nav col-span-2 book-only">
+        <button type="button" class="tk-back">Back</button>
+        <button type="button" class="tk-next btn btn-brass chamfer">Next stop</button>
+      </div>
       <div class="col-span-2 flex flex-wrap items-center justify-between gap-4 pt-2">
         <p id="form-status" class="text-sm text-dim min-h-[1.25rem] max-w-[36ch]" role="status" aria-live="polite"></p>
         <button id="send-btn" type="submit" class="btn btn-brass chamfer">Send my request</button>
@@ -2414,35 +2800,20 @@
       <!-- Cancel within 2 minutes: pull the brake handle to arm, then the warning button -->
       <div class="cx cx-train plate" data-cx data-state="idle" hidden>
         <div class="cx-head">
-          <div><div class="cx-title">Changed your mind?</div><div class="cx-sub">You can cancel for <b class="cx-time">2:00</b></div></div>
+          <div><div class="cx-title">Changed your mind? Stop the train.</div><div class="cx-sub">Pull the levers 1, 2, 3 in order. The window closes in <b class="cx-time">2:00</b></div></div>
           <div class="cx-state font-mono">Safe</div>
         </div>
         <div class="cx-led" data-led="idle" role="status" aria-live="polite"><i class="led"></i><span class="cx-led-text">SAFE</span></div>
-        <div class="cxt-body">
-          <button type="button" class="cxt-handle cx-arm" aria-label="Pull the red handle to arm the cancel">
-            <svg viewBox="0 0 90 130" aria-hidden="true">
-              <rect x="20" y="0" width="50" height="10" fill="#2b2d30"/>
-              <rect class="cxt-cable" x="43.5" y="6" width="3" height="54" fill="#8d8f94"/>
-              <g class="cxt-pull">
-                <rect x="40" y="58" width="10" height="16" fill="#55575c"/>
-                <rect x="10" y="72" width="70" height="20" fill="#c8261c" stroke="#0b0b0c" stroke-width="2"/>
-                <rect x="10" y="72" width="70" height="6" fill="#e2493c"/>
-                <text x="45" y="88" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="11" fill="#fff" letter-spacing="2">PULL</text>
-              </g>
-            </svg>
-            <span class="cx-step">1. Pull to arm</span>
-          </button>
-          <div class="cxt-confirm">
-            <button type="button" class="cxt-btn cx-fire" aria-label="Are you sure? Press to cancel the request" disabled>
-              <svg viewBox="0 0 110 110" aria-hidden="true">
-                <circle cx="55" cy="58" r="50" fill="#5a0f0a"/>
-                <circle cx="55" cy="54" r="46" fill="#c8261c" stroke="#0b0b0c" stroke-width="3"/>
-                <ellipse cx="45" cy="38" rx="20" ry="10" fill="rgba(255,255,255,.25)"/>
-                <path d="M55 26 L82 74 H28Z" fill="#f5c518" stroke="#0b0b0c" stroke-width="3" stroke-linejoin="round"/>
-                <rect x="52" y="42" width="6" height="18" fill="#0b0b0c"/><rect x="52" y="64" width="6" height="6" fill="#0b0b0c"/>
-              </svg>
-            </button>
-            <div><span class="cx-step">2. Are you sure? Press to cancel.</span><button type="button" class="cx-disarm">Never mind</button></div>
+        <div class="sb-body">
+          <div class="sb-clock" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#efe9da" stroke="#0b0b0c" stroke-width="5"/><g id="sb-ticks"></g><path id="sb-left" d="" fill="rgba(200,38,28,.22)"/><line id="sb-hand" x1="50" y1="50" x2="50" y2="12" stroke="#c8261c" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="50" r="4" fill="#0b0b0c"/></svg><span>Window</span></div>
+          <div class="sb-frame" role="group" aria-label="Signal box levers, pull them in order to cancel">
+            <button type="button" class="sb-lever cx-arm" data-lever="1" style="--c:#c8261c"><svg viewBox="0 0 60 150" aria-hidden="true"><rect x="4" y="118" width="52" height="26" fill="#1c1d20" stroke="#000" stroke-width="2"/><rect x="26" y="112" width="8" height="12" fill="#000"/><g class="sb-arm"><rect x="26" y="20" width="8" height="100" fill="var(--c)" stroke="#000" stroke-width="1.5"/><rect x="20" y="10" width="20" height="16" fill="#dcdad3" stroke="#000" stroke-width="1.5"/><rect x="22" y="50" width="16" height="5" fill="#dcdad3" stroke="#000"/></g><rect x="20" y="126" width="20" height="12" fill="#b8965a" stroke="#5c4824"/><text x="30" y="135.5" text-anchor="middle" font-family="Archivo, Arial" font-weight="900" font-size="10" fill="#2a2112">1</text></svg><span>Signal to danger</span></button>
+            <button type="button" class="sb-lever cx-arm" data-lever="2" style="--c:#16171a" disabled><svg viewBox="0 0 60 150" aria-hidden="true"><rect x="4" y="118" width="52" height="26" fill="#1c1d20" stroke="#000" stroke-width="2"/><rect x="26" y="112" width="8" height="12" fill="#000"/><g class="sb-arm"><rect x="26" y="20" width="8" height="100" fill="var(--c)" stroke="#6a6c71" stroke-width="1.5"/><rect x="20" y="10" width="20" height="16" fill="#dcdad3" stroke="#000" stroke-width="1.5"/><rect x="22" y="50" width="16" height="5" fill="#dcdad3" stroke="#000"/></g><rect x="20" y="126" width="20" height="12" fill="#b8965a" stroke="#5c4824"/><text x="30" y="135.5" text-anchor="middle" font-family="Archivo, Arial" font-weight="900" font-size="10" fill="#2a2112">2</text></svg><span>Points to siding</span></button>
+            <button type="button" class="sb-lever cx-fire" data-lever="3" style="--c:#c8261c" disabled><svg viewBox="0 0 60 150" aria-hidden="true"><rect x="4" y="118" width="52" height="26" fill="#1c1d20" stroke="#000" stroke-width="2"/><rect x="26" y="112" width="8" height="12" fill="#000"/><g class="sb-arm"><rect x="26" y="20" width="8" height="100" fill="var(--c)" stroke="#000" stroke-width="1.5"/><rect x="26" y="40" width="8" height="8" fill="#f5c518"/><rect x="26" y="64" width="8" height="8" fill="#f5c518"/><rect x="26" y="88" width="8" height="8" fill="#f5c518"/><rect x="20" y="10" width="20" height="16" fill="#dcdad3" stroke="#000" stroke-width="1.5"/></g><rect x="20" y="126" width="20" height="12" fill="#b8965a" stroke="#5c4824"/><text x="30" y="135.5" text-anchor="middle" font-family="Archivo, Arial" font-weight="900" font-size="10" fill="#2a2112">3</text></svg><span>Stop the train</span></button>
+          </div>
+          <div class="sb-side">
+            <div class="sb-signal" aria-hidden="true"><i class="r"></i><i class="g"></i></div>
+            <button type="button" class="cx-disarm sb-reset">Reset the levers</button>
           </div>
         </div>
         <p class="cx-msg"></p>
@@ -3270,7 +3641,56 @@
     syncModeUI();
     window.dispatchEvent(new Event('fw:calm'));
   };
-  document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  /* Each world arrives its own way: train doors, a window shade, a rolling shutter */
+  const shift = document.getElementById('mode-shift');
+  let shifting = false;
+  const pressAll = (m) => document.querySelectorAll('.mode-switch [data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  const closeMenu = () => { const mm = document.getElementById('mobile-menu'), mb = document.getElementById('menu-btn');
+    if (mm && !mm.classList.contains('hidden')) { mm.classList.add('hidden'); mb.setAttribute('aria-expanded', 'false'); mb.setAttribute('aria-label', 'Open menu'); } };
+  const goMode = (m) => {
+    closeConn(); closeMenu();
+    if (shifting || m === root.dataset.theme) return;
+    const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (motionOff() || !window.gsap || !shift) { setMode(m); toTop(); return; }
+    shifting = true;
+    pressAll(m);
+    const $ = (q) => shift.querySelector(q);
+    const tl = gsap.timeline({ onComplete: () => { shift.classList.remove('on'); delete shift.dataset.to; shifting = false; } });
+    shift.dataset.to = m;
+    gsap.set(shift.children, { x: 0, y: 0 });
+    shift.classList.add('on');
+    const swap = () => { setMode(m); toTop(); if (window.ScrollTrigger) ScrollTrigger.refresh(); };
+    if (m === 'train') {
+      tl.fromTo($('.ms-door.l'), { xPercent: -101 }, { xPercent: 0, duration: .5, ease: 'power3.in' }, .12)
+        .fromTo($('.ms-door.r'), { xPercent: 101 }, { xPercent: 0, duration: .5, ease: 'power3.in' }, .12)
+        .call(swap).to({}, { duration: .18 })
+        .to($('.ms-door.l'), { xPercent: -101, duration: .7, ease: 'power3.inOut' })
+        .to($('.ms-door.r'), { xPercent: 101, duration: .7, ease: 'power3.inOut' }, '<');
+    } else if (m === 'airplane') {
+      tl.fromTo($('.ms-shade'), { yPercent: -101 }, { yPercent: 0, duration: .55, ease: 'power2.inOut' }, .05)
+        .call(swap).to({}, { duration: .22 })
+        .to($('.ms-shade'), { yPercent: -101, duration: .75, ease: 'power2.inOut' });
+    } else {
+      tl.fromTo($('.ms-shutter'), { yPercent: -101 }, { yPercent: 0, duration: .6, ease: 'bounce.out' }, .3)
+        .call(swap).to({}, { duration: .2 })
+        .to($('.ms-shutter'), { yPercent: -101, duration: .8, ease: 'power2.in' });
+    }
+  };
+  /* Airplane: connections board */
+  const connBtn = document.querySelector('.air-conn-btn');
+  const connPanel = document.getElementById('air-conn-panel');
+  function closeConn() { if (connPanel && !connPanel.hidden) { connPanel.hidden = true; connBtn.setAttribute('aria-expanded', 'false'); } }
+  if (connBtn && connPanel) {
+    connBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = connPanel.hidden;
+      connPanel.hidden = !open; connBtn.setAttribute('aria-expanded', String(open));
+      if (open) (connPanel.querySelector('[aria-pressed="false"]') || connPanel.querySelector('button')).focus();
+    });
+    document.addEventListener('click', (e) => { if (!e.target.closest('.air-conn')) closeConn(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !connPanel.hidden) { closeConn(); connBtn.focus(); } });
+  }
+  document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => goMode(b.dataset.mode)));
   document.querySelectorAll('.calm-btn').forEach(b => b.addEventListener('click', () => setCalm(!calmOn())));
   syncModeUI();
 
@@ -3293,7 +3713,7 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !tip.hidden) closeTip(); });
   }
   // switching modes any other way also counts as "seen"
-  document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.addEventListener('click', closeTip));
+  document.querySelectorAll('.mode-switch [data-mode]').forEach(b => b.addEventListener('click', closeTip));
   const SVG = 'http://www.w3.org/2000/svg';
 
   /* ---------- Mobile menu ---------- */
@@ -3372,6 +3792,7 @@
     totalEl.textContent = '$' + o.total;
     noteEl.textContent = o.isBundle ? '(bundle price, saves $11)' : '';
     document.getElementById('repaste-warn').classList.toggle('hidden', !(o.picked.includes('repaste') && !o.picked.includes('internal')));
+    window.dispatchEvent(new CustomEvent('fw:order', { detail: o }));
   };
   boxes.forEach(b => b.addEventListener('change', renderTotal));
 
@@ -3400,6 +3821,17 @@
     const l = (LABELS[root.dataset.theme] || LABELS.train)[isQuestion() ? 1 : 0];
     b.dataset.label = l; if (!b.disabled) b.textContent = l;
   };
+  const FORM_LABELS = {
+    train:      { svc: 'Routes', name: 'Name', email: 'Email', model: 'Laptop model', where: 'Your stations', area: 'Departure', areaPh: 'Choose your station', address: 'Arrival station', addressPh: 'Street address, or a spot like a library', msg: "What's going on" },
+    airplane:   { svc: 'Itinerary', name: 'Passenger name', email: 'Email', model: 'Aircraft (laptop model)', where: 'Where I meet you', area: 'Destination', areaPh: 'Choose a destination', address: 'Gate', addressPh: 'Street address or meeting spot', msg: 'Notes for the crew' },
+    industrial: { svc: 'Work orders', name: 'Operator', email: 'Email', model: 'Machine (laptop model)', where: 'Pickup point', area: 'District', areaPh: 'Choose a district', address: 'Loading dock', addressPh: 'Street address or meeting spot', msg: 'Fault report' }
+  };
+  function applyLabels() {
+    const L = FORM_LABELS[root.dataset.theme] || FORM_LABELS.train, q = formEl.dataset.kind === 'question';
+    formEl.querySelectorAll('[data-lbl]').forEach(el => { if (L[el.dataset.lbl]) el.textContent = L[el.dataset.lbl]; });
+    formEl.elements.address.placeholder = L.addressPh;
+    document.getElementById('msg-label').textContent = q ? 'Your question' : L.msg;
+  }
   const setKind = (k) => {
     formEl.dataset.kind = k;
     const q = k === 'question';
@@ -3412,7 +3844,7 @@
     kindSwitch.setAttribute('aria-checked', String(q));
     ['area', 'address'].forEach(n => formEl.elements[n].required = !q);
     formEl.elements.model.required = !q;
-    document.getElementById('msg-label').textContent = q ? 'Your question' : "What's going on";
+    applyLabels();
     formEl.elements.message.placeholder = q ? 'Ask anything: will this fix my fan noise? Can you work on my model?' : 'Runs hot, fan is loud, slow...';
     formEl.elements.model.placeholder = q ? 'e.g. HP Pavilion 15, 2019 (optional)' : 'e.g. HP Pavilion 15, 2019';
     document.getElementById('kind-hint').textContent = q ? "Not sure yet? Ask first. No commitment, no payment." : 'Ready to go: pick services and send your details.';
@@ -3421,7 +3853,8 @@
   };
   kindSwitch.addEventListener('click', () => { setKind(isQuestion() ? 'book' : 'question'); kindSwitch.classList.remove('zap'); void kindSwitch.offsetWidth; kindSwitch.classList.add('zap'); });
   formEl.querySelectorAll('.q-only').forEach(el => { el.style.display = 'none'; });
-  window.addEventListener('fw:theme', () => setTimeout(refreshLabel, 0));
+  window.addEventListener('fw:theme', () => setTimeout(() => { refreshLabel(); applyLabels(); }, 0));
+  applyLabels();
   window.FW = Object.assign(window.FW || {}, { setKind });
 
   /* ---------- Booking form: hands off to Gmail compose ---------- */
@@ -3431,7 +3864,7 @@
   const NOT_ACCEPTED = /surface|razer|alienware|chromebook/i;
   const form = document.getElementById('book-form');
   const status = document.getElementById('form-status');
-  const fail = (msg, el) => { status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
+  const fail = (msg, el) => { if (el && window.FWStep) window.FWStep.reveal(el); status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
 
   /* ---------- Booked confirmation: stamp slam ---------- */
   const bookedPanel = document.getElementById('booked-panel');
@@ -3443,7 +3876,7 @@
     document.getElementById('booked-stamp').textContent = isQ ? 'SENT' : 'BOOKED';
     const h3 = document.querySelector('#booked-panel h3'); if (h3) h3.textContent = isQ ? 'Question received.' : 'Request received.';
     const rows = isQ ? [['Topic', info.topic], ['Laptop', info.laptop], ['Reply to', info.reply]]
-                     : [['Service', info.service], ['Total', info.total + ', cash at drop-off'], ['Laptop', info.laptop], ['Area', info.area], ['Reply to', info.reply]];
+                     : [['Routes', info.service], ['Fare', info.total + ', cash on arrival'], ['Laptop', info.laptop], ['Departure', info.area], ['Reply to', info.reply]];
     sum.innerHTML = '';
     rows.forEach(([k, v]) => {
       const dt = document.createElement('dt'); dt.className = 'text-dim'; dt.textContent = k;
@@ -3481,6 +3914,10 @@
   });
 
   /* ---------- Cancel within 2 minutes (all modes) ---------- */
+  (() => { const g = document.getElementById('sb-ticks'); if (!g) return;
+    for (let i = 0; i < 24; i++) { const a = i / 24 * Math.PI * 2, r1 = i % 6 ? 39 : 35; const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', 50 + Math.sin(a) * r1); l.setAttribute('y1', 50 - Math.cos(a) * r1); l.setAttribute('x2', 50 + Math.sin(a) * 43); l.setAttribute('y2', 50 - Math.cos(a) * 43);
+      l.setAttribute('stroke', '#0b0b0c'); l.setAttribute('stroke-width', i % 6 ? 1.5 : 3); g.appendChild(l); } })();
   const CX = { rec: null, deadline: 0, tick: 0, state: 'idle' };
   const CX_LABELS = {
     train: { idle: 'Safe', armed: 'Armed', sending: 'Sending', done: 'Cancelled', expired: 'Closed' },
@@ -3488,7 +3925,7 @@
     ind:   { idle: 'Locked', armed: 'Armed', sending: 'Aborting', done: 'Aborted', expired: 'Closed' }
   };
   const CX_LED = {
-    train: { idle: ['idle', 'Safe · pull handle to arm'], armed: ['armed', 'Brake armed · press to confirm'], sending: ['busy', 'Sending cancel...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
+    train: { idle: ['idle', 'Line clear · pull lever 1'], armed: ['armed', 'Points set · pull lever 3 to stop'], sending: ['busy', 'Sending cancel...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
     air:   { idle: ['idle', 'Normal · pull handle to arm'], armed: ['armed', 'Fire handle armed · rotate right to confirm'], sending: ['busy', 'Discharging...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
     ind:   { idle: ['idle', 'Locked · throw A and B'], armed: ['armed', 'Armed · drag master down to confirm'], sending: ['busy', 'Aborting...'], done: ['done', 'Aborted'], expired: ['done', 'Message reached · contract in action'] }
   };
@@ -3509,7 +3946,13 @@
       c.querySelector('.cx-state').textContent = CX_LABELS[k][st] || st;
       if (CX_LED[k][st]) cxLed(c, ...CX_LED[k][st]);
       if (msg != null) c.querySelector('.cx-msg').innerHTML = msg;
-      if (k === 'train') c.querySelector('.cxt-btn').disabled = st !== 'armed';
+      if (k === 'train') {
+        if (st === 'idle') c.dataset.pulled = '0';
+        if (st === 'armed') c.dataset.pulled = '2';
+        if (st === 'done' || st === 'sending') c.dataset.pulled = '3';
+        const n = +(c.dataset.pulled || 0);
+        c.querySelectorAll('.sb-lever').forEach(l => { const i = +l.dataset.lever; l.classList.toggle('pulled', i <= n); l.disabled = !(st === 'idle' || st === 'armed') || i !== n + 1; });
+      }
       if (k === 'ind') {
         const sws = c.querySelectorAll('.cxi-sw'), arm = c.querySelector('.cxi-arm');
         if (st === 'idle') { sws.forEach(w => w.classList.remove('on')); arm.classList.remove('ready', 'pressed'); }
@@ -3523,6 +3966,13 @@
     const left = Math.max(0, CX.deadline - Date.now());
     const t = Math.floor(left / 60000) + ':' + String(Math.floor(left / 1000) % 60).padStart(2, '0');
     document.querySelectorAll('.cx-time').forEach(e => e.textContent = t);
+    const hand = document.getElementById('sb-hand');
+    if (hand) {
+      const f = left / 120000, a = (1 - f) * 360;
+      hand.setAttribute('transform', `rotate(${a.toFixed(1)} 50 50)`);
+      const rad = (d) => (d - 90) * Math.PI / 180, x = 50 + 42 * Math.cos(rad(a)), y = 50 + 42 * Math.sin(rad(a));
+      document.getElementById('sb-left').setAttribute('d', f <= 0 ? '' : f >= .999 ? 'M50 8 A42 42 0 1 1 49.9 8 Z' : `M50 50 L${x.toFixed(2)} ${y.toFixed(2)} A42 42 0 ${f > .5 ? 1 : 0} 1 50 8 Z`);
+    }
     if (left <= 0 && CX.state !== 'done') {
       clearInterval(CX.tick);
       cxSet('expired', 'The 2 minute window closed. If anything changed, just email me.');
@@ -3569,10 +4019,13 @@
   document.addEventListener('click', (e) => {
     const c = e.target.closest('.cx'); if (!c) return;
     const k = cxKind(c);
-    if (e.target.closest('.cx-disarm')) { if (CX.state === 'armed') cxSet('idle', ''); return; }
+    if (e.target.closest('.cx-disarm')) { if (CX.state === 'armed' || (CX.state === 'idle' && c.dataset.pulled === '1')) cxSet('idle', ''); return; }
     if (k === 'train') {
-      if (e.target.closest('.cxt-handle') && CX.state === 'idle') cxSet('armed', 'Armed. Press the button to cancel, or "Never mind".');
-      else if (e.target.closest('.cxt-btn')) fireCancel();
+      const lv = e.target.closest('.sb-lever'); if (!lv || lv.disabled) return;
+      const i = +lv.dataset.lever;
+      if (i === 1 && CX.state === 'idle') { document.querySelectorAll('.cx-train .cx-msg').forEach(m => m.textContent = 'Signal is at danger. Now pull lever 2.'); document.querySelectorAll('.cx-train').forEach(t => { t.dataset.pulled = '1'; t.querySelectorAll('.sb-lever').forEach(l => { l.classList.toggle('pulled', +l.dataset.lever === 1); l.disabled = +l.dataset.lever !== 2; }); cxLed(t, 'step', 'Signal at danger · pull lever 2'); }); }
+      else if (i === 2 && c.dataset.pulled === '1') cxSet('armed', 'Points set to the siding. Pull lever 3 to stop the train, or reset the levers.');
+      else if (i === 3 && CX.state === 'armed') fireCancel();
     } else if (k === 'air') {
       if (!e.target.closest('.cxa-handle')) return;
       if (CX.state === 'idle') cxSet('armed', 'Handle pulled. Press it again to rotate right and cancel.');
@@ -3691,6 +4144,98 @@
     return deliver({ ...d, service: o.label, total: o.total }, subject, body, "Request sent. I'll reply to your email soon.",
       { service: o.label, total: '$' + o.total, laptop: d.model, area: d.area, reply: d.email });
   });
+
+
+  /* ---------- Booking runs stop by stop, in every mode ---------- */
+  (() => {
+    if (!form.querySelector('.step-line')) return;
+    const SLOT = { train: '#book', airplane: '#air-form-slot', industrial: '#ind-form-slot' };
+    const NAMES = {
+      train:      ['', 'Routes', 'Passenger', 'Stations', 'Ticket'],
+      airplane:   ['', 'Itinerary', 'Passenger', 'Destination', 'Check-in'],
+      industrial: ['', 'Work orders', 'Operator', 'Pickup', 'Sign-off']
+    };
+    const NEXT = { train: 'Next stop: ', airplane: 'Next leg: ', industrial: 'Next station: ' };
+    const MSG = {
+      train:      { svc: 'Pick at least one route.', area: 'Choose your departure station.', address: 'Add an arrival station: an address or meeting spot.' },
+      airplane:   { svc: 'Add at least one service to your itinerary.', area: 'Choose a destination.', address: 'Add a gate: an address or meeting spot.' },
+      industrial: { svc: 'Pick at least one work order.', area: 'Choose a district.', address: 'Add a loading dock: an address or meeting spot.' }
+    };
+    const mode = () => {
+      if (form.dataset.kind === 'question') return null;
+      const t = root.dataset.theme;
+      return SLOT[t] && form.closest(SLOT[t]) ? t : null;
+    };
+    let cur = 1, reached = 1;
+    const ticketNo = 'No. ' + String(1000 + Math.floor(Math.random() * 9000));
+    const fill = () => {
+      const o = getOrder(), el = form.elements, v = (x, d) => (x && x.trim()) || d;
+      const F = { no: ticketNo, date: new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }),
+        route: o.picked.length ? o.label : 'None', fare: '$' + o.total, pass: v(el.name.value, 'Not set'), laptop: v(el.model.value, 'Not set'),
+        area: v(el.area.value, 'Not set'), address: v(el.address.value, 'Not set') };
+      form.querySelectorAll('[data-f]').forEach(n => { n.textContent = F[n.dataset.f]; });
+    };
+    const sendBtn = document.getElementById('send-btn'), sendHome = sendBtn.parentNode, tkNav = form.querySelector('.tk-nav');
+    const paint = (animate) => {
+      const m = mode();
+      if (m) form.dataset.stepping = m; else delete form.dataset.stepping;
+      form.dataset.cur = cur;
+      const spot = m && cur === 4 ? tkNav : sendHome;
+      if (sendBtn.parentNode !== spot) spot.appendChild(sendBtn);
+      if (!m) return;
+      const line = form.querySelector(`.step-line[data-for="${m}"]`);
+      line.querySelectorAll('.tk-stop').forEach(b => {
+        const n = +b.dataset.go;
+        b.classList.toggle('done', n < cur); b.classList.toggle('here', n === cur);
+        b.setAttribute('aria-current', n === cur ? 'step' : 'false');
+        b.disabled = n > reached;
+      });
+      const here = line.querySelectorAll('.tk-stop')[cur - 1], mk = line.querySelector('.step-marker');
+      const x = here.offsetLeft + here.offsetWidth / 2 - mk.offsetWidth / 2;
+      if (window.gsap && animate && !motionOff()) gsap.to(mk, { x, duration: .8, ease: 'power2.inOut' });
+      else { if (window.gsap) gsap.set(mk, { x }); else mk.style.transform = `translateX(${x}px)`; }
+      form.querySelector('.tk-next').textContent = cur < 4 ? NEXT[m] + NAMES[m][cur + 1] : '';
+      if (cur === 4) fill();
+    };
+    const check = (n) => {
+      const el = form.elements, M = MSG[mode()] || MSG.train;
+      if (n === 1 && !getOrder().picked.length) return [M.svc, boxes[0]];
+      if (n === 2) {
+        if (!el.name.value.trim()) return ['Add your name.', el.name];
+        if (!el.email.value.trim() || !el.email.checkValidity()) return ['Enter a valid email address.', el.email];
+        if (!el.model.value.trim()) return ['Add your laptop model.', el.model];
+        if (NOT_ACCEPTED.test(el.model.value)) return ["That model isn't accepted. See the not accepted list in About.", el.model];
+      }
+      if (n === 3) {
+        if (!el.area.value) return [M.area, el.area];
+        if (!el.address.value.trim()) return [M.address, el.address];
+      }
+      return null;
+    };
+    const go = (n, animate = true) => {
+      n = Math.max(1, Math.min(4, n));
+      if (n > cur) for (let i = cur; i < n; i++) { const bad = check(i); if (bad) { n = i; if (i === cur) { status.textContent = bad[0]; status.style.color = '#f59e0b'; bad[1].focus(); return; } } }
+      cur = n; reached = Math.max(reached, n); status.textContent = '';
+      paint(animate);
+      if (animate && window.gsap && !motionOff()) gsap.fromTo(form.querySelectorAll(`[data-step="${cur}"]`), { autoAlpha: 0, x: 24 }, { autoAlpha: 1, x: 0, duration: .4, ease: 'power3.out', stagger: .05, clearProps: 'opacity,visibility,transform' });
+      const first = form.querySelector(`[data-step="${cur}"] input:not([type=hidden]), [data-step="${cur}"] select, [data-step="${cur}"] textarea`);
+      if (animate && first && cur > 1 && cur < 4) first.focus({ preventScroll: true });
+    };
+    form.querySelector('.tk-next').addEventListener('click', () => go(cur + 1));
+    form.querySelector('.tk-back').addEventListener('click', () => go(cur - 1));
+    form.addEventListener('click', (e) => { const t = e.target.closest('[data-go]'); if (t && !t.disabled && mode()) go(+t.dataset.go); });
+    // Enter on stops 1 to 3 moves forward instead of sending
+    form.addEventListener('submit', (e) => { if (mode() && cur < 4) { e.preventDefault(); e.stopImmediatePropagation(); go(cur + 1); } }, true);
+    form.addEventListener('reset', () => setTimeout(() => { cur = 1; reached = 1; paint(false); }, 0));
+    window.addEventListener('resize', () => paint(false));
+    new MutationObserver(() => paint(false)).observe(form, { attributes: true, attributeFilter: ['data-kind', 'hidden'] });
+    // the form moves into each mode's slot; repaint once it lands
+    const homeBox = form.parentNode, mo = new MutationObserver(() => setTimeout(() => paint(false), 0));
+    [homeBox, document.getElementById('air-form-slot'), document.getElementById('ind-form-slot')].forEach(n => n && mo.observe(n, { childList: true }));
+    window.addEventListener('fw:theme', () => { setTimeout(() => paint(false), 30); setTimeout(() => paint(false), 400); });
+    window.FWStep = { reveal: (el) => { if (!mode()) return; const st = el.closest('[data-step]'); if (st && +st.dataset.step !== cur) { reached = Math.max(reached, +st.dataset.step); cur = +st.dataset.step; paint(false); } } };
+    paint(false);
+  })();
 
   /* ---------- Firebox temperature flux (800ms) ---------- */
   const fireTemp = document.getElementById('firebox-temp');
@@ -4066,6 +4611,86 @@
     },
     stop() { stop(); smoke.innerHTML = ''; }
   };
+})();
+</script>
+
+<script>
+/* ---------- Train: steam vents on every steam line + loading coal tender ---------- */
+(() => {
+  const root = document.documentElement;
+  const NS = 'http://www.w3.org/2000/svg';
+  const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on';
+
+  // vents: two valves per line, staggered so they never line up section to section
+  const bands = document.querySelectorAll('main#top .boiler-band, body > footer .boiler-band');
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('live', e.isIntersecting)), { rootMargin: '120px' }) : null;
+  bands.forEach((band, i) => {
+    [14 + (i * 29) % 30, 58 + (i * 17) % 30].forEach(left => {
+      const v = document.createElement('span');
+      v.className = 'tr-vent'; v.style.left = left + '%'; v.innerHTML = '<i></i><i></i><i></i>';
+      band.appendChild(v);
+      if (io) io.observe(v); else v.classList.add('live');
+    });
+  });
+
+  // tender
+  const svg = document.getElementById('tender');
+  if (!svg) return;
+  const mk = (tag, a, parent) => { const el = document.createElementNS(NS, tag); for (const k in a) el.setAttribute(k, a[k]); parent && parent.appendChild(el); return el; };
+  const rv = document.getElementById('td-rivets');
+  for (let x = 50; x <= 470; x += 14) { mk('circle', { cx: x, cy: 70, r: 3 }, rv); mk('circle', { cx: x, cy: 128, r: 3 }, rv); }
+  for (let y = 84; y <= 116; y += 14) { mk('circle', { cx: 50, cy: y, r: 3 }, rv); mk('circle', { cx: 470, cy: y, r: 3 }, rv); }
+  const wg = document.getElementById('td-wheels');
+  [[86, 132], [378, 424]].forEach(([a, b]) => {
+    mk('rect', { x: a - 24, y: 132, width: b - a + 48, height: 12, fill: '#1c1d20', stroke: '#000', 'stroke-width': 2 }, wg);
+    mk('rect', { x: (a + b) / 2 - 10, y: 130, width: 20, height: 18, fill: '#2b2d30', stroke: '#000' }, wg);
+    [a, b].forEach(cx => {
+      mk('circle', { cx, cy: 150, r: 14, fill: '#0e0e10', stroke: '#dcdad3', 'stroke-width': 2.4 }, wg);
+      mk('circle', { cx, cy: 150, r: 4, fill: '#55585c' }, wg);
+    });
+  });
+
+  // three layers of coal, one per service; a full bundle heaps it over the top
+  const coal = document.getElementById('td-coal');
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const heap = (x, h) => 62 - h * (1 - Math.pow((x - 260) / 222, 2));
+  const layers = [[], [], []];
+  const HEIGHTS = [16, 32, 50];
+  for (let L = 0; L < 3; L++) {
+    for (let x = 44; x <= 476; x += 11 - L) {
+      const top = heap(x, HEIGHTS[L]);
+      const lo = L ? heap(x, HEIGHTS[L - 1]) : 64;
+      for (let y = lo; y > top; y -= 10) {
+        const cx = x + rnd() * 8 - 4, cy = y - 4 - rnd() * 4, r = 5 + rnd() * 4;
+        const pts = Array.from({ length: 6 }, (_, k) => { const a = k / 6 * Math.PI * 2 + rnd() * .5, rr = r * (.7 + rnd() * .45); return (cx + Math.cos(a) * rr).toFixed(1) + ',' + (cy + Math.sin(a) * rr).toFixed(1); }).join(' ');
+        const shade = 16 + Math.floor(rnd() * 26);
+        const p = mk('polygon', { points: pts, class: 'td-lump', fill: `rgb(${shade},${shade},${shade + 2})`, stroke: rnd() > .55 ? '#5a5d62' : '#000', 'stroke-width': .8, opacity: 0 }, coal);
+        layers[L].push(p);
+      }
+    }
+  }
+  let shown = 0;
+  const load = document.getElementById('td-load');
+  const setLoad = (n, total) => {
+    load.textContent = '$' + total;
+    if (n === shown) return;
+    const anim = !still() && window.gsap;
+    for (let L = 0; L < 3; L++) {
+      const want = L < n, lumps = layers[L];
+      if (want && L >= shown) {
+        if (anim) gsap.fromTo(lumps, { opacity: 1, y: -90 - L * 10, rotation: () => rnd() * 160 - 80 }, { y: 0, rotation: 0, duration: .7, ease: 'bounce.out', stagger: { each: .006, from: 'random' }, overwrite: true });
+        else lumps.forEach(l => { l.setAttribute('opacity', 1); l.style.opacity = 1; l.style.transform = ''; });
+      } else if (!want && L < shown) {
+        if (anim) gsap.to(lumps, { opacity: 0, y: -14, duration: .35, ease: 'power2.in', stagger: { each: .003, from: 'random' }, overwrite: true });
+        else lumps.forEach(l => { l.style.opacity = 0; });
+      }
+    }
+    shown = n;
+  };
+  window.addEventListener('fw:order', e => setLoad(e.detail.picked.length, e.detail.total));
+  const boxes = [...document.querySelectorAll('input[name="svc"]')];
+  const n0 = boxes.filter(b => b.checked).length;
+  setLoad(n0, n0 === 3 ? 72 : boxes.filter(b => b.checked).reduce((s, b) => s + ({ exterior: 15, internal: 28, repaste: 40 }[b.value] || 0), 0));
 })();
 </script>
 </body>
