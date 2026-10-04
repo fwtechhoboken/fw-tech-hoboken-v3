@@ -428,6 +428,29 @@
   .cxi-master:not(:disabled) .cxi-slot i { box-shadow: 0 0 18px rgba(224,74,50,.8); }
   .cx-ind[data-state="sending"] .cxi-slot i, .cx-ind[data-state="done"] .cxi-slot i { top: 84px; }
   .cxi-cap { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; letter-spacing: .14em; color: #e04a32; font-size: 15px; }
+
+  /* industrial override: signal head, countdown, LED bar */
+  .cxi-ovr { display: flex; gap: 14px; align-items: stretch; padding: 10px 12px; background: #0d0906; border: 3px solid #000; box-shadow: inset 0 0 18px rgba(0,0,0,.9), 0 0 0 2px #3a2a1c; }
+  .cxi-ovr-head { display: grid; gap: 7px; padding: 8px; background: #050403; border: 2px solid #2b2019; border-radius: 6px; }
+  .cxi-ovr-head i { width: 26px; height: 26px; border-radius: 50%; background: #1a1411; box-shadow: inset 0 -3px 5px rgba(0,0,0,.8); }
+  .cxi-ovr-side { display: grid; align-content: space-between; gap: 6px; min-width: 112px; }
+  .cxi-ovr-cap { font: 900 13px 'Big Shoulders Display', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8a7458; }
+  .cxi-ovr-time { font: 800 34px/1 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: #3a1d14; letter-spacing: .04em; }
+  .cxi-ovr-bar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cxi-ovr-bar b { height: 10px; background: #1f1712; border: 1px solid #000; }
+  .cxi-ovr-bar b.on { background: #ffb840; box-shadow: 0 0 8px #ffb840; }
+  .cxi-ovr[data-phase="red"] .r    { background: radial-gradient(circle at 35% 35%, #ffd0c8, #e0261b 60%, #4a0d08); box-shadow: 0 0 16px #e0261b; animation: ovrFlash .45s steps(1) infinite; }
+  .cxi-ovr[data-phase="yellow"] .y { background: radial-gradient(circle at 35% 35%, #fff4c0, #f5b70f 60%, #5a3e05); box-shadow: 0 0 16px #f5b70f; animation: ovrFlash .6s steps(1) infinite; }
+  .cxi-ovr[data-phase="green"] .g  { background: radial-gradient(circle at 35% 35%, #c8ffd9, #2fbf62 60%, #0f4a24); box-shadow: 0 0 16px #2fbf62; animation: ovrFlash .3s steps(1) infinite; }
+  .cxi-ovr[data-phase="done"] .g   { background: radial-gradient(circle at 35% 35%, #c8ffd9, #2fbf62 60%, #0f4a24); box-shadow: 0 0 18px #2fbf62; }
+  .cxi-ovr[data-phase="fail"] .r   { background: radial-gradient(circle at 35% 35%, #ffd0c8, #e0261b 60%, #4a0d08); box-shadow: 0 0 16px #e0261b; }
+  .cxi-ovr[data-phase="red"] .cxi-ovr-time    { color: #ff5a3c; text-shadow: 0 0 12px rgba(255,90,60,.7); }
+  .cxi-ovr[data-phase="yellow"] .cxi-ovr-time { color: #ffc93c; text-shadow: 0 0 12px rgba(255,201,60,.7); }
+  .cxi-ovr[data-phase="green"] .cxi-ovr-time, .cxi-ovr[data-phase="done"] .cxi-ovr-time { color: #4fe08a; text-shadow: 0 0 12px rgba(79,224,138,.7); }
+  .cxi-ovr[data-phase="red"] .cxi-ovr-cap, .cxi-ovr[data-phase="yellow"] .cxi-ovr-cap { color: #ffb870; animation: ovrFlash 1s steps(1) infinite; }
+  .cxi-ovr[data-phase="done"] .cxi-ovr-bar b { background: #2fbf62; box-shadow: 0 0 8px #2fbf62; }
+  .cxi-ovr[data-phase="done"] .cxi-ovr-cap { color: #4fe08a; }
+  @keyframes ovrFlash { 50% { filter: brightness(.35); box-shadow: none; } }
   .cxi-guide { margin-top: 12px; font-size: 12px; color: #b89a6c; }
   .cx-ind .cx-state { color: #b89a6c; }
   .cx-ind[data-state="armed"] .cx-state { color: #2fbf7a; }
@@ -731,7 +754,8 @@
   @media (min-width: 768px) { #air-pass { padding: 28px; } }
   .air-slot { height: 14px; border-radius: 7px; background: #03060b; box-shadow: inset 0 3px 6px rgba(0,0,0,.9), 0 1px 0 #2a3a58; margin: 0 10%; }
   .air-bp-clip { margin: -7px 12% 0; overflow: hidden; }
-  .air-bp.air-void::after { content: 'VOID'; position: absolute; inset: 0; display: grid; place-items: center; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: 72px; letter-spacing: .2em; color: rgba(211,42,30,.8); transform: rotate(-12deg); pointer-events: none; }
+  .air-bp::after { content: 'Approved'; position: absolute; left: 50%; top: 52%; width: max-content; padding: 4px 16px; border: 4px solid currentColor; border-radius: 8px; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800; font-size: clamp(26px, 5vw, 40px); letter-spacing: .14em; text-transform: uppercase; color: rgba(22,140,78,.72); transform: translate(-50%, -50%) rotate(-10deg); pointer-events: none; }
+  .air-bp.air-void::after { content: 'Canceled'; color: rgba(211,42,30,.82); }
   .air-bp { position: relative; background: #fff; color: #0b1a33; display: grid; grid-template-columns: 1fr; border-radius: 0 0 12px 12px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.8); }
   @media (min-width: 640px) { .air-bp { grid-template-columns: 1fr 150px; } }
   .air-bp-main { padding: 18px 20px; }
@@ -1529,6 +1553,14 @@
                 <button type="button" class="cxi-sw" data-i="1" aria-label="Safety switch B"><b class="led sm"></b><i></i><span>B</span></button>
                 <button type="button" class="cxi-arm cx-arm" aria-label="Arm button. Turns green when both switches are thrown" disabled><span>ARM</span></button>
                 <button type="button" class="cxi-master cx-fire" aria-label="Master lever. Pull to abort the requisition" disabled><span class="cxi-slot"><i></i></span><span class="cxi-cap">MASTER</span></button>
+                <div class="cxi-ovr" data-phase="idle" aria-hidden="true">
+                  <div class="cxi-ovr-head"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+                  <div class="cxi-ovr-side">
+                    <div class="cxi-ovr-cap">Override</div>
+                    <div class="cxi-ovr-time">7.0</div>
+                    <div class="cxi-ovr-bar"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                  </div>
+                </div>
               </div>
               <div class="cxi-guide ind-mono">Throw A and B. When ARM turns green, press it. Then grab the MASTER lever and drag it all the way down. <button type="button" class="cx-disarm">Reset</button></div>
               <p class="cx-msg"></p>
@@ -3242,6 +3274,7 @@
   /* ---------- booked: print the boarding pass, then take off ---------- */
   const onBooked = (info) => {
     const pass = $('#air-pass');
+    const bpEl = document.querySelector('.air-bp'); if (bpEl) bpEl.classList.remove('air-void');
     $('#air-bp-fields').innerHTML = [
       ['Passenger', info.reply ? (form && form.elements.name.value) || '' : ''],
       ...(info.kind === 'question'
@@ -3600,7 +3633,7 @@
     clearTimeout(toast.t); toast.t = setTimeout(() => { tst.classList.remove('show'); setTimeout(() => { tst.hidden = true; }, 400); }, 7000);
   };
   const onCancelled = () => {
-    typeAppend('\n\nTELEGRAM CANCELLED.\nCONTRACT VOIDED.');
+    typeAppend('\n\nOVERRIDE APPROVED.\nCONTRACT VOIDED.\nSERVICEMEN HAVE BEEN NOTIFIED.');
   };
   const onReached = (kind) => {
     const line = kind === 'question' ? 'INQUIRY ON THE DESK.' : 'CONTRACT IN ACTION.';
@@ -3921,13 +3954,13 @@
   const CX = { rec: null, deadline: 0, tick: 0, state: 'idle' };
   const CX_LABELS = {
     train: { idle: 'Safe', armed: 'Armed', sending: 'Sending', done: 'Cancelled', expired: 'Closed' },
-    air:   { idle: 'Normal', armed: 'Armed', sending: 'Discharging', done: 'Cancelled', expired: 'Closed' },
-    ind:   { idle: 'Locked', armed: 'Armed', sending: 'Aborting', done: 'Aborted', expired: 'Closed' }
+    air:   { idle: 'Normal', armed: 'Armed', sending: 'Discharging', done: 'Canceled', expired: 'Closed' },
+    ind:   { idle: 'Locked', armed: 'Armed', sending: 'Stand by', done: 'Voided', expired: 'Closed' }
   };
   const CX_LED = {
     train: { idle: ['idle', 'Line clear · pull lever 1'], armed: ['armed', 'Points set · pull lever 3 to stop'], sending: ['busy', 'Sending cancel...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
-    air:   { idle: ['idle', 'Normal · pull handle to arm'], armed: ['armed', 'Fire handle armed · rotate right to confirm'], sending: ['busy', 'Discharging...'], done: ['done', 'Cancelled'], expired: ['off', 'Window closed'] },
-    ind:   { idle: ['idle', 'Locked · throw A and B'], armed: ['armed', 'Armed · drag master down to confirm'], sending: ['busy', 'Aborting...'], done: ['done', 'Aborted'], expired: ['done', 'Message reached · contract in action'] }
+    air:   { idle: ['idle', 'Normal · pull handle to arm'], armed: ['armed', 'Fire handle armed · rotate right to confirm'], sending: ['busy', 'Discharging...'], done: ['done', 'Canceled'], expired: ['off', 'Window closed'] },
+    ind:   { idle: ['idle', 'Locked · throw A and B'], armed: ['armed', 'Armed · drag master down to confirm'], sending: ['busy', 'Override detected · stand by'], done: ['done', 'Override approved'], expired: ['done', 'Message reached · contract in action'] }
   };
   const cxLed = (c, mode, text) => { const l = c.querySelector('.cx-led'); if (!l) return; l.dataset.led = mode; l.querySelector('.cx-led-text').textContent = text; };
   const cxIndProgress = (c) => {
@@ -3984,6 +4017,7 @@
     const cs = document.getElementById('cancel-stamp'); if (cs) cs.classList.remove('show');
     document.querySelectorAll('.cx').forEach(c => { c.hidden = false; });
     cxSet('idle', '');
+    document.querySelectorAll('.cxi-ovr').forEach(o => { o.dataset.phase = 'idle'; o.querySelector('.cxi-ovr-time').textContent = '7.0'; o.querySelectorAll('.cxi-ovr-bar b').forEach(b => b.classList.remove('on')); });
     clearInterval(CX.tick); cxTime(); CX.tick = setInterval(cxTime, 250);
   };
   const cxMarkCancelled = () => {
@@ -3995,7 +4029,28 @@
   };
   const fireCancel = async () => {
     if (CX.state !== 'armed' || !CX.rec || Date.now() > CX.deadline) return;
+    const isInd = root.dataset.theme === 'industrial', isAir = root.dataset.theme === 'airplane';
     cxSet('sending', 'Sending the cancel notice...');
+    if (isInd) document.querySelectorAll('.cx-ind .cx-msg').forEach(m => m.textContent = 'Loading shipment override detected. Stand by.');
+    const OVR_MS = 7000, ovrEls = document.querySelectorAll('.cxi-ovr');
+    let ovrRaf = 0;
+    const ovrStop = (phase, txt) => { cancelAnimationFrame(ovrRaf); ovrEls.forEach(o => { o.dataset.phase = phase; if (txt != null) o.querySelector('.cxi-ovr-time').textContent = txt; }); };
+    if (isInd) {
+      const t0 = performance.now();
+      const step = (t) => {
+        const left = Math.max(0, OVR_MS - (t - t0)), sec = left / 1000;
+        const phase = sec > 4 ? 'red' : sec > 1.5 ? 'yellow' : 'green';
+        ovrEls.forEach(o => {
+          o.dataset.phase = phase;
+          o.querySelector('.cxi-ovr-time').textContent = sec.toFixed(1);
+          o.querySelectorAll('.cxi-ovr-bar b').forEach((b, k) => b.classList.toggle('on', k < Math.ceil(sec)));
+          if (o.closest('.cx-ind')) cxLed(o.closest('.cx-ind'), 'busy', 'Override detected · stand by ' + Math.ceil(sec));
+        });
+        if (left > 0) ovrRaf = requestAnimationFrame(step);
+      };
+      ovrRaf = requestAnimationFrame(step);
+    }
+    const hold = isInd ? new Promise(res => setTimeout(res, OVR_MS)) : null;
     const r = CX.rec, now = new Date();
     const subject = 'FW Tech CANCELLED: ' + r.subject;
     const body = ['CANCELLED by the customer inside the 2 minute window.', '',
@@ -4008,10 +4063,14 @@
           body: JSON.stringify({ ...r.payload, service: 'CANCELLED: ' + r.payload.service, total: 0, subject, body, website: '' }) });
         const out = await res.json(); if (!out.ok) throw new Error(out.error || 'failed');
       }
+      if (hold) await hold;
       clearInterval(CX.tick);
       cxSet('done', "Cancelled. I got the notice, so there's nothing to drop off.");
+      if (isInd) { ovrStop('done', '0.0'); document.querySelectorAll('.cx-ind').forEach(c => cxLed(c, 'idle', 'Override approved')); document.querySelectorAll('.cx-ind .cx-msg').forEach(m => m.textContent = 'Override approved. Contract voided. Servicemen have been notified of said change.'); }
+      if (isAir) document.querySelectorAll('.cx-air .cx-msg').forEach(m => m.textContent = "Canceled. I got the notice, so there's nothing to drop off.");
       cxMarkCancelled();
     } catch (err) {
+      if (isInd) ovrStop('fail');
       const mail = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       cxSet('armed', `Couldn't send the cancel. <a href="${mail}">Email it to me instead</a>.`);
     }
