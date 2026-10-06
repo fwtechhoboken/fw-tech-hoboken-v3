@@ -36,6 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=Special+Elite&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<script>if (/[?&]track=/.test(location.search) && /[?&]key=/.test(location.search)) document.documentElement.classList.add('tracking');</script>
 <script>
   /* Apply saved mode before paint so there's no flash */
   (function () {
@@ -44,31 +45,6 @@
     h.dataset.theme = (t === 'airplane' || t === 'industrial') ? t : 'train';
     if (c === 'on') h.dataset.calm = 'on';
   })();
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          void:    'rgb(var(--void) / <alpha-value>)',
-          slab:    'rgb(var(--slab) / <alpha-value>)',
-          smoke:   'rgb(var(--smoke) / <alpha-value>)',
-          line:    'rgb(var(--line) / <alpha-value>)',
-          ink:     'rgb(var(--ink) / <alpha-value>)',
-          dim:     'rgb(var(--dim) / <alpha-value>)',
-          coolant: 'rgb(var(--coolant) / <alpha-value>)',
-          heat:    'rgb(var(--heat) / <alpha-value>)',
-          brass:   'rgb(var(--brass) / <alpha-value>)'
-        },
-        fontFamily: {
-          sans: ['Archivo', 'Helvetica Neue', 'Arial', 'sans-serif'],
-          mono: ['JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
-        },
-        maxWidth: { frame: '1440px' }
-      }
-    }
-  }
 </script>
 <style>
   /* ================= MODES =================
@@ -1330,6 +1306,80 @@
   .sb-reset { padding-left: 0 !important; }
   .cx-train[data-pulled="1"] .cx-disarm { visibility: visible !important; }
 
+
+  /* ======================= Flight tracker ======================= */
+  html:not(.tracking) #tracker { display: none; }
+  html.tracking body > :not(#tracker):not(script) { display: none !important; }
+  html.tracking, html.tracking body { overflow: auto !important; height: auto !important; background: rgb(var(--void)); }
+  #tracker { min-height: 100vh; color: rgb(var(--ink)); background:
+      radial-gradient(1200px 500px at 80% -10%, rgb(var(--brass) / .10), transparent 60%), rgb(var(--void));
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .trk-top { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 40px) 14px; background: rgb(var(--void) / .85); backdrop-filter: blur(10px); border-bottom: 1px solid rgb(var(--line) / .6); }
+  .trk-logo { color: rgb(var(--ink)); text-decoration: none; font-weight: 800; font-size: 15px; }
+  .trk-logo b { color: rgb(var(--brass)); font-size: 20px; margin-right: 4px; }
+  .trk-live { display: inline-flex; align-items: center; gap: 8px; font: 600 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .trk-live i { width: 9px; height: 9px; border-radius: 50%; background: #4fe08a; box-shadow: 0 0 10px #4fe08a; animation: trkPulse 2s ease-in-out infinite; }
+  .trk-live.off i { background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
+  @keyframes trkPulse { 50% { opacity: .35; } }
+  .trk-wrap { max-width: 1120px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 40px) 40px; display: grid; gap: clamp(22px, 3vw, 34px); }
+  .trk-eyebrow { font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: rgb(var(--brass)); margin: 0; }
+  .trk-code { margin: 6px 0 0; font-weight: 900; font-stretch: 125%; font-size: clamp(52px, 11vw, 120px); line-height: .9; letter-spacing: -.02em; }
+  .trk-sub { margin: 12px 0 0; color: rgb(var(--dim)); font-size: 17px; max-width: 60ch; }
+  .trk-status { display: inline-block; margin-top: 14px; padding: 6px 12px; font: 800 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; border: 2px solid currentColor; }
+  .trk-status[data-s="Active"] { color: #4fe08a; } .trk-status[data-s="Landed"] { color: rgb(var(--brass)); } .trk-status[data-s="Cancelled"] { color: #ef4444; }
+  .trk-stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(18px, 2.4vw, 28px); align-items: start; }
+  .trk-scene-card, .trk-now-card, .trk-route, .trk-proof, .trk-demo { background: rgb(var(--slab)); border: 1px solid rgb(var(--line)); box-shadow: 0 24px 50px -30px rgba(0,0,0,.8); }
+  .trk-scene-card { padding: 14px; }
+  #trk-scene { width: 100%; height: auto; display: block; background: radial-gradient(closest-side, rgb(var(--brass) / .08), transparent), #0b0c0e; }
+  .trk-illus { margin: 10px 4px 0; font: 500 11px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .trk-now-card { padding: clamp(18px, 2.4vw, 28px); }
+  .trk-now { margin: 6px 0 0; font-weight: 900; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.05; }
+  .trk-desc { margin: 10px 0 0; color: rgb(var(--dim)); line-height: 1.6; }
+  .trk-heads { margin-top: 16px; padding: 14px 16px; border-left: 4px solid #f5b70f; background: rgba(245,183,15,.1); display: grid; gap: 6px; line-height: 1.5; }
+  .trk-heads b { color: #f5b70f; }
+  .trk-note { margin-top: 16px; padding: 14px 16px; border-left: 4px solid rgb(var(--coolant)); background: rgb(var(--coolant) / .08); }
+  .trk-note span { font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--coolant)); }
+  .trk-note p { margin: 6px 0 0; line-height: 1.5; }
+  .trk-facts { margin: 20px 0 0; display: grid; gap: 10px; border-top: 1px solid rgb(var(--line)); padding-top: 16px; }
+  .trk-facts div { display: grid; grid-template-columns: 90px 1fr; gap: 10px; }
+  .trk-facts dt { font: 600 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .trk-facts dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+  .trk-route, .trk-proof, .trk-demo { padding: clamp(18px, 2.4vw, 28px); }
+  .trk-h2 { margin: 0 0 16px; font-weight: 900; font-size: 22px; }
+  .trk-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; counter-reset: s; }
+  .trk-steps li { position: relative; padding: 14px 14px 14px 44px; border: 1px solid rgb(var(--line)); background: rgb(var(--void) / .5); color: rgb(var(--dim)); font-weight: 700; font-size: 14px; line-height: 1.3; }
+  .trk-steps li::before { content: ''; position: absolute; left: 14px; top: 14px; width: 18px; height: 18px; border: 2px solid rgb(var(--smoke)); border-radius: 50%; }
+  .trk-steps li.done { color: rgb(var(--ink)); }
+  .trk-steps li.done::before { background: #4fe08a; border-color: #4fe08a; box-shadow: inset 0 0 0 3px rgb(var(--slab)); }
+  .trk-steps li.now { color: rgb(var(--ink)); border-color: rgb(var(--brass)); box-shadow: 0 0 0 1px rgb(var(--brass)), 0 0 24px -6px rgb(var(--brass) / .6); }
+  .trk-steps li.now::before { border-color: rgb(var(--brass)); background: rgb(var(--brass)); animation: trkPulse 1.4s ease-in-out infinite; }
+  .trk-steps li.pnr::after { content: 'Point of no return'; display: block; margin-top: 6px; font: 700 10.5px 'JetBrains Mono', monospace; letter-spacing: .06em; text-transform: uppercase; color: #ef4444; }
+  .trk-steps li.pnr::before { border-radius: 2px; transform: rotate(45deg); border-color: #ef4444; }
+  .trk-steps li.pnr.done::before { background: #ef4444; }
+  .trk-steps li.heads { color: #f5b70f; }
+  .trk-steps li.heads::before { border-color: #f5b70f; }
+  .trk-steps li small { display: block; margin-top: 4px; font: 500 11px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .trk-proof figure { margin: 0; }
+  .trk-proof img { display: block; width: 100%; max-height: 520px; object-fit: contain; background: #0b0c0e; border: 1px solid rgb(var(--line)); }
+  .trk-proof figcaption { margin-top: 10px; font: 500 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .trk-demo-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .trk-demo-btns button { padding: 9px 12px; background: rgb(var(--void)); color: rgb(var(--ink)); border: 1px solid rgb(var(--smoke)); font: 600 12px 'JetBrains Mono', monospace; cursor: pointer; }
+  .trk-demo-btns button[aria-pressed="true"] { border-color: rgb(var(--brass)); color: rgb(var(--brass)); }
+  .trk-demo-btns button:focus-visible, .trk-logo:focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 2px; }
+  .trk-foot { margin: 0; font: 500 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); line-height: 1.6; }
+  @media (max-width: 860px) { .trk-stage { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .trk-steps { grid-template-columns: 1fr 1fr; } .trk-steps li { padding: 12px 10px 12px 38px; font-size: 13px; } .trk-steps li::before { left: 11px; } }
+
+  .track-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 18px; margin-top: 18px; padding: 14px 18px; text-decoration: none;
+    border: 2px solid currentColor; color: rgb(var(--brass)); background: rgb(var(--brass) / .08); }
+  .track-cta span { font: 700 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--dim)); }
+  .track-cta b { font-weight: 900; font-size: 17px; }
+  .track-cta:hover { background: rgb(var(--brass) / .16); }
+  .track-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  #air-pass .track-cta { border-radius: 10px; color: #0c3478; background: #eef3fb; }
+  #ind-dispatch .track-cta { color: #ffb870; background: rgba(255,184,112,.08); border-width: 3px; grid-column: 1 / -1; flex: 1 0 100%; width: 100%; box-sizing: border-box; }
+
   /* ======================= Mode change curtain ======================= */
   #mode-shift { position: fixed; inset: 0; z-index: 200; pointer-events: none; visibility: hidden; overflow: hidden; }
   #mode-shift.on { visibility: visible; pointer-events: auto; }
@@ -1348,8 +1398,151 @@
   .ms-shutter i { position: absolute; left: 0; right: 0; bottom: 0; height: 30px; border-top: 3px solid #0d0906;
     background: repeating-linear-gradient(135deg, #d69a4e 0 18px, #16110d 18px 36px); }
 </style>
+<!-- Tailwind CSS v3.4, compiled for production from this file (no CDN). Rebuild after adding new Tailwind classes. -->
+<style id="tailwind">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Archivo,Helvetica Neue,Arial,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,SFMono-Regular,Menlo,Consolas,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-x-0{left:0;right:0}.-left-40{left:-10rem}.-right-40{right:-10rem}.bottom-0{bottom:0}.bottom-3{bottom:.75rem}.bottom-5{bottom:1.25rem}.left-3{left:.75rem}.left-6{left:1.5rem}.right-3{right:.75rem}.right-6{right:1.5rem}.top-0{top:0}.top-1\/3{top:33.333333%}.top-3{top:.75rem}.top-4{top:1rem}.z-10{z-index:10}.z-50{z-index:50}.col-span-1{grid-column:span 1/span 1}.col-span-12{grid-column:span 12/span 12}.col-span-2{grid-column:span 2/span 2}.mx-auto{margin-left:auto;margin-right:auto}.my-8{margin-top:2rem;margin-bottom:2rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-10{margin-bottom:2.5rem}.mb-14{margin-bottom:3.5rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:.25rem}.ml-10{margin-left:2.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-1\/2{height:50%}.h-11{height:2.75rem}.h-16{height:4rem}.h-2\.5{height:.625rem}.h-8{height:2rem}.h-\[100\%\]{height:100%}.h-\[2px\]{height:2px}.h-\[40\%\]{height:40%}.h-\[48\%\]{height:48%}.h-\[4px\]{height:4px}.h-\[55\%\]{height:55%}.h-\[560px\]{height:560px}.h-\[64\%\]{height:64%}.h-\[680px\]{height:680px}.h-\[72\%\]{height:72%}.h-\[82\%\]{height:82%}.h-\[92\%\]{height:92%}.h-auto{height:auto}.h-full{height:100%}.min-h-\[1\.25rem\]{min-height:1.25rem}.min-h-\[100px\]{min-height:100px}.min-h-\[100svh\]{min-height:100svh}.w-11{width:2.75rem}.w-6{width:1.5rem}.w-\[560px\]{width:560px}.w-\[680px\]{width:680px}.w-full{width:100%}.min-w-\[560px\]{min-width:560px}.max-w-\[36ch\]{max-width:36ch}.max-w-\[38ch\]{max-width:38ch}.max-w-\[40ch\]{max-width:40ch}.max-w-\[42ch\]{max-width:42ch}.max-w-\[46ch\]{max-width:46ch}.max-w-\[52ch\]{max-width:52ch}.max-w-\[70ch\]{max-width:70ch}.max-w-frame{max-width:1440px}.flex-1{flex:1 1 0%}.flex-shrink{flex-shrink:1}.grow-\[\.7\]{flex-grow:.7}.grow-\[\.8\]{flex-grow:.8}.grow-\[1\.3\]{flex-grow:1.3}.grow-\[1\.6\]{flex-grow:1.6}.grow-\[1\.9\]{flex-grow:1.9}.grow-\[1\]{flex-grow:1}.grow-\[2\.4\]{flex-grow:2.4}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize-y{resize:vertical}.resize{resize:both}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-\[auto_1fr\]{grid-template-columns:auto 1fr}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-x-6{-moz-column-gap:1.5rem;column-gap:1.5rem}.gap-x-8{-moz-column-gap:2rem;column-gap:2rem}.gap-y-10{row-gap:2.5rem}.gap-y-12{row-gap:3rem}.gap-y-2{row-gap:.5rem}.gap-y-2\.5{row-gap:.625rem}.gap-y-4{row-gap:1rem}.gap-y-5{row-gap:1.25rem}.gap-y-6{row-gap:1.5rem}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.self-end{align-self:flex-end}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-x-hidden{overflow-x:hidden}.border{border-width:1px}.border-2{border-width:2px}.border-b-0{border-bottom-width:0}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-black\/60{border-color:rgba(0,0,0,.6)}.border-brass{--tw-border-opacity:1;border-color:rgb(var(--brass)/var(--tw-border-opacity,1))}.border-brass\/50{border-color:rgb(var(--brass)/.5)}.border-brass\/60{border-color:rgb(var(--brass)/.6)}.border-coolant\/40{border-color:rgb(var(--coolant)/.4)}.border-heat\/50{border-color:rgb(var(--heat)/.5)}.border-heat\/60{border-color:rgb(var(--heat)/.6)}.border-smoke{--tw-border-opacity:1;border-color:rgb(var(--smoke)/var(--tw-border-opacity,1))}.border-white\/5{border-color:hsla(0,0%,100%,.05)}.bg-brass{--tw-bg-opacity:1;background-color:rgb(var(--brass)/var(--tw-bg-opacity,1))}.bg-coolant{--tw-bg-opacity:1;background-color:rgb(var(--coolant)/var(--tw-bg-opacity,1))}.bg-slab{--tw-bg-opacity:1;background-color:rgb(var(--slab)/var(--tw-bg-opacity,1))}.bg-transparent{background-color:transparent}.bg-void{--tw-bg-opacity:1;background-color:rgb(var(--void)/var(--tw-bg-opacity,1))}.bg-void\/60{background-color:rgb(var(--void)/.6)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.p-8{padding:2rem}.\!px-5{padding-left:1.25rem!important;padding-right:1.25rem!important}.\!py-2\.5{padding-top:.625rem!important;padding-bottom:.625rem!important}.\!py-3{padding-top:.75rem!important;padding-bottom:.75rem!important}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-14{padding-bottom:3.5rem}.pb-3{padding-bottom:.75rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pb-7{padding-bottom:1.75rem}.pl-10{padding-left:2.5rem}.pt-2{padding-top:.5rem}.pt-28{padding-top:7rem}.pt-4{padding-top:1rem}.pt-5{padding-top:1.25rem}.text-right{text-align:right}.align-top{vertical-align:top}.font-mono{font-family:JetBrains Mono,SFMono-Regular,Menlo,Consolas,monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-\[\.38em\]{font-size:.38em}.text-\[\.95rem\]{font-size:.95rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[clamp\(1\.4rem\2c 3\.6vw\2c 3\.2rem\)\]{font-size:clamp(1.4rem,3.6vw,3.2rem)}.text-\[clamp\(2\.2rem\2c 4\.4vw\2c 4rem\)\]{font-size:clamp(2.2rem,4.4vw,4rem)}.text-\[clamp\(2\.2rem\2c 4\.6vw\2c 4\.2rem\)\]{font-size:clamp(2.2rem,4.6vw,4.2rem)}.text-\[clamp\(2\.2rem\2c 5\.2vw\2c 4\.8rem\)\]{font-size:clamp(2.2rem,5.2vw,4.8rem)}.text-\[clamp\(2\.2rem\2c 5vw\2c 4\.6rem\)\]{font-size:clamp(2.2rem,5vw,4.6rem)}.text-\[clamp\(2\.4rem\2c 4\.4vw\2c 3\.8rem\)\]{font-size:clamp(2.4rem,4.4vw,3.8rem)}.text-\[clamp\(2\.4rem\2c 5\.8vw\2c 5\.4rem\)\]{font-size:clamp(2.4rem,5.8vw,5.4rem)}.text-\[clamp\(3\.4rem\2c 11vw\2c 10rem\)\]{font-size:clamp(3.4rem,11vw,10rem)}.text-\[clamp\(4rem\2c 8\.5vw\2c 7rem\)\]{font-size:clamp(4rem,8.5vw,7rem)}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.text-coolant{--tw-text-opacity:1;color:rgb(var(--coolant)/var(--tw-text-opacity,1))}.text-dim{--tw-text-opacity:1;color:rgb(var(--dim)/var(--tw-text-opacity,1))}.text-heat{--tw-text-opacity:1;color:rgb(var(--heat)/var(--tw-text-opacity,1))}.text-ink{--tw-text-opacity:1;color:rgb(var(--ink)/var(--tw-text-opacity,1))}.text-ink\/85{color:rgb(var(--ink)/.85)}.underline{text-decoration-line:underline}.line-through{text-decoration-line:line-through}.underline-offset-4{text-underline-offset:4px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-50{opacity:.5}.opacity-60{opacity:.6}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.grayscale{--tw-grayscale:grayscale(100%)}.filter,.grayscale{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.ease-in{transition-timing-function:cubic-bezier(.4,0,1,1)}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.ease-out{transition-timing-function:cubic-bezier(0,0,.2,1)}.hover\:text-coolant:hover{--tw-text-opacity:1;color:rgb(var(--coolant)/var(--tw-text-opacity,1))}.hover\:text-ink:hover{--tw-text-opacity:1;color:rgb(var(--ink)/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (min-width:768px){.md\:col-span-1{grid-column:span 1/span 1}.md\:col-span-12{grid-column:span 12/span 12}.md\:col-span-2{grid-column:span 2/span 2}.md\:col-span-3{grid-column:span 3/span 3}.md\:col-span-4{grid-column:span 4/span 4}.md\:col-span-5{grid-column:span 5/span 5}.md\:col-span-6{grid-column:span 6/span 6}.md\:col-span-7{grid-column:span 7/span 7}.md\:col-span-9{grid-column:span 9/span 9}.md\:mb-20{margin-bottom:5rem}.md\:w-auto{width:auto}.md\:translate-y-10{--tw-translate-y:2.5rem;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.md\:items-end{align-items:flex-end}.md\:justify-end{justify-content:flex-end}.md\:p-10{padding:2.5rem}.md\:p-12{padding:3rem}.md\:p-6{padding:1.5rem}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:p-9{padding:2.25rem}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-7{padding-left:1.75rem;padding-right:1.75rem}.md\:py-20{padding-top:5rem;padding-bottom:5rem}.md\:py-32{padding-top:8rem;padding-bottom:8rem}.md\:pt-36{padding-top:9rem}.md\:text-right{text-align:right}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width:1024px){.lg\:col-span-4{grid-column:span 4/span 4}.lg\:col-span-5{grid-column:span 5/span 5}.lg\:col-span-6{grid-column:span 6/span 6}.lg\:col-span-7{grid-column:span 7/span 7}.lg\:col-span-8{grid-column:span 8/span 8}.lg\:col-start-7{grid-column-start:7}.lg\:col-start-8{grid-column-start:8}.lg\:col-start-9{grid-column-start:9}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:h-\[calc\(100svh-18px\)\]{height:calc(100svh - 18px)}.lg\:h-\[min\(660px\2c 76svh\)\]{height:min(660px,76svh)}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:items-center{align-items:center}.lg\:justify-start{justify-content:flex-start}.lg\:py-0{padding-top:0;padding-bottom:0}.lg\:pl-\[1em\]{padding-left:1em}.lg\:pt-10{padding-top:2.5rem}}@media (min-width:1280px){.xl\:translate-y-8{--tw-translate-y:2rem;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.xl\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.xl\:gap-9{gap:2.25rem}}</style>
 </head>
 <body class="overflow-x-hidden">
+<!-- ======================= Flight tracker (only shows with ?track=&key=) ======================= -->
+<div id="tracker" aria-live="polite">
+  <header class="trk-top">
+    <a class="trk-logo" href="./" aria-label="FW Tech Hoboken home"><b>FW</b> Tech Hoboken</a>
+    <span class="trk-live"><i></i><span id="trk-updated">Connecting...</span></span>
+  </header>
+
+  <main class="trk-wrap">
+    <section class="trk-head">
+      <p class="trk-eyebrow">Flight tracker</p>
+      <h1 class="trk-code" id="trk-code">------</h1>
+      <p class="trk-sub" id="trk-sub">Loading your flight...</p>
+      <span class="trk-status" id="trk-status" hidden></span>
+    </section>
+
+    <section class="trk-stage" id="trk-stagebox" hidden>
+      <div class="trk-scene-card">
+        <svg id="trk-scene" viewBox="0 0 640 360" role="img" aria-labelledby="trk-now">
+          <defs>
+            <linearGradient id="tvCopper" x1="0" x2="1"><stop offset="0" stop-color="#8a4d22"/><stop offset=".5" stop-color="#d48a4e"/><stop offset="1" stop-color="#8a4d22"/></linearGradient>
+            <linearGradient id="tvShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <clipPath id="tvDisplayClip"><rect x="182" y="42" width="276" height="166" rx="4"/></clipPath>
+          </defs>
+
+          <!-- closed laptop, top view -->
+          <g id="tv-closed">
+            <rect x="150" y="60" width="340" height="226" rx="16" fill="#2b2d31" stroke="#0b0b0c" stroke-width="3"/>
+            <rect x="164" y="74" width="312" height="198" rx="10" fill="none" stroke="#3a3c41" stroke-width="2"/>
+            <text x="320" y="182" text-anchor="middle" font-family="Archivo, Arial" font-weight="900" font-size="34" fill="#55585e">FW</text>
+            <rect x="200" y="284" width="240" height="8" rx="3" fill="#1c1d20"/>
+            <g id="tv-tag"><rect x="176" y="92" width="150" height="40" fill="#4f8fd6" opacity=".95"/><rect x="176" y="92" width="150" height="40" fill="none" stroke="#2c5e9a"/><text id="tv-tag-text" x="251" y="119" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="800" font-size="19" fill="#0b1b30">------</text></g>
+            <g id="tv-wait"><circle cx="440" cy="120" r="26" fill="none" stroke="#c8a96a" stroke-width="3"/><line x1="440" y1="120" x2="440" y2="102" stroke="#c8a96a" stroke-width="3" stroke-linecap="round"/><line id="tv-wait-hand" x1="440" y1="120" x2="454" y2="120" stroke="#c8a96a" stroke-width="3" stroke-linecap="round"/></g>
+            <g id="tv-check"><circle cx="440" cy="120" r="30" fill="#2fbf62"/><path d="M426 120 l10 10 l20 -22" fill="none" stroke="#04140a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g id="tv-cancel"><rect x="210" y="200" width="220" height="50" fill="#2b2d31"/><rect x="210" y="200" width="220" height="50" fill="none" stroke="#e0261b" stroke-width="5"/><text x="320" y="234" text-anchor="middle" font-family="Archivo, Arial" font-weight="900" font-size="26" letter-spacing="3" fill="#e0261b">CANCELLED</text></g>
+          </g>
+
+          <!-- inside, bottom panel view -->
+          <g id="tv-inside">
+            <rect x="110" y="40" width="420" height="280" rx="16" fill="#18191c" stroke="#000" stroke-width="3"/>
+            <rect x="128" y="58" width="384" height="244" rx="6" fill="#10241b"/>
+            <g stroke="#1f4a36" stroke-width="2" fill="none"><path d="M300 80 H480 M300 96 H470 M330 180 V200 H470 M140 196 H250"/></g>
+            <rect x="276" y="214" width="216" height="78" rx="6" fill="#23252a" stroke="#000"/>
+            <text x="384" y="258" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#6b6e75">BATTERY</text>
+            <rect x="388" y="112" width="110" height="22" fill="#1d3a68" stroke="#000"/><rect x="388" y="142" width="110" height="22" fill="#1d3a68" stroke="#000"/>
+            <g id="tv-cpu">
+              <rect x="264" y="104" width="76" height="76" fill="#2c5a40" stroke="#000"/>
+              <rect x="283" y="123" width="38" height="38" fill="#c3c8d0" stroke="#7a8089"/>
+              <g id="tv-paste-old"><rect x="280" y="120" width="44" height="44" rx="8" fill="#8f9289"/><path d="M286 128 l12 10 l-6 12 M304 124 l4 14 l12 6 M290 156 l14 -6" stroke="#5d6058" stroke-width="2" fill="none"/></g>
+              <ellipse id="tv-paste-new" cx="302" cy="142" rx="18" ry="18" fill="#d9dde2" stroke="#aeb4bc"/>
+            </g>
+            <g id="tv-heatsink">
+              <rect x="268" y="110" width="68" height="64" rx="4" fill="url(#tvCopper)" stroke="#5a2f12" stroke-width="2"/>
+              <rect x="176" y="132" width="98" height="16" rx="7" fill="url(#tvCopper)" stroke="#5a2f12" stroke-width="2"/>
+              <g><rect x="140" y="82" width="34" height="112" fill="#9a9ea6" stroke="#4b4f55" stroke-width="2"/><path d="M146 86 V190 M152 86 V190 M158 86 V190 M164 86 V190 M170 86 V190" stroke="#5f636a" stroke-width="2"/></g>
+              <g fill="#3a3c41" stroke="#000"><circle cx="276" cy="118" r="4"/><circle cx="328" cy="118" r="4"/><circle cx="276" cy="166" r="4"/><circle cx="328" cy="166" r="4"/></g>
+            </g>
+            <g id="tv-fanbox">
+              <circle cx="214" cy="248" r="46" fill="#121316" stroke="#000" stroke-width="3"/>
+              <g id="tv-blades" fill="#3c3f45" stroke="#1a1b1e">
+                <path d="M214 248 C224 222 242 214 252 222 C240 232 230 242 214 248Z"/><path d="M214 248 C240 254 248 272 240 282 C230 270 220 260 214 248Z"/><path d="M214 248 C210 274 194 286 182 280 C194 270 204 260 214 248Z"/><path d="M214 248 C188 244 176 228 182 216 C196 226 206 236 214 248Z"/><path d="M214 248 C208 222 216 204 230 202 C226 218 220 232 214 248Z"/>
+                <circle cx="214" cy="248" r="12" fill="#55585e"/>
+              </g>
+            </g>
+            <g id="tv-dust" fill="#8a7d66">
+              <circle cx="150" cy="96" r="4"/><circle cx="160" cy="120" r="3"/><circle cx="148" cy="146" r="5"/><circle cx="166" cy="170" r="3.5"/><circle cx="154" cy="186" r="4"/>
+              <circle cx="196" cy="230" r="4"/><circle cx="232" cy="262" r="3.5"/><circle cx="210" cy="276" r="4.5"/><circle cx="238" cy="236" r="3"/>
+            </g>
+            <g id="tv-air">
+              <rect x="560" y="236" width="44" height="96" rx="8" fill="#2e5fa8" stroke="#000" stroke-width="2"/><rect x="568" y="220" width="28" height="18" fill="#c3c8d0" stroke="#000"/>
+              <path d="M570 228 H300 Q282 228 270 238" stroke="#e33b2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <g id="tv-puffs" stroke="#e8eef6" stroke-width="3" stroke-linecap="round" opacity=".8"><path d="M262 242 l-22 4 M264 250 l-20 12 M262 234 l-20 -8"/></g>
+            </g>
+            <g id="tv-warn"><circle cx="302" cy="142" r="72" fill="none" stroke="#f5b70f" stroke-width="4" stroke-dasharray="10 8"/><rect x="226" y="52" width="152" height="24" rx="4" fill="#f5b70f"/><text x="302" y="69" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="800" font-size="12" fill="#2a1d00">POINT OF NO RETURN</text></g>
+            <g id="tv-scraper"><rect x="0" y="-8" width="70" height="16" rx="4" fill="#3d7bd9" stroke="#0b2a5a" stroke-width="2"/><rect x="-6" y="-6" width="10" height="12" fill="#e8eef6"/></g>
+            <g id="tv-syringe"><rect x="0" y="-60" width="16" height="56" rx="3" fill="#e8eef6" stroke="#6b6e75" stroke-width="2"/><rect x="4" y="-4" width="8" height="10" fill="#9aa0a8"/><rect x="2" y="-80" width="12" height="22" fill="#6b6e75"/></g>
+            <g id="tv-panel">
+              <rect x="110" y="40" width="420" height="280" rx="16" fill="#2b2d31" stroke="#000" stroke-width="3"/>
+              <g stroke="#1c1d20" stroke-width="5" stroke-linecap="round"><path d="M180 90 H300 M180 106 H300 M180 122 H300 M340 230 H460 M340 246 H460"/></g>
+              <g id="tv-screws" fill="#55585e" stroke="#111"><g><circle cx="134" cy="64" r="8"/><path d="M129 64 H139 M134 59 V69" stroke="#111" stroke-width="2"/></g><g><circle cx="506" cy="64" r="8"/><path d="M501 64 H511 M506 59 V69" stroke="#111" stroke-width="2"/></g><g><circle cx="134" cy="296" r="8"/><path d="M129 296 H139 M134 291 V301" stroke="#111" stroke-width="2"/></g><g><circle cx="506" cy="296" r="8"/><path d="M501 296 H511 M506 291 V301" stroke="#111" stroke-width="2"/></g><g><circle cx="320" cy="64" r="8"/><path d="M315 64 H325 M320 59 V69" stroke="#111" stroke-width="2"/></g></g>
+            </g>
+          </g>
+
+          <!-- open laptop, front view -->
+          <g id="tv-open">
+            <rect x="170" y="30" width="300" height="190" rx="12" fill="#0d0e10" stroke="#2b2d31" stroke-width="6"/>
+            <rect id="tv-display" x="182" y="42" width="276" height="166" rx="4" fill="#0f1720"/>
+            <g clip-path="url(#tvDisplayClip)">
+              <g id="tv-smudge" fill="#9fb0c4" opacity=".28"><circle cx="230" cy="90" r="18"/><circle cx="380" cy="80" r="14"/><circle cx="300" cy="150" r="22"/><circle cx="420" cy="170" r="12"/><circle cx="220" cy="170" r="10"/></g>
+              <rect id="tv-shine" x="120" y="30" width="60" height="200" fill="url(#tvShine)" transform="skewX(-20)"/>
+              <g id="tv-graph">
+                <text x="196" y="66" font-family="JetBrains Mono, monospace" font-size="12" fill="#7d8a99">CPU temp</text>
+                <text id="tv-temp" x="444" y="66" text-anchor="end" font-family="JetBrains Mono, monospace" font-weight="800" font-size="16" fill="#4fe08a">61°C</text>
+                <path d="M196 190 H444" stroke="#25303c"/>
+                <polyline id="tv-line" points="198,84 230,88 262,96 294,118 326,140 358,156 390,164 422,168 442,169" fill="none" stroke="#4fe08a" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+            </g>
+            <path d="M130 226 H510 L548 292 H92 Z" fill="#2b2d31" stroke="#0b0b0c" stroke-width="3"/>
+            <g stroke="#1c1d20" stroke-width="2"><path d="M150 240 H490 M144 252 H496 M138 264 H502 M132 276 H508"/><path d="M200 232 V284 M250 232 V286 M300 232 V288 M350 232 V288 M400 232 V286 M450 232 V284"/></g>
+            <g id="tv-cloth"><rect x="-46" y="-30" width="92" height="60" rx="10" fill="#6aa0d8" stroke="#2c5e9a" stroke-width="2"/><path d="M-30 -18 Q0 -8 30 -18 M-30 0 Q0 10 30 0 M-30 16 Q0 24 30 16" stroke="#4c82bd" stroke-width="2" fill="none"/></g>
+            <g id="tv-brush"><rect x="-6" y="-70" width="12" height="54" rx="4" fill="#8a5a2b"/><rect x="-14" y="-18" width="28" height="22" fill="#1c1d20"/><path d="M-12 4 V16 M-6 4 V18 M0 4 V18 M6 4 V18 M12 4 V16" stroke="#cfc9b8" stroke-width="2"/></g>
+          </g>
+        </svg>
+        <p class="trk-illus">Illustration of the current step, updated live</p>
+      </div>
+      <div class="trk-now-card">
+        <p class="trk-eyebrow">Happening now</p>
+        <h2 class="trk-now" id="trk-now">-</h2>
+        <p class="trk-desc" id="trk-desc"></p>
+        <div class="trk-heads" id="trk-heads" hidden>
+          <b>Heads-up: point of no return coming up.</b>
+          <span>Before it, you can still cancel for a full cash refund by replying CANCEL to the heads-up email. If you don't reply, the job keeps going.</span>
+        </div>
+        <div class="trk-note" id="trk-note" hidden><span>Note from FW Tech</span><p id="trk-note-text"></p></div>
+        <dl class="trk-facts">
+          <div><dt>Laptop</dt><dd id="trk-laptop">-</dd></div>
+          <div><dt>Services</dt><dd id="trk-services">-</dd></div>
+          <div><dt>Total</dt><dd id="trk-total">-</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="trk-route" id="trk-routebox" hidden>
+      <h2 class="trk-h2">Route</h2>
+      <ol class="trk-steps" id="trk-steps"></ol>
+    </section>
+
+    <section class="trk-proof" id="trk-proof" hidden>
+      <h2 class="trk-h2">Proof at the point of no return</h2>
+      <figure><img id="trk-photo" alt="Photo of your laptop at the point of no return, with its flight number tag in frame" loading="lazy"><figcaption>Real photo, taken at the step marked with the diamond. Look for your flight number on the tape.</figcaption></figure>
+    </section>
+
+    <section class="trk-demo" id="trk-demo" hidden>
+      <h2 class="trk-h2">Preview every step</h2>
+      <p class="trk-desc">This is a demo flight. Tap a step to see its animation.</p>
+      <div class="trk-demo-btns" id="trk-demo-btns"></div>
+    </section>
+
+    <p class="trk-foot">This page is private to you. It stops working 2 days after your laptop lands. Questions? Reply to any FW Tech email.</p>
+  </main>
+</div>
+
 <!-- Mode change: each world arrives its own way -->
 <div id="mode-shift" aria-hidden="true"><div class="ms-door l"></div><div class="ms-door r"></div><div class="ms-shade"><i></i></div><div class="ms-shutter"><i></i></div></div>
 
@@ -2537,7 +2730,13 @@
       </details>
       <details class="notice plate">
         <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">6. Cancellation policy</span><span class="chev display text-2xl brass-text">+</span></summary>
-        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Cancel before 65% of the job is done and you get a full refund, no questions asked. After 65%, the job gets finished, payment is final, and the laptop comes back completed. If you're on a deadline, say so upfront and you'll get an honest estimate.</p></div>
+        <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Cancel any time before the <span class="text-ink font-semibold">point of no return</span> and you get a full cash refund, no questions asked. After it, the job gets finished, payment is final, and the laptop comes back completed, because a laptop can't safely go back half done.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">Where the line is:</span> it depends on your service, and it's the same for everyone. Thermal repaste: when the old paste comes off the chip. Internal clean: when the fan and heatsink cleaning starts. Exterior clean only: when the wipe-down starts.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">You'll see it coming:</span> every booking gets a flight number and a private tracker that shows each step live. About an hour before the point of no return, you get a heads-up email. Reply CANCEL before then for a full refund. No reply means the job keeps going.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">Proof:</span> a real photo is taken at the point of no return, with your flight number on a tag in frame, and it shows up on your tracker.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">Before drop-off:</span> cancel anytime, free. Right after booking you can use the 2 minute cancel on this site. After that, just email.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">If FW Tech cancels</span> or can't finish safely (see section 5), you get a full refund, always.</p>
+          <p class="mt-3">On a deadline? Say so when you book and you'll get an honest estimate before anything is paid.</p></div>
       </details>
 
       <div class="plate bolted p-7 md:p-9 mt-8 border-brass/50">
@@ -2547,6 +2746,7 @@
           <p><span class="text-ink font-semibold">Turnaround:</span> 1 to 4 days. FW Tech is not The Flash.</p>
           <p><span class="text-ink font-semibold">Pricing:</span> same for everyone. Friendship discount is under maintenance.</p>
           <p><span class="text-ink font-semibold">Repaste only:</span> fresh thermal paste, no fan or internal cleaning. That's Internal clean.</p>
+          <p><span class="text-ink font-semibold">Cancelling:</span> full refund until the point of no return. You get a heads-up email before it.</p>
           <p><span class="text-ink font-semibold">Bribes:</span> $10 won't make me rush. $50 won't make me sabotage.</p>
         </div>
       </div>
@@ -3274,6 +3474,7 @@
   /* ---------- booked: print the boarding pass, then take off ---------- */
   const onBooked = (info) => {
     const pass = $('#air-pass');
+    const bpNo = document.querySelector('.air-bp-top .air-cap:last-child'); if (bpNo) bpNo.textContent = info.flight || 'FW 201';
     const bpEl = document.querySelector('.air-bp'); if (bpEl) bpEl.classList.remove('air-void');
     $('#air-bp-fields').innerHTML = [
       ['Passenger', info.reply ? (form && form.elements.name.value) || '' : ''],
@@ -3562,7 +3763,7 @@
     ].join('\n') : [
       `REQUISITION No. ${no}`, '',
       `FROM ....... ${who}`, `TO ......... Operator, Station 07`, '',
-      `SERVICE .... ${info.service}`, `TOTAL ...... ${info.total}, cash at drop-off`,
+      ...(info.flight ? [`FLIGHT ..... ${info.flight}`] : []), `SERVICE .... ${info.service}`, `TOTAL ...... ${info.total}, cash at drop-off`,
       `LAPTOP ..... ${info.laptop}`, `AREA ....... ${info.area}`, `REPLY TO ... ${info.reply}`, '',
       `STATUS: Telegram in processing.`, `Over at junction for transfer.`
     ].join('\n');
@@ -3894,6 +4095,7 @@
   const BOOKING_EMAIL = 'rey.sahani03@gmail.com';
   // Paste your Google Apps Script web app URL here (ends in /exec). Empty = Gmail handoff.
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxodOouRAfMUxpXfZBRf8qYUzNouJnHJcgOtx1ozSfxh5aldpK49enO_JIJmSFp0xf7/exec';
+  window.FW_ENDPOINT = FORM_ENDPOINT;
   const NOT_ACCEPTED = /surface|razer|alienware|chromebook/i;
   const form = document.getElementById('book-form');
   const status = document.getElementById('form-status');
@@ -3901,7 +4103,20 @@
 
   /* ---------- Booked confirmation: stamp slam ---------- */
   const bookedPanel = document.getElementById('booked-panel');
+  const placeTrackCta = (info) => {
+    document.querySelectorAll('.track-cta').forEach(a => a.remove());
+    if (!info.track) return;
+    const t = root.dataset.theme;
+    const box = t === 'airplane' ? document.getElementById('air-pass') : t === 'industrial' ? document.getElementById('ind-dispatch') : document.getElementById('booked-summary');
+    if (!box) return;
+    const a = document.createElement('a');
+    a.className = 'track-cta'; a.href = info.track; a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = '<span></span><b>Track your laptop live →</b>';
+    a.querySelector('span').textContent = 'Flight ' + info.flight;
+    if (box.id === 'booked-summary') box.after(a); else box.appendChild(a);
+  };
   const showBooked = (info) => {
+    setTimeout(() => placeTrackCta(info), 0);
     if (root.dataset.theme === 'airplane' && window.FWAir) { window.FWAir.onBooked(info); return; }
     if (root.dataset.theme === 'industrial' && window.FWInd) { window.FWInd.onBooked(info); return; }
     const sum = document.getElementById('booked-summary');
@@ -3909,7 +4124,7 @@
     document.getElementById('booked-stamp').textContent = isQ ? 'SENT' : 'BOOKED';
     const h3 = document.querySelector('#booked-panel h3'); if (h3) h3.textContent = isQ ? 'Question received.' : 'Request received.';
     const rows = isQ ? [['Topic', info.topic], ['Laptop', info.laptop], ['Reply to', info.reply]]
-                     : [['Routes', info.service], ['Fare', info.total + ', cash on arrival'], ['Laptop', info.laptop], ['Departure', info.area], ['Reply to', info.reply]];
+                     : [...(info.flight ? [['Flight', info.flight]] : []), ['Routes', info.service], ['Fare', info.total + ', cash on arrival'], ['Laptop', info.laptop], ['Departure', info.area], ['Reply to', info.reply]];
     sum.innerHTML = '';
     rows.forEach(([k, v]) => {
       const dt = document.createElement('dt'); dt.className = 'text-dim'; dt.textContent = k;
@@ -4060,7 +4275,7 @@
       if (r.test) await new Promise(res => setTimeout(res, 700));
       else {
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ ...r.payload, service: 'CANCELLED: ' + r.payload.service, total: 0, subject, body, website: '' }) });
+          body: JSON.stringify({ ...r.payload, flight: r.flight || '', key: r.key || '', service: 'CANCELLED: ' + r.payload.service, total: 0, subject, body, website: '' }) });
         const out = await res.json(); if (!out.ok) throw new Error(out.error || 'failed');
       }
       if (hold) await hold;
@@ -4140,8 +4355,9 @@
       const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, subject, body, website: form.elements.website.value }) });
       const out = await res.json();
       if (!out.ok) throw new Error(out.error || 'send failed');
-      showBooked(info);
-      startCancel({ payload, subject, body, at: Date.now(), kind: info.kind || 'book' });
+      const flight = out.flight ? { flight: out.flight, key: out.key, track: out.track } : {};
+      showBooked({ ...info, ...flight });
+      startCancel({ payload, subject, body, at: Date.now(), kind: info.kind || 'book', ...flight });
       form.reset(); renderTotal();
       status.style.color = '#6fd3ff'; status.textContent = okMsg;
     } catch (err) {
@@ -4750,6 +4966,244 @@
   const boxes = [...document.querySelectorAll('input[name="svc"]')];
   const n0 = boxes.filter(b => b.checked).length;
   setLoad(n0, n0 === 3 ? 72 : boxes.filter(b => b.checked).reduce((s, b) => s + ({ exterior: 15, internal: 28, repaste: 40 }[b.value] || 0), 0));
+})();
+</script>
+<script>
+/* ---------- Flight tracker: ?track=CODE&key=KEY shows one customer's job, live ---------- */
+(() => {
+  const root = document.documentElement;
+  if (!root.classList.contains('tracking')) return;
+  const P = new URLSearchParams(location.search);
+  const CODE = String(P.get('track') || '').toUpperCase().trim(), KEY = String(P.get('key') || '').trim();
+  const ENDPOINT = window.FW_ENDPOINT;
+  const HEADSUP = 'Point of no return ahead';
+  const DEMO = CODE === 'DEMO';
+  const $ = (id) => document.getElementById(id);
+  const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on' || !window.gsap;
+
+  const meta = document.createElement('meta'); meta.name = 'robots'; meta.content = 'noindex'; document.head.appendChild(meta);
+  document.title = `Flight ${CODE} · FW Tech Hoboken`;
+
+  const DESC = {
+    'Awaiting drop-off': "Waiting at the gate. Your laptop hasn't been dropped off yet.",
+    'Checked in': 'Checked in and tagged with your flight number. Work starts soon.',
+    'Case off': 'The bottom panel is coming off so the inside can be reached.',
+    'Fans and heatsink cleaning': 'Dust is being blown out of the fan and the heatsink fins.',
+    [HEADSUP]: 'Coming up on the point of no return. Check your email for the heads-up.',
+    'Old paste removed': 'The heatsink is off and the old, dried thermal paste is being cleaned off the chip.',
+    'New paste applied': 'Fresh thermal paste is going on, so heat can move off the chip again.',
+    'Reassembled': 'Everything is going back together, screw by screw.',
+    'Exterior cleaning': 'Screen, keyboard, ports and chassis are being wiped down.',
+    'Testing': 'Running it to check temperatures and fan noise.',
+    'Ready for pickup': 'Done and ready. Reply to the email to set up the handoff.',
+    'Landed': 'Back with you. Thanks for flying FW Tech.',
+    'Cancelled': 'This flight was cancelled. Nothing is owed.'
+  };
+
+  /* ---------------- the animated scene ---------------- */
+  const S = (id) => document.getElementById(id);
+  let master = null, ambient = [], playing = '';
+  const show = (id, on) => { const el = S(id); if (el) el.style.display = on ? '' : 'none'; };
+  const ALL = ['tv-tag', 'tv-wait', 'tv-wait-hand', 'tv-check', 'tv-cancel', 'tv-panel', 'tv-heatsink', 'tv-paste-old', 'tv-paste-new', 'tv-dust', 'tv-air', 'tv-puffs', 'tv-warn',
+    'tv-scraper', 'tv-syringe', 'tv-smudge', 'tv-shine', 'tv-graph', 'tv-line', 'tv-temp', 'tv-cloth', 'tv-brush', 'tv-blades'];
+
+  function scene(stage, code) {
+    if (playing === stage) return;
+    playing = stage;
+    if (master) master.kill(); ambient.forEach(t => t.kill()); ambient = [];
+    const g = window.gsap;
+    if (g) { ALL.forEach(id => g.killTweensOf(S(id))); g.killTweensOf('#tv-screws > g, #tv-dust > circle, #tv-smudge > circle'); }
+    S('tv-tag-text').textContent = code || '';
+    if (g) g.set(['#tv-tag', '#tv-check', '#tv-cancel', '#tv-panel', '#tv-paste-old', '#tv-dust > circle', '#tv-smudge > circle', '#tv-screws > g', '#tv-cloth', '#tv-brush', '#tv-shine', '#tv-warn', '#tv-wait', '#tv-puffs'], { clearProps: 'all' });
+
+    const closed = ['Awaiting drop-off', 'Checked in', 'Ready for pickup', 'Landed', 'Cancelled'].includes(stage);
+    const open = ['Exterior cleaning', 'Testing'].includes(stage);
+    show('tv-closed', closed); show('tv-open', open); show('tv-inside', !closed && !open);
+    show('tv-tag', stage !== 'Awaiting drop-off'); show('tv-wait', stage === 'Awaiting drop-off');
+    show('tv-check', stage === 'Ready for pickup' || stage === 'Landed'); show('tv-cancel', stage === 'Cancelled');
+    const lifted = stage === 'Old paste removed' || stage === 'New paste applied';
+    show('tv-panel', stage === 'Case off' || stage === 'Reassembled');
+    show('tv-paste-old', stage === 'Old paste removed' || ['Case off', 'Fans and heatsink cleaning', HEADSUP].includes(stage));
+    show('tv-paste-new', stage === 'New paste applied' || stage === 'Reassembled');
+    show('tv-dust', stage === 'Fans and heatsink cleaning' || stage === 'Case off'); show('tv-air', stage === 'Fans and heatsink cleaning');
+    show('tv-warn', stage === HEADSUP); show('tv-scraper', stage === 'Old paste removed'); show('tv-syringe', stage === 'New paste applied');
+    show('tv-smudge', stage === 'Exterior cleaning'); show('tv-shine', stage === 'Exterior cleaning'); show('tv-cloth', stage === 'Exterior cleaning'); show('tv-brush', stage === 'Exterior cleaning');
+    show('tv-graph', stage === 'Testing');
+
+    if (!g) return;
+    // baseline poses
+    g.set('#tv-heatsink', { y: lifted ? -96 : 0, opacity: lifted ? .22 : 1 });
+    g.set('#tv-paste-new', { scale: stage === 'New paste applied' ? 0 : 1, transformOrigin: '50% 50%' });
+    g.set('#tv-scraper', { x: 270, y: 142 });
+    g.set('#tv-syringe', { x: 360, y: 40 });
+    g.set('#tv-cloth', { x: 230, y: 80 });
+    g.set('#tv-brush', { x: 160, y: 262, opacity: 0 });
+    g.set('#tv-check', { scale: 1, transformOrigin: '50% 50%' });
+    const line = S('tv-line'), len = line.getTotalLength ? line.getTotalLength() : 300;
+    g.set(line, { strokeDasharray: len, strokeDashoffset: 0 });
+
+    const tl = g.timeline({ repeat: -1, repeatDelay: .6 });
+    const spin = (sel, dur, origin) => ambient.push(g.to(sel, { rotation: 360, svgOrigin: origin, duration: dur, ease: 'none', repeat: -1 }));
+
+    switch (stage) {
+      case 'Awaiting drop-off':
+        spin('#tv-wait-hand', 4, '440 120');
+        tl.to('#tv-wait', { opacity: .45, duration: 1, yoyo: true, repeat: 1, ease: 'sine.inOut' });
+        break;
+      case 'Checked in':
+        tl.from('#tv-tag', { y: -80, rotation: -14, svgOrigin: '251 112', opacity: 0, duration: .9, ease: 'bounce.out' }).to({}, { duration: 2.4 });
+        break;
+      case 'Case off':
+        tl.to('#tv-screws > g', { rotation: -720, transformOrigin: '50% 50%', duration: 1, stagger: .25, ease: 'power1.in' })
+          .to('#tv-screws > g', { y: -16, opacity: 0, duration: .3, stagger: .08 }, '-=.3')
+          .to('#tv-panel', { y: -34, opacity: 0, duration: .9, ease: 'power2.in' }, '+=.2')
+          .to({}, { duration: 1.8 });
+        break;
+      case 'Fans and heatsink cleaning':
+        spin('#tv-blades', .28, '214 248');
+        ambient.push(g.to('#tv-puffs', { opacity: .15, duration: .12, yoyo: true, repeat: -1 }));
+        tl.to('#tv-dust > circle', { x: () => -40 - Math.random() * 90, y: () => Math.random() * 60 - 30, opacity: 0, duration: 1.1, stagger: .14, ease: 'power2.out' })
+          .to({}, { duration: .6 });
+        break;
+      case HEADSUP:
+        spin('#tv-blades', 3, '214 248');
+        spin('#tv-warn circle', 14, '302 142');
+        tl.to('#tv-warn', { opacity: .35, duration: .7, yoyo: true, repeat: 1, ease: 'sine.inOut' });
+        break;
+      case 'Old paste removed':
+        tl.to('#tv-scraper', { x: 318, duration: .45, yoyo: true, repeat: 5, ease: 'sine.inOut' })
+          .to('#tv-paste-old', { opacity: 0, duration: 2.6, ease: 'none' }, 0)
+          .to({}, { duration: 1.4 });
+        break;
+      case 'New paste applied':
+        tl.to('#tv-syringe', { x: 294, y: 136, duration: .9, ease: 'power2.inOut' })
+          .to('#tv-paste-new', { scale: .35, duration: .6, ease: 'power1.out' })
+          .to('#tv-syringe', { x: 360, y: 40, duration: .7, ease: 'power2.in' })
+          .to('#tv-paste-new', { scale: 1, duration: 1, ease: 'power2.out' }, '-=.4')
+          .to({}, { duration: 1.4 });
+        break;
+      case 'Reassembled':
+        g.set('#tv-heatsink', { y: -96, opacity: .22 });
+        tl.to('#tv-heatsink', { y: 0, opacity: 1, duration: 1, ease: 'power2.out' })
+          .from('#tv-panel', { y: -34, opacity: 0, duration: .8, ease: 'power2.out' }, '+=.3')
+          .from('#tv-screws > g', { rotation: 720, transformOrigin: '50% 50%', y: -16, opacity: 0, duration: .8, stagger: .18, ease: 'power1.out' })
+          .to({}, { duration: 1.6 })
+          .set('#tv-heatsink', { y: -96, opacity: .22 });
+        break;
+      case 'Exterior cleaning':
+        ambient.push(g.fromTo('#tv-shine', { x: 0 }, { x: 420, duration: 2.4, ease: 'power1.inOut', repeat: -1, repeatDelay: .8 }));
+        tl.to('#tv-cloth', { keyframes: [{ x: 410, y: 80 }, { x: 230, y: 130 }, { x: 410, y: 130 }, { x: 240, y: 178 }, { x: 410, y: 178 }], duration: 3.2, ease: 'sine.inOut' })
+          .to('#tv-smudge > circle', { opacity: 0, duration: .5, stagger: .5 }, .2)
+          .to('#tv-cloth', { opacity: 0, duration: .3 })
+          .to('#tv-brush', { opacity: 1, duration: .2 })
+          .to('#tv-brush', { x: 480, duration: 1.6, ease: 'sine.inOut' })
+          .to('#tv-brush', { opacity: 0, duration: .2 })
+          .to({}, { duration: .6 });
+        break;
+      case 'Testing': {
+        const temp = S('tv-temp'), o = { t: 94 };
+        tl.fromTo(line, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 2.4, ease: 'power1.inOut' })
+          .fromTo(o, { t: 94 }, { t: 61, duration: 2.4, ease: 'power1.inOut', onUpdate: () => { temp.textContent = Math.round(o.t) + '°C'; temp.setAttribute('fill', o.t > 80 ? '#ff7a4a' : '#4fe08a'); } }, 0)
+          .to({}, { duration: 1.6 });
+        break;
+      }
+      case 'Ready for pickup':
+      case 'Landed':
+        tl.from('#tv-check', { scale: 0, duration: .7, ease: 'back.out(2.5)' }).to({}, { duration: 2.8 });
+        break;
+      case 'Cancelled':
+        tl.from('#tv-cancel', { scale: 1.8, opacity: 0, transformOrigin: '50% 50%', duration: .45, ease: 'power3.in' }).to({}, { duration: 3 });
+        break;
+    }
+    master = tl;
+    if (still()) { ambient.forEach(t => t.pause()); tl.pause(); tl.progress(.75); }
+  }
+
+  /* ---------------- rendering ---------------- */
+  let last = null;
+  const ago = (iso) => {
+    if (!iso) return '';
+    const s = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
+    if (s < 60) return 'just now';
+    if (s < 3600) return Math.floor(s / 60) + ' min ago';
+    if (s < 86400) return Math.floor(s / 3600) + ' h ago';
+    return Math.floor(s / 86400) + ' d ago';
+  };
+
+  function render(d) {
+    last = d;
+    $('trk-code').textContent = d.flight;
+    $('trk-sub').textContent = [d.laptop, d.services].filter(Boolean).join(' · ');
+    const st = $('trk-status'); st.hidden = false; st.dataset.s = d.status; st.textContent = d.status === 'Active' ? 'In progress' : d.status;
+    const stage = d.status === 'Cancelled' ? 'Cancelled' : d.stage;
+    $('trk-now').textContent = stage === HEADSUP ? 'Point of no return coming up' : stage;
+    $('trk-desc').textContent = DESC[stage] || '';
+    $('trk-heads').hidden = stage !== HEADSUP;
+    $('trk-note').hidden = !d.note; $('trk-note-text').textContent = d.note || '';
+    $('trk-laptop').textContent = d.laptop || '-'; $('trk-services').textContent = d.services || '-'; $('trk-total').textContent = d.total ? d.total + ', cash' : '-';
+    $('trk-stagebox').hidden = false; $('trk-routebox').hidden = false;
+
+    const cur = d.stages.indexOf(stage), landed = stage === 'Landed';
+    $('trk-steps').innerHTML = '';
+    d.stages.forEach((name, i) => {
+      const li = document.createElement('li');
+      li.textContent = name === HEADSUP ? 'Heads-up email' : name;
+      if (name === d.pnr) li.classList.add('pnr');
+      if (name === HEADSUP) li.classList.add('heads');
+      if (landed || (cur !== -1 && i < cur)) li.classList.add('done');
+      if (!landed && i === cur) { li.classList.add('now'); li.setAttribute('aria-current', 'step'); }
+      $('trk-steps').appendChild(li);
+    });
+
+    $('trk-proof').hidden = !d.photo;
+    if (d.photo && $('trk-photo').getAttribute('src') !== d.photo) $('trk-photo').src = d.photo;
+    $('trk-updated').textContent = DEMO ? 'Demo flight' : 'Live · updated ' + ago(d.updated);
+    document.querySelector('.trk-live').classList.remove('off');
+    scene(stage, d.flight);
+  }
+
+  function notFound() {
+    $('trk-code').textContent = CODE || 'Unknown';
+    $('trk-sub').textContent = "This flight isn't on the board. The link may be incomplete, or the flight landed more than 2 days ago and was cleared. Check the link in your FW Tech email.";
+    $('trk-updated').textContent = 'Not found';
+    document.querySelector('.trk-live').classList.add('off');
+  }
+
+  async function load() {
+    if (!CODE || !KEY || !ENDPOINT) return notFound();
+    try {
+      const res = await fetch(`${ENDPOINT}?track=${encodeURIComponent(CODE)}&key=${encodeURIComponent(KEY)}&t=${Date.now()}`);
+      const d = await res.json();
+      if (!d.ok) { if (!last) notFound(); return; }
+      render(d);
+    } catch (err) {
+      $('trk-updated').textContent = last ? 'Reconnecting...' : "Can't reach the tracker right now. Retrying...";
+      document.querySelector('.trk-live').classList.add('off');
+    }
+  }
+
+  /* ---------------- demo flight: ?track=DEMO&key=demo ---------------- */
+  if (DEMO) {
+    const stages = ['Awaiting drop-off', 'Checked in', 'Case off', 'Fans and heatsink cleaning', HEADSUP, 'Old paste removed', 'New paste applied', 'Reassembled', 'Exterior cleaning', 'Testing', 'Ready for pickup', 'Landed'];
+    const base = { ok: true, flight: 'HPVC482', laptop: 'HP Victus 16', services: 'Full bundle', total: '$72', status: 'Active', stages, pnr: 'Old paste removed', note: '', photo: null };
+    const box = $('trk-demo-btns'); $('trk-demo').hidden = false;
+    const pick = (s) => {
+      box.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === s)));
+      render({ ...base, stage: s === 'Cancelled' ? 'Awaiting drop-off' : s, status: s === 'Landed' ? 'Landed' : s === 'Cancelled' ? 'Cancelled' : 'Active',
+        note: s === 'Case off' ? 'One screw was stripped, so the case took a little longer. All good now.' : '' });
+    };
+    [...stages, 'Cancelled'].forEach(s => { const b = document.createElement('button'); b.type = 'button'; b.textContent = s; b.addEventListener('click', () => pick(s)); box.appendChild(b); });
+    pick('Fans and heatsink cleaning');
+    return;
+  }
+
+  load();
+  let timer = setInterval(load, 20000);
+  document.addEventListener('visibilitychange', () => {
+    clearInterval(timer);
+    if (!document.hidden) { load(); timer = setInterval(load, 20000); }
+  });
+  setInterval(() => { if (last) $('trk-updated').textContent = 'Live · updated ' + ago(last.updated); }, 30000);
 })();
 </script>
 </body>
