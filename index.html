@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=Special+Elite&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
-<script>if (/[?&]track=/.test(location.search) && /[?&]key=/.test(location.search)) document.documentElement.classList.add('tracking');</script>
+<script>if (/[?&]t=/.test(location.search) || (/[?&]track=/.test(location.search) && /[?&]key=/.test(location.search))) document.documentElement.classList.add('tracking');</script>
 <script>
   /* Apply saved mode before paint so there's no flash */
   (function () {
@@ -1338,6 +1338,9 @@
   .trk-desc { margin: 10px 0 0; color: rgb(var(--dim)); line-height: 1.6; }
   .trk-heads { margin-top: 16px; padding: 14px 16px; border-left: 4px solid #f5b70f; background: rgba(245,183,15,.1); display: grid; gap: 6px; line-height: 1.5; }
   .trk-heads b { color: #f5b70f; }
+  #trk-count { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .trk-delay { margin-top: 16px; padding: 14px 16px; border-left: 4px solid rgb(var(--coolant)); background: rgb(var(--coolant) / .08); display: grid; gap: 6px; line-height: 1.5; }
+  .trk-delay b { color: rgb(var(--coolant)); }
   .trk-note { margin-top: 16px; padding: 14px 16px; border-left: 4px solid rgb(var(--coolant)); background: rgb(var(--coolant) / .08); }
   .trk-note span { font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--coolant)); }
   .trk-note p { margin: 6px 0 0; line-height: 1.5; }
@@ -1370,6 +1373,67 @@
   .trk-foot { margin: 0; font: 500 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); line-height: 1.6; }
   @media (max-width: 860px) { .trk-stage { grid-template-columns: 1fr; } }
   @media (max-width: 520px) { .trk-steps { grid-template-columns: 1fr 1fr; } .trk-steps li { padding: 12px 10px 12px 38px; font-size: 13px; } .trk-steps li::before { left: 11px; } }
+
+
+  /* ---------- tracker skins, one per mode ---------- */
+  .trk-cancel { background: rgb(var(--slab)); border: 1px solid rgb(var(--line)); box-shadow: 0 24px 50px -30px rgba(0,0,0,.8); padding: clamp(18px, 2.4vw, 28px); }
+  #trk-cancel-slot .cx { margin: 14px 0 0; }
+  #trk-cancel-slot .cx-air .cx-led { border-color: #1d2a40; border-radius: 6px; }
+
+  /* Train: riveted steel and brass */
+  html[data-theme="train"] #tracker .trk-scene-card, html[data-theme="train"] #tracker .trk-now-card, html[data-theme="train"] #tracker .trk-route,
+  html[data-theme="train"] #tracker .trk-proof, html[data-theme="train"] #tracker .trk-cancel, html[data-theme="train"] #tracker .trk-demo {
+    border: 3px solid #2b2d31; outline: 1px solid #000; outline-offset: -1px;
+    background: radial-gradient(circle at 38% 32%, #b0b3b9 0 1.6px, #66696f 3.4px, #2a2b2e 6px, transparent 7px) left 8px top 8px / 16px 16px no-repeat,
+                radial-gradient(circle at 38% 32%, #b0b3b9 0 1.6px, #66696f 3.4px, #2a2b2e 6px, transparent 7px) right 8px top 8px / 16px 16px no-repeat,
+                radial-gradient(circle at 38% 32%, #b0b3b9 0 1.6px, #66696f 3.4px, #2a2b2e 6px, transparent 7px) left 8px bottom 8px / 16px 16px no-repeat,
+                radial-gradient(circle at 38% 32%, #b0b3b9 0 1.6px, #66696f 3.4px, #2a2b2e 6px, transparent 7px) right 8px bottom 8px / 16px 16px no-repeat,
+                linear-gradient(180deg, #1b1c1f, #141517); }
+  html[data-theme="train"] #tracker .trk-steps li::before { border-radius: 0; transform: rotate(45deg); }
+  html[data-theme="train"] #tracker .trk-steps li.pnr::before { background: none; border-color: #ef4444; }
+  html[data-theme="train"] #tracker .trk-steps li.pnr.done::before { background: #ef4444; }
+
+  /* Airplane: bright cabin, rounded panels, waypoint triangles */
+  html[data-theme="airplane"] #tracker { font-family: 'Barlow', Arial, sans-serif; background: linear-gradient(180deg, #e7eef8, #f6f8fb 420px); }
+  html[data-theme="airplane"] #tracker .trk-top { background: rgba(255,255,255,.88); }
+  html[data-theme="airplane"] #tracker .trk-code { font-family: 'Barlow Semi Condensed', 'Barlow', Arial, sans-serif; font-weight: 800; font-stretch: normal; color: rgb(var(--brass)); letter-spacing: .01em; }
+  html[data-theme="airplane"] #tracker .trk-scene-card, html[data-theme="airplane"] #tracker .trk-now-card, html[data-theme="airplane"] #tracker .trk-route,
+  html[data-theme="airplane"] #tracker .trk-proof, html[data-theme="airplane"] #tracker .trk-cancel, html[data-theme="airplane"] #tracker .trk-demo {
+    border-radius: 16px; border: 1px solid #d6dfeb; box-shadow: 0 20px 40px -24px rgba(11,26,51,.35); }
+  html[data-theme="airplane"] #tracker .trk-scene-card { background: #0f1726; }
+  html[data-theme="airplane"] #tracker #trk-scene { border-radius: 10px; }
+  html[data-theme="airplane"] #tracker .trk-illus { color: #8a9cba; }
+  html[data-theme="airplane"] #tracker .trk-status { border-radius: 6px; }
+  html[data-theme="airplane"] #tracker .trk-steps li { border-radius: 10px; background: #f4f7fc; }
+  html[data-theme="airplane"] #tracker .trk-steps li::before { border: 0; border-radius: 0; width: 18px; height: 16px; background: #c3cedd; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  html[data-theme="airplane"] #tracker .trk-steps li.done::before { background: #1f6fd1; box-shadow: none; }
+  html[data-theme="airplane"] #tracker .trk-steps li.now::before { background: #d68a00; }
+  html[data-theme="airplane"] #tracker .trk-steps li.now { border-color: #0c3478; box-shadow: 0 0 0 1px #0c3478; }
+  html[data-theme="airplane"] #tracker .trk-steps li.pnr::before { background: #ef4444; transform: none; }
+  html[data-theme="airplane"] #tracker .trk-heads { border-radius: 10px; background: #fff6df; }
+  html[data-theme="airplane"] #tracker .trk-heads b { color: #9a6200; }
+  html[data-theme="airplane"] #tracker .trk-delay, html[data-theme="airplane"] #tracker .trk-note { border-radius: 10px; }
+  html[data-theme="airplane"] #tracker .trk-demo-btns button { border-radius: 8px; background: #fff; }
+  html[data-theme="airplane"] #tracker .trk-live i { background: #1f6fd1; box-shadow: 0 0 10px #1f6fd1; }
+
+  /* Industrial: heavy plates, stencil type, numbered station tags */
+  html[data-theme="industrial"] #tracker { background: repeating-linear-gradient(135deg, rgba(214,154,78,.03) 0 2px, transparent 2px 9px), rgb(var(--void)); }
+  html[data-theme="industrial"] #tracker .trk-code, html[data-theme="industrial"] #tracker .trk-h2, html[data-theme="industrial"] #tracker .trk-now {
+    font-family: 'Big Shoulders Display', 'Archivo', sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+  html[data-theme="industrial"] #tracker .trk-code { color: #f3e6c8; text-shadow: 4px 4px 0 #0d0906; font-stretch: normal; }
+  html[data-theme="industrial"] #tracker .trk-scene-card, html[data-theme="industrial"] #tracker .trk-now-card, html[data-theme="industrial"] #tracker .trk-route,
+  html[data-theme="industrial"] #tracker .trk-proof, html[data-theme="industrial"] #tracker .trk-cancel, html[data-theme="industrial"] #tracker .trk-demo {
+    border: 3px solid #0d0906; box-shadow: 5px 5px 0 #0d0906; background: linear-gradient(180deg, #2c2118, #211812); }
+  html[data-theme="industrial"] #tracker .trk-eyebrow { color: #ffb870; }
+  html[data-theme="industrial"] #tracker .trk-status { border-width: 3px; font-family: 'Big Shoulders Display', sans-serif; font-size: 15px; }
+  html[data-theme="industrial"] #tracker .trk-steps { counter-reset: st; }
+  html[data-theme="industrial"] #tracker .trk-steps li { counter-increment: st; border: 2px solid #0d0906; background: #1a130e; text-transform: uppercase; font-family: 'Big Shoulders Display', sans-serif; letter-spacing: .06em; font-size: 15px; }
+  html[data-theme="industrial"] #tracker .trk-steps li::before { content: counter(st); border-radius: 0; transform: none; width: 22px; height: 22px; top: 12px; display: grid; place-items: center;
+    font: 900 12px 'Big Shoulders Display', sans-serif; color: #1a120b; background: linear-gradient(180deg, #6b5038, #3a2a1c); border: 2px solid #0d0906; }
+  html[data-theme="industrial"] #tracker .trk-steps li.done::before { background: linear-gradient(180deg, #9fe0d0, #3f8a78); box-shadow: none; }
+  html[data-theme="industrial"] #tracker .trk-steps li.now::before { background: linear-gradient(180deg, #ffb870, #c46a22); }
+  html[data-theme="industrial"] #tracker .trk-steps li.now { border-color: #ffb870; box-shadow: 0 0 18px -4px rgba(255,138,58,.6); }
+  html[data-theme="industrial"] #tracker .trk-steps li.pnr::before { background: linear-gradient(180deg, #ff6b5a, #b3261e); }
 
   .track-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 18px; margin-top: 18px; padding: 14px 18px; text-decoration: none;
     border: 2px solid currentColor; color: rgb(var(--brass)); background: rgb(var(--brass) / .08); }
@@ -1411,7 +1475,7 @@
 
   <main class="trk-wrap">
     <section class="trk-head">
-      <p class="trk-eyebrow">Flight tracker</p>
+      <p class="trk-eyebrow" id="trk-kind">Tracker</p>
       <h1 class="trk-code" id="trk-code">------</h1>
       <p class="trk-sub" id="trk-sub">Loading your flight...</p>
       <span class="trk-status" id="trk-status" hidden></span>
@@ -1507,12 +1571,17 @@
         <p class="trk-illus">Illustration of the current step, updated live</p>
       </div>
       <div class="trk-now-card">
-        <p class="trk-eyebrow">Happening now</p>
+        <p class="trk-eyebrow" id="trk-now-h">Happening now</p>
         <h2 class="trk-now" id="trk-now">-</h2>
         <p class="trk-desc" id="trk-desc"></p>
         <div class="trk-heads" id="trk-heads" hidden>
-          <b>Heads-up: point of no return coming up.</b>
+          <b>Point of no return in <span id="trk-count">about 15 minutes</span></b>
+          <span id="trk-eta"></span>
           <span>Before it, you can still cancel for a full cash refund by replying CANCEL to the heads-up email. If you don't reply, the job keeps going.</span>
+        </div>
+        <div class="trk-delay" id="trk-delay" hidden>
+          <b>Delayed for a short period. Nothing broke.</b>
+          <span>The point of no return may be later than planned due to the delay.</span>
         </div>
         <div class="trk-note" id="trk-note" hidden><span>Note from FW Tech</span><p id="trk-note-text"></p></div>
         <dl class="trk-facts">
@@ -1523,14 +1592,20 @@
       </div>
     </section>
 
+    <section class="trk-cancel" id="trk-cancel" hidden>
+      <h2 class="trk-h2" id="trk-cancel-h" hidden>Changed your mind?</h2>
+      <p class="trk-desc" id="trk-cancel-d">You can cancel right here for a full refund, any time before the point of no return.</p>
+      <div id="trk-cancel-slot"></div>
+    </section>
+
     <section class="trk-route" id="trk-routebox" hidden>
-      <h2 class="trk-h2">Route</h2>
+      <h2 class="trk-h2" id="trk-route-h">Route</h2>
       <ol class="trk-steps" id="trk-steps"></ol>
     </section>
 
     <section class="trk-proof" id="trk-proof" hidden>
       <h2 class="trk-h2">Proof at the point of no return</h2>
-      <figure><img id="trk-photo" alt="Photo of your laptop at the point of no return, with its flight number tag in frame" loading="lazy"><figcaption>Real photo, taken at the step marked with the diamond. Look for your flight number on the tape.</figcaption></figure>
+      <figure><img id="trk-photo" alt="Photo of your laptop at the point of no return, with its flight number tag in frame" loading="lazy"><figcaption>Real photo, taken at the step marked with the diamond. Look for your number on the tape.</figcaption></figure>
     </section>
 
     <section class="trk-demo" id="trk-demo" hidden>
@@ -2732,7 +2807,7 @@
         <summary class="flex items-center justify-between gap-6 p-6 md:p-7"><span class="wide font-extrabold text-lg">6. Cancellation policy</span><span class="chev display text-2xl brass-text">+</span></summary>
         <div class="px-6 md:px-7 pb-7 text-dim leading-relaxed max-w-[70ch]"><p>Cancel any time before the <span class="text-ink font-semibold">point of no return</span> and you get a full cash refund, no questions asked. After it, the job gets finished, payment is final, and the laptop comes back completed, because a laptop can't safely go back half done.</p>
           <p class="mt-3"><span class="text-ink font-semibold">Where the line is:</span> it depends on your service, and it's the same for everyone. Thermal repaste: when the old paste comes off the chip. Internal clean: when the fan and heatsink cleaning starts. Exterior clean only: when the wipe-down starts.</p>
-          <p class="mt-3"><span class="text-ink font-semibold">You'll see it coming:</span> every booking gets a flight number and a private tracker that shows each step live. About an hour before the point of no return, you get a heads-up email. Reply CANCEL before then for a full refund. No reply means the job keeps going.</p>
+          <p class="mt-3"><span class="text-ink font-semibold">You'll see it coming:</span> every booking gets a flight number and a private tracker that shows each step live. About 15 minutes before the point of no return, you get a heads-up email with the time it happens. Reply CANCEL before then for a full refund. No reply means the job keeps going. If something takes longer, you get a short delay email, nothing broke, and your cancel window stays open until the new time.</p>
           <p class="mt-3"><span class="text-ink font-semibold">Proof:</span> a real photo is taken at the point of no return, with your flight number on a tag in frame, and it shows up on your tracker.</p>
           <p class="mt-3"><span class="text-ink font-semibold">Before drop-off:</span> cancel anytime, free. Right after booking you can use the 2 minute cancel on this site. After that, just email.</p>
           <p class="mt-3"><span class="text-ink font-semibold">If FW Tech cancels</span> or can't finish safely (see section 5), you get a full refund, always.</p>
@@ -3474,7 +3549,7 @@
   /* ---------- booked: print the boarding pass, then take off ---------- */
   const onBooked = (info) => {
     const pass = $('#air-pass');
-    const bpNo = document.querySelector('.air-bp-top .air-cap:last-child'); if (bpNo) bpNo.textContent = info.flight || 'FW 201';
+    const bpNo = document.querySelector('.air-bp-top .air-cap:last-child'); if (bpNo) bpNo.textContent = info.flight ? info.flight.replace(/^Flight\s*/, '') : 'FW 201';
     const bpEl = document.querySelector('.air-bp'); if (bpEl) bpEl.classList.remove('air-void');
     $('#air-bp-fields').innerHTML = [
       ['Passenger', info.reply ? (form && form.elements.name.value) || '' : ''],
@@ -3763,7 +3838,7 @@
     ].join('\n') : [
       `REQUISITION No. ${no}`, '',
       `FROM ....... ${who}`, `TO ......... Operator, Station 07`, '',
-      ...(info.flight ? [`FLIGHT ..... ${info.flight}`] : []), `SERVICE .... ${info.service}`, `TOTAL ...... ${info.total}, cash at drop-off`,
+      ...(info.flight ? [`ORDER ...... ${info.flight.replace(/^Work order\s*/, '')}`] : []), `SERVICE .... ${info.service}`, `TOTAL ...... ${info.total}, cash at drop-off`,
       `LAPTOP ..... ${info.laptop}`, `AREA ....... ${info.area}`, `REPLY TO ... ${info.reply}`, '',
       `STATUS: Telegram in processing.`, `Over at junction for transfer.`
     ].join('\n');
@@ -4112,7 +4187,7 @@
     const a = document.createElement('a');
     a.className = 'track-cta'; a.href = info.track; a.target = '_blank'; a.rel = 'noopener';
     a.innerHTML = '<span></span><b>Track your laptop live →</b>';
-    a.querySelector('span').textContent = 'Flight ' + info.flight;
+    a.querySelector('span').textContent = info.flight;
     if (box.id === 'booked-summary') box.after(a); else box.appendChild(a);
   };
   const showBooked = (info) => {
@@ -4124,7 +4199,7 @@
     document.getElementById('booked-stamp').textContent = isQ ? 'SENT' : 'BOOKED';
     const h3 = document.querySelector('#booked-panel h3'); if (h3) h3.textContent = isQ ? 'Question received.' : 'Request received.';
     const rows = isQ ? [['Topic', info.topic], ['Laptop', info.laptop], ['Reply to', info.reply]]
-                     : [...(info.flight ? [['Flight', info.flight]] : []), ['Routes', info.service], ['Fare', info.total + ', cash on arrival'], ['Laptop', info.laptop], ['Departure', info.area], ['Reply to', info.reply]];
+                     : [...(info.flight ? [['Your number', info.flight]] : []), ['Routes', info.service], ['Fare', info.total + ', cash on arrival'], ['Laptop', info.laptop], ['Departure', info.area], ['Reply to', info.reply]];
     sum.innerHTML = '';
     rows.forEach(([k, v]) => {
       const dt = document.createElement('dt'); dt.className = 'text-dim'; dt.textContent = k;
@@ -4166,7 +4241,7 @@
     for (let i = 0; i < 24; i++) { const a = i / 24 * Math.PI * 2, r1 = i % 6 ? 39 : 35; const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       l.setAttribute('x1', 50 + Math.sin(a) * r1); l.setAttribute('y1', 50 - Math.cos(a) * r1); l.setAttribute('x2', 50 + Math.sin(a) * 43); l.setAttribute('y2', 50 - Math.cos(a) * 43);
       l.setAttribute('stroke', '#0b0b0c'); l.setAttribute('stroke-width', i % 6 ? 1.5 : 3); g.appendChild(l); } })();
-  const CX = { rec: null, deadline: 0, tick: 0, state: 'idle' };
+  const CX = { rec: null, deadline: 0, total: 120000, tick: 0, state: 'idle' };
   const CX_LABELS = {
     train: { idle: 'Safe', armed: 'Armed', sending: 'Sending', done: 'Cancelled', expired: 'Closed' },
     air:   { idle: 'Normal', armed: 'Armed', sending: 'Discharging', done: 'Canceled', expired: 'Closed' },
@@ -4211,24 +4286,27 @@
     });
   };
   const cxTime = () => {
-    const left = Math.max(0, CX.deadline - Date.now());
-    const t = Math.floor(left / 60000) + ':' + String(Math.floor(left / 1000) % 60).padStart(2, '0');
+    const open = !isFinite(CX.deadline);
+    const left = open ? Infinity : Math.max(0, CX.deadline - Date.now());
+    const t = open ? 'open' : Math.floor(left / 60000) + ':' + String(Math.floor(left / 1000) % 60).padStart(2, '0');
     document.querySelectorAll('.cx-time').forEach(e => e.textContent = t);
     const hand = document.getElementById('sb-hand');
     if (hand) {
-      const f = left / 120000, a = (1 - f) * 360;
+      const f = open ? 1 : Math.min(1, left / CX.total), a = (1 - f) * 360;
       hand.setAttribute('transform', `rotate(${a.toFixed(1)} 50 50)`);
       const rad = (d) => (d - 90) * Math.PI / 180, x = 50 + 42 * Math.cos(rad(a)), y = 50 + 42 * Math.sin(rad(a));
       document.getElementById('sb-left').setAttribute('d', f <= 0 ? '' : f >= .999 ? 'M50 8 A42 42 0 1 1 49.9 8 Z' : `M50 50 L${x.toFixed(2)} ${y.toFixed(2)} A42 42 0 ${f > .5 ? 1 : 0} 1 50 8 Z`);
     }
-    if (left <= 0 && CX.state !== 'done') {
+    if (!open && left <= 0 && CX.state !== 'done' && CX.state !== 'sending') {
       clearInterval(CX.tick);
-      cxSet('expired', 'The 2 minute window closed. If anything changed, just email me.');
+      cxSet('expired', CX.rec && CX.rec.tracker ? 'The cancel window closed at the point of no return, so the job will be finished.' : 'The 2 minute window closed. If anything changed, just email me.');
       if (window.FWInd) window.FWInd.onReached(CX.rec && CX.rec.kind);
     }
   };
   const startCancel = (rec) => {
-    CX.rec = rec; CX.deadline = Date.now() + 120000;
+    CX.rec = rec;
+    if (rec.tracker) { CX.deadline = rec.deadline || Infinity; CX.total = isFinite(CX.deadline) ? Math.max(CX.deadline - Date.now(), 60000) : 120000; }
+    else { CX.deadline = Date.now() + 120000; CX.total = 120000; }
     const cs = document.getElementById('cancel-stamp'); if (cs) cs.classList.remove('show');
     document.querySelectorAll('.cx').forEach(c => { c.hidden = false; });
     cxSet('idle', '');
@@ -4244,6 +4322,7 @@
   };
   const fireCancel = async () => {
     if (CX.state !== 'armed' || !CX.rec || Date.now() > CX.deadline) return;
+    const tracker = !!CX.rec.tracker;
     const isInd = root.dataset.theme === 'industrial', isAir = root.dataset.theme === 'airplane';
     cxSet('sending', 'Sending the cancel notice...');
     if (isInd) document.querySelectorAll('.cx-ind .cx-msg').forEach(m => m.textContent = 'Loading shipment override detected. Stand by.');
@@ -4275,17 +4354,24 @@
       if (r.test) await new Promise(res => setTimeout(res, 700));
       else {
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ ...r.payload, flight: r.flight || '', key: r.key || '', service: 'CANCELLED: ' + r.payload.service, total: 0, subject, body, website: '' }) });
+          body: JSON.stringify(tracker ? { action: 'cancel_flight', key: r.key, website: '' }
+            : { ...r.payload, flight: r.flight || '', key: r.key || '', service: 'CANCELLED: ' + r.payload.service, total: 0, subject, body, website: '' }) });
         const out = await res.json(); if (!out.ok) throw new Error(out.error || 'failed');
       }
       if (hold) await hold;
       clearInterval(CX.tick);
-      cxSet('done', "Cancelled. I got the notice, so there's nothing to drop off.");
+      cxSet('done', tracker ? 'Cancelled. Work stops now, your laptop comes back as it was, and you get a full refund.' : "Cancelled. I got the notice, so there's nothing to drop off.");
       if (isInd) { ovrStop('done', '0.0'); document.querySelectorAll('.cx-ind').forEach(c => cxLed(c, 'idle', 'Override approved')); document.querySelectorAll('.cx-ind .cx-msg').forEach(m => m.textContent = 'Override approved. Contract voided. Servicemen have been notified of said change.'); }
-      if (isAir) document.querySelectorAll('.cx-air .cx-msg').forEach(m => m.textContent = "Canceled. I got the notice, so there's nothing to drop off.");
+      if (isAir) document.querySelectorAll('.cx-air .cx-msg').forEach(m => m.textContent = tracker ? 'Canceled. Work stops now, your laptop comes back as it was, and you get a full refund.' : "Canceled. I got the notice, so there's nothing to drop off.");
+      if (tracker) window.dispatchEvent(new CustomEvent('fw:trackercancel'));
       cxMarkCancelled();
     } catch (err) {
       if (isInd) ovrStop('fail');
+      if (tracker && /past_point|window_closed|not_active/.test(String(err.message))) {
+        clearInterval(CX.tick);
+        cxSet('expired', 'Too late to cancel here. The point of no return already passed, so the job will be finished.');
+        return;
+      }
       const mail = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       cxSet('armed', `Couldn't send the cancel. <a href="${mail}">Email it to me instead</a>.`);
     }
@@ -4334,7 +4420,18 @@
     m.addEventListener('pointerup', release); m.addEventListener('pointercancel', release);
     m.addEventListener('keydown', (e) => { if (['Enter', ' ', 'ArrowDown'].includes(e.key)) { e.preventDefault(); fireCancel(); } });
   });
-  window.FWCancel = { start: startCancel };
+  window.FWCancel = {
+    start: startCancel,
+    state: () => CX.state,
+    // the tracker's cancel window runs until the point of no return; a delay pushes it back
+    setDeadline: (ms) => {
+      if (!CX.rec || !CX.rec.tracker || CX.state === 'done' || CX.state === 'sending') return;
+      CX.deadline = ms || Infinity;
+      if (isFinite(CX.deadline)) CX.total = Math.max(CX.total, CX.deadline - Date.now(), 60000);
+      if (CX.state === 'expired' && CX.deadline > Date.now()) cxSet('idle', '');
+      clearInterval(CX.tick); cxTime(); CX.tick = setInterval(cxTime, 250);
+    }
+  };
 
   // shared sender: Apps Script first, Gmail fallback
   const deliver = async (payload, subject, body, okMsg, info) => {
@@ -4352,7 +4449,7 @@
     btn.disabled = true; btn.textContent = 'Sending...';
     status.style.color = ''; status.textContent = '';
     try {
-      const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, subject, body, website: form.elements.website.value }) });
+      const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, mode: root.dataset.theme, subject, body, website: form.elements.website.value }) });
       const out = await res.json();
       if (!out.ok) throw new Error(out.error || 'send failed');
       const flight = out.flight ? { flight: out.flight, key: out.key, track: out.track } : {};
@@ -4969,21 +5066,36 @@
 })();
 </script>
 <script>
-/* ---------- Flight tracker: ?track=CODE&key=KEY shows one customer's job, live ---------- */
+/* ---------- Tracker: ?t=KEY shows one customer's job, live, in the mode they booked in ---------- */
 (() => {
   const root = document.documentElement;
   if (!root.classList.contains('tracking')) return;
   const P = new URLSearchParams(location.search);
-  const CODE = String(P.get('track') || '').toUpperCase().trim(), KEY = String(P.get('key') || '').trim();
+  const KEY = String(P.get('t') || P.get('key') || '').trim();
+  const DEMO = KEY.toLowerCase() === 'demo' || String(P.get('track') || '').toUpperCase() === 'DEMO';
   const ENDPOINT = window.FW_ENDPOINT;
   const HEADSUP = 'Point of no return ahead';
-  const DEMO = CODE === 'DEMO';
   const $ = (id) => document.getElementById(id);
   const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches || root.dataset.calm === 'on' || !window.gsap;
 
   const meta = document.createElement('meta'); meta.name = 'robots'; meta.content = 'noindex'; document.head.appendChild(meta);
-  document.title = `Flight ${CODE} · FW Tech Hoboken`;
 
+  // Each mode tells the story its own way; the internal code never shows up here
+  const SKIN = {
+    train:      { kind: 'Ticket tracker', big: n => 'No. ' + n, tag: n => 'No. ' + n, route: 'Route', now: 'Now at', cancelH: 'Changed your mind? Stop the train.',
+                  status: { Active: 'On the line', Landed: 'Arrived', Cancelled: 'Cancelled' }, panel: '.cx-train' },
+    airplane:   { kind: 'Flight tracker', big: n => 'FW' + n, tag: n => 'FW' + n, route: 'Flight plan', now: 'Happening now', cancelH: 'Cancel request',
+                  status: { Active: 'In flight', Landed: 'Landed', Cancelled: 'Canceled' }, panel: '.cx-air' },
+    industrial: { kind: 'Work order tracker', big: n => 'R-' + n, tag: n => 'R-' + n, route: 'Assembly line', now: 'On the line', cancelH: 'Abort this work order',
+                  status: { Active: 'In production', Landed: 'Shipped', Cancelled: 'Voided' }, panel: '.cx-ind' }
+  };
+  let skin = SKIN.train;
+  const applyMode = (m) => {
+    const mode = SKIN[m] ? m : 'train';
+    skin = SKIN[mode];
+    root.dataset.theme = mode;            // only for this page, nothing is saved
+    $('trk-kind').textContent = skin.kind; $('trk-route-h').textContent = skin.route; $('trk-now-h').textContent = skin.now; $('trk-cancel-h').textContent = skin.cancelH;
+  };
   const DESC = {
     'Awaiting drop-off': "Waiting at the gate. Your laptop hasn't been dropped off yet.",
     'Checked in': 'Checked in and tagged with your flight number. Work starts soon.',
@@ -5131,14 +5243,20 @@
   };
 
   function render(d) {
-    last = d;
-    $('trk-code').textContent = d.flight;
+    const prev = last; last = d;
+    if (!prev || prev.mode !== d.mode) applyMode(d.mode);
+    document.title = `${d.label} · FW Tech Hoboken`;
+    $('trk-code').textContent = skin.big(d.num);
     $('trk-sub').textContent = [d.laptop, d.services].filter(Boolean).join(' · ');
-    const st = $('trk-status'); st.hidden = false; st.dataset.s = d.status; st.textContent = d.status === 'Active' ? 'In progress' : d.status;
+    const st = $('trk-status'); st.hidden = false; st.dataset.s = d.status; st.textContent = skin.status[d.status] || d.status;
     const stage = d.status === 'Cancelled' ? 'Cancelled' : d.stage;
     $('trk-now').textContent = stage === HEADSUP ? 'Point of no return coming up' : stage;
     $('trk-desc').textContent = DESC[stage] || '';
     $('trk-heads').hidden = stage !== HEADSUP;
+    const beforePnr = d.stages.indexOf(stage) !== -1 && d.stages.indexOf(stage) < d.stages.indexOf(d.pnr);
+    $('trk-delay').hidden = !(d.delay > 0 && beforePnr && d.status === 'Active');
+    $('trk-eta').textContent = d.pnrAt ? 'Around ' + new Date(d.pnrAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + (d.delay > 0 ? ', updated for the delay.' : '.') : '';
+    tick();
     $('trk-note').hidden = !d.note; $('trk-note-text').textContent = d.note || '';
     $('trk-laptop').textContent = d.laptop || '-'; $('trk-services').textContent = d.services || '-'; $('trk-total').textContent = d.total ? d.total + ', cash' : '-';
     $('trk-stagebox').hidden = false; $('trk-routebox').hidden = false;
@@ -5159,20 +5277,57 @@
     if (d.photo && $('trk-photo').getAttribute('src') !== d.photo) $('trk-photo').src = d.photo;
     $('trk-updated').textContent = DEMO ? 'Demo flight' : 'Live · updated ' + ago(d.updated);
     document.querySelector('.trk-live').classList.remove('off');
-    scene(stage, d.flight);
+    cancelPanel(d, stage);
+    scene(stage, skin.tag(d.num));
   }
 
+  /* ---------------- cancel, right on the tracker, in the mode's own style ---------------- */
+  let cxStarted = false, cancelledHere = false;
+  window.addEventListener('fw:trackercancel', () => { cancelledHere = true; if (!DEMO) setTimeout(load, 1500); });
+  function cancelPanel(d, stage) {
+    const box = $('trk-cancel'), C = window.FWCancel;
+    const i = d.stages.indexOf(stage), beforePnr = i !== -1 && i < d.stages.indexOf(d.pnr);
+    const open = d.status === 'Active' && beforePnr;
+    box.hidden = !(open || cancelledHere);
+    if (!C || (!open && !cancelledHere)) return;
+    const deadline = d.pnrAt ? new Date(d.pnrAt).getTime() : 0;
+    $('trk-cancel-d').textContent = deadline
+      ? 'The point of no return is coming up. Cancel here before the timer runs out for a full refund.'
+      : 'You can cancel right here for a full refund, any time before the point of no return.';
+    if (!cxStarted) {
+      const panel = document.querySelector(skin.panel);
+      if (!panel) return;
+      $('trk-cancel-slot').appendChild(panel);
+      C.start({ tracker: true, key: KEY, deadline, test: DEMO, kind: 'book' });
+      cxStarted = true;
+    } else {
+      C.setDeadline(deadline);
+    }
+    const sub = document.querySelector(`#trk-cancel-slot .cx-sub`);
+    if (sub) sub.innerHTML = deadline ? 'Window closes at the point of no return: <b class="cx-time"></b>' : 'Open until the point of no return';
+  }
+
+  function tick() {
+    const el = $('trk-count'); if (!el || !last) return;
+    if (!last.pnrAt) { el.textContent = 'about 15 minutes'; return; }
+    const ms = new Date(last.pnrAt).getTime() - Date.now();
+    if (ms <= 0) { el.textContent = 'any moment now'; return; }
+    const m = Math.floor(ms / 60000), sec = Math.floor(ms / 1000) % 60;
+    el.textContent = m + ':' + String(sec).padStart(2, '0');
+  }
+  setInterval(tick, 1000);
+
   function notFound() {
-    $('trk-code').textContent = CODE || 'Unknown';
+    $('trk-code').textContent = 'Not found';
     $('trk-sub').textContent = "This flight isn't on the board. The link may be incomplete, or the flight landed more than 2 days ago and was cleared. Check the link in your FW Tech email.";
     $('trk-updated').textContent = 'Not found';
     document.querySelector('.trk-live').classList.add('off');
   }
 
   async function load() {
-    if (!CODE || !KEY || !ENDPOINT) return notFound();
+    if (!KEY || !ENDPOINT) return notFound();
     try {
-      const res = await fetch(`${ENDPOINT}?track=${encodeURIComponent(CODE)}&key=${encodeURIComponent(KEY)}&t=${Date.now()}`);
+      const res = await fetch(`${ENDPOINT}?t=${encodeURIComponent(KEY)}&nc=${Date.now()}`);
       const d = await res.json();
       if (!d.ok) { if (!last) notFound(); return; }
       render(d);
@@ -5185,14 +5340,22 @@
   /* ---------------- demo flight: ?track=DEMO&key=demo ---------------- */
   if (DEMO) {
     const stages = ['Awaiting drop-off', 'Checked in', 'Case off', 'Fans and heatsink cleaning', HEADSUP, 'Old paste removed', 'New paste applied', 'Reassembled', 'Exterior cleaning', 'Testing', 'Ready for pickup', 'Landed'];
-    const base = { ok: true, flight: 'HPVC482', laptop: 'HP Victus 16', services: 'Full bundle', total: '$72', status: 'Active', stages, pnr: 'Old paste removed', note: '', photo: null };
+    const dm = SKIN[P.get('m')] ? P.get('m') : 'train';
+    const base = { ok: true, label: { train: 'Ticket No. 482', airplane: 'Flight FW482', industrial: 'Work order R-482' }[dm], num: '482', mode: dm, laptop: 'HP Victus 16', services: 'Full bundle', total: '$72', status: 'Active', stages, pnr: 'Old paste removed', note: '', photo: null };
     const box = $('trk-demo-btns'); $('trk-demo').hidden = false;
+    let delay = 0, pnrAt = null, cur = '';
     const pick = (s) => {
+      cur = s;
       box.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === s)));
+      if (s === HEADSUP && !pnrAt) pnrAt = Date.now() + 15 * 60000;
       render({ ...base, stage: s === 'Cancelled' ? 'Awaiting drop-off' : s, status: s === 'Landed' ? 'Landed' : s === 'Cancelled' ? 'Cancelled' : 'Active',
+        pnrAt: pnrAt ? new Date(pnrAt).toISOString() : null, delay,
         note: s === 'Case off' ? 'One screw was stripped, so the case took a little longer. All good now.' : '' });
     };
     [...stages, 'Cancelled'].forEach(s => { const b = document.createElement('button'); b.type = 'button'; b.textContent = s; b.addEventListener('click', () => pick(s)); box.appendChild(b); });
+    const db = document.createElement('button'); db.type = 'button'; db.textContent = 'Add 10 min delay';
+    db.addEventListener('click', () => { delay += 10; if (pnrAt) pnrAt += 10 * 60000; pick(cur); });
+    box.appendChild(db);
     pick('Fans and heatsink cleaning');
     return;
   }
