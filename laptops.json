@@ -1,0 +1,286 @@
+{
+  "_note": "FW Tech laptop guide. One entry per series. The guide page shows everything except 'prep'. The Apps Script attaches 'prep' to Rey's booking email, matched by 'prefixes' (the same codes as the flight numbers). Add 'photo' and 'credit' to any entry to show a real photo instead of the drawing.",
+  "series": [
+    {
+      "id": "hp-pavilion", "brand": "HP", "series": "Pavilion", "prefixes": ["HPV"], "type": "Everyday",
+      "years": "Around for over a decade, still sold",
+      "look": "Plain everyday laptop, usually silver, gray, or blue. Thin screen bezels on newer ones, a full keyboard with a number pad on 15 and 17 inch models.",
+      "heat": "One small fan that pulls air through the bottom. Dust builds up fast, especially if it's used on a bed or couch.",
+      "needs": "An internal clean every year or two. A repaste once it's 3 or more years old or starts slowing down when it warms up.",
+      "difficulty": 2, "open": "Bottom panel held by screws, some hidden under the rubber feet, plus plastic clips.",
+      "models": ["Pavilion 14", "Pavilion 15", "Pavilion 17", "Pavilion x360", "Pavilion Aero 13", "Pavilion Gaming 15"],
+      "draw": { "lid": "#b9bec6", "base": "#c9cdd4", "thick": 18, "numpad": true },
+      "prep": { "tools": "Phillips #0, spudger, guitar pick", "open": "Peel back the rear rubber foot strip on many models, screws hide underneath. Clips around the edges.", "fans": "1", "time": "45 to 75 min", "watch": "Rubber foot strips tear easily, warm them first. Keyboard ribbon on some 15s is short." }
+    },
+    {
+      "id": "hp-victus", "brand": "HP", "series": "Victus", "prefixes": ["HPVC"], "type": "Gaming",
+      "years": "2021 and newer",
+      "look": "Budget gaming laptop, usually dark blue, black, or white, with a big 'V' shape on the lid. Thick back edge with vents.",
+      "heat": "Two fans and big vents on the back and sides. Gaming loads make it run hot, so dust and dried paste hurt it more than an everyday laptop.",
+      "needs": "The full bundle is worth it. Gaming laptops benefit the most from fresh paste, usually after 2 years of regular gaming.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips. Straightforward once the clips release.",
+      "models": ["Victus 15", "Victus 16"],
+      "draw": { "lid": "#22304d", "base": "#2a3a5c", "thick": 24, "numpad": true, "rgb": false, "ventBack": true, "lidMark": "v" },
+      "prep": { "tools": "Phillips #0, spudger, picks", "open": "Screws on bottom, clips are tight near the front edge.", "fans": "2", "time": "60 to 90 min", "watch": "Unplug battery before touching the heatsink. Thermal pads on VRMs, don't tear them." }
+    },
+    {
+      "id": "hp-envy", "brand": "HP", "series": "Envy", "prefixes": ["HPEN"], "type": "Premium",
+      "years": "Over a decade, still sold",
+      "look": "Slimmer, nicer metal laptop, often silver or dark gray. Many are convertibles that fold all the way back into a tablet (x360).",
+      "heat": "Thin design with one fan. Slim laptops have less room for air, so a little dust makes a big difference.",
+      "needs": "An internal clean every year or two, and a repaste if it gets loud or hot.",
+      "difficulty": 3, "open": "Bottom panel with screws, some hidden under rubber feet. The metal panel is tight and bends if pried wrong.",
+      "models": ["Envy 13", "Envy x360 13", "Envy x360 15", "Envy 15", "Envy 16", "Envy 17"],
+      "draw": { "lid": "#a7acb4", "base": "#b6bbc2", "thick": 15, "convertible": true },
+      "prep": { "tools": "Phillips #0, Torx T5 on some, thin picks", "open": "Hidden screws under the long rear foot. Metal panel, pry slowly from the hinge side.", "fans": "1 to 2", "time": "60 to 90 min", "watch": "Bending the aluminum panel. Speaker wires routed near the edges." }
+    },
+    {
+      "id": "hp-spectre", "brand": "HP", "series": "Spectre", "prefixes": ["HPSP"], "type": "Premium",
+      "years": "Around 2016 and newer",
+      "look": "HP's fanciest thin laptop, often dark with gold or copper edges and sharp cut corners. Usually a convertible.",
+      "heat": "Very thin with small fans, so it throttles quickly when dusty.",
+      "needs": "An internal clean. Repaste only when it really needs it.",
+      "difficulty": 4, "open": "Tight metal panel, small screws, very little room inside.",
+      "models": ["Spectre x360 13", "Spectre x360 14", "Spectre x360 15", "Spectre x360 16"],
+      "draw": { "lid": "#2b2a33", "base": "#33323c", "thick": 13, "convertible": true, "trim": "#c79a5b" },
+      "prep": { "tools": "Torx T5, Phillips #00, plastic picks", "open": "Screws under rear foot strip. Very tight panel.", "fans": "2", "time": "75 to 105 min", "watch": "Gold trim scratches easily, use pads. Tiny ribbon cables." }
+    },
+    {
+      "id": "hp-elitebook", "brand": "HP", "series": "EliteBook / ProBook", "prefixes": ["HPEB", "HPPB"], "type": "Business",
+      "years": "Many years, common as work laptops",
+      "look": "Plain silver or black work laptop. Often has a fingerprint reader and a small pointing nub in the middle of the keyboard on EliteBooks.",
+      "heat": "One fan, usually built to be serviced, but office dust still piles up over years.",
+      "needs": "Internal clean and repaste on older ones, especially ex-office laptops.",
+      "difficulty": 2, "open": "Bottom panel with captive screws that stay in the panel. Made to be opened.",
+      "models": ["EliteBook 840", "EliteBook 850", "EliteBook 640", "ProBook 440", "ProBook 450"],
+      "draw": { "lid": "#b0b5bc", "base": "#bfc3ca", "thick": 18, "trackpoint": true },
+      "prep": { "tools": "Phillips #0, spudger", "open": "Captive screws loosen but stay in the panel. Pry from the hinge.", "fans": "1", "time": "45 to 70 min", "watch": "Captive screws feel stuck when they're actually done, don't overturn." }
+    },
+    {
+      "id": "hp-omen", "brand": "HP", "series": "Omen", "prefixes": ["HPOM"], "type": "Gaming",
+      "years": "Around 2016 and newer",
+      "look": "HP's higher-end gaming laptop, usually black with a diamond-shaped logo area on the lid and an RGB keyboard.",
+      "heat": "Powerful parts, two fans, and lots of heat. Dried paste here causes big slowdowns in games.",
+      "needs": "The full bundle. Gaming laptops benefit the most from a repaste.",
+      "difficulty": 3, "open": "Bottom panel with screws, some under the rear feet, and tight clips.",
+      "models": ["Omen 15", "Omen 16", "Omen 17", "Omen Transcend 14"],
+      "draw": { "lid": "#1b1c20", "base": "#232429", "thick": 24, "numpad": true, "rgb": true, "ventBack": true },
+      "prep": { "tools": "Phillips #0, picks, spudger", "open": "Rear foot hides screws on some. Tight clips at the front.", "fans": "2", "time": "75 to 105 min", "watch": "Thermal pads on VRAM. Some have liquid metal, check before scraping." }
+    },
+    {
+      "id": "dell-xps", "brand": "Dell", "series": "XPS", "prefixes": ["DXPS"], "type": "Premium",
+      "years": "Many years, still sold",
+      "look": "Thin silver aluminum outside, black or white carbon pattern around the keyboard on many models. Very thin screen edges.",
+      "heat": "Two small fans in a tight space. Known for running warm, so dust and old paste make it throttle.",
+      "needs": "An internal clean, and a repaste after a few years or if the fans are always loud.",
+      "difficulty": 3, "open": "Bottom panel with Torx screws. Some models hide a screw under a flap.",
+      "models": ["XPS 13", "XPS 14", "XPS 15", "XPS 16", "XPS 17"],
+      "draw": { "lid": "#c3c6cc", "base": "#26272b", "thick": 15, "bezelThin": true },
+      "prep": { "tools": "Torx T5, Phillips #0, picks", "open": "Torx T5 on the bottom. On some 15s, two screws hide under the logo flap.", "fans": "2", "time": "60 to 90 min", "watch": "Panel clips are tight near the hinge. Don't drop screws into the fan." }
+    },
+    {
+      "id": "dell-inspiron", "brand": "Dell", "series": "Inspiron", "prefixes": ["DINS"], "type": "Everyday",
+      "years": "Over a decade, very common",
+      "look": "Everyday laptop, usually black, silver, or blue. Larger ones have a number pad. Some fold back into a tablet (2-in-1).",
+      "heat": "One fan, often sitting on desks and beds for years without a cleaning.",
+      "needs": "An internal clean every year or two. A repaste for older or slow-when-warm ones.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips. Usually simple.",
+      "models": ["Inspiron 14", "Inspiron 15", "Inspiron 16", "Inspiron 3000", "Inspiron 5000", "Inspiron 7000", "Inspiron 2-in-1"],
+      "draw": { "lid": "#2c2f35", "base": "#33363c", "thick": 19, "numpad": true },
+      "prep": { "tools": "Phillips #0, spudger", "open": "Some screws are captive. Clips around the edges.", "fans": "1", "time": "45 to 75 min", "watch": "Captive screws at the hinge. Short keyboard ribbon on some 15s." }
+    },
+    {
+      "id": "dell-latitude", "brand": "Dell", "series": "Latitude", "prefixes": ["DLAT"], "type": "Business",
+      "years": "Many years, common as work and school laptops",
+      "look": "Plain black or dark gray work laptop, often with Dell's business logo and a sturdy feel.",
+      "heat": "One fan. Ex-office ones often haven't been cleaned in years.",
+      "needs": "Internal clean and repaste on older ones.",
+      "difficulty": 2, "open": "Bottom panel with captive screws. Designed to be serviced.",
+      "models": ["Latitude 3000", "Latitude 5000", "Latitude 7000", "Latitude 5420", "Latitude 7490"],
+      "draw": { "lid": "#2a2c30", "base": "#303237", "thick": 19, "trackpoint": true },
+      "prep": { "tools": "Phillips #0, spudger", "open": "Captive screws, then pry from the hinge side.", "fans": "1", "time": "45 to 70 min", "watch": "School-managed laptops: hardware only, no software changes." }
+    },
+    {
+      "id": "dell-g", "brand": "Dell", "series": "G series", "prefixes": ["DGS"], "type": "Gaming",
+      "years": "Around 2018 and newer",
+      "look": "Dell's budget gaming laptop, usually dark gray or black, with a thick back and big rear vents.",
+      "heat": "Two fans and gaming parts. Heat builds fast when it's dusty.",
+      "needs": "The full bundle after a year or two of gaming.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips.",
+      "models": ["G15", "G16", "G5", "G7"],
+      "draw": { "lid": "#30333a", "base": "#363940", "thick": 24, "numpad": true, "ventBack": true },
+      "prep": { "tools": "Phillips #0, picks", "open": "Screws on bottom, clips at the front.", "fans": "2", "time": "60 to 90 min", "watch": "Thermal pads on VRAM and VRMs." }
+    },
+    {
+      "id": "lenovo-thinkpad", "brand": "Lenovo", "series": "ThinkPad", "prefixes": ["LTP"], "type": "Business",
+      "years": "Decades, very common at work and school",
+      "look": "Black, boxy work laptop with a red pointing nub in the middle of the keyboard. That red dot is the giveaway.",
+      "heat": "One fan. Built to last, so many are old and have never been cleaned.",
+      "needs": "Internal clean and repaste on older ones. They often run like new after.",
+      "difficulty": 2, "open": "Bottom panel with captive screws. Made to be repaired.",
+      "models": ["ThinkPad T14", "ThinkPad T480", "ThinkPad X1 Carbon", "ThinkPad E14", "ThinkPad E15", "ThinkPad L14", "ThinkPad X280"],
+      "draw": { "lid": "#1c1d20", "base": "#232428", "thick": 18, "trackpoint": true, "red": true },
+      "prep": { "tools": "Phillips #0, spudger", "open": "Captive screws, start prying near the hinge.", "fans": "1", "time": "45 to 70 min", "watch": "Older ones have a removable battery, pull it first." }
+    },
+    {
+      "id": "lenovo-ideapad", "brand": "Lenovo", "series": "IdeaPad / ThinkBook", "prefixes": ["LIP", "LTB"], "type": "Everyday",
+      "years": "Many years, very common",
+      "look": "Plain everyday laptop, usually gray, blue, or silver. Some fold back into a tablet (Flex).",
+      "heat": "One fan pulling air through the bottom. Dust builds up quickly.",
+      "needs": "An internal clean every year or two, and a repaste when it's older.",
+      "difficulty": 2, "open": "Bottom panel with screws and tight clips.",
+      "models": ["IdeaPad 1", "IdeaPad 3", "IdeaPad 5", "IdeaPad Flex 5", "IdeaPad Slim", "ThinkBook 14", "ThinkBook 15"],
+      "draw": { "lid": "#8d929b", "base": "#9ba0a8", "thick": 17 },
+      "prep": { "tools": "Phillips #0, picks", "open": "Clips are tight at the front edge.", "fans": "1", "time": "45 to 75 min", "watch": "Plastic clips crack if you rush the front edge." }
+    },
+    {
+      "id": "lenovo-yoga", "brand": "Lenovo", "series": "Yoga", "prefixes": ["LYGA"], "type": "Premium",
+      "years": "Around 2012 and newer",
+      "look": "Thin laptop that folds all the way back into a tablet. Often silver, gray, or dark, with a rounded hinge.",
+      "heat": "Thin design with one small fan, sensitive to dust.",
+      "needs": "An internal clean, and a repaste if it runs hot or loud.",
+      "difficulty": 3, "open": "Tight metal panel, some screws are Torx.",
+      "models": ["Yoga 7", "Yoga 9", "Yoga Slim 7", "Yoga 2 11", "Yoga C940"],
+      "draw": { "lid": "#7c8089", "base": "#888c94", "thick": 15, "convertible": true },
+      "prep": { "tools": "Torx T5 on some, Phillips #00, picks", "open": "Pry slowly, panel is tight.", "fans": "1", "time": "60 to 90 min", "watch": "Older Yoga 2 models are cramped. Watch the hinge cables." }
+    },
+    {
+      "id": "lenovo-legion", "brand": "Lenovo", "series": "Legion / LOQ", "prefixes": ["LGN", "LLOQ"], "type": "Gaming",
+      "years": "Around 2017 and newer",
+      "look": "Gaming laptop, usually dark gray or blue-gray, with a thick back that sticks out past the screen and an RGB or white backlit keyboard. LOQ is the budget version.",
+      "heat": "Two fans with lots of vents. Runs hot under games, so dust and old paste cost real performance.",
+      "needs": "The full bundle after a year or two of gaming.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips. Roomy inside.",
+      "models": ["Legion 5", "Legion 5 Pro", "Legion 7", "Legion Y520", "Legion Y720", "LOQ 15"],
+      "draw": { "lid": "#3a3e47", "base": "#42464f", "thick": 25, "numpad": true, "rgb": true, "ventBack": true },
+      "prep": { "tools": "Phillips #0, picks, spudger", "open": "Screws on bottom, clips at the rear bump.", "fans": "2", "time": "60 to 90 min", "watch": "Older Y720s can have swollen batteries. Check before pressing on anything." }
+    },
+    {
+      "id": "asus-zenbook", "brand": "ASUS", "series": "Zenbook", "prefixes": ["AZEN"], "type": "Premium",
+      "years": "Around 2012 and newer",
+      "look": "Thin metal laptop with a circle pattern spreading from a corner of the lid. Often navy blue or gray.",
+      "heat": "One small fan in a thin body, sensitive to dust.",
+      "needs": "An internal clean, and a repaste if it gets loud or slow.",
+      "difficulty": 3, "open": "Torx screws, some under rubber feet. Tight metal panel.",
+      "models": ["Zenbook 13", "Zenbook 14", "Zenbook 14 OLED", "Zenbook Flip", "Zenbook Duo"],
+      "draw": { "lid": "#2a3554", "base": "#313d5f", "thick": 14, "rings": true },
+      "prep": { "tools": "Torx T5, picks", "open": "Screws under rear feet on some. Pry slowly.", "fans": "1", "time": "60 to 90 min", "watch": "Bent panel corners. Duo models have a second screen ribbon." }
+    },
+    {
+      "id": "asus-vivobook", "brand": "ASUS", "series": "Vivobook", "prefixes": ["AVIV"], "type": "Everyday",
+      "years": "Around 2013 and newer, very common",
+      "look": "Everyday laptop, often silver, blue, or black. Many have a bright colored Enter key.",
+      "heat": "One fan, air pulled through the bottom. Gets dusty fast.",
+      "needs": "An internal clean every year or two, and a repaste for older ones.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips.",
+      "models": ["Vivobook 14", "Vivobook 15", "Vivobook 16", "Vivobook Go", "Vivobook S14", "Vivobook Pro"],
+      "draw": { "lid": "#a9adb5", "base": "#b7bbc2", "thick": 18, "numpad": true },
+      "prep": { "tools": "Phillips #0, picks", "open": "Clips are tight. Some screws are shorter, track positions.", "fans": "1", "time": "45 to 75 min", "watch": "Some cheaper models have soldered parts, nothing to swap anyway." }
+    },
+    {
+      "id": "asus-rog-tuf", "brand": "ASUS", "series": "ROG / TUF", "prefixes": ["AROG", "ATUF"], "type": "Gaming",
+      "years": "Around 2012 and newer",
+      "look": "Gaming laptops. ROG has a slanted eye-shaped logo and lots of RGB lights. TUF is the tougher, budget version, often dark gray.",
+      "heat": "Two or more fans and powerful parts. Gets very hot under games.",
+      "needs": "The full bundle. These benefit the most from fresh paste.",
+      "difficulty": 3, "open": "Bottom panel with screws and tight clips. Some higher-end ROG models use liquid metal instead of paste.",
+      "models": ["ROG Strix G15", "ROG Strix G16", "ROG Zephyrus G14", "ROG Flow", "TUF A15", "TUF F15", "TUF A16"],
+      "draw": { "lid": "#202227", "base": "#272a30", "thick": 25, "numpad": true, "rgb": true, "ventBack": true },
+      "prep": { "tools": "Phillips #0, picks, spudger", "open": "One screw is often captive to pop the corner. Tight clips.", "fans": "2 to 3", "time": "75 to 105 min", "watch": "Liquid metal on some ROG models: do not scrape or repaste with normal paste." }
+    },
+    {
+      "id": "acer-aspire", "brand": "Acer", "series": "Aspire / Swift", "prefixes": ["AASP", "ASWF"], "type": "Everyday",
+      "years": "Many years, very common budget laptops",
+      "look": "Everyday budget laptop, usually silver or black. Swift is the thinner, metal version.",
+      "heat": "One fan, often small. Dust clogs it quickly.",
+      "needs": "An internal clean every year or two, and a repaste for older ones.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips.",
+      "models": ["Aspire 3", "Aspire 5", "Aspire 7", "Aspire Vero", "Swift 3", "Swift Go"],
+      "draw": { "lid": "#9ea2aa", "base": "#acb0b8", "thick": 18, "numpad": true },
+      "prep": { "tools": "Phillips #0, picks", "open": "Clips around the edge, some tight near the hinge.", "fans": "1", "time": "45 to 75 min", "watch": "Thin plastic on budget models cracks easily." }
+    },
+    {
+      "id": "acer-nitro", "brand": "Acer", "series": "Nitro / Predator", "prefixes": ["ANTR", "APRD"], "type": "Gaming",
+      "years": "Around 2017 and newer",
+      "look": "Gaming laptop, black with red accents (Nitro) or blue and black with sharp angles (Predator). Big rear vents.",
+      "heat": "Two fans and gaming parts. Heat builds up fast.",
+      "needs": "The full bundle after a year or two of gaming.",
+      "difficulty": 2, "open": "Bottom panel with screws and clips.",
+      "models": ["Nitro 5", "Nitro V 15", "Predator Helios 300", "Predator Helios Neo 16"],
+      "draw": { "lid": "#1d1e22", "base": "#24252a", "thick": 25, "numpad": true, "ventBack": true, "accent": "#d0302a" },
+      "prep": { "tools": "Phillips #0, picks", "open": "Screws on bottom, clips at the front.", "fans": "2", "time": "60 to 90 min", "watch": "Thermal pads on VRAM." }
+    },
+    {
+      "id": "apple-macbook-air", "brand": "Apple", "series": "MacBook Air", "prefixes": ["MBA"], "type": "Premium",
+      "years": "2008 and newer",
+      "look": "Thin aluminum laptop. Older ones (up to 2021) are wedge-shaped, thicker at the back. Newer ones are flat and even. Colors: silver, gold, space gray, midnight, starlight.",
+      "heat": "Older Intel models have a small fan that clogs up. Apple chip models (M1 and newer) have no fan at all.",
+      "needs": "Intel models: internal clean and repaste. Apple chip models: exterior clean, since there's no fan to clean.",
+      "difficulty": 3, "open": "Special five-point (pentalobe) screws on the bottom. The battery is glued in.",
+      "models": ["MacBook Air 11 / 13 (2010 to 2017)", "MacBook Air Retina (2018 to 2020)", "MacBook Air M1", "MacBook Air M2", "MacBook Air M3", "MacBook Air M4"],
+      "draw": { "lid": "#c9ccd1", "base": "#d3d6da", "thick": 12, "wedge": true, "bezelThin": true },
+      "prep": { "tools": "Pentalobe P5, Torx T5 inside, picks", "open": "Pentalobe screws on bottom. M-series: suction cup and gentle pull at the front.", "fans": "1 on Intel, 0 on M-series", "time": "45 to 90 min", "watch": "Check year first: M-series has no fan, so internal clean and repaste don't apply." }
+    },
+    {
+      "id": "apple-macbook-pro", "brand": "Apple", "series": "MacBook Pro", "prefixes": ["MBP"], "type": "Premium",
+      "years": "2006 and newer",
+      "look": "Aluminum laptop, silver or space gray, same thickness front to back. Some 2016 to 2020 models have a thin touch strip above the keyboard. 2021 and newer have a notch at the top of the screen.",
+      "heat": "One or two fans. Intel models run hot and gather dust. Apple chip models run much cooler.",
+      "needs": "Intel models: internal clean and repaste help a lot. Apple chip models: an internal clean if it's loud.",
+      "difficulty": 3, "open": "Pentalobe screws on the bottom. Glued battery.",
+      "models": ["MacBook Pro 13 (Intel)", "MacBook Pro 15 (Intel)", "MacBook Pro 16 (Intel)", "MacBook Pro 13 M1 / M2", "MacBook Pro 14", "MacBook Pro 16 (M series)"],
+      "draw": { "lid": "#8f939a", "base": "#9a9ea5", "thick": 15, "bezelThin": true },
+      "prep": { "tools": "Pentalobe P5, Torx T3 / T5, picks", "open": "Pentalobe on bottom. 2016 and later: bottom panel has clips at the back edge.", "fans": "1 to 2", "time": "60 to 105 min", "watch": "Intel i9 models get very hot. Don't let screws land near the battery." }
+    },
+    {
+      "id": "samsung-galaxy-book", "brand": "Samsung", "series": "Galaxy Book", "prefixes": ["SGB"], "type": "Premium",
+      "years": "Around 2020 and newer",
+      "look": "Thin, light laptop, usually dark gray, blue, or silver. Some fold into a tablet (Galaxy Book Flex / 360).",
+      "heat": "Thin design with one small fan.",
+      "needs": "An internal clean, and a repaste if it runs hot.",
+      "difficulty": 3, "open": "Screws under the rubber feet. Tight panel.",
+      "models": ["Galaxy Book 2", "Galaxy Book 3", "Galaxy Book Pro", "Galaxy Book 360"],
+      "draw": { "lid": "#3b4150", "base": "#444a59", "thick": 13, "convertible": true },
+      "prep": { "tools": "Phillips #00, picks", "open": "Peel the rubber feet. Pry slowly.", "fans": "1", "time": "60 to 90 min", "watch": "Feet don't always stick back, bring adhesive." }
+    },
+    {
+      "id": "lg-gram", "brand": "LG", "series": "gram", "prefixes": ["LGG"], "type": "Premium",
+      "years": "Around 2014 and newer",
+      "look": "Extremely light laptop, often white, gray, or black, with a big screen for its weight.",
+      "heat": "Light, thin body with one small fan.",
+      "needs": "An internal clean, and a repaste if it gets loud.",
+      "difficulty": 3, "open": "Screws hidden under rubber feet and plugs.",
+      "models": ["gram 14", "gram 16", "gram 17", "gram 2-in-1"],
+      "draw": { "lid": "#d9dbde", "base": "#e2e4e7", "thick": 13 },
+      "prep": { "tools": "Phillips #00, picks", "open": "Screws under feet and small rubber plugs.", "fans": "1", "time": "60 to 90 min", "watch": "Very thin magnesium panel, flexes easily." }
+    },
+    {
+      "id": "msi", "brand": "MSI", "series": "MSI laptops", "prefixes": ["MSI"], "type": "Gaming",
+      "years": "Many years",
+      "look": "Mostly gaming laptops, black with a dragon logo and RGB keyboards. Some thinner work models too.",
+      "heat": "Two or more fans. Gaming models run very hot.",
+      "needs": "The full bundle for gaming models.",
+      "difficulty": 3, "open": "Screws on the bottom. Some have a sticker over one screw.",
+      "models": ["Katana", "Thin GF63", "Cyborg", "Sword", "Stealth", "Raider", "Modern 14"],
+      "draw": { "lid": "#1b1c1f", "base": "#222326", "thick": 24, "numpad": true, "rgb": true, "ventBack": true },
+      "prep": { "tools": "Phillips #0, picks", "open": "One screw may be under a factory seal sticker.", "fans": "2", "time": "60 to 105 min", "watch": "Mention the sticker to the customer before breaking it." }
+    },
+    {
+      "id": "framework", "brand": "Framework", "series": "Framework Laptop", "prefixes": ["FRMW"], "type": "Premium",
+      "years": "2021 and newer",
+      "look": "Silver aluminum laptop with swappable ports that slide into slots on the sides. A gear logo on the lid.",
+      "heat": "One or two fans. Built to be opened, so cleaning is easy.",
+      "needs": "An internal clean and a repaste when it gets older.",
+      "difficulty": 1, "open": "Made to be repaired. Captive screws, every part is labeled.",
+      "models": ["Laptop 13", "Laptop 16"],
+      "draw": { "lid": "#b7bac0", "base": "#c4c7cc", "thick": 15 },
+      "prep": { "tools": "The included Framework screwdriver or Torx T5", "open": "Captive screws, keyboard cover comes off from the top.", "fans": "1 to 2", "time": "40 to 60 min", "watch": "Easy one. Note which expansion cards were where." }
+    }
+  ],
+  "notAccepted": [
+    { "id": "ms-surface", "brand": "Microsoft", "series": "Surface", "look": "Tablet-style laptops with a kickstand and a detachable keyboard, plus Surface Laptops.", "draw": { "lid": "#b2b5ba", "base": "#c1c4c8", "thick": 12 } },
+    { "id": "razer", "brand": "Razer", "series": "Razer Blade", "look": "Thin black gaming laptops with a green three-headed snake logo.", "draw": { "lid": "#121314", "base": "#18191b", "thick": 16, "rgb": true, "accent": "#3ad353" } },
+    { "id": "alienware", "brand": "Dell", "series": "Alienware", "look": "Dell's high-end gaming laptops with an alien head logo and lots of lighting.", "draw": { "lid": "#d7d9dc", "base": "#26272b", "thick": 24, "rgb": true, "ventBack": true } },
+    { "id": "chromebook", "brand": "Various", "series": "Chromebooks", "look": "Laptops running Chrome OS, common as school laptops. They say Chromebook on the lid or keyboard.", "draw": { "lid": "#2d2f33", "base": "#35373b", "thick": 19 } }
+  ]
+}

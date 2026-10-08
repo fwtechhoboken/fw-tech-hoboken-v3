@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Find Your Laptop · FW Tech Hoboken</title>
+<meta name="description" content="Not sure which laptop you have? Find it by picture, see what it needs, and book a cleaning or thermal repaste with FW Tech in Hoboken, NJ.">
+<link rel="canonical" href="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/laptops.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Same mode as the main site, no flash */
+  (function () {
+    var h = document.documentElement, t = 'train';
+    try { t = localStorage.getItem('fw-mode') || 'train'; } catch (e) {}
+    h.dataset.theme = (t === 'airplane' || t === 'industrial') ? t : 'train';
+  })();
+</script>
+<style>
+  :root, html[data-theme="train"] {
+    --void: 11 11 12; --slab: 22 22 24; --smoke: 43 45 48; --line: 39 39 44;
+    --ink: 236 235 231; --dim: 128 130 139; --brass: 200 169 106; --good: 79 224 138; --bad: 239 68 68;
+    --head: 'Archivo', 'Helvetica Neue', Arial, sans-serif; color-scheme: dark;
+  }
+  html[data-theme="airplane"] {
+    --void: 237 241 247; --slab: 255 255 255; --smoke: 190 201 218; --line: 214 222 234;
+    --ink: 11 26 51; --dim: 88 102 128; --brass: 12 52 120; --good: 31 111 209; --bad: 211 42 30;
+    --head: 'Barlow Semi Condensed', 'Barlow', Arial, sans-serif; color-scheme: light;
+  }
+  html[data-theme="industrial"] {
+    --void: 22 17 13; --slab: 36 27 20; --smoke: 82 62 44; --line: 60 46 34;
+    --ink: 234 222 196; --dim: 156 138 110; --brass: 214 154 78; --good: 94 168 150; --bad: 222 74 48;
+    --head: 'Big Shoulders Display', 'Archivo', sans-serif; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: rgb(var(--void)); color: rgb(var(--ink)); font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  html[data-theme="airplane"] body { font-family: 'Barlow', Arial, sans-serif; background: linear-gradient(180deg, #e7eef8, rgb(var(--void)) 520px); }
+  html[data-theme="industrial"] body { background-image: repeating-linear-gradient(135deg, rgba(214,154,78,.03) 0 2px, transparent 2px 9px); }
+  a { color: inherit; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+  :focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 3px; }
+
+  /* header */
+  .top { position: sticky; top: 0; z-index: 20; background: rgb(var(--void) / .88); backdrop-filter: blur(10px); border-bottom: 1px solid rgb(var(--line)); }
+  .top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: calc(14px + env(safe-area-inset-top, 0px)); padding-bottom: 14px; }
+  .logo { text-decoration: none; font-weight: 800; font-size: 15px; }
+  .logo b { color: rgb(var(--brass)); font-size: 20px; margin-right: 4px; }
+  .back { text-decoration: none; font: 700 13px 'JetBrains Mono', monospace; color: rgb(var(--brass)); border: 2px solid currentColor; padding: 8px 12px; }
+  html[data-theme="airplane"] .back { border-radius: 8px; }
+
+  /* hero */
+  .hero { padding: clamp(36px, 7vw, 80px) 0 28px; }
+  .eyebrow { font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: rgb(var(--brass)); margin: 0; }
+  h1 { font-family: var(--head); font-weight: 900; font-size: clamp(40px, 7.5vw, 84px); line-height: .95; letter-spacing: -.02em; margin: 10px 0 0; max-width: 14ch; }
+  html[data-theme="industrial"] h1, html[data-theme="industrial"] h2, html[data-theme="industrial"] h3 { text-transform: uppercase; letter-spacing: .01em; }
+  html[data-theme="airplane"] h1 { color: rgb(var(--brass)); font-weight: 800; }
+  .lede { margin: 16px 0 0; font-size: 18px; color: rgb(var(--dim)); max-width: 56ch; }
+  .search { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .search input { flex: 1 1 320px; min-width: 0; font-family: inherit; font-size: 17px; font-weight: 600; color: rgb(var(--ink)); background: rgb(var(--slab)); border: 2px solid rgb(var(--smoke)); padding: 14px 16px; }
+  html[data-theme="airplane"] .search input { border-radius: 10px; }
+  .search input:focus { outline: none; border-color: rgb(var(--brass)); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip { cursor: pointer; font: 700 12px 'JetBrains Mono', monospace; letter-spacing: .06em; text-transform: uppercase; color: rgb(var(--dim)); background: none; border: 1px solid rgb(var(--smoke)); padding: 8px 12px; }
+  .chip[aria-pressed="true"] { color: rgb(var(--brass)); border-color: rgb(var(--brass)); background: rgb(var(--brass) / .1); }
+  html[data-theme="airplane"] .chip { border-radius: 999px; background: #fff; }
+  html[data-theme="airplane"] .chip[aria-pressed="true"] { background: rgb(var(--brass)); color: #fff; }
+
+  /* find the name */
+  .how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 8px 0 0; }
+  .card { background: rgb(var(--slab)); border: 1px solid rgb(var(--line)); }
+  html[data-theme="train"] .card { border: 3px solid #2b2d31; outline: 1px solid #000; outline-offset: -1px;
+    background: radial-gradient(circle at 38% 32%, #b0b3b9 0 1.4px, #66696f 3px, #2a2b2e 5px, transparent 6px) left 7px top 7px / 14px 14px no-repeat,
+                radial-gradient(circle at 38% 32%, #b0b3b9 0 1.4px, #66696f 3px, #2a2b2e 5px, transparent 6px) right 7px top 7px / 14px 14px no-repeat,
+                linear-gradient(180deg, #1b1c1f, #141517); }
+  html[data-theme="airplane"] .card { border-radius: 16px; border-color: #d6dfeb; box-shadow: 0 18px 36px -24px rgba(11,26,51,.35); }
+  html[data-theme="industrial"] .card { border: 3px solid #0d0906; box-shadow: 5px 5px 0 #0d0906; background: linear-gradient(180deg, #2c2118, #211812); }
+  .how .card { padding: 20px; }
+  .how h3 { font-family: var(--head); font-weight: 800; font-size: 20px; margin: 6px 0 8px; }
+  .how p, .how ol { margin: 0; color: rgb(var(--dim)); font-size: 15px; }
+  .how ol { padding-left: 18px; }
+  .how li + li { margin-top: 4px; }
+  kbd { font: 700 12px 'JetBrains Mono', monospace; padding: 2px 6px; border: 1px solid rgb(var(--smoke)); border-bottom-width: 2px; background: rgb(var(--void)); color: rgb(var(--ink)); white-space: nowrap; }
+  html[data-theme="airplane"] kbd { border-radius: 5px; }
+
+  /* grid */
+  .section { padding: 44px 0 0; }
+  h2 { font-family: var(--head); font-weight: 900; font-size: clamp(28px, 4vw, 40px); margin: 0; line-height: 1; }
+  .sub { color: rgb(var(--dim)); margin: 8px 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 22px; }
+  .item { display: flex; flex-direction: column; text-align: left; cursor: pointer; padding: 14px; font: inherit; color: inherit; transition: transform .2s ease, border-color .2s ease; }
+  .item:hover { transform: translateY(-3px); }
+  html[data-theme="train"] .item:hover { outline-color: rgb(var(--brass)); }
+  html[data-theme="airplane"] .item:hover { border-color: rgb(var(--brass)); }
+  .pic { background: radial-gradient(closest-side, rgb(var(--brass) / .1), transparent), #0b0c0e; aspect-ratio: 9 / 5; display: grid; place-items: center; overflow: hidden; }
+  html[data-theme="airplane"] .pic { border-radius: 10px; background: linear-gradient(180deg, #f4f7fc, #e4ebf5); }
+  .pic svg, .pic img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .item .brand { margin-top: 12px; font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--dim)); }
+  .item .name { font-family: var(--head); font-weight: 800; font-size: 22px; line-height: 1.1; margin-top: 2px; }
+  .item .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; font: 600 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .pips { display: inline-flex; gap: 3px; vertical-align: middle; }
+  .pips i { width: 9px; height: 9px; border: 1.5px solid rgb(var(--smoke)); }
+  .pips i.on { background: rgb(var(--brass)); border-color: rgb(var(--brass)); }
+  html[data-theme="airplane"] .pips i { border-radius: 50%; }
+  .empty { margin-top: 18px; color: rgb(var(--dim)); }
+
+  /* not accepted */
+  .na .item { cursor: default; }
+  .na .item:hover { transform: none; }
+  .na .pic { position: relative; filter: grayscale(.6); }
+  .na .pic::after { content: 'Not accepted'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-9deg); padding: 4px 12px; border: 3px solid rgb(var(--bad));
+    color: rgb(var(--bad)); font: 900 15px 'Archivo', Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; background: rgb(var(--void) / .75); white-space: nowrap; }
+  .na .item p { margin: 8px 0 0; font-size: 14px; color: rgb(var(--dim)); }
+  .why { margin-top: 18px; padding: 18px 20px; border-left: 4px solid rgb(var(--bad)); background: rgb(var(--bad) / .07); max-width: 70ch; }
+  html[data-theme="airplane"] .why { border-radius: 10px; }
+  .why b { display: block; font-family: var(--head); font-size: 18px; }
+  .why ol { margin: 10px 0 0; padding-left: 20px; }
+  .why li + li { margin-top: 6px; }
+
+  /* still not sure */
+  .unsure { margin: 48px 0 0; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+  .unsure h2 { font-size: 26px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 800; padding: 14px 20px; border: 2px solid rgb(var(--brass)); background: rgb(var(--brass)); color: rgb(var(--void)); }
+  .btn.ghost { background: none; color: rgb(var(--brass)); }
+  html[data-theme="train"] .btn { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
+  html[data-theme="airplane"] .btn { border-radius: 10px; color: #fff; }
+  html[data-theme="airplane"] .btn.ghost { color: rgb(var(--brass)); }
+  html[data-theme="industrial"] .btn { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; border: 3px solid #0d0906; box-shadow: 0 4px 0 #0d0906;
+    background: linear-gradient(180deg, #e7a95f, #b06d2c); color: #1a120b; }
+  html[data-theme="industrial"] .btn.ghost { background: linear-gradient(180deg, #4a3a2c, #2a2019); color: #e8d6b0; }
+
+  footer { margin-top: 64px; padding: 28px 0 calc(40px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid rgb(var(--line)); color: rgb(var(--dim)); font-size: 13px; }
+
+  /* detail */
+  dialog { width: min(920px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; color: rgb(var(--ink)); background: rgb(var(--slab)); border: 1px solid rgb(var(--line)); overflow: auto; }
+  html[data-theme="airplane"] dialog { border-radius: 18px; }
+  html[data-theme="industrial"] dialog { border: 3px solid #0d0906; box-shadow: 8px 8px 0 #0d0906; }
+  dialog::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(3px); }
+  .d-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 20px; background: rgb(var(--slab)); border-bottom: 1px solid rgb(var(--line)); }
+  .d-close { cursor: pointer; font: 700 13px 'JetBrains Mono', monospace; color: rgb(var(--ink)); background: none; border: 1px solid rgb(var(--smoke)); padding: 8px 12px; }
+  .d-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; padding: 20px; }
+  .d-body h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 4px; }
+  .d-pic { position: sticky; top: 70px; align-self: start; }
+  .credit { margin: 8px 0 0; font: 500 11px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .credit a { color: inherit; }
+  .facts { margin: 14px 0 0; display: grid; gap: 8px; }
+  .facts div { display: grid; grid-template-columns: 110px 1fr; gap: 10px; font-size: 14px; }
+  .facts dt { font: 600 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  .facts dd { margin: 0; font-weight: 700; }
+  .sec { padding: 14px 0 0; margin-top: 14px; border-top: 1px solid rgb(var(--line)); }
+  .sec h3 { margin: 0; font: 700 11px 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--brass)); }
+  .sec p { margin: 6px 0 0; }
+  .models { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .models button { cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: rgb(var(--ink)); background: rgb(var(--void)); border: 1px solid rgb(var(--smoke)); padding: 7px 10px; }
+  .models button[aria-pressed="true"] { border-color: rgb(var(--brass)); color: rgb(var(--brass)); box-shadow: inset 0 0 0 1px rgb(var(--brass)); }
+  html[data-theme="airplane"] .models button { border-radius: 8px; background: #f4f7fc; }
+  .pick { margin-top: 18px; display: grid; gap: 8px; }
+  .pick .note { font: 500 12px 'JetBrains Mono', monospace; color: rgb(var(--dim)); }
+  @media (max-width: 860px) { .how { grid-template-columns: 1fr; } .d-body { grid-template-columns: 1fr; } .d-pic { position: static; } }
+  @media (prefers-reduced-motion: reduce) { .item { transition: none; } .item:hover { transform: none; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./"><b>FW</b> Tech Hoboken</a>
+    <a class="back" href="./#book">Back to booking</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Laptop guide</p>
+    <h1>Which laptop do you have?</h1>
+    <p class="lede">Find yours by picture or name, see what it usually needs, then tap "This is mine" to book it. If you already know the exact model, just search for it.</p>
+    <div class="search">
+      <input id="q" type="search" placeholder="Search, like victus, thinkpad, macbook air..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search laptops">
+    </div>
+    <div class="chips" id="types" role="group" aria-label="Filter by type"></div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h" style="font-size:22px;margin-bottom:14px">Not sure? Find the name in a minute</h2>
+    <div class="how">
+      <div class="card"><p class="eyebrow">Easiest</p><h3>Flip it over</h3><p>Most laptops have a sticker or printed text on the bottom with the brand and model, like "HP Victus 15-fa0xxx" or "Model: A2337". A photo of that sticker works too.</p></div>
+      <div class="card"><p class="eyebrow">Windows</p><h3>Ask the laptop</h3><ol><li>Press <kbd>Win+R</kbd></li><li>Type <kbd>msinfo32</kbd> and press <kbd>Enter</kbd></li><li>Read "System Model"</li></ol></div>
+      <div class="card"><p class="eyebrow">Mac</p><h3>About This Mac</h3><ol><li>Click the Apple menu in the top left</li><li>Choose "About This Mac"</li><li>It shows the name and year, like "MacBook Air, M1, 2020"</li></ol></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="all-h">
+    <h2 id="all-h">Pick yours</h2>
+    <p class="sub">Grouped by series. Tap one to see what it needs and the exact models.</p>
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <p class="empty" id="empty" hidden>No match. Try just the brand, like "dell", or use "Still not sure?" below.</p>
+  </section>
+
+  <section class="section na" aria-labelledby="na-h">
+    <h2 id="na-h">Not accepted</h2>
+    <p class="sub">FW Tech doesn't work on these, so please don't book one.</p>
+    <div class="grid" id="na-grid"></div>
+    <div class="why">
+      <b>Reasons these aren't accepted</b>
+      <ol>
+        <li>I haven't worked on these laptops before.</li>
+        <li>They're harder to open, and unfortunately I don't have that much time.</li>
+      </ol>
+      <p style="margin:10px 0 0">That's pretty much it.</p>
+    </div>
+  </section>
+
+  <section class="card unsure" aria-labelledby="unsure-h">
+    <div>
+      <h2 id="unsure-h">Still not sure?</h2>
+      <p class="sub">No problem. Book anyway and describe it, like "black, kinda thick, red lights on the keyboard." I'll figure it out at drop-off.</p>
+    </div>
+    <a class="btn ghost" href="./?model=Not%20sure%2C%20I%27ll%20describe%20it#book">Book without the model</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Pictures are FW Tech drawings meant as a visual guide, not exact copies of any product. Brand and model names belong to their owners. FW Tech Hoboken is independent and not affiliated with any laptop maker.</div>
+</footer>
+
+<dialog id="detail" aria-labelledby="d-name">
+  <div class="d-head">
+    <span class="eyebrow" id="d-type"></span>
+    <button type="button" class="d-close" id="d-close">Close</button>
+  </div>
+  <div class="d-body">
+    <div class="d-pic"><div class="pic card" id="d-pic"></div><p class="credit" id="d-credit"></p></div>
+    <div>
+      <p class="eyebrow" id="d-brand"></p>
+      <h2 id="d-name"></h2>
+      <dl class="facts">
+        <div><dt>Made</dt><dd id="d-years"></dd></div>
+        <div><dt>How hard to open</dt><dd><span class="pips" id="d-pips"></span> <span id="d-diff"></span></dd></div>
+      </dl>
+      <div class="sec"><h3>What it looks like</h3><p id="d-look"></p></div>
+      <div class="sec"><h3>How it runs hot</h3><p id="d-heat"></p></div>
+      <div class="sec"><h3>What it needs</h3><p id="d-needs"></p></div>
+      <div class="sec"><h3>Opening it up</h3><p id="d-open"></p></div>
+      <div class="sec"><h3>Which one exactly?</h3><p class="sub" style="margin-top:4px">Tap your model if you see it. If not, the series is enough.</p><div class="models" id="d-models"></div></div>
+      <div class="pick">
+        <a class="btn" id="d-book" href="./#book">This is mine, book it</a>
+        <span class="note" id="d-picked"></span>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const DIFF = ['', 'Easy, made to be opened', 'Normal', 'Takes care', 'Tricky', 'Very tricky'];
+  const TYPES = ['All', 'Everyday', 'Gaming', 'Business', 'Premium'];
+  let DATA = { series: [], notAccepted: [] }, type = 'All', picked = '';
+
+  /* ---------- drawing: an open laptop, plus the closed lid and side profile ---------- */
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  function draw(d, label) {
+    const lid = d.lid || '#9aa0a8', base = d.base || lid, thick = d.thick || 18;
+    const keys = [];
+    const kw = d.numpad ? 148 : 160, kx = d.numpad ? 46 : 52, cols = d.numpad ? 12 : 13, cw = kw / cols;
+    for (let r = 0; r < 4; r++) for (let c = 0; c < cols; c++) {
+      const fill = d.rgb ? `hsl(${(c * 28 + r * 40) % 360} 85% 58% / .85)` : 'rgba(0,0,0,.42)';
+      keys.push(`<rect x="${(kx + c * cw + 1).toFixed(1)}" y="${(141 + r * 7.5).toFixed(1)}" width="${(cw - 2).toFixed(1)}" height="5.6" rx="1" fill="${fill}"/>`);
+    }
+    if (d.numpad) for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) keys.push(`<rect x="${198 + c * 9}" y="${141 + r * 7.5}" width="7" height="5.6" rx="1" fill="${d.rgb ? 'hsl(200 85% 58% / .85)' : 'rgba(0,0,0,.42)'}"/>`);
+    const bez = d.bezelThin ? 4 : 9;
+    const mark = d.lidMark === 'v' ? `<path d="M282 46 L297 70 L312 46" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4"/>`
+      : d.rings ? `<g clip-path="url(#lidclip)">` + [16, 28, 40, 52, 64].map(r => `<circle cx="252" cy="96" r="${r}" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>`).join('') + `</g>`
+      : d.red ? `<circle cx="326" cy="40" r="3" fill="#e0261b"/>` : '';
+    const trim = d.trim ? `stroke="${d.trim}" stroke-width="2.5"` : 'stroke="rgba(0,0,0,.55)" stroke-width="1.5"';
+    const prof = d.wedge
+      ? `<path d="M252 ${172} L346 ${172 - thick / 2.2} L346 ${172} Z" fill="${base}" stroke="rgba(0,0,0,.5)"/>`
+      : `<rect x="252" y="${172 - thick / 2.2}" width="94" height="${thick / 2.2}" rx="2" fill="${base}" stroke="rgba(0,0,0,.5)"/>`;
+    const vents = d.ventBack ? [0, 1, 2, 3, 4].map(i => `<rect x="${60 + i * 6}" y="126" width="3" height="7" fill="rgba(0,0,0,.6)"/><rect x="${i * 6 + 166}" y="126" width="3" height="7" fill="rgba(0,0,0,.6)"/>`).join('') : '';
+    const hinge = d.convertible ? `<rect x="58" y="120" width="168" height="7" rx="3.5" fill="${base}" stroke="rgba(0,0,0,.5)"/><path d="M236 116 a10 10 0 1 1 -2 -12" fill="none" stroke="rgb(var(--brass))" stroke-width="2"/><path d="M236 98 l-2 7 l7 -1" fill="none" stroke="rgb(var(--brass))" stroke-width="2"/>` : '';
+    const accent = d.accent ? `<rect x="40" y="168" width="208" height="3" fill="${d.accent}"/>` : '';
+    return `<svg viewBox="0 0 360 200" role="img" aria-label="${esc(label)} drawing">
+      <rect x="62" y="16" width="160" height="${108}" rx="7" fill="${lid}" stroke="rgba(0,0,0,.55)" stroke-width="1.5"/>
+      <rect x="${62 + bez}" y="${16 + bez}" width="${160 - bez * 2}" height="${108 - bez * 2 - 4}" rx="3" fill="#0d1520"/>
+      <rect x="${62 + bez}" y="${16 + bez}" width="${160 - bez * 2}" height="${108 - bez * 2 - 4}" rx="3" fill="url(#gl)"/>
+      ${hinge}
+      <path d="M48 128 H236 L252 176 H32 Z" fill="${base}" stroke="rgba(0,0,0,.55)" stroke-width="1.5"/>
+      ${vents}${keys.join('')}
+      <rect x="${d.numpad ? 98 : 110}" y="${171}" width="${d.numpad ? 54 : 60}" height="3" rx="1.5" fill="rgba(0,0,0,.25)"/>
+      ${d.trackpoint ? `<circle cx="${kx + kw / 2}" cy="${141 + 3 * 7.5 - 1}" r="2.4" fill="#e0261b"/>` : ''}
+      ${accent}
+      <defs><clipPath id="lidclip"><rect x="252" y="20" width="94" height="100" rx="7"/></clipPath><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25415f" stop-opacity=".9"/><stop offset=".6" stop-color="#0d1520" stop-opacity="0"/></linearGradient></defs>
+      <rect x="252" y="20" width="94" height="${100}" rx="7" fill="${lid}" ${trim}/>
+      ${mark}
+      ${prof}
+      <text x="299" y="192" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="rgb(var(--dim))">${thick >= 23 ? 'thick' : thick >= 17 ? 'medium' : 'thin'}${d.wedge ? ', wedge' : ''}</text>
+      <text x="299" y="134" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="rgb(var(--dim))">lid</text>
+    </svg>`;
+  }
+  const pic = (s) => s.photo
+    ? `<img src="${esc(s.photo)}" alt="${esc(s.brand + ' ' + s.series)}" loading="lazy">`
+    : draw(s.draw || {}, s.brand + ' ' + s.series);
+  const pips = (n) => [1, 2, 3, 4, 5].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('');
+
+  /* ---------- search that forgives typos ---------- */
+  const norm = (t) => String(t).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  function close(a, b) {
+    if (Math.abs(a.length - b.length) > 2) return false;
+    const m = a.length, n = b.length, d = Array.from({ length: m + 1 }, (_, i) => [i]);
+    for (let j = 1; j <= n; j++) d[0][j] = j;
+    for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    return d[m][n] <= (b.length >= 7 ? 2 : 1);
+  }
+  function matches(s, q) {
+    if (!q) return true;
+    const hay = norm([s.brand, s.series, s.type, ...(s.models || [])].join(' ')), words = hay.split(' '), joined = hay.replace(/ /g, '');
+    return norm(q).split(' ').every(w => hay.includes(w) || joined.includes(w) || (w.length >= 4 && words.some(x => close(w, x))));
+  }
+
+  /* ---------- rendering ---------- */
+  function cards() {
+    const q = $('q').value, list = DATA.series.filter(s => (type === 'All' || s.type === type) && matches(s, q));
+    $('grid').innerHTML = list.map(s => `<button type="button" class="item card" data-id="${s.id}">
+      <div class="pic">${pic(s)}</div>
+      <span class="brand">${esc(s.brand)} · ${esc(s.type)}</span>
+      <span class="name">${esc(s.series)}</span>
+      <span class="meta"><span>${esc(s.years)}</span><span class="pips" title="How hard to open">${pips(s.difficulty)}</span></span>
+    </button>`).join('');
+    $('empty').hidden = list.length > 0;
+  }
+  function full(brand, m) {
+    const b = brand.toLowerCase(), x = m.toLowerCase();
+    return x.startsWith(b) || (b === 'apple' && x.startsWith('macbook')) ? m : brand + ' ' + m;
+  }
+  const bookHref = (v) => './?model=' + encodeURIComponent(v) + '#book';
+
+  function open(id) {
+    const s = DATA.series.find(x => x.id === id); if (!s) return;
+    picked = '';
+    $('d-type').textContent = s.type + ' laptop';
+    $('d-brand').textContent = s.brand;
+    $('d-name').textContent = s.series;
+    $('d-years').textContent = s.years;
+    $('d-pips').innerHTML = pips(s.difficulty); $('d-diff').textContent = DIFF[s.difficulty] || '';
+    ['look', 'heat', 'needs', 'open'].forEach(k => { $('d-' + k).textContent = s[k] || ''; });
+    $('d-pic').innerHTML = pic(s);
+    $('d-credit').innerHTML = s.photo && s.credit ? 'Photo: ' + esc(s.credit) : s.photo ? '' : 'Drawing for reference, not an exact copy.';
+    const general = full(s.brand, s.series);
+    $('d-models').innerHTML = (s.models || []).map(m => `<button type="button" aria-pressed="false" data-m="${esc(full(s.brand, m))}">${esc(m)}</button>`).join('');
+    const sync = () => {
+      $('d-book').href = bookHref(picked || general);
+      $('d-picked').textContent = 'Books as: ' + (picked || general);
+      $('d-models').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.m === picked)));
+    };
+    $('d-models').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; picked = picked === b.dataset.m ? '' : b.dataset.m; sync(); };
+    sync();
+    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+    if (!$('detail').open) $('detail').showModal();
+    $('detail').scrollTop = 0;
+  }
+  function shut() { if ($('detail').open) $('detail').close(); }
+  $('detail').addEventListener('close', () => { if (location.hash) history.replaceState(null, '', location.pathname + location.search); });
+  $('d-close').addEventListener('click', shut);
+  $('detail').addEventListener('click', (e) => { if (e.target === $('detail')) shut(); });
+  $('grid').addEventListener('click', (e) => { const b = e.target.closest('[data-id]'); if (b) open(b.dataset.id); });
+  window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (id) open(id); else shut(); });
+
+  $('types').innerHTML = TYPES.map(t => `<button type="button" class="chip" aria-pressed="${t === type}">${t}</button>`).join('');
+  $('types').addEventListener('click', (e) => {
+    const b = e.target.closest('.chip'); if (!b) return; type = b.textContent;
+    $('types').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b))); cards();
+  });
+  $('q').addEventListener('input', cards);
+
+  fetch('laptops.json', { cache: 'no-cache' }).then(r => r.json()).then(d => {
+    DATA = d; cards();
+    $('na-grid').innerHTML = (d.notAccepted || []).map(s => `<div class="item card"><div class="pic">${draw(s.draw || {}, s.series)}</div>
+      <span class="brand">${esc(s.brand)}</span><span class="name">${esc(s.series)}</span><p>${esc(s.look)}</p></div>`).join('');
+    const id = location.hash.slice(1); if (id) open(id);
+  }).catch(() => { $('grid').innerHTML = '<p class="empty">The laptop list didn\'t load. Refresh the page, or book anyway and describe your laptop.</p>'; });
+})();
+</script>
+</body>
+</html>
