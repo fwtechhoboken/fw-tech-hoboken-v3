@@ -1327,7 +1327,7 @@
   .trk-code { margin: 6px 0 0; font-weight: 900; font-stretch: 125%; font-size: clamp(52px, 11vw, 120px); line-height: .9; letter-spacing: -.02em; }
   .trk-sub { margin: 12px 0 0; color: rgb(var(--dim)); font-size: 17px; max-width: 60ch; }
   .trk-status { display: inline-block; margin-top: 14px; padding: 6px 12px; font: 800 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; border: 2px solid currentColor; }
-  .trk-status[data-s="Active"] { color: #4fe08a; } .trk-status[data-s="Landed"] { color: rgb(var(--brass)); } .trk-status[data-s="Cancelled"] { color: #ef4444; }
+  .trk-status[data-s="Active"] { color: #4fe08a; } .trk-status[data-s="Unconfirmed"] { color: #f5b70f; } .trk-status[data-s="Landed"] { color: rgb(var(--brass)); } .trk-status[data-s="Cancelled"] { color: #ef4444; }
   .trk-stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(18px, 2.4vw, 28px); align-items: start; }
   .trk-scene-card, .trk-now-card, .trk-route, .trk-proof, .trk-demo { background: rgb(var(--slab)); border: 1px solid rgb(var(--line)); box-shadow: 0 24px 50px -30px rgba(0,0,0,.8); }
   .trk-scene-card { padding: 14px; }
@@ -1435,6 +1435,11 @@
   html[data-theme="industrial"] #tracker .trk-steps li.now { border-color: #ffb870; box-shadow: 0 0 18px -4px rgba(255,138,58,.6); }
   html[data-theme="industrial"] #tracker .trk-steps li.pnr::before { background: linear-gradient(180deg, #ff6b5a, #b3261e); }
 
+  .find-laptop { display: inline-block; margin-top: 8px; font: 500 12.5px 'JetBrains Mono', monospace; color: rgb(var(--coolant)); text-decoration: underline; text-underline-offset: 3px; }
+  .email-fix { display: block; margin-top: 8px; padding: 0; background: none; border: 0; cursor: pointer; text-align: left;
+    font: 500 12.5px 'JetBrains Mono', monospace; color: rgb(var(--coolant)); }
+  .email-fix b { text-decoration: underline; text-underline-offset: 3px; }
+  .email-fix[hidden] { display: none; }
   .track-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 18px; margin-top: 18px; padding: 14px 18px; text-decoration: none;
     border: 2px solid currentColor; color: rgb(var(--brass)); background: rgb(var(--brass) / .08); }
   .track-cta span { font: 700 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--dim)); }
@@ -2963,10 +2968,12 @@
         <input class="field mt-1" name="name" type="text" autocomplete="name" required placeholder="Your name">
       </label>
       <label class="col-span-2 md:col-span-1 text-sm text-dim" data-step="2"><span data-lbl="email">Email</span>
-        <input class="field mt-1" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+        <input class="field mt-1" name="email" type="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email" required placeholder="you@example.com">
+        <button type="button" class="email-fix" id="email-fix" hidden></button>
       </label>
       <label class="col-span-2 text-sm text-dim" data-step="2"><span data-lbl="model">Laptop model</span>
         <input class="field mt-1" name="model" type="text" required placeholder="e.g. HP Pavilion 15, 2019">
+        <a class="find-laptop" href="laptops.html">Not sure which laptop you have? Find it →</a>
       </label>
       <fieldset class="col-span-2 q-only">
         <legend class="text-sm text-dim mb-3">What's happening? Pick anything that fits</legend>
@@ -4171,7 +4178,7 @@
   // Paste your Google Apps Script web app URL here (ends in /exec). Empty = Gmail handoff.
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxodOouRAfMUxpXfZBRf8qYUzNouJnHJcgOtx1ozSfxh5aldpK49enO_JIJmSFp0xf7/exec';
   window.FW_ENDPOINT = FORM_ENDPOINT;
-  const NOT_ACCEPTED = /surface|razer|alienware|chromebook/i;
+  const NOT_ACCEPTED = /s[ue]rf[ai]ce|raz[eo]r|alien ?w[ae]a?re|chrome ?boo?k/i;
   const form = document.getElementById('book-form');
   const status = document.getElementById('form-status');
   const fail = (msg, el) => { if (el && window.FWStep) window.FWStep.reveal(el); status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
@@ -4449,9 +4456,19 @@
     btn.disabled = true; btn.textContent = 'Sending...';
     status.style.color = ''; status.textContent = '';
     try {
-      const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, mode: root.dataset.theme, subject, body, website: form.elements.website.value }) });
+      const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ ...payload, mode: root.dataset.theme, elapsed: Math.round(performance.now()), subject, body, website: form.elements.website.value }) });
       const out = await res.json();
+      if (!out.ok && ['held', 'limit', 'busy'].includes(out.error)) {
+        const why = {
+          held: `This request couldn't go through. Check your details, or email <a class="underline" href="mailto:${BOOKING_EMAIL}">${BOOKING_EMAIL}</a> directly.`,
+          limit: 'You already have open requests. Check your email to confirm or change one before sending another.',
+          busy: `Lots of requests right now. Try again in a little while, or email <a class="underline" href="mailto:${BOOKING_EMAIL}">${BOOKING_EMAIL}</a>.`
+        }[out.error];
+        status.style.color = '#f59e0b'; status.innerHTML = why;
+        return;
+      }
       if (!out.ok) throw new Error(out.error || 'send failed');
+      if (out.confirm) okMsg = 'Almost done: check your email and tap the link to confirm your request.';
       const flight = out.flight ? { flight: out.flight, key: out.key, track: out.track } : {};
       showBooked({ ...info, ...flight });
       startCancel({ payload, subject, body, at: Date.now(), kind: info.kind || 'book', ...flight });
@@ -5083,11 +5100,11 @@
   // Each mode tells the story its own way; the internal code never shows up here
   const SKIN = {
     train:      { kind: 'Ticket tracker', big: n => 'No. ' + n, tag: n => 'No. ' + n, route: 'Route', now: 'Now at', cancelH: 'Changed your mind? Stop the train.',
-                  status: { Active: 'On the line', Landed: 'Arrived', Cancelled: 'Cancelled' }, panel: '.cx-train' },
+                  status: { Unconfirmed: 'Awaiting your confirmation', Active: 'On the line', Landed: 'Arrived', Cancelled: 'Cancelled' }, panel: '.cx-train' },
     airplane:   { kind: 'Flight tracker', big: n => 'FW' + n, tag: n => 'FW' + n, route: 'Flight plan', now: 'Happening now', cancelH: 'Cancel request',
-                  status: { Active: 'In flight', Landed: 'Landed', Cancelled: 'Canceled' }, panel: '.cx-air' },
+                  status: { Unconfirmed: 'Awaiting your confirmation', Active: 'In flight', Landed: 'Landed', Cancelled: 'Canceled' }, panel: '.cx-air' },
     industrial: { kind: 'Work order tracker', big: n => 'R-' + n, tag: n => 'R-' + n, route: 'Assembly line', now: 'On the line', cancelH: 'Abort this work order',
-                  status: { Active: 'In production', Landed: 'Shipped', Cancelled: 'Voided' }, panel: '.cx-ind' }
+                  status: { Unconfirmed: 'Awaiting your confirmation', Active: 'In production', Landed: 'Shipped', Cancelled: 'Voided' }, panel: '.cx-ind' }
   };
   let skin = SKIN.train;
   const applyMode = (m) => {
@@ -5257,7 +5274,9 @@
     $('trk-delay').hidden = !(d.delay > 0 && beforePnr && d.status === 'Active');
     $('trk-eta').textContent = d.pnrAt ? 'Around ' + new Date(d.pnrAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + (d.delay > 0 ? ', updated for the delay.' : '.') : '';
     tick();
-    $('trk-note').hidden = !d.note; $('trk-note-text').textContent = d.note || '';
+    const note = d.status === 'Unconfirmed' ? 'Check your email and tap the confirm link. Your request reaches FW Tech once it is confirmed.'
+      : d.confirmed ? 'Confirmed. Your request is in, and you will get a reply by email before you bring anything over.' : d.note;
+    $('trk-note').hidden = !note; $('trk-note-text').textContent = note || '';
     $('trk-laptop').textContent = d.laptop || '-'; $('trk-services').textContent = d.services || '-'; $('trk-total').textContent = d.total ? d.total + ', cash' : '-';
     $('trk-stagebox').hidden = false; $('trk-routebox').hidden = false;
 
@@ -5287,7 +5306,7 @@
   function cancelPanel(d, stage) {
     const box = $('trk-cancel'), C = window.FWCancel;
     const i = d.stages.indexOf(stage), beforePnr = i !== -1 && i < d.stages.indexOf(d.pnr);
-    const open = d.status === 'Active' && beforePnr;
+    const open = (d.status === 'Active' || d.status === 'Unconfirmed') && beforePnr;
     box.hidden = !(open || cancelledHere);
     if (!C || (!open && !cancelledHere)) return;
     const deadline = d.pnrAt ? new Date(d.pnrAt).getTime() : 0;
@@ -5327,7 +5346,9 @@
   async function load() {
     if (!KEY || !ENDPOINT) return notFound();
     try {
-      const res = await fetch(`${ENDPOINT}?t=${encodeURIComponent(KEY)}&nc=${Date.now()}`);
+      const confirm = P.get('confirm') === '1' ? '&confirm=1' : '';
+      const res = await fetch(`${ENDPOINT}?t=${encodeURIComponent(KEY)}${confirm}&nc=${Date.now()}`);
+      if (confirm) { P.delete('confirm'); history.replaceState(null, '', location.pathname + '?' + P.toString()); }
       const d = await res.json();
       if (!d.ok) { if (!last) notFound(); return; }
       render(d);
@@ -5367,6 +5388,53 @@
     if (!document.hidden) { load(); timer = setInterval(load, 20000); }
   });
   setInterval(() => { if (last) $('trk-updated').textContent = 'Live · updated ' + ago(last.updated); }, 30000);
+})();
+</script>
+
+<script>
+/* ---------- Forgiving form: tidy sloppy typing instead of rejecting it ---------- */
+(() => {
+  const form = document.getElementById('book-form'); if (!form) return;
+  const el = form.elements, fix = document.getElementById('email-fix');
+  const TYPOS = { gmail: ['gmial', 'gamil', 'gmai', 'gmaill', 'gnail', 'gmal', 'gmali', 'gmil', 'gimal', 'gmsil'], yahoo: ['yaho', 'yahooo', 'yhoo', 'yahho'],
+    hotmail: ['hotmial', 'hotmal', 'hotmai', 'hotmil', 'homtail'], outlook: ['outlok', 'outloo', 'otlook', 'outlookk'], icloud: ['iclod', 'icoud', 'icload', 'iclould'] };
+  const fixEmail = (v) => {
+    let e = String(v || '').trim().toLowerCase().replace(/\s+/g, '').replace(/,/g, '.').replace(/\.+$/, '');
+    const at = e.lastIndexOf('@'); if (at < 1) return e;
+    const parts = e.slice(at + 1).replace(/\.(con|cmo|comm|cm|vom|xom|om)$/, '.com').split('.');
+    for (const good in TYPOS) if (TYPOS[good].includes(parts[0])) parts[0] = good;
+    if (['gmail', 'yahoo', 'hotmail', 'outlook', 'icloud'].includes(parts[0]) && parts.length === 1) parts.push('com');
+    return e.slice(0, at) + '@' + parts.join('.');
+  };
+  const squish = (x) => x && x.addEventListener('blur', () => { x.value = x.value.trim().replace(/\s+/g, ' '); });
+  [el.name, el.model, el.address].forEach(squish);
+
+  // Spaces and caps get fixed quietly. Real typos get a tap-to-fix suggestion, so nobody's email is changed behind their back.
+  const check = () => {
+    const raw = el.email.value, quiet = raw.trim().toLowerCase().replace(/\s+/g, '');
+    if (quiet !== raw && document.activeElement !== el.email) el.email.value = quiet;
+    const better = fixEmail(quiet);
+    if (better && better !== quiet && /@.+\..+/.test(better)) {
+      fix.innerHTML = 'Did you mean <b></b>? Tap to fix.'; fix.querySelector('b').textContent = better; fix.dataset.v = better; fix.hidden = false;
+    } else fix.hidden = true;
+  };
+  el.email.addEventListener('blur', check);
+  el.email.addEventListener('input', () => { if (!fix.hidden) check(); });
+  fix.addEventListener('click', () => { el.email.value = fix.dataset.v; fix.hidden = true; el.email.dispatchEvent(new Event('input')); });
+  form.addEventListener('reset', () => { fix.hidden = true; });
+})();
+</script>
+
+<script>
+/* ---------- Coming back from the laptop guide: fill in the model and jump to booking ---------- */
+(() => {
+  const P = new URLSearchParams(location.search), m = P.get('model');
+  if (!m || document.documentElement.classList.contains('tracking')) return;
+  const form = document.getElementById('book-form'); if (!form) return;
+  form.elements.model.value = m.slice(0, 120);
+  P.delete('model');
+  history.replaceState(null, '', location.pathname + (P.toString() ? '?' + P : '') + location.hash);
+  setTimeout(() => { (document.getElementById('book') || form).scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 400);
 })();
 </script>
 </body>
