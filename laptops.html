@@ -176,7 +176,7 @@
     <h1>Which laptop do you have?</h1>
     <p class="lede">Find yours by picture or name, see what it usually needs, then tap "This is mine" to book it. If you already know the exact model, just search for it.</p>
     <div class="search">
-      <input id="q" type="search" placeholder="Search, like victus, thinkpad, macbook air..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search laptops">
+      <input id="q" type="search" placeholder="Search, like victus, thinkpad, xps..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search laptops">
     </div>
     <div class="chips" id="types" role="group" aria-label="Filter by type"></div>
   </section>
@@ -186,7 +186,7 @@
     <div class="how">
       <div class="card"><p class="eyebrow">Easiest</p><h3>Flip it over</h3><p>Most laptops have a sticker or printed text on the bottom with the brand and model, like "HP Victus 15-fa0xxx" or "Model: A2337". A photo of that sticker works too.</p></div>
       <div class="card"><p class="eyebrow">Windows</p><h3>Ask the laptop</h3><ol><li>Press <kbd>Win+R</kbd></li><li>Type <kbd>msinfo32</kbd> and press <kbd>Enter</kbd></li><li>Read "System Model"</li></ol></div>
-      <div class="card"><p class="eyebrow">Mac</p><h3>About This Mac</h3><ol><li>Click the Apple menu in the top left</li><li>Choose "About This Mac"</li><li>It shows the name and year, like "MacBook Air, M1, 2020"</li></ol></div>
+      <div class="card"><p class="eyebrow">Mac</p><h3>Got a MacBook?</h3><p>MacBooks aren't accepted right now, Air or Pro, any year. See <a href="#na-h">Not accepted</a> below.</p></div>
     </div>
   </section>
 
@@ -327,6 +327,9 @@
       <span class="name">${esc(s.series)}</span>
       <span class="meta"><span>${esc(s.years)}</span><span class="pips" title="How hard to open">${pips(s.difficulty)}</span></span>
     </button>`).join('');
+    const na = !list.length && q && (DATA.notAccepted || []).find(s => matches(s, q));
+    $('empty').innerHTML = na ? `${esc(na.series)} is on the <a href="#na-h">Not accepted</a> list, so FW Tech can't take it right now.`
+      : 'No match. Try just the brand, like "dell", or use "Still not sure?" below.';
     $('empty').hidden = list.length > 0;
   }
   function full(brand, m) {
