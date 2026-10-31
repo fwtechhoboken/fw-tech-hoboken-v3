@@ -2748,7 +2748,7 @@
       <p class="mt-6 text-dim leading-relaxed max-w-[40ch]">Before booking, please read the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service and Privacy Policy</a>.</p>
       <div class="plate mt-10 p-6 border-heat/50">
         <h3 class="font-mono text-sm text-heat">Not accepted</h3>
-        <p class="mt-2 text-ink/85 leading-relaxed">Microsoft Surface, Razer, Alienware, Chromebooks, or any laptop that needs special tools just to open.</p>
+        <p class="mt-2 text-ink/85 leading-relaxed">MacBooks (Air or Pro), Microsoft Surface, Razer, Alienware, Chromebooks, or any laptop that needs special tools just to open.</p>
       </div>
     </div>
     <div class="col-span-12 lg:col-span-6 lg:col-start-7 space-y-5">
@@ -2758,7 +2758,7 @@
       </div>
       <div class="plate p-7">
         <h3 class="wide font-extrabold text-lg">Hands-on experience</h3>
-        <p class="mt-2 text-dim leading-relaxed">With HP laptops going back to 2006. Mostly modern Windows laptops, older MacBooks welcome, and older machines too. I genuinely enjoy working on them.</p>
+        <p class="mt-2 text-dim leading-relaxed">With HP laptops going back to 2006. Mostly modern Windows laptops, and older machines too. I genuinely enjoy working on them.</p>
       </div>
       <div class="plate p-7">
         <h3 class="wide font-extrabold text-lg">Straightforward pricing</h3>
@@ -4178,7 +4178,7 @@
   // Paste your Google Apps Script web app URL here (ends in /exec). Empty = Gmail handoff.
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxodOouRAfMUxpXfZBRf8qYUzNouJnHJcgOtx1ozSfxh5aldpK49enO_JIJmSFp0xf7/exec';
   window.FW_ENDPOINT = FORM_ENDPOINT;
-  const NOT_ACCEPTED = /s[ue]rf[ai]ce|raz[eo]r|alien ?w[ae]a?re|chrome ?boo?k/i;
+  const NOT_ACCEPTED = /s[ue]rf[ai]ce|raz[eo]r|alien ?w[ae]a?re|chrome ?boo?k|mac ?boo?k|\bmac\b|\bapple\b/i;
   const form = document.getElementById('book-form');
   const status = document.getElementById('form-status');
   const fail = (msg, el) => { if (el && window.FWStep) window.FWStep.reveal(el); status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
