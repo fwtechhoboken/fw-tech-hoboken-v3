@@ -175,8 +175,9 @@
     <p class="eyebrow">Laptop guide</p>
     <h1>Which laptop do you have?</h1>
     <p class="lede">Find yours by picture or name, see what it usually needs, then tap "This is mine" to book it. If you already know the exact model, just search for it.</p>
+    <p class="why" style="margin-top:14px"><b>No MacBooks.</b> Apple laptops of any year, Air or Pro, aren't accepted.</p>
     <div class="search">
-      <input id="q" type="search" placeholder="Search, like victus, thinkpad, xps..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search laptops">
+      <input id="q" type="search" placeholder="Search, like victus, thinkpad, ideapad..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search laptops">
     </div>
     <div class="chips" id="types" role="group" aria-label="Filter by type"></div>
   </section>
@@ -184,9 +185,9 @@
   <section aria-labelledby="how-h">
     <h2 id="how-h" style="font-size:22px;margin-bottom:14px">Not sure? Find the name in a minute</h2>
     <div class="how">
-      <div class="card"><p class="eyebrow">Easiest</p><h3>Flip it over</h3><p>Most laptops have a sticker or printed text on the bottom with the brand and model, like "HP Victus 15-fa0xxx" or "Model: A2337". A photo of that sticker works too.</p></div>
+      <div class="card"><p class="eyebrow">Easiest</p><h3>Flip it over</h3><p>Most laptops have a sticker or printed text on the bottom with the brand and model, like "HP Victus 15-fa0xxx" or "Lenovo IdeaPad 3 15ITL6". A photo of that sticker works too.</p></div>
       <div class="card"><p class="eyebrow">Windows</p><h3>Ask the laptop</h3><ol><li>Press <kbd>Win+R</kbd></li><li>Type <kbd>msinfo32</kbd> and press <kbd>Enter</kbd></li><li>Read "System Model"</li></ol></div>
-      <div class="card"><p class="eyebrow">Mac</p><h3>Got a MacBook?</h3><p>MacBooks aren't accepted right now, Air or Pro, any year. See <a href="#na-h">Not accepted</a> below.</p></div>
+      <div class="card"><p class="eyebrow">Paperwork</p><h3>Box or receipt</h3><ol><li>Check the original box, receipt, or order email</li><li>Look for the full model name</li><li>Still stuck? Book anyway and describe it</li></ol></div>
     </div>
   </section>
 
@@ -327,14 +328,11 @@
       <span class="name">${esc(s.series)}</span>
       <span class="meta"><span>${esc(s.years)}</span><span class="pips" title="How hard to open">${pips(s.difficulty)}</span></span>
     </button>`).join('');
-    const na = !list.length && q && (DATA.notAccepted || []).find(s => matches(s, q));
-    $('empty').innerHTML = na ? `${esc(na.series)} is on the <a href="#na-h">Not accepted</a> list, so FW Tech can't take it right now.`
-      : 'No match. Try just the brand, like "dell", or use "Still not sure?" below.';
     $('empty').hidden = list.length > 0;
   }
   function full(brand, m) {
     const b = brand.toLowerCase(), x = m.toLowerCase();
-    return x.startsWith(b) || (b === 'apple' && x.startsWith('macbook')) ? m : brand + ' ' + m;
+    return x.startsWith(b) ? m : brand + ' ' + m;
   }
   const bookHref = (v) => './?model=' + encodeURIComponent(v) + '#book';
 
