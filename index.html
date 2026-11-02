@@ -5,12 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FW Tech Hoboken | Laptop cleaning and thermal repaste in Hoboken, NJ</title>
 <meta name="description" content="Affordable laptop cleaning and thermal repaste in Hoboken, NJ. Local, honest, no corporate markup. Email to book, cash at drop-off.">
-<link rel="canonical" href="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/">
+<link rel="canonical" href="https://fwtechhoboken.com/">
 <meta name="theme-color" content="#0b0b0c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="FW Tech Hoboken | Laptop cleaning and thermal repaste">
 <meta property="og:description" content="Affordable laptop cleaning and thermal repaste. Local, honest, no corporate markup. Hoboken, Jersey City, Union City, Midtown and Downtown Manhattan.">
-<meta property="og:url" content="https://fwtechhoboken.github.io/fw-tech-hoboken-v3/">
+<meta property="og:url" content="https://fwtechhoboken.com/">
+<meta property="og:site_name" content="FW Tech Hoboken">
+<meta property="og:image" content="https://fwtechhoboken.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FW Tech Hoboken: laptop cleaning and thermal repaste">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FW Tech Hoboken | Laptop cleaning and thermal repaste">
+<meta name="twitter:description" content="Local laptop cleaning and thermal repaste from $15. Hoboken, Jersey City, Union City, Midtown and Downtown Manhattan.">
+<meta name="twitter:image" content="https://fwtechhoboken.com/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0c'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%23c8a96a'%3EFW%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
@@ -19,7 +28,7 @@
   "name": "FW Tech Hoboken",
   "alternateName": "FW Tech",
   "description": "Laptop cleaning and thermal repaste service. Hardware cleaning only.",
-  "url": "https://fwtechhoboken.github.io/fw-tech-hoboken-v3/",
+  "url": "https://fwtechhoboken.com/",
   "email": "rey.sahani03@gmail.com",
   "priceRange": "$15 to $72",
   "paymentAccepted": "Cash",
@@ -35,6 +44,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=Special+Elite&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 <script>if (/[?&]t=/.test(location.search) || (/[?&]track=/.test(location.search) && /[?&]key=/.test(location.search))) document.documentElement.classList.add('tracking');</script>
 <script>
@@ -1014,7 +1024,7 @@
   .tip-mode:hover { border-color: rgb(var(--brass)); transform: translateY(-2px); }
   .tip-mode[aria-pressed="true"] { border-color: rgb(var(--brass)); background: rgb(var(--brass) / .12); }
   .mode-tip-foot { margin: 14px 0 0; font-size: .8rem; color: rgb(var(--dim)); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-  .mode-tip-ok { background: rgb(var(--brass)); color: rgb(var(--void)); border: 0; padding: 8px 14px; font: inherit; font-weight: 800; cursor: pointer; }
+  .mode-tip-ok { background: rgb(var(--brass)); color: rgb(var(--void)); border: 0; padding: 8px 14px; font: inherit; font-weight: 800; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
   html[data-theme="airplane"] .mode-tip { border-radius: 14px; border-width: 2px; }
   html[data-theme="airplane"] .tip-mode, html[data-theme="airplane"] .mode-tip-ok { border-radius: 8px; }
   html[data-theme="industrial"] .mode-tip { background: linear-gradient(180deg, #3a2c21, #241a13); border-color: #0d0906; box-shadow: 0 30px 60px -20px rgba(0,0,0,.85), 0 0 0 4px #d69a4e; }
@@ -2748,7 +2758,7 @@
       <p class="mt-6 text-dim leading-relaxed max-w-[40ch]">Before booking, please read the <a href="#terms" class="text-coolant underline underline-offset-4">Terms of Service and Privacy Policy</a>.</p>
       <div class="plate mt-10 p-6 border-heat/50">
         <h3 class="font-mono text-sm text-heat">Not accepted</h3>
-        <p class="mt-2 text-ink/85 leading-relaxed">MacBooks (Air or Pro), Microsoft Surface, Razer, Alienware, Chromebooks, or any laptop that needs special tools just to open.</p>
+        <p class="mt-2 text-ink/85 leading-relaxed">Apple MacBooks (any year), Microsoft Surface, Razer, Alienware, Chromebooks, or any laptop that needs special tools just to open.</p>
       </div>
     </div>
     <div class="col-span-12 lg:col-span-6 lg:col-start-7 space-y-5">
@@ -4178,7 +4188,7 @@
   // Paste your Google Apps Script web app URL here (ends in /exec). Empty = Gmail handoff.
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxodOouRAfMUxpXfZBRf8qYUzNouJnHJcgOtx1ozSfxh5aldpK49enO_JIJmSFp0xf7/exec';
   window.FW_ENDPOINT = FORM_ENDPOINT;
-  const NOT_ACCEPTED = /s[ue]rf[ai]ce|raz[eo]r|alien ?w[ae]a?re|chrome ?boo?k|mac ?boo?k|\bmac\b|\bapple\b/i;
+  const NOT_ACCEPTED = /s[ue]rf[ai]ce|raz[eo]r|alien ?w[ae]a?re|chrome ?boo?k|mac?k? ?boo?k|\bapple\b|\bi ?mac\b|\bmac ?(air|pro|mini)\b|\bmb[ap]\b/i;
   const form = document.getElementById('book-form');
   const status = document.getElementById('form-status');
   const fail = (msg, el) => { if (el && window.FWStep) window.FWStep.reveal(el); status.textContent = msg; status.style.color = '#f59e0b'; if (el) el.focus(); };
